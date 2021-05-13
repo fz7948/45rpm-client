@@ -18,6 +18,6 @@ assignees: ''
 -
 
 ## Try (Action Items)
-- [ ]
-- [ ]
-- [ ]
+ - [ ]
+ - [ ]
+ - [ ]
