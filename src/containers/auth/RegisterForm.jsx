@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RegisterForm = () => {
-  return 'Hello world';
+  return 'RegisterForm';
 };
 
 export default RegisterForm;
