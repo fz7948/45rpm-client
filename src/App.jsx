@@ -1,3 +1,6 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import MainPage from './pages/MainPage';
 import InquiriesPage from './pages/InquiriesPage';
 import MyPage from './pages/MyPage';
@@ -9,13 +12,15 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Switch>
-        <Route component={MainPage} part="/" exact />
-        <Route component={InquiriesPage} part="/" />
-        <Route component={MyPage} part="/" />
-        <Route component={SharingPage} part="/" />
-        <Route component={CustomPage} part="/" />
-      </Switch>
+      <Router>
+        <Switch>
+          <Route component={MainPage} part="/" exact />
+          <Route component={InquiriesPage} part="/" />
+          <Route component={MyPage} part="/" />
+          <Route component={SharingPage} part="/" />
+          <Route component={CustomPage} part="/" />
+        </Switch>
+      </Router>
     </>
   );
 }
