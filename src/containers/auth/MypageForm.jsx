@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MypageForm = () => {
-  return 'Hello world';
+  return 'My page';
 };
 
 export default MypageForm;

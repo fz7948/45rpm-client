@@ -14,11 +14,11 @@ function App() {
       <GlobalStyles />
       <Router>
         <Switch>
-          <Route component={MainPage} part="/" exact />
-          <Route component={InquiriesPage} part="/" />
-          <Route component={MyPage} part="/" />
-          <Route component={SharingPage} part="/" />
-          <Route component={CustomPage} part="/" />
+          <Route component={MainPage} path="/" exact />
+          <Route component={CustomPage} path="/1" />
+          <Route component={InquiriesPage} path="/2" />
+          <Route component={MyPage} path="/mypage" />
+          <Route component={SharingPage} path="/3" />
         </Switch>
       </Router>
     </>
