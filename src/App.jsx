@@ -1,9 +1,9 @@
-import MainPage from "./pages/MainPage";
-import InquiriesPage from "./pages/InquiriesPage";
-import MyPage from "./pages/MyPage";
-import SharingPage from "./pages/SharingPage";
-import CustomPage from "./pages/CustomPage";
-import GlobalStyles from "./components/common/GlobalStyles";
+import MainPage from './pages/MainPage';
+import InquiriesPage from './pages/InquiriesPage';
+import MyPage from './pages/MyPage';
+import SharingPage from './pages/SharingPage';
+import CustomPage from './pages/CustomPage';
+import GlobalStyles from './components/common/GlobalStyles';
 
 function App() {
   return (
