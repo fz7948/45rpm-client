@@ -1,7 +1,7 @@
 ---
 name: "⛏[Task]"
 about: 할 일
-title: "[TASK]"
+title: "⛏[Task]"
 labels: Task
 assignees: ''
 
