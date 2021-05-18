@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import '../../pages/sass/Main.scss';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 
 function Main() {
+  const history = useHistory();
   let prevBtn, nextBtn;
   let header;
   let container;
@@ -146,7 +148,9 @@ function Main() {
             <section className="movingImg">
               <div className="textWrapper">
                 <h1>지금 바로 만들어 보세요!!</h1>
-                <div className="start">시작하기</div>
+                <div className="start" onClick={() => history.push('/1')}>
+                  시작하기
+                </div>
                 <div className="share">공유 페이지</div>
               </div>
             </section>

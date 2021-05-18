@@ -1,8 +1,8 @@
 import React from 'react';
-import AuthTemplate from '../containers/auth/AutoTemplate';
+import Custom from '../components/custom/Custom';
 
 const CustomPage = () => {
-  return 'CustomPage';
+  return <Custom />;
 };
 
 export default CustomPage;
