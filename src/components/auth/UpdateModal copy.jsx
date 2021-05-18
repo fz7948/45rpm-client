@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 
-const RegisterWrapper = styled.div`
+const UpdateWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,9 +21,20 @@ const RegisterWrapper = styled.div`
     list-style: none;
     margin-bottom: 1rem;
   }
+  p {
+    font-size: 12px;
+    font-weight: 600;
+    color: #707174;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  .update_info {
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
 `;
 
-const RegisterLabel = styled.label`
+const UpdateLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   color: #707174;
@@ -31,7 +42,7 @@ const RegisterLabel = styled.label`
   margin-bottom: 4px;
 `;
 
-const RegisterInput = styled.input`
+const UpdateInput = styled.input`
   height: 1rem;
   width: 16rem;
   padding: 1rem;
@@ -46,9 +57,9 @@ const RegisterInput = styled.input`
   }
 `;
 
-const RegisterCloseBtn = styled.button`
+const UpdateCloseBtn = styled.button`
   position: relative;
-  top: -2rem;
+  top: 0.5rem;
   left: 20rem;
   font-weight: 700;
   font-size: 1rem;
@@ -58,7 +69,7 @@ const RegisterCloseBtn = styled.button`
   }
 `;
 
-const RegisterSubmitBtn = styled.button`
+const UpdateSubmitBtn = styled.button`
   height: 2.2rem;
   width: 16rem;
   border-radius: 3px;
@@ -76,7 +87,7 @@ const RegisterSubmitBtn = styled.button`
   }
 `;
 
-const RegisterModal = ({ open, close, onSubmitHand }) => {
+const UpdateModal = ({ open, close, onSubmitHand }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
@@ -101,47 +112,41 @@ const RegisterModal = ({ open, close, onSubmitHand }) => {
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open} register>
           <form onSubmit={onSubmitHandler}>
-            <RegisterCloseBtn onClick={close}>X</RegisterCloseBtn>
-            <RegisterWrapper>
-              <h2>회원가입</h2>
-
+            <UpdateCloseBtn onClick={close}>X</UpdateCloseBtn>
+            <UpdateWrapper>
+              <h2>계정 정보 수정</h2>
+              <div className="update_info">
+                <p>E-mail은 변경이 불가능합니다.</p>
+                <p>닉네임을 입력하지 않을 시, 유지됩니다.</p>
+              </div>
               <ul>
                 <li>
-                  <RegisterLabel>
+                  <UpdateLabel>
                     <div>E-mail</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="email"
-                    placeholder="사용하실 E-mail을 입력해주세요."
-                  />
+                  </UpdateLabel>
+                  <UpdateInput type="email" placeholder="fz7948@gmail.com" />
                 </li>
                 <li>
-                  <RegisterLabel>
+                  <UpdateLabel>
                     <div>닉네임</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="text"
-                    placeholder="사용하실 닉네임을 입력해주세요."
-                  />
+                  </UpdateLabel>
+                  <UpdateInput type="text" placeholder="오우영" />
                 </li>
                 <li>
-                  <RegisterLabel>
+                  <UpdateLabel>
                     <div>비밀번호</div>
-                  </RegisterLabel>
-                  <RegisterInput type="password" placeholder="Password" />
+                  </UpdateLabel>
+                  <UpdateInput type="password" placeholder="Password" />
                 </li>
                 <li>
-                  <RegisterLabel>
+                  <UpdateLabel>
                     <div>비밀번호 확인</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="password"
-                    placeholder="Password Confirm"
-                  />
+                  </UpdateLabel>
+                  <UpdateInput type="password" placeholder="Password Confirm" />
                 </li>
               </ul>
-              <RegisterSubmitBtn>회원가입</RegisterSubmitBtn>
-            </RegisterWrapper>
+              <UpdateSubmitBtn>수정 완료</UpdateSubmitBtn>
+            </UpdateWrapper>
           </form>
         </ModalBox>
       </ModalBack>
@@ -149,4 +154,4 @@ const RegisterModal = ({ open, close, onSubmitHand }) => {
   );
 };
 
-export default RegisterModal;
+export default UpdateModal;
