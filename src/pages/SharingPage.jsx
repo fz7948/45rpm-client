@@ -1,8 +1,8 @@
 import React from 'react';
-import AuthTemplate from '../containers/auth/AutoTemplate';
+import Sharing from '../components/Sharing/Sharing';
 
 const SharingPage = () => {
-  return 'SharingPage';
+    return <Sharing / > ;
 };
 
 export default SharingPage;
