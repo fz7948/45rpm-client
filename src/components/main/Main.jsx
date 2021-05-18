@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../pages/sass/Main.scss';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 
 function Main() {
   let prevBtn, nextBtn;
@@ -15,6 +17,7 @@ function Main() {
     ['#96A5AD', '#36595b'],
     ['#e58e82', '#6f569f'],
     ['#CE9A9C', '#6f569f'],
+    ['#143B7D', '#FDFAF5'],
   ];
 
   window.onload = function () {
@@ -69,10 +72,7 @@ function Main() {
   return (
     <>
       <article className="container">
-        <header className="header">
-          <div className="signIn">Sign In</div>
-          <div className="signUp">Sign Up</div>
-        </header>
+        <Header />
         <div className="wrapperContent">
           <div className="sectionWrapper">
             <section className="cdCase">
@@ -119,7 +119,7 @@ function Main() {
               </div>
             </section>
           </div>
-          <div className="sectionWrapper page4">
+          <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
                 <div className="innerDisk"></div>
@@ -131,6 +131,23 @@ function Main() {
             <section className="movingImg">
               <div className="card">
                 <img src="./images/um4.gif" alt="" />
+              </div>
+            </section>
+          </div>
+          <div className="sectionWrapper">
+            <section className="cdCase">
+              <div className="disk">
+                <div className="innerDisk"></div>
+              </div>
+              <div className="coverImg">
+                <img src="./images/4.jpg" alt="" />
+              </div>
+            </section>
+            <section className="movingImg">
+              <div className="textWrapper">
+                <h1>지금 바로 만들어 보세요!!</h1>
+                <div className="start">시작하기</div>
+                <div className="share">공유 페이지</div>
               </div>
             </section>
           </div>
@@ -146,36 +163,7 @@ function Main() {
             <button>SKIP</button>
           </div>
         </div>
-        <footer className="footer">
-          <div className="remainder">
-            <div className="team">Black Circle</div>
-            <div className="member">
-              <div className="gitImg">
-                Member
-                <img src="./images/2.png" alt="" />
-              </div>
-
-              <div className="memberTitle">
-                <a className="class1" href="https://github.com/tyufjvbn2">
-                  Park J.H
-                </a>
-                <a className="class2" href="https://github.com/dodo9128">
-                  Lee J.Y
-                </a>
-                <a className="class3" href="https://github.com/fz7948">
-                  O W.Y
-                </a>
-                <a className="class4" href="https://github.com/DLSKAGHD">
-                  Lee S.J
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="sns">
-            <img src="./images/kakao.png" alt="" />
-            <div className="copyright"> ©Copyright All rights reserved</div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );
