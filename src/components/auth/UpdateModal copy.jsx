@@ -61,6 +61,9 @@ const UpdateCloseBtn = styled.button`
   position: relative;
   top: 0.5rem;
   left: 20rem;
+  background: white;
+  border: 0;
+  outline: 0;
   font-weight: 700;
   font-size: 1rem;
   &:hover {

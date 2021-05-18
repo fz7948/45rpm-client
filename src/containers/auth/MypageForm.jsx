@@ -43,11 +43,11 @@ const MypageForm = () => {
   return (
     <>
       <Container>
-        <UpdateModal
+        <LoginModal
           open={checkModal}
           close={onCancel}
           onSubmitHand={onSubmitHand}
-        ></UpdateModal>
+        ></LoginModal>
         <Button onClick={openModal}>I'm a modal</Button>
       </Container>
     </>
