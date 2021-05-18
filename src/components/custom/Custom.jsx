@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 // import { albumCoverImg } from "./data/albumCover";
 // import { centerCoverImg } from "./data/centerCover";
 import { ChromePicker } from 'react-color';
@@ -20,10 +21,28 @@ import {
   CustomCenterCover,
   SaveBtn,
   Button,
+  InputFile,
 } from './CustomStyle';
 const Custom = () => {
+  const history = useHistory();
+  const [imgBase64, setImgBase64] = useState('');
+  const [imgFile, setImgFile] = useState(null);
   const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
+
+  const handleChangeFile = (e) => {
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      if (base64) {
+        setImgBase64(base64.toString());
+      }
+    };
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+      setImgFile(e.target.files[0]);
+    }
+  };
 
   const handleChangeColor = (color) => {
     setColor(color.hex);
@@ -45,23 +64,39 @@ const Custom = () => {
             </CdCaseContent>
             <CustomContent>
               <CustomElement>
-                <Button
-                  onClick={() =>
-                    setShowColorPicker((showColorPicker) => !showColorPicker)
-                  }
-                >
-                  {/* {showColorPicker ? "Close color picker" : "Pick a color"} */}
-                </Button>
                 <CustomColor>
                   Color
+                  <Button
+                    onClick={() =>
+                      setShowColorPicker((showColorPicker) => !showColorPicker)
+                    }
+                  >
+                    {showColorPicker ? 'CLOSE' : 'CHOOSE COLOR'}
+                  </Button>
                   {showColorPicker && (
                     <ChromePicker color={color} onChange={handleChangeColor} />
                   )}
                 </CustomColor>
-                <CustomAlbumCover>AlbumCover</CustomAlbumCover>
-                <CustomCenterCover>CenterCover</CustomCenterCover>
+                <CustomAlbumCover>
+                  AlbumCover
+                  <InputFile
+                    type="file"
+                    name="imgFile"
+                    id="imgFile"
+                    onChange={handleChangeFile}
+                  />
+                </CustomAlbumCover>
+                <CustomCenterCover>
+                  CenterCover
+                  <InputFile
+                    type="file"
+                    name="imgFile"
+                    id="imgFile"
+                    onChange={handleChangeFile}
+                  />
+                </CustomCenterCover>
               </CustomElement>
-              <SaveBtn>Save</SaveBtn>
+              <SaveBtn onClick={() => history.push('/')}>Save</SaveBtn>
             </CustomContent>
           </SectionWrapper>
         </MainContentWrapper>

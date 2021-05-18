@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div `
   display: flex;
@@ -39,7 +39,7 @@ export const Disk = styled.div `
   height: 550px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
-  /* background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff); */
+  background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff);
   opacity: 1;
   animation: rotation 5s ease infinite;
 
@@ -136,22 +136,75 @@ export const CustomElement = styled.div `
   background: linear-gradient(245deg, #143b7d, #fdfaf5);
 `;
 
-export const CustomColor = styled.div `
-  padding-bottom: 5rem;
+export const Button = styled.button `
+  width: 5rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Nanum Brush Script', cursive;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-image: linear-gradient(
+    120deg,
+    #264986 20%,
+    #5f78a3 50%,
+    #dee0e5 100%
+  );
+  &:hover {
+    animation: slidebg 2s linear infinite;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
 `;
 
-export const Button = styled.button `
-  width: 10px;
-  height: 10px;
-  z-index: 4;
+const Input = css `
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CustomColor = styled.div `
+  ${Input}
 `;
 
 export const CustomAlbumCover = styled.div `
-  padding-bottom: 5rem;
+  ${Input}
 `;
 
 export const CustomCenterCover = styled.div `
-  padding-bottom: 5rem;
+  ${Input}
+`;
+
+export const InputFile = styled.input `
+  border: 3px solid lightblue;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 1rem;
+  width: 100%;
+  box-shadow: 1px 3px 2px 1px rgba(0, 1, 1, 1);
+  background-image: linear-gradient(
+    120deg,
+    #264986 20%,
+    #5f78a3 50%,
+    #dee0e5 100%
+  );
+  &:hover {
+    animation: slidebg 2s linear infinite;
+  }
+
+  @keyframes slidebg {
+    to {
+      background-position: 20vw;
+    }
+  }
 `;
 
 export const SaveBtn = styled.button `
