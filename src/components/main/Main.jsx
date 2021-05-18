@@ -180,7 +180,9 @@ function Main() {
                 <div className="start" onClick={() => history.push('/1')}>
                   시작하기
                 </div>
-                <div className="share"> 공유 페이지 </div>
+                <div className="share" onClick={() => history.push('/3')}>
+                  공유 페이지
+                </div>
               </div>
             </section>
           </div>

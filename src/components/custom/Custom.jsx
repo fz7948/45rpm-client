@@ -21,7 +21,7 @@ import {
   SaveBtn,
   Button,
   InputFile,
-} from './CustomStyle';
+} from '../common/CustomStyle';
 const Custom = () => {
   const history = useHistory();
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
