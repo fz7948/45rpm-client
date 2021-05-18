@@ -50,6 +50,9 @@ const RegisterCloseBtn = styled.button`
   position: relative;
   top: -2rem;
   left: 20rem;
+  background: white;
+  border: 0;
+  outline: 0;
   font-weight: 700;
   font-size: 1rem;
   &:hover {

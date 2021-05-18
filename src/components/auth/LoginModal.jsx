@@ -48,6 +48,9 @@ const LoginCloseBtn = styled.button`
   position: relative;
   top: -1rem;
   left: 16rem;
+  background: white;
+  border: 0;
+  outline: 0;
   font-weight: 700;
   font-size: 1rem;
   &:hover {
