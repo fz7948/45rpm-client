@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from '../../components/common/LoginModal';
+import Modal from '../../components/auth/LoginModal';
+import Modal2 from '../../components/auth/RegisterModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal } from '../../modules/modal';
 
@@ -41,11 +42,11 @@ const MypageForm = () => {
   return (
     <>
       <Container>
-        <Modal
+        <Modal2
           open={checkModal}
           close={onCancel}
           onSubmitHand={onSubmitHand}
-        ></Modal>
+        ></Modal2>
         <Button onClick={openModal}>I'm a modal</Button>
       </Container>
     </>

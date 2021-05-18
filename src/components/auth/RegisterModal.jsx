@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ModalBack, ModalBox } from './ModalStyle';
+import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 
-const LoginWrapper = styled.div`
+const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   h2 {
     color: #191919;
     font-weight: 700;
@@ -16,12 +17,13 @@ const LoginWrapper = styled.div`
     padding: 0;
   }
   li {
+    position: relative;
     list-style: none;
     margin-bottom: 0.5rem;
   }
 `;
 
-const LoginLabel = styled.label`
+const RegisterLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   color: #707174;
@@ -29,9 +31,9 @@ const LoginLabel = styled.label`
   margin-bottom: 4px;
 `;
 
-const LoginInput = styled.input`
-  height: 1.2rem;
-  width: 14rem;
+const RegisterInput = styled.input`
+  height: 1rem;
+  width: 16rem;
   padding: 1rem;
   border: 1px solid #9b9b9c;
   border-radius: 3px;
@@ -39,15 +41,15 @@ const LoginInput = styled.input`
   color: #5f6063;
   &:focus {
     outline: none;
-    border: 1px solid $main;
+    border: 1px solid #f73d5c;
     transition: all ease 0.3s;
   }
 `;
 
-const LoginCloseBtn = styled.button`
+const RegisterCloseBtn = styled.button`
   position: relative;
   top: -1rem;
-  left: 16rem;
+  left: 17rem;
   font-weight: 700;
   font-size: 1rem;
   &:hover {
@@ -56,43 +58,25 @@ const LoginCloseBtn = styled.button`
   }
 `;
 
-const LoginSubmitBtn = styled.button`
+const RegisterSubmitBtn = styled.button`
   height: 2.2rem;
-  width: 14rem;
+  width: 16rem;
   border-radius: 3px;
+  margin-top: 0.5rem;
   border: 0;
   outline: 0;
-  margin: 1rem 0rem;
+  margin-bottom: 0.5rem;
   background-color: #f73d5c;
   color: #fff;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
   &:hover {
     background-color: #b3535b;
     transition: all ease 0.3s;
   }
 `;
 
-const LoginSocialBtn = styled.button`
-  height: 2.2rem;
-  width: 14rem;
-  border: 0;
-  outline: 0;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background-color: #e8e8e8;
-  &:hover {
-    background-color: #b6b3b3;
-    transition: all ease 0.3s;
-  }
-  & + & {
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
-  }
-`;
-
-const LoginModal = ({ open, close, onSubmitHand }) => {
+const RegisterModal = ({ open, close, onSubmitHand }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
@@ -117,28 +101,47 @@ const LoginModal = ({ open, close, onSubmitHand }) => {
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open}>
           <form onSubmit={onSubmitHandler}>
-            <LoginCloseBtn onClick={close}>X</LoginCloseBtn>
-            <LoginWrapper>
-              <h2>로그인</h2>
+            <RegisterCloseBtn onClick={close}>X</RegisterCloseBtn>
+            <RegisterWrapper>
+              <h2>회원가입</h2>
 
               <ul>
                 <li>
-                  <LoginLabel>
-                    <div>E-MAIL</div>
-                  </LoginLabel>
-                  <LoginInput></LoginInput>
+                  <RegisterLabel>
+                    <div>E-mail</div>
+                  </RegisterLabel>
+                  <RegisterInput
+                    type="email"
+                    placeholder="사용하실 E-mail을 입력해주세요."
+                  />
                 </li>
                 <li>
-                  <LoginLabel>
+                  <RegisterLabel>
+                    <div>닉네임</div>
+                  </RegisterLabel>
+                  <RegisterInput
+                    type="text"
+                    placeholder="사용하실 닉네임을 입력해주세요."
+                  />
+                </li>
+                <li>
+                  <RegisterLabel>
                     <div>비밀번호</div>
-                  </LoginLabel>
-                  <LoginInput></LoginInput>
+                  </RegisterLabel>
+                  <RegisterInput type="password" placeholder="Password" />
+                </li>
+                <li>
+                  <RegisterLabel>
+                    <div>비밀번호 확인</div>
+                  </RegisterLabel>
+                  <RegisterInput
+                    type="password"
+                    placeholder="Password Confirm"
+                  />
                 </li>
               </ul>
-              <LoginSubmitBtn>로그인</LoginSubmitBtn>
-              <LoginSocialBtn>구글</LoginSocialBtn>
-              <LoginSocialBtn>카카오</LoginSocialBtn>
-            </LoginWrapper>
+              <RegisterSubmitBtn>회원가입</RegisterSubmitBtn>
+            </RegisterWrapper>
           </form>
         </ModalBox>
       </ModalBack>
@@ -146,4 +149,4 @@ const LoginModal = ({ open, close, onSubmitHand }) => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
