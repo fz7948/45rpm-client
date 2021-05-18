@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import MainPage from './pages/MainPage';
 import InquiriesPage from './pages/InquiriesPage';
 import MyPage from './pages/MyPage';
