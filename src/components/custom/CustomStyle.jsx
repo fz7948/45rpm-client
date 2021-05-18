@@ -39,7 +39,7 @@ export const Disk = styled.div `
   height: 550px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
-  background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff);
+  ${'' /* background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff); */}
   opacity: 1;
   animation: rotation 5s ease infinite;
 
@@ -83,6 +83,11 @@ export const InnerDisk = styled.div `
     background-color: black;
     border-radius: 50%;
   }
+`;
+export const Img1 = styled.img `
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 `;
 
 export const CoverImg = styled.div `
@@ -167,6 +172,10 @@ const Input = css `
   padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const CustomColor = styled.div `
@@ -198,6 +207,10 @@ export const InputFile = styled.input `
   );
   &:hover {
     animation: slidebg 2s linear infinite;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
   }
 
   @keyframes slidebg {

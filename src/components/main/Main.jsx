@@ -6,7 +6,7 @@ import Footer from '../common/Footer';
 
 function Main() {
   const history = useHistory();
-  let prevBtn, nextBtn;
+  let prevBtn, nextBtn, skipBtn;
   let header;
   let container;
   let innerDisk;
@@ -25,6 +25,7 @@ function Main() {
   window.onload = function () {
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
+    skipBtn = document.querySelectorAll('button')[2];
     container = document.querySelector('.container');
     innerDisk = document.querySelectorAll('.innerDisk');
     cdCase = document.querySelectorAll('.cdCase');
@@ -49,8 +50,36 @@ function Main() {
       }
       pageChangeFunc();
     });
+
+    skipBtn.addEventListener('click', function () {
+      if (true) {
+        pageNum = 4;
+      }
+      pageFunc();
+      removeFunc();
+    });
     pageChangeFunc();
   };
+
+  function pageFunc() {
+    container.style.background =
+      'linear-gradient(120deg,' +
+      colorArray[pageNum][0] +
+      ',' +
+      colorArray[pageNum][1] +
+      ')';
+
+    cdCase[4].classList.add('active');
+    movingImg[4].classList.add('active');
+    innerDisk[pageNum].style.background = colorArray[pageNum][0];
+  }
+
+  function removeFunc() {
+    for (var i = 0; i < totalNum - 1; i++) {
+      cdCase[i].classList.remove('active');
+      movingImg[i].classList.remove('active');
+    }
+  }
 
   function pageChangeFunc() {
     container.style.background =
@@ -79,7 +108,7 @@ function Main() {
           <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
-                <div className="innerDisk"></div>
+                <div className="innerDisk"> </div>
               </div>
               <div className="coverImg">
                 <img src="./images/1.webp" alt="" />
@@ -94,7 +123,7 @@ function Main() {
           <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
-                <div className="innerDisk"></div>
+                <div className="innerDisk"> </div>
               </div>
               <div className="coverImg">
                 <img src="./images/1.jpg" alt="" />
@@ -109,7 +138,7 @@ function Main() {
           <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
-                <div className="innerDisk"></div>
+                <div className="innerDisk"> </div>
               </div>
               <div className="coverImg">
                 <img src="./images/2.jpg" alt="" />
@@ -124,7 +153,7 @@ function Main() {
           <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
-                <div className="innerDisk"></div>
+                <div className="innerDisk"> </div>
               </div>
               <div className="coverImg">
                 <img src="./images/3.jpg" alt="" />
@@ -139,7 +168,7 @@ function Main() {
           <div className="sectionWrapper">
             <section className="cdCase">
               <div className="disk">
-                <div className="innerDisk"></div>
+                <div className="innerDisk"> </div>
               </div>
               <div className="coverImg">
                 <img src="./images/4.jpg" alt="" />
@@ -147,11 +176,11 @@ function Main() {
             </section>
             <section className="movingImg">
               <div className="textWrapper">
-                <h1>지금 바로 만들어 보세요!!</h1>
+                <h1> 지금 바로 만들어 보세요!! </h1>
                 <div className="start" onClick={() => history.push('/1')}>
                   시작하기
                 </div>
-                <div className="share">공유 페이지</div>
+                <div className="share"> 공유 페이지 </div>
               </div>
             </section>
           </div>
@@ -160,11 +189,10 @@ function Main() {
       <div className="wrapBtn">
         <div className="btn">
           <div className="fingerBtn">
-            <button>☚</button>
-            <button>☛ </button>
+            <button> ☚ </button> <button> ☛ </button>
           </div>
           <div className="skipBtn">
-            <button>SKIP</button>
+            <button> SKIP </button>
           </div>
         </div>
         <Footer />
