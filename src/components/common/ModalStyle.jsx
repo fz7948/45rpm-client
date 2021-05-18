@@ -103,4 +103,10 @@ export const ModalBox = styled.div`
     css`
       animation-name: ${slideDown};
     `}
+  ${(props) =>
+    props.register &&
+    css`
+      width: 450px;
+      height: 500px;
+    `}
 `;
