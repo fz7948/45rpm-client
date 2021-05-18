@@ -123,7 +123,6 @@ const LoginModal = ({ open, close, onSubmitHand }) => {
             <LoginCloseBtn onClick={close}>X</LoginCloseBtn>
             <LoginWrapper>
               <h2>로그인</h2>
-
               <ul>
                 <li>
                   <LoginLabel>
