@@ -1,0 +1,86 @@
+$small: 'screen and (max-width:768px)';
+.footer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 0;
+    width: 100%;
+    height: 100%;
+    .remainder {
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 1rem;
+        .team {
+            font-family: 'Lobster', cursive;
+            font-weight: bold;
+            font-size: 3.5rem;
+            padding-left: 2rem;
+            padding-right: 20rem;
+            color: black;
+            @media #{$small} {
+                padding-right: 5rem;
+                font-size: 1.5rem;
+            }
+        }
+        .member {
+            display: flex;
+            padding: 1rem;
+            margin-right: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+            font-size: 2rem;
+            border: 8px double black;
+            border-radius: 20px;
+            @media #{$small} {
+                font-size: 1rem;
+            }
+            .gitImg {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                img {
+                    padding-left: 1rem;
+                    width: 60px;
+                    height: 40px;
+                }
+            }
+            .memberTitle {
+                display: flex;
+                font-size: 1.2rem;
+                padding-left: 2rem;
+                text-decoration: none;
+                .class1,
+                .class2,
+                .class3,
+                .class4 {
+                    text-decoration: none;
+                    font-style: italic;
+                    color: #fff;
+                    padding: 0.5rem;
+                    @media #{$small} {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    .sns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        img {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+        .copyright {
+            font-family: 'Lobster', cursive;
+            padding-top: 1rem;
+            color: #fff;
+        }
+    }
+}

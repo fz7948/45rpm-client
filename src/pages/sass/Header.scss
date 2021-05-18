@@ -1,0 +1,22 @@
+$small: 'screen and (max-width:768px)';
+.header {
+    display: flex;
+    justify-content: flex-end;
+    .signIn,
+    .signUp {
+        background: transparent;
+        outline: none;
+        border: none;
+        font-size: 1.5rem;
+        padding: 0.6rem;
+        font-family: 'Lobster', cursive;
+        cursor: pointer;
+        &:hover {
+            color: #fff;
+            transition: all 0.8s ease-in-out;
+        }
+        @media #{$small} {
+            font-size: 1rem;
+        }
+    }
+}
