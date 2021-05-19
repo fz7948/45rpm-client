@@ -1,43 +1,54 @@
 import React from 'react';
 import '../../pages/sass/Header.scss';
-import { showModal, closeModal } from '../../modules/modal';
+import { loginModal, registerModal, closeModal } from '../../modules/modal';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
 
 const Header = () => {
-  const { checkModal } = useSelector(({ modal }) => ({
+  const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
+    isType: modal.isType,
   }));
 
   const dispatch = useDispatch();
 
-  const openModal = (e) => {
-    dispatch(showModal());
+  const openLoginModal = () => {
+    dispatch(loginModal());
   };
-  const onSubmitHand = (data) => {};
 
-  const shutModal = (e) => {
+  const openRegisterModal = () => {
+    dispatch(registerModal());
+  };
+
+  const shutModal = () => {
     dispatch(closeModal());
   };
+
+  const onSubmitHand = (data) => {};
+
   return (
     <header className="header">
-      <div className="signIn" onClick={openModal}>
+      <div className="signIn" onClick={openLoginModal}>
         Sign In
       </div>
-      <RegisterModal
-        open={checkModal}
-        close={shutModal}
-        onSubmitHand={onSubmitHand}
-      ></RegisterModal>
-      <LoginModal
-        open={checkModal}
-        close={shutModal}
-        onSubmitHand={onSubmitHand}
-      ></LoginModal>
-      <div className="signUp" onClick={openModal}>
+      <div className="signUp" onClick={openRegisterModal}>
         Sign Up
       </div>
+      {isType === 'login' && (
+        <LoginModal
+          open={checkModal}
+          close={shutModal}
+          onSubmitHand={onSubmitHand}
+        ></LoginModal>
+      )}
+      {isType === 'register' && (
+        <RegisterModal
+          open={checkModal}
+          close={shutModal}
+          onSubmitHand={onSubmitHand}
+        ></RegisterModal>
+      )}
     </header>
   );
 };
