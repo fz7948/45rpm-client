@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const SidebarWrapper = styled.div`
   .navbar {
+    padding-right: 1rem;
     margin-top: 5px;
     display: flex;
     justify-content: flex-end;
@@ -30,6 +31,7 @@ const SidebarWrapper = styled.div`
     display: flex;
     justify-content: center;
     position: fixed;
+    z-index: 999;
     top: 0;
     right: -100%;
     transition: 850ms;
@@ -103,8 +105,7 @@ const Navbar = () => {
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
+                  {item.icon} <span> {item.title} </span>
                 </Link>
               </li>
             );

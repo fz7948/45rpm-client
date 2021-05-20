@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Header from '../common/Header';
+import Sidebar from '../common/Sidebar';
 import { useHistory } from 'react-router-dom';
 import { SharingArr } from '../data/SharingData';
 import Footer from '../common/Footer';
 import {
   Container,
-  Header,
   ContentWrapper,
   ImgWrapper,
   LeftWrapper,
@@ -19,6 +20,7 @@ import {
 
 const Sharing = () => {
   const history = useHistory();
+  const [isLogin, setIsLogin] = useState(true);
   const genre = ['Rock', 'Ballad', 'HipHop'];
 
   const filteredRock = SharingArr.filter((el) => {
@@ -44,7 +46,7 @@ const Sharing = () => {
   console.log(filteredBallad);
   return (
     <Container>
-      <Header></Header>
+      {isLogin ? <Sidebar /> : <Header />}
       <ContentWrapper>
         <ImgWrapper>
           <Img src="./images/1.jpg" />
@@ -52,9 +54,9 @@ const Sharing = () => {
         <LeftWrapper>
           <SharingWrapper>
             <ButtonCollection>
-              <Button onClick={() => console.log(filteredRock)}>ROCK</Button>
-              <Button onClick={() => filteredBallad}>BALLAD</Button>
-              <Button onClick={() => filteredHipHop}>HIP HOP</Button>
+              <Button onClick={() => console.log(filteredRock)}> ROCK </Button>
+              <Button onClick={() => filteredBallad}> BALLAD </Button>
+              <Button onClick={() => filteredHipHop}> HIP HOP </Button>
             </ButtonCollection>
             <ImgArray>
               {SharingArr.map((el) => (
