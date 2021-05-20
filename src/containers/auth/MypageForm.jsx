@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
+import Sidebar from '../../components/common/Sidebar';
 import { showModal, closeModal } from '../../modules/modal';
 
 const MypageWrapper = styled.div`
@@ -125,10 +126,6 @@ const MypageForm = () => {
   }));
   const dispatch = useDispatch();
 
-  const testClick = () => {
-    alert('사이드바 정상 작동');
-  };
-
   const openModal = () => {
     dispatch(showModal());
   };
@@ -142,11 +139,7 @@ const MypageForm = () => {
   return (
     <>
       <MypageWrapper>
-        <img
-          className="side"
-          src="/images/sidebar.png"
-          onClick={testClick}
-        ></img>
+        <Sidebar></Sidebar>
 
         <MypageContent>
           <MypageImage>
