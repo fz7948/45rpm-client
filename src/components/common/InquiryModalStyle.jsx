@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 
-export const fadeIn = keyframes `
+export const fadeIn = keyframes`
   from{
     opacity: 0
   }
@@ -9,7 +9,7 @@ export const fadeIn = keyframes `
   }
 `;
 
-export const fadeOut = keyframes `
+export const fadeOut = keyframes`
   from{
     opacity: 1
   }
@@ -18,7 +18,7 @@ export const fadeOut = keyframes `
   }
 `;
 
-export const slideUp = keyframes `
+export const slideUp = keyframes`
   from{
     transform: translateY(20px);
   }
@@ -27,7 +27,7 @@ export const slideUp = keyframes `
   }
 `;
 
-const slideDown = keyframes `
+const slideDown = keyframes`
   from{
     transform: translateY(0px);
   }
@@ -36,7 +36,7 @@ const slideDown = keyframes `
   }
 `;
 
-export const ModalBack = styled.div `
+export const ModalBack = styled.div`
   position: fixed;
   z-index: 101;
   top: 0;
@@ -78,7 +78,8 @@ export const ModalBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 340px;
+  width: 40rem;
+  height: 90%;
   background: white;
   padding: 1.5rem;
   border-radius: 5px;
@@ -107,4 +108,8 @@ export const ModalBox = styled.div`
       width: 450px;
       height: 500px;
     `}
+
+    @media screen and (max-width:768px) {
+    width: 25rem;
+  }
 `;
