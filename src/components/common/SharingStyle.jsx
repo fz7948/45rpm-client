@@ -19,12 +19,6 @@ export const Container = styled.div `
   background: linear-gradient(120deg, #143b7d, #fdfaf5);
 `;
 
-export const Header = styled.div `
-  border: 3px solid blue;
-  width: 100vw;
-  height: 100%;
-`;
-
 export const ContentWrapper = styled.div `
   display: flex;
   width: 100%;

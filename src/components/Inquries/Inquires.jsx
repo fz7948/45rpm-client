@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { inquiryModal, closeModal } from '../../modules/modal';
 import Header from '../common/Header';
+import Sidebar from '../common/Sidebar';
 import Footer from '../common/Footer';
 import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
@@ -29,7 +30,7 @@ const Inquires = () => {
   //       setViewContent(res.data);
   //     });
   //   }, [viewContent]);
-
+  const [isLogin, setIsLogin] = useState(true);
   const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
@@ -45,7 +46,7 @@ const Inquires = () => {
   const onSubmitHand = (data) => {};
   return (
     <Container>
-      <Header />
+      {isLogin ? <Header /> : <Sidebar />}
       <InquiryWrapper>
         <InquiryContainer>
           <InquiryTitle>문의 내역</InquiryTitle>
