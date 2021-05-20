@@ -1,8 +1,8 @@
 import React from 'react';
-import AuthTemplate from '../containers/auth/AutoTemplate';
+import Inquires from '../components/Inquries/Inquires';
 
 const InquiriesPage = () => {
-  return 'InquiriesPage';
+  return <Inquires />;
 };
 
 export default InquiriesPage;
