@@ -56,6 +56,7 @@ const Inquires = () => {
                 <Title>
                   <TextWrapper>
                     <h2>{el.title}</h2>
+                    <h4>{el.category}</h4>
                     <InnerContent>{ReactHtmlParser(el.content)}</InnerContent>
                   </TextWrapper>
                   <QuestIcon />

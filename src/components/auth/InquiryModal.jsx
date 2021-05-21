@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/InquiryModalStyle';
 import styled from 'styled-components';
+import AsyncCreatableSelect from 'react-select/creatable';
+
 // import axios from 'axios';
 import '../common/CkEditor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -107,6 +109,23 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
     title: '',
     content: '',
   });
+  const [value, setValue] = useState();
+  const [options, setOptions] = useState([
+    { value: 'genre', label: 'Genre' },
+    { value: 'song', label: 'Song' },
+    { value: 'name', label: 'Name' },
+    { value: 'LP', label: 'lp' },
+  ]);
+  const handleChange = useCallback((inputValue) => setValue(inputValue), []);
+
+  const handleCreate = useCallback(
+    (inputValue) => {
+      const newValue = { value: inputValue.toLowerCase(), label: inputValue };
+      setOptions([...options, newValue]);
+      setValue(newValue);
+    },
+    [options],
+  );
 
   useEffect(() => {
     if (localVisible && !open) {
@@ -140,6 +159,15 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
     setInquiryContent({ ...inquiryContent, [name]: value });
   };
 
+  const loadOptions = (inputValue, callback) =>
+    setTimeout(() => {
+      callback(
+        options.filter((item) =>
+          item.label.toLowerCase().includes(inputValue.toLowerCase()),
+        ),
+      );
+    }, 3000);
+
   return (
     <>
       <ModalBack disappear={!open}>
@@ -163,11 +191,24 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                   </li>
                   <li>
                     <InquiryTitle>
+                      <div> CATEGORY </div>
+                    </InquiryTitle>
+                    <AsyncCreatableSelect
+                      isClearable
+                      value={value}
+                      options={options}
+                      onChange={handleChange}
+                      onCreateOption={handleCreate}
+                      cacheOptions
+                      loadOptions={loadOptions}
+                    />
+                  </li>
+                  <li>
+                    <InquiryTitle>
                       <div> 문의 내용 </div>
                     </InquiryTitle>
                     <CKEditor
                       editor={ClassicEditor}
-                      data="Hello from CKEditor 5!"
                       onReady={(editor) => {}}
                       onChange={(event, editor) => {
                         const data = editor.getData();

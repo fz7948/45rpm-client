@@ -86,7 +86,6 @@ export const MypageSlide = styled.div `
   justify-content: center;
   margin: 0 auto;
   width: 70%;
-
   margin-top: 3rem;
 
   @media screen and (max-width: 768px) {
