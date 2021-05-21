@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaQuestion } from 'react-icons/fa';
 
-export const Container = styled.div`
+export const Container = styled.div `
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   background: linear-gradient(120deg, #143b7d, #fdfaf5);
 `;
 
-export const InquiryWrapper = styled.div`
+export const InquiryWrapper = styled.div `
   width: 100%;
   height: 65%;
   display: flex;
@@ -18,7 +18,7 @@ export const InquiryWrapper = styled.div`
   align-items: center;
 `;
 
-export const InquiryContainer = styled.div`
+export const InquiryContainer = styled.div `
   border: 3px solid black;
   border-radius: 20px;
   box-shadow: 0 0 3px 2px rgba(0, 0, 0, 1);
@@ -39,7 +39,7 @@ export const InquiryContainer = styled.div`
   }
 `;
 
-export const InquiryTitle = styled.h1`
+export const InquiryTitle = styled.h1 `
   text-shadow: 2px 2px 20px yellow;
   text-align: center;
   font-size: 4rem;
@@ -49,7 +49,7 @@ export const InquiryTitle = styled.h1`
   }
 `;
 
-export const InquiryContent = styled.div`
+export const InquiryContent = styled.div `
   display: flex;
   flex-direction: column;
   width: inherit;
@@ -57,7 +57,7 @@ export const InquiryContent = styled.div`
   padding: 1rem;
 `;
 
-export const Title = styled.div`
+export const Title = styled.div `
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,24 +78,25 @@ export const Title = styled.div`
   }
 `;
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.div `
   display: flex;
   flex-direction: column;
 `;
-export const InnerContent = styled.div`
+export const InnerContent = styled.div `
   font-size: 1.6rem;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div `
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button `
   border-radius: 20px;
   padding: 0.5rem;
   color: #fff;
+  cursor: pointer;
   font-size: 3rem;
   font-weight: bold;
   font-family: 'Nanum Brush Script', cursive;
@@ -122,7 +123,8 @@ export const Button = styled.button`
   }
 `;
 
-export const QuestIcon = styled(FaQuestion)`
+export const QuestIcon = styled(FaQuestion)
+`
   color: #000;
   font-size: 2rem;
 `;

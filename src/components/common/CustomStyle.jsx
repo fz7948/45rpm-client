@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -9,16 +9,16 @@ export const Container = styled.div`
   background: linear-gradient(120deg, #143b7d, #fdfaf5);
 `;
 
-export const MainContentWrapper = styled.div`
+export const MainContentWrapper = styled.div `
   min-width: 10px;
 `;
 
-export const SectionWrapper = styled.div`
+export const SectionWrapper = styled.div `
   display: flex;
   width: 100%;
 `;
 
-export const CdCaseContent = styled.div`
+export const CdCaseContent = styled.div `
   display: flex;
   flex: 1;
   width: 100%;
@@ -30,24 +30,25 @@ export const CdCaseContent = styled.div`
   }
 `;
 
-export const Disk = styled.div`
+export const Disk = styled.div `
   position: absolute;
   z-index: 1;
   flex: 1;
-  top: 60px;
+
   width: 550px;
   height: 550px;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
   opacity: 1;
-  animation: rotation 1.5s linear infinite;
 
   @media screen and (max-width: 768px) {
     width: 350px;
     height: 350px;
+    top: 220px;
   }
 
   &:hover {
+    animation: rotation 1.5s linear infinite;
     left: 10%;
     transition-delay: 5s;
   }
@@ -61,7 +62,7 @@ export const Disk = styled.div`
   }
 `;
 
-export const InnerDisk = styled.div`
+export const InnerDisk = styled.div `
   position: absolute;
   top: 50%;
   left: 50%;
@@ -83,13 +84,19 @@ export const InnerDisk = styled.div`
     border-radius: 50%;
   }
 `;
-export const Img1 = styled.img`
+export const Img1 = styled.img `
   width: 150px;
   height: 150px;
   border-radius: 50%;
 `;
 
-export const CoverImg = styled.div`
+export const Img2 = styled.img `
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+`;
+
+export const CoverImg = styled.div `
   position: fixed;
   flex: 1;
   z-index: 2;
@@ -104,12 +111,12 @@ export const CoverImg = styled.div`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled.img `
   width: inherit;
   height: inherit;
 `;
 
-export const CustomContent = styled.div`
+export const CustomContent = styled.div `
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -124,7 +131,7 @@ export const CustomContent = styled.div`
   }
 `;
 
-export const CustomElement = styled.div`
+export const CustomElement = styled.div `
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -140,7 +147,7 @@ export const CustomElement = styled.div`
   background: linear-gradient(245deg, #143b7d, #fdfaf5);
 `;
 
-export const Button = styled.button`
+export const Button = styled.button `
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
@@ -167,7 +174,7 @@ export const Button = styled.button`
   }
 `;
 
-const Input = css`
+const Input = css `
   padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
@@ -177,25 +184,30 @@ const Input = css`
   }
 `;
 
-export const CustomColor = styled.div`
+export const CustomLp = styled.div `
   ${Input}
 `;
 
-export const CustomAlbumCover = styled.div`
+export const CustomColor = styled.div `
   ${Input}
 `;
 
-export const CustomCenterCover = styled.div`
+export const CustomAlbumCover = styled.div `
   ${Input}
 `;
 
-export const InputFile = styled.input`
+export const CustomCenterCover = styled.div `
+  ${Input}
+`;
+
+export const InputFile = styled.input `
   border: 3px solid lightblue;
   border-radius: 20px;
   color: #fff;
   font-weight: bold;
   font-family: 'Nanum Brush Script', cursive;
   font-size: 1rem;
+  cursor: pointer;
   width: 100%;
   box-shadow: 1px 3px 2px 1px rgba(0, 1, 1, 1);
   background-image: linear-gradient(
@@ -219,7 +231,7 @@ export const InputFile = styled.input`
   }
 `;
 
-export const SaveBtn = styled.button`
+export const SaveBtn = styled.button `
   background: transparent;
   color: orange;
   border: none;
