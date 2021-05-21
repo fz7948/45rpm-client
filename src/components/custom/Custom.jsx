@@ -30,9 +30,7 @@ const Custom = () => {
   const [imgFile, setImgFile] = useState(null);
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
-  const [otherImgBase, setOtherImgBase] = useState(null);
-  const [imgFile2, setImgFile2] = useState(null);
-  const [color, setColor] = useState(null);
+  const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
 
   const handleChangeFile = (e) => {
@@ -63,20 +61,6 @@ const Custom = () => {
     }
   };
 
-  const handleChangeFile2 = (e) => {
-    let reader = new FileReader();
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setOtherImgBase(base64.toString());
-      }
-    };
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      setImgFile2(e.target.files[0]);
-    }
-  };
-
   const handleChangeColor = (color) => {
     setColor(color.hex);
     console.log(color.hex);
@@ -100,15 +84,6 @@ const Custom = () => {
             </CdCaseContent>
             <CustomContent>
               <CustomElement>
-                <CustomLp>
-                  CustomLp
-                  <InputFile
-                    type="file"
-                    name="imgFile"
-                    id="imgFile"
-                    onChange={handleChangeFile2}
-                  />
-                </CustomLp>
                 <CustomColor>
                   Color
                   <Button
