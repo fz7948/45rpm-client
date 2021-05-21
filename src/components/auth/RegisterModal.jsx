@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 
@@ -79,9 +79,20 @@ const RegisterSubmitBtn = styled.button`
   }
 `;
 
-const RegisterModal = ({ open, close, onSubmitHand }) => {
+const RegisterModal = ({ open, close }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
+
+  const refEmail = useRef(null);
+  const refUsername = useRef(null);
+  const refPassword = useRef(null);
+  const refPasswordCheck = useRef(null);
+
+  const [inputEmail, setInputEmail] = useState('');
+  const [inputUsername, setInputUsername] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+  const [inputPasswordCheck, setInputPasswordCheck] = useState('');
+  const [denyMessage, setDenyMessage] = useState('');
 
   useEffect(() => {
     if (localVisible && !open) {
@@ -93,9 +104,8 @@ const RegisterModal = ({ open, close, onSubmitHand }) => {
 
   if (!animate && !localVisible) return null;
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    onSubmitHand();
+  const handleSignup = () => {
+    //api
   };
 
   return (
@@ -103,49 +113,64 @@ const RegisterModal = ({ open, close, onSubmitHand }) => {
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open} register>
-          <form onSubmit={onSubmitHandler}>
-            <RegisterCloseBtn onClick={close}>X</RegisterCloseBtn>
-            <RegisterWrapper>
-              <h2>회원가입</h2>
+          <RegisterCloseBtn onClick={close}>X</RegisterCloseBtn>
+          <RegisterWrapper>
+            <h2>회원가입</h2>
 
-              <ul>
-                <li>
-                  <RegisterLabel>
-                    <div>E-mail</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="email"
-                    placeholder="사용하실 E-mail을 입력해주세요."
-                  />
-                </li>
-                <li>
-                  <RegisterLabel>
-                    <div>닉네임</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="text"
-                    placeholder="사용하실 닉네임을 입력해주세요."
-                  />
-                </li>
-                <li>
-                  <RegisterLabel>
-                    <div>비밀번호</div>
-                  </RegisterLabel>
-                  <RegisterInput type="password" placeholder="Password" />
-                </li>
-                <li>
-                  <RegisterLabel>
-                    <div>비밀번호 확인</div>
-                  </RegisterLabel>
-                  <RegisterInput
-                    type="password"
-                    placeholder="Password Confirm"
-                  />
-                </li>
-              </ul>
-              <RegisterSubmitBtn>회원가입</RegisterSubmitBtn>
-            </RegisterWrapper>
-          </form>
+            <ul>
+              <li>
+                <RegisterLabel>
+                  <div>E-mail</div>
+                </RegisterLabel>
+                <RegisterInput
+                  type="email"
+                  value={email || ''}
+                  onChange={registerOnChange}
+                  placeholder="사용하실 E-mail을 입력해주세요."
+                  ref={refEmail}
+                />
+              </li>
+              <li>
+                <RegisterLabel>
+                  <div>닉네임</div>
+                </RegisterLabel>
+                <RegisterInput
+                  type="text"
+                  value={username || ''}
+                  onChange={registerOnChange}
+                  placeholder="사용하실 닉네임을 입력해주세요."
+                  ref={refUsername}
+                />
+              </li>
+              <li>
+                <RegisterLabel>
+                  <div>비밀번호</div>
+                </RegisterLabel>
+                <RegisterInput
+                  type="password"
+                  value={password || ''}
+                  onChange={registerOnChange}
+                  placeholder="Password"
+                  ref={refPassword}
+                />
+              </li>
+              <li>
+                <RegisterLabel>
+                  <div>비밀번호 확인</div>
+                </RegisterLabel>
+                <RegisterInput
+                  type="password"
+                  value={PW_confirm || ''}
+                  onChange={registerOnChange}
+                  placeholder="Password Check"
+                  ref={refPasswordCheck}
+                />
+              </li>
+            </ul>
+            <RegisterSubmitBtn onClick={handleSignup}>
+              회원가입
+            </RegisterSubmitBtn>
+          </RegisterWrapper>
         </ModalBox>
       </ModalBack>
     </>

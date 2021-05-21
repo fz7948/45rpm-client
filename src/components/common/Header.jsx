@@ -43,11 +43,7 @@ const Header = () => {
         ></LoginModal>
       )}
       {isType === 'register' && (
-        <RegisterModal
-          open={checkModal}
-          close={shutModal}
-          onSubmitHand={onSubmitHand}
-        ></RegisterModal>
+        <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
       )}
     </header>
   );
