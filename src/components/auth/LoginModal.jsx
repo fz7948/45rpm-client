@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
+import axios from 'axios';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -95,9 +97,40 @@ const LoginSocialBtn = styled.button`
   }
 `;
 
-const LoginModal = ({ open, close, onSubmitHand }) => {
+const LoginModal = ({ open, close }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
+
+  const refEmail = useRef(null);
+  const refPassword = useRef(null);
+
+  const [inputEmail, setInputEmail] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+  const history = useHistory();
+
+  useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        handleCloseBtn();
+      }
+    });
+  }, [open]);
+
+  const handleInputEmail = useCallback(
+    (e) => {
+      setInputEmail(e.target.value);
+    },
+    [inputEmail],
+    console.log(inputEmail),
+  );
+
+  const handleInputPassword = useCallback(
+    (e) => {
+      setInputPassword(e.target.value);
+    },
+    [inputPassword],
+    console.log(inputPassword),
+  );
 
   useEffect(() => {
     if (localVisible && !open) {
@@ -109,9 +142,46 @@ const LoginModal = ({ open, close, onSubmitHand }) => {
 
   if (!animate && !localVisible) return null;
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    onSubmitHand();
+  const handleMoveToPassword = (e) => {
+    if (e.key === 'Enter') {
+      refPassword.current.focus();
+    }
+  };
+
+  const handleMoveToSignIn = (e) => {
+    if (e.key === 'Enter') {
+      handleSignIn();
+    }
+  };
+
+  const handleCloseBtn = () => {
+    setInputEmail('');
+    setInputPassword('');
+    close();
+  };
+
+  const handleSignIn = async () => {
+    console.log('LOGINNN>>>>>', inputEmail, inputPassword);
+    await axios
+      .post('http://localhost:4000/user/login', {
+        inputEmail,
+        inputPassword,
+      })
+      .then((res) => {
+        console.log('RESPONSE CHECK>>>>', res);
+        if (res.data.message === 'Login Succeed') {
+          window.alert('LOGIN COMPLETED');
+        } else if (res.data.message === 'There is no user information') {
+          window.alert('사용자가 존재하지 않습니다');
+          return;
+        } else if (res.data.message === 'You wrote wrong password') {
+          window.alert('비밀번호가 틀립니다');
+          return;
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
@@ -119,29 +189,41 @@ const LoginModal = ({ open, close, onSubmitHand }) => {
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open}>
-          <form onSubmit={onSubmitHandler}>
-            <LoginCloseBtn onClick={close}>X</LoginCloseBtn>
-            <LoginWrapper>
-              <h2>로그인</h2>
-              <ul>
-                <li>
-                  <LoginLabel>
-                    <div>E-MAIL</div>
-                  </LoginLabel>
-                  <LoginInput type="email" placeholder="Email" required />
-                </li>
-                <li>
-                  <LoginLabel>
-                    <div>비밀번호</div>
-                  </LoginLabel>
-                  <LoginInput type="password" placeholder="Password" required />
-                </li>
-              </ul>
-              <LoginSubmitBtn>로그인</LoginSubmitBtn>
-              <LoginSocialBtn>구글</LoginSocialBtn>
-              <LoginSocialBtn>카카오</LoginSocialBtn>
-            </LoginWrapper>
-          </form>
+          <LoginCloseBtn onClick={close}>X</LoginCloseBtn>
+          <LoginWrapper>
+            <h2>로그인</h2>
+            <ul>
+              <li>
+                <LoginLabel>
+                  <div>E-MAIL</div>
+                </LoginLabel>
+                <LoginInput
+                  type="text"
+                  value={inputEmail}
+                  onChange={handleInputEmail}
+                  placeholder="E-mail을 입력해주세요"
+                  onKeyPress={handleMoveToPassword}
+                  ref={refEmail}
+                />
+              </li>
+              <li>
+                <LoginLabel>
+                  <div>비밀번호</div>
+                </LoginLabel>
+                <LoginInput
+                  type="password"
+                  value={inputPassword}
+                  onChange={handleInputPassword}
+                  placeholder="Password를 입력해주세요"
+                  onKeyPress={handleMoveToSignIn}
+                  ref={refPassword}
+                />
+              </li>
+            </ul>
+            <LoginSubmitBtn onClick={handleSignIn}>로그인</LoginSubmitBtn>
+            <LoginSocialBtn>구글</LoginSocialBtn>
+            <LoginSocialBtn>카카오</LoginSocialBtn>
+          </LoginWrapper>
         </ModalBox>
       </ModalBack>
     </>
