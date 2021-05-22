@@ -6,12 +6,12 @@ export const Container = styled.div `
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #143b7d, #fdfaf5);
+  background: linear-gradient(120deg, #03154e, #311788);
 `;
 
 export const InquiryWrapper = styled.div `
   width: 100%;
-  height: 65%;
+  height: 83vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
