@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
+import axios from 'axios';
 import styled from 'styled-components';
-import { loginReq, resetLogin } from '../../modules/auth';
-import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -21,16 +20,6 @@ const LoginWrapper = styled.div`
   li {
     list-style: none;
     margin-bottom: 0.5rem;
-  }
-  .deny-message {
-    width: 220px;
-    height: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-    margin-top: 1rem;
-    color: #f73d5c;
-    word-break: keep-all;
   }
 `;
 
@@ -59,8 +48,8 @@ const LoginInput = styled.input`
 
 const LoginCloseBtn = styled.button`
   position: relative;
-  top: -0.8rem;
-  left: 9.7rem;
+  top: -1rem;
+  left: 16rem;
   background: white;
   border: 0;
   outline: 0;
@@ -108,46 +97,18 @@ const LoginSocialBtn = styled.button`
   }
 `;
 
-const LoginModal = ({ open, close, history }) => {
-  const dispatch = useDispatch();
-  const { login, loginError } = useSelector(({ auth }) => ({
-    login: auth.login,
-    loginError: auth.loginError,
-  }));
-
+const LoginModal = ({ open, close }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
-  const refID = useRef(null);
+  const refEmail = useRef(null);
   const refPassword = useRef(null);
 
-  const [inputID, setInputID] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-  const [denyMessage, setDenyMessage] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
-    if (loginError) {
-      if (loginError === 'There is no user information') {
-        refID.current.focus();
-        setDenyMessage(loginError);
-      }
-      if (loginError === 'You wrote wrong password') {
-        refPassword.current.focus();
-        setDenyMessage(loginError);
-      }
-      return;
-    }
-    if (login) {
-      alert(login.message);
-      //모달로 만들어야함
-      history.push('/mypage');
-      handleCloseBtn();
-      dispatch(resetLogin());
-    }
-  }, [login, loginError]);
-
-  useEffect(() => {
-    refID.current.focus();
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleCloseBtn();
@@ -155,11 +116,12 @@ const LoginModal = ({ open, close, history }) => {
     });
   }, [open]);
 
-  const handleInputID = useCallback(
+  const handleInputEmail = useCallback(
     (e) => {
-      setInputID(e.target.value);
+      setInputEmail(e.target.value);
     },
-    [inputID],
+    [inputEmail],
+    console.log(inputEmail),
   );
 
   const handleInputPassword = useCallback(
@@ -167,6 +129,7 @@ const LoginModal = ({ open, close, history }) => {
       setInputPassword(e.target.value);
     },
     [inputPassword],
+    console.log(inputPassword),
   );
 
   useEffect(() => {
@@ -192,13 +155,33 @@ const LoginModal = ({ open, close, history }) => {
   };
 
   const handleCloseBtn = () => {
-    setInputID('');
+    setInputEmail('');
     setInputPassword('');
     close();
   };
 
-  const handleSignIn = () => {
-    dispatch(loginReq(inputID, inputPassword));
+  const handleSignIn = async () => {
+    console.log('LOGINNN>>>>>', inputEmail, inputPassword);
+    await axios
+      .post('http://localhost:4000/user/login', {
+        inputEmail,
+        inputPassword,
+      })
+      .then((res) => {
+        console.log('RESPONSE CHECK>>>>', res);
+        if (res.data.message === 'Login Succeed') {
+          window.alert('LOGIN COMPLETED');
+        } else if (res.data.message === 'There is no user information') {
+          window.alert('사용자가 존재하지 않습니다');
+          return;
+        } else if (res.data.message === 'You wrote wrong password') {
+          window.alert('비밀번호가 틀립니다');
+          return;
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
@@ -212,15 +195,15 @@ const LoginModal = ({ open, close, history }) => {
             <ul>
               <li>
                 <LoginLabel>
-                  <div>ID</div>
+                  <div>E-MAIL</div>
                 </LoginLabel>
                 <LoginInput
                   type="text"
-                  value={inputID}
-                  onChange={handleInputID}
-                  placeholder="ID를 입력해주세요"
+                  value={inputEmail}
+                  onChange={handleInputEmail}
+                  placeholder="E-mail을 입력해주세요"
                   onKeyPress={handleMoveToPassword}
-                  ref={refID}
+                  ref={refEmail}
                 />
               </li>
               <li>
@@ -237,7 +220,6 @@ const LoginModal = ({ open, close, history }) => {
                 />
               </li>
             </ul>
-            <p className="deny-message">{denyMessage}</p>
             <LoginSubmitBtn onClick={handleSignIn}>로그인</LoginSubmitBtn>
             <LoginSocialBtn>구글</LoginSocialBtn>
             <LoginSocialBtn>카카오</LoginSocialBtn>
@@ -248,4 +230,4 @@ const LoginModal = ({ open, close, history }) => {
   );
 };
 
-export default withRouter(LoginModal);
+export default LoginModal;

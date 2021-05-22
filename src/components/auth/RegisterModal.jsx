@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { registerReq, resetRegister } from '../../modules/auth';
 
 const RegisterWrapper = styled.div`
   display: flex;
@@ -30,7 +27,6 @@ const RegisterWrapper = styled.div`
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 1.2rem;
-    margin-top: 1rem;
     color: #f73d5c;
     word-break: keep-all;
   }
@@ -61,8 +57,8 @@ const RegisterInput = styled.input`
 
 const RegisterCloseBtn = styled.button`
   position: relative;
-  top: 1rem;
-  left: 13rem;
+  top: -2rem;
+  left: 20rem;
   background: white;
   border: 0;
   outline: 0;
@@ -92,23 +88,15 @@ const RegisterSubmitBtn = styled.button`
   }
 `;
 
-const RegisterModal = ({ open, close, history }) => {
-  const dispatch = useDispatch();
-  const { register, registerError } = useSelector(({ auth }) => ({
-    register: auth.register,
-    registerError: auth.registerError,
-  }));
-
+const RegisterModal = ({ open, close }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
-  const refID = useRef(null);
   const refEmail = useRef(null);
   const refUsername = useRef(null);
   const refPassword = useRef(null);
   const refPasswordCheck = useRef(null);
 
-  const [inputID, setInputID] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputUsername, setInputUsername] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -116,36 +104,13 @@ const RegisterModal = ({ open, close, history }) => {
   const [denyMessage, setDenyMessage] = useState('');
 
   useEffect(() => {
-    if (registerError) {
-      if (registerError === 'Same user existed') {
-        setDenyMessage(registerError);
-        //이메일 아이디 구분 필요
-      }
-      return;
-    }
-    if (register) {
-      alert(register.message);
-      //모달로 만들어야함
-      history.push('/');
-      handleCloseBtn();
-      dispatch(resetRegister());
-    }
-  }, [register, registerError]);
-
-  useEffect(() => {
-    refID.current.focus();
+    refEmail.current.focus();
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleCloseBtn();
       }
     });
   }, [open]);
-
-  const handleMoveToEmail = (e) => {
-    if (e.key === 'Enter') {
-      refEmail.current.focus();
-    }
-  };
 
   const handleMoveToUsername = (e) => {
     if (e.key === 'Enter') {
@@ -170,13 +135,6 @@ const RegisterModal = ({ open, close, history }) => {
       handleSignup();
     }
   };
-
-  const handleChangeID = useCallback(
-    (e) => {
-      setInputID(e.target.value);
-    },
-    [inputID],
-  );
 
   const handleChangeEmail = useCallback(
     (e) => {
@@ -207,7 +165,6 @@ const RegisterModal = ({ open, close, history }) => {
   );
 
   const handleCloseBtn = () => {
-    setInputID('');
     setInputEmail('');
     setInputUsername('');
     setInputPassword('');
@@ -255,15 +212,6 @@ const RegisterModal = ({ open, close, history }) => {
   );
 
   const handleCheckForm = () => {
-    if (inputID === '') {
-      refID.current.focus();
-      setDenyMessage('ID를 입력하세요');
-      return false;
-    } else if (inputID.length <= 5) {
-      setDenyMessage('ID는 6자리 이상 입력해야 합니다');
-      refID.current.focus();
-      return false;
-    }
     if (inputEmail === '') {
       refEmail.current.focus();
       setDenyMessage('E-mail을 입력하세요');
@@ -300,8 +248,9 @@ const RegisterModal = ({ open, close, history }) => {
   if (!animate && !localVisible) return null;
 
   const handleSignup = () => {
+    // 여기서 api 요청 보내야함 !!
     if (handleCheckForm()) {
-      dispatch(registerReq(inputID, inputEmail, inputUsername, inputPassword));
+      alert('요청을 성공적으로 보냈습니다');
     }
   };
 
@@ -317,39 +266,26 @@ const RegisterModal = ({ open, close, history }) => {
             <ul>
               <li>
                 <RegisterLabel>
-                  <div>ID</div>
-                </RegisterLabel>
-                <RegisterInput
-                  type="text"
-                  value={inputID}
-                  onChange={handleChangeID}
-                  placeholder="사용하실 ID를 입력해주세요."
-                  onKeyPress={handleMoveToEmail}
-                  ref={refID}
-                />
-              </li>
-              <li>
-                <RegisterLabel>
                   <div>E-mail</div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
                   value={inputEmail}
                   onChange={handleChangeEmail}
-                  placeholder="E-mail을 입력해주세요."
+                  placeholder="사용하실 E-mail을 입력해주세요."
                   onKeyPress={handleMoveToUsername}
                   ref={refEmail}
                 />
               </li>
               <li>
                 <RegisterLabel>
-                  <div>이름</div>
+                  <div>닉네임</div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
                   value={inputUsername}
                   onChange={handleChangeUsername}
-                  placeholder="이름을 입력해주세요."
+                  placeholder="사용하실 닉네임을 입력해주세요."
                   onKeyPress={handleMoveTopassword}
                   ref={refUsername}
                 />
@@ -392,4 +328,4 @@ const RegisterModal = ({ open, close, history }) => {
   );
 };
 
-export default withRouter(RegisterModal);
+export default RegisterModal;
