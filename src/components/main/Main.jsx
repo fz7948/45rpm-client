@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import '../../pages/sass/Main.scss';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
+import { BsFillSkipEndFill } from 'react-icons/bs';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function Main() {
   const history = useHistory();
@@ -15,14 +17,14 @@ function Main() {
   let cdCase;
   let movingImg;
   let colorArray = [
-    ['#8BE6FC', '#310D52'],
-    ['#96A5AD', '#36595b'],
-    ['#e58e82', '#6f569f'],
-    ['#CE9A9C', '#6f569f'],
-    ['#143B7D', '#FDFAF5'],
+    ['#03154E', '#311788'],
+    ['#03154E', '#311788'],
+    ['#03154E', '#311788'],
+    ['#03154E', '#311788'],
+    ['#03154E', '#311788'],
   ];
 
-  useEffect(() => {
+  window.onload = function () {
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
@@ -59,7 +61,7 @@ function Main() {
       removeFunc();
     });
     pageChangeFunc();
-  });
+  };
 
   function pageFunc() {
     container.style.background =
@@ -176,7 +178,9 @@ function Main() {
             </section>
             <section className="movingImg">
               <div className="textWrapper">
-                <h1> 지금 바로 만들어 보세요!! </h1>
+                <h1>
+                  지금 바로 <p>만들어 보세요</p>
+                </h1>
                 <div className="start" onClick={() => history.push('/1')}>
                   시작하기
                 </div>
@@ -191,14 +195,21 @@ function Main() {
       <div className="wrapBtn">
         <div className="btn">
           <div className="fingerBtn">
-            <button> ☚ </button> <button> ☛ </button>
+            <button>
+              <IoIosArrowBack />
+            </button>
+            <button>
+              <IoIosArrowForward />
+            </button>
           </div>
           <div className="skipBtn">
-            <button> SKIP </button>
+            <button>
+              SKIP <BsFillSkipEndFill />
+            </button>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }
