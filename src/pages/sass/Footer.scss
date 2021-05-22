@@ -55,18 +55,31 @@ $small: 'screen and (max-width:768px)';
                 }
             }
         }
+
     }
-    .sns {
+    .member {
+      display: flex;
+      padding: 1rem;
+      margin-right: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      font-size: 2rem;
+      border: 8px double black;
+      border-radius: 20px;
+      @media #{$small} {
+        font-size: 1rem;
+      }
+      .gitImg {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
         img {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
+          padding-left: 1rem;
+          width: 60px;
+          height: 40px;
         }
+
         .copyright {
             font-family: 'Lato', sans-serif;
             color: #fff;
@@ -75,5 +88,24 @@ $small: 'screen and (max-width:768px)';
                 font-size: 1rem;
             }
         }
+      }
     }
+  }
+  .sns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    img {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+    .copyright {
+      font-family: 'Lobster', cursive;
+      padding-top: 1rem;
+      color: #fff;
+    }
+  }
 }
