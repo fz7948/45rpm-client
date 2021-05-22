@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import MypageForm from '../../containers/auth/MypageForm';
 import {
   HeroSection,
   HeroWrapper,
@@ -55,7 +54,7 @@ const Hero = ({ slides, openModal }) => {
           return (
             <HeroSlide key={index}>
               {index === current && (
-                <HeroSlider>
+                <HeroSlider onClick={openModal}>
                   <HeroImage>
                     <img src={slide.image} alt={slide.alt} />
                   </HeroImage>

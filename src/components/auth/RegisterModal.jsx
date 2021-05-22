@@ -94,10 +94,10 @@ const RegisterSubmitBtn = styled.button`
 
 const RegisterModal = ({ open, close, history }) => {
   const dispatch = useDispatch();
-  // const { register, registerError } = useSelector(({ auth }) => ({
-  //   register: auth.register,
-  //   registerError: auth.registerError,
-  // }));
+  const { register, registerError } = useSelector(({ auth }) => ({
+    register: auth.register,
+    registerError: auth.registerError,
+  }));
 
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
@@ -114,6 +114,23 @@ const RegisterModal = ({ open, close, history }) => {
   const [inputPassword, setInputPassword] = useState('');
   const [inputPasswordCheck, setInputPasswordCheck] = useState('');
   const [denyMessage, setDenyMessage] = useState('');
+
+  useEffect(() => {
+    if (registerError) {
+      if (registerError === 'Same user existed') {
+        setDenyMessage(registerError);
+        //이메일 아이디 구분 필요
+      }
+      return;
+    }
+    if (register) {
+      alert(register.message);
+      //모달로 만들어야함
+      history.push('/');
+      handleCloseBtn();
+      dispatch(resetRegister());
+    }
+  }, [register, registerError]);
 
   useEffect(() => {
     refID.current.focus();
@@ -283,11 +300,8 @@ const RegisterModal = ({ open, close, history }) => {
   if (!animate && !localVisible) return null;
 
   const handleSignup = () => {
-    // 여기서 api 요청 보내야함 !!
     if (handleCheckForm()) {
       dispatch(registerReq(inputID, inputEmail, inputUsername, inputPassword));
-    } else {
-      return;
     }
   };
 

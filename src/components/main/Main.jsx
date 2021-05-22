@@ -22,7 +22,7 @@ function Main() {
     ['#143B7D', '#FDFAF5'],
   ];
 
-  useEffect(() => {
+  window.onload = function () {
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
@@ -59,7 +59,7 @@ function Main() {
       removeFunc();
     });
     pageChangeFunc();
-  });
+  };
 
   function pageFunc() {
     container.style.background =

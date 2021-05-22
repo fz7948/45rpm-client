@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const signup = async ({ id, email, username, password }) => {
-  console.log('이건?', id, password, email, username);
   const response = await axios.post(
     `http://localhost:4000/user/signup`,
     {
@@ -15,6 +14,17 @@ export const signup = async ({ id, email, username, password }) => {
       withCredentials: true,
     },
   );
-  console.log('잘뜨냐', response);
+  return response.data;
+};
+
+export const login = async ({ id, password }) => {
+  const response = await axios.post(
+    `http://localhost:4000/user/login`,
+    { id, password },
+    {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
