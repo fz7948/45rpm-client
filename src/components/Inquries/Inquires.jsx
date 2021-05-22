@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { inquiryModal, closeModal } from '../../modules/modal';
 import Header from '../common/Header';
 import Sidebar from '../common/Sidebar';
-import Footer from '../common/Footer';
+
 import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
@@ -46,7 +46,7 @@ const Inquires = () => {
   const onSubmitHand = (data) => {};
   return (
     <Container>
-      {isLogin ? <Header /> : <Sidebar />}
+      <Header />
       <InquiryWrapper>
         <InquiryContainer>
           <InquiryTitle>문의 내역</InquiryTitle>
@@ -74,7 +74,6 @@ const Inquires = () => {
           ></InquiryModal>
         )}
       </InquiryWrapper>
-      <Footer />
     </Container>
   );
 };

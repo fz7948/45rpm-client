@@ -6,11 +6,12 @@ export const Container = styled.div `
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #143b7d, #fdfaf5);
+  background: linear-gradient(120deg, #03154e, #311788);
 `;
 
 export const MainContentWrapper = styled.div `
   min-width: 10px;
+  height: 90vh;
 `;
 
 export const SectionWrapper = styled.div `
@@ -34,7 +35,6 @@ export const Disk = styled.div `
   position: absolute;
   z-index: 1;
   flex: 1;
-
   width: 550px;
   height: 550px;
   border-radius: 50%;
