@@ -120,7 +120,6 @@ const Custom = () => {
             </CustomContent>
           </SectionWrapper>
         </MainContentWrapper>
-        <Footer />
       </Container>
     </>
   );

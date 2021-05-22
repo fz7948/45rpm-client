@@ -18,11 +18,10 @@ import {
 
 const Sharing = () => {
   const history = useHistory();
-  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <Container>
-      {isLogin ? <Sidebar /> : <Header />}
+      <Header />
       <ContentWrapper>
         <ImgWrapper>
           <Img src="./images/1.jpg" />
@@ -40,7 +39,6 @@ const Sharing = () => {
           </ContinueBtn>
         </LeftWrapper>
       </ContentWrapper>
-      <Footer />
     </Container>
   );
 };

@@ -6,7 +6,7 @@ export const MypageWrapper = styled.div `
   padding-top: 10px;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #143b7d, #fdfaf5);
+  background: linear-gradient(120deg, #03154E, #311788);
   }
   p {
     margin-bottom: 0.8rem;
@@ -35,6 +35,7 @@ export const MypageContent = styled.div `
   justify-content: space-around;
   align-items: center;
   width: 50%;
+  height: 83vh;
   padding: 2.5rem 1.6rem;
   margin: 0 auto;
   background: #e8e8e8;

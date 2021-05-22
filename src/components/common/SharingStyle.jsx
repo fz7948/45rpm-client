@@ -16,13 +16,13 @@ export const Container = styled.div `
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #143b7d, #fdfaf5);
+  background: linear-gradient(120deg, #03154e, #311788);
 `;
 
 export const ContentWrapper = styled.div `
   display: flex;
   width: 100%;
-  height: 60vh;
+  height: 83vh;
 `;
 
 export const ImgWrapper = styled.div `

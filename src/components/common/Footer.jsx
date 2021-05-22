@@ -5,32 +5,30 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="remainder">
-        <div className="team">Black Circle</div>
         <div className="member">
-          <div className="gitImg">
-            Member
-            <img src="./images/2.png" alt="" />
+          <div className="gitWrapper">
+            <div className="gitImg">
+              <img src="./images/github.png" alt="" />
+            </div>
+            <div className="memberTitle">
+              <a className="class1" href="https://github.com/tyufjvbn2">
+                박종혁
+              </a>
+              <a className="class2" href="https://github.com/dodo9128">
+                오우영
+              </a>
+              <a className="class3" href="https://github.com/fz7948">
+                이재윤
+              </a>
+              <a className="class4" href="https://github.com/DLSKAGHD">
+                이성재
+              </a>
+            </div>
           </div>
-
-          <div className="memberTitle">
-            <a className="class1" href="https://github.com/tyufjvbn2">
-              Park J.H
-            </a>
-            <a className="class2" href="https://github.com/dodo9128">
-              Lee J.Y
-            </a>
-            <a className="class3" href="https://github.com/fz7948">
-              O W.Y
-            </a>
-            <a className="class4" href="https://github.com/DLSKAGHD">
-              Lee S.J
-            </a>
+          <div className="sns">
+            <div className="copyright"> Copyright© 2021 45RPM</div>
           </div>
         </div>
-      </div>
-      <div className="sns">
-        <img src="./images/kakao.png" alt="" />
-        <div className="copyright"> ©Copyright All rights reserved</div>
       </div>
     </footer>
   );

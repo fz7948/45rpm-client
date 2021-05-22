@@ -1,22 +1,41 @@
 $small: 'screen and (max-width:768px)';
 .header {
     display: flex;
-    justify-content: flex-end;
-    .signIn,
-    .signUp {
-        background: transparent;
-        outline: none;
-        border: none;
-        font-size: 1.5rem;
-        padding: 0.6rem;
-        font-family: 'Lobster', cursive;
-        cursor: pointer;
-        &:hover {
-            color: #fff;
-            transition: all 0.8s ease-in-out;
-        }
+    justify-content: space-between;
+    background-color: #000;
+    .logo {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding-left: 1rem;
+        font-size: 2.3rem;
+        font-family: 'Syncopate', sans-serif;
         @media #{$small} {
-            font-size: 1rem;
+            font-size: 1.5rem;
+        }
+    }
+    .buttonWrapper {
+        display: flex;
+        align-items: center;
+        .signIn,
+        .signUp {
+            background: transparent;
+            outline: none;
+            border: none;
+            padding: 0.6rem 0;
+            margin-right: 2rem;
+            font-size: 1.5rem;
+            font-family: 'Jua', sans-serif;
+            cursor: pointer;
+            color: #fff;
+            &:hover {
+                color: gray;
+                transition: all 0.8s ease-in-out;
+            }
+            @media #{$small} {
+                font-size: 1rem;
+                margin-right: 1.1rem;
+            }
         }
     }
 }
