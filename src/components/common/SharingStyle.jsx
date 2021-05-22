@@ -59,27 +59,6 @@ export const SharingWrapper = styled.div `
   align-items: center;
 `;
 
-export const ButtonCollection = styled.div `
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-export const Button = styled.button `
-  margin: 1rem;
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-family: 'Nanum Brush Script', cursive;
-  font-weight: bold;
-  color: #fff;
-  border-radius: 20px;
-  cursor: pointer;
-  outline: none;
-  background-image: linear-gradient(120deg, #ff7f00, #ff9f40, #ff0000);
-
-  ${Common}
-`;
-
 export const ImgArray = styled.div `
   display: flex;
   border: 3px solid black;

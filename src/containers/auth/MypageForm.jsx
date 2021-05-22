@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
@@ -8,7 +6,6 @@ import Sidebar from '../../components/common/Sidebar';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { SliderData } from '../../components/data/SliderData';
-import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import {
   MypageWrapper,
@@ -60,6 +57,7 @@ const MypageForm = () => {
         </MypageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
+            slides={SliderData}
             open={checkModal}
             close={shutModal}
             onSubmitHand={onSubmitHand}
