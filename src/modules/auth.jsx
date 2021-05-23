@@ -48,16 +48,22 @@ export const loginReq = (id, password) => async (dispatch) => {
   }
 };
 
-export const updateReq = (email, username, oldpassword, newpassword) => async (
-  dispatch,
-) => {
+export const updateReq = (
+  email,
+  username,
+  oldpassword,
+  newpassword,
+  token,
+) => async (dispatch) => {
   dispatch({ type: UPDATE });
   try {
+    console.log('토큰 확인', token);
     const updateRes = await authAPI.update({
       email,
       username,
       oldpassword,
       newpassword,
+      token,
     });
     dispatch({
       type: UPDATE_SUCCESS,

@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
+import Sidebar from '../common/Sidebar';
 
 const Header = () => {
-  const { checkModal, isType } = useSelector(({ modal }) => ({
+  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
+    isLogin: user.isLogin,
   }));
   const history = useHistory();
   const dispatch = useDispatch();
@@ -29,29 +31,31 @@ const Header = () => {
   const onSubmitHand = (data) => {};
 
   return (
-    <header className="header">
-      <div className="logo" onClick={() => history.push('/')}>
-        45RPM
-      </div>
-      <div className="buttonWrapper">
-        <div className="signIn" onClick={openLoginModal}>
-          로그인
+    <>
+      <header className="header">
+        <div className="logo" onClick={() => history.push('/')}>
+          45RPM
         </div>
-        <div className="signUp" onClick={openRegisterModal}>
-          회원가입
+        <div className="buttonWrapper">
+          <div className="signIn" onClick={openLoginModal}>
+            로그인
+          </div>
+          <div className="signUp" onClick={openRegisterModal}>
+            회원가입
+          </div>
         </div>
-      </div>
-      {isType === 'login' && (
-        <LoginModal
-          open={checkModal}
-          close={shutModal}
-          onSubmitHand={onSubmitHand}
-        ></LoginModal>
-      )}
-      {isType === 'register' && (
-        <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
-      )}
-    </header>
+        {isType === 'login' && (
+          <LoginModal
+            open={checkModal}
+            close={shutModal}
+            onSubmitHand={onSubmitHand}
+          ></LoginModal>
+        )}
+        {isType === 'register' && (
+          <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
+        )}
+      </header>
+    </>
   );
 };
 
