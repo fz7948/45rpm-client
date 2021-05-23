@@ -42,12 +42,40 @@ const SidebarWrapper = styled.div`
     width: 250px;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction:column;
+    justify-content: space-between;
     position: fixed;
     z-index: 999;
     top: 0;
     right: -100%;
     transition: 850ms;
+   
+    .logoutBtn {
+      display: flex;
+      width: 225px;
+      justify-content: flex-end;
+      padding-bottom:2rem;
+      button {
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 4px;
+        width: 13rem;
+        height: 2rem;
+        margin-left: 1.5rem;
+        background-color: #fff;
+        border: 1px solid #03154e;
+        outline: 0;
+        color: #03154e;
+        &:hover {
+          cursor: pointer;
+          background-color: #03154e;
+          border: 0;
+          outline: 0;
+          color: #fff;
+          transition: all ease 0.2s;
+        }
+      }
+    }
   }
 
   .nav-menu.active {
@@ -80,6 +108,7 @@ const SidebarWrapper = styled.div`
 
   .nav-menu-items {
     width: 100%;
+    height:80%;
   }
 
   .navbar-toggle {
@@ -94,6 +123,9 @@ const SidebarWrapper = styled.div`
   span {
     margin-left: 16px;
   }
+
+
+
 `;
 
 const Navbar = () => {
@@ -102,6 +134,11 @@ const Navbar = () => {
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
+
+  const onLogout = () => {
+    alert('로그아웃 됐다');
+  };
+
   return (
     <SidebarWrapper>
       <div className="navbar">
@@ -124,6 +161,9 @@ const Navbar = () => {
             );
           })}
         </ul>
+        <div className="logoutBtn">
+          <button onClick={onLogout}>로그아웃</button>
+        </div>
       </nav>
     </SidebarWrapper>
   );
