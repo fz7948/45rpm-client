@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components';
 
-const Common = css `
-  &:hover {
-    animation: slidebg 5s linear infinite;
-  }
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
-  }
-`;
-
 export const Container = styled.div `
   display: flex;
   flex-direction: column;
@@ -20,9 +9,11 @@ export const Container = styled.div `
 `;
 
 export const ContentWrapper = styled.div `
+  border: 3px solid red;
   display: flex;
+  flex: 1;
   width: 100%;
-  height: 83vh;
+  height: 100%;
 `;
 
 export const ImgWrapper = styled.div `
@@ -112,23 +103,16 @@ export const Image = styled.img `
 export const ContinueBtn = styled.button `
   width: 250px;
   height: 200px;
-  font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
+  font-family: 'Lato', sans-serif;
   font-size: 2rem;
-  border-radius: 20px;
+  border-radius: 6px;
   cursor: pointer;
   outline: none;
-  color: #fff;
-  background-image: linear-gradient(
-    120deg,
-    #264986 20%,
-    #5f78a3 50%,
-    #dee0e5 100%
-  );
+  color: #000;
+
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
     width: 150px;
     height: 50px;
   }
-  ${Common}
 `;

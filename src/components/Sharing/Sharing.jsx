@@ -29,6 +29,7 @@ const Sharing = () => {
         <LeftWrapper>
           <SharingWrapper>
             <ImgArray>
+              {/**Axios request */}
               {SharingArr.map((el) => (
                 <Image src={el.img} alt="" key={el.id} />
               ))}
