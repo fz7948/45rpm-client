@@ -54,7 +54,7 @@ const Sharing = () => {
         })}
       </ContentWrapper>
       <ContinueBtn>
-        <Button>계속 만들기 </Button>
+        <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
       </ContinueBtn>
     </Container>
   );
