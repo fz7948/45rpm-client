@@ -104,110 +104,112 @@ function Main() {
   }
   return (
     <>
-      <article className="container">
+      <div className="container">
         <Header />
-        <div className="wrapperContent">
-          <div className="sectionWrapper">
-            <section className="cdCase">
-              <div className="disk">
-                <div className="innerDisk"> </div>
-              </div>
-              <div className="coverImg">
-                <img src="./images/1.webp" alt="" />
-              </div>
-            </section>
-            <section className="movingImg">
-              <div className="card">
-                <img src="./images/um1.webp" alt="" />
-              </div>
-            </section>
-          </div>
-          <div className="sectionWrapper">
-            <section className="cdCase">
-              <div className="disk">
-                <div className="innerDisk"> </div>
-              </div>
-              <div className="coverImg">
-                <img src="./images/1.jpg" alt="" />
-              </div>
-            </section>
-            <section className="movingImg">
-              <div className="card">
-                <img src="./images/um2.gif" alt="" />
-              </div>
-            </section>
-          </div>
-          <div className="sectionWrapper">
-            <section className="cdCase">
-              <div className="disk">
-                <div className="innerDisk"> </div>
-              </div>
-              <div className="coverImg">
-                <img src="./images/2.jpg" alt="" />
-              </div>
-            </section>
-            <section className="movingImg">
-              <div className="card">
-                <img src="./images/um3.gif" alt="" />
-              </div>
-            </section>
-          </div>
-          <div className="sectionWrapper">
-            <section className="cdCase">
-              <div className="disk">
-                <div className="innerDisk"> </div>
-              </div>
-              <div className="coverImg">
-                <img src="./images/3.jpg" alt="" />
-              </div>
-            </section>
-            <section className="movingImg">
-              <div className="card">
-                <img src="./images/um4.gif" alt="" />
-              </div>
-            </section>
-          </div>
-          <div className="sectionWrapper">
-            <section className="cdCase">
-              <div className="disk">
-                <div className="innerDisk"> </div>
-              </div>
-              <div className="coverImg">
-                <img src="./images/4.jpg" alt="" />
-              </div>
-            </section>
-            <section className="movingImg">
-              <div className="textWrapper">
-                <h1>
-                  지금 바로 <p>만들어 보세요</p>
-                </h1>
-                <div className="start" onClick={() => history.push('/1')}>
-                  시작하기
+        <article className="wrapperContent">
+          <div className="mainWrapper">
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
                 </div>
-                <div className="share" onClick={() => history.push('/3')}>
-                  공유 페이지
+                <div className="coverImg">
+                  <img src="./images/1.webp" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="card">
+                  <img src="./images/um1.webp" alt="" />
                 </div>
               </div>
             </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
+                  <img src="./images/1.jpg" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="card">
+                  <img src="./images/um2.gif" alt="" />
+                </div>
+              </div>
+            </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
+                  <img src="./images/2.jpg" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="card">
+                  <img src="./images/um3.gif" alt="" />
+                </div>
+              </div>
+            </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
+                  <img src="./images/3.jpg" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="card">
+                  <img src="./images/um4.gif" alt="" />
+                </div>
+              </div>
+            </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
+                  <img src="./images/4.jpg" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="textWrapper">
+                  <h1>
+                    지금 바로 <p>만들어 보세요</p>
+                  </h1>
+                  <div className="start" onClick={() => history.push('/1')}>
+                    시작하기
+                  </div>
+                  <div className="share" onClick={() => history.push('/3')}>
+                    공유 페이지
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
-        </div>
-      </article>
-      <div className="wrapBtn">
-        <div className="btn">
-          <div className="fingerBtn">
-            <button>
-              <IoIosArrowBack />
-            </button>
-            <button>
-              <IoIosArrowForward />
-            </button>
+          <div className="wrapBtn">
+            <div className="btn">
+              <div className="fingerBtn">
+                <button>
+                  <IoIosArrowBack />
+                </button>
+                <button>
+                  <IoIosArrowForward />
+                </button>
+              </div>
+              <div className="skipBtn">
+                <button>
+                  SKIP <BsFillSkipEndFill />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="skipBtn">
-            <button>
-              SKIP <BsFillSkipEndFill />
-            </button>
-          </div>
-        </div>
+        </article>
       </div>
       <Footer />
     </>

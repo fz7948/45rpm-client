@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div `
+  border: 3px solid blue;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -10,8 +11,8 @@ export const Container = styled.div `
 `;
 
 export const MainContentWrapper = styled.div `
-  min-width: 10px;
-  height: 90vh;
+  margin-top: 4.6vh;
+  height: 100vh;
 `;
 
 export const SectionWrapper = styled.div `
