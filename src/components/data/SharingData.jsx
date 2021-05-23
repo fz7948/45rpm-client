@@ -1,67 +1,79 @@
-export const SharingArr = [
-  {
-    id: 1,
-    genre: 'Rock',
-    img: './images/1.jpg',
-  },
-  {
-    id: 2,
-    genre: 'Ballad',
-    img: './images/2.jpg',
-  },
-  {
-    id: 3,
-    genre: 'Rock',
-    img: './images/3.jpg',
-  },
-  {
-    id: 4,
-    genre: 'Ballad',
-    img: './images/4.jpg',
-  },
-  {
-    id: 5,
-    genre: 'Rock',
-    img: './images/1.webp',
-  },
-  {
-    id: 6,
-    genre: 'Rock',
-    img: './images/2.png',
-  },
-  {
-    id: 7,
-    genre: 'HipHop',
-    img: './images/um2.gif',
-  },
-  {
-    id: 8,
-    genre: 'HipHop',
-    img: './images/um1.webp',
-  },
-  {
-    id: 9,
-    genre: 'Rock',
-    img: './images/um2.gif',
-  },
-  {
-    id: 10,
-    genre: 'HipHop',
-    img: './images/um3.gif',
-  },
-  {
-    id: 11,
-    genre: 'Rock',
-    img: './images/um4.gif',
-  },
-  {
-    id: 12,
-    genre: 'Rock',
-    img: './images/um5.gif',
-  },
-  {
-    id: 13,
-    genre: 'Rock',
-    img: './images/um5.gif',
-  },
+export const SharingArr = [{
+        id: 1,
+        color: '#000',
+        coverImage: './images/1.jpg',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 2,
+        color: '#093',
+        coverImage: './images/2.jpg',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 3,
+        color: '#000',
+        coverImage: './images/3.jpg',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 4,
+        color: '#093',
+        coverImage: './images/4.jpg',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 5,
+        color: '#000',
+        coverImage: './images/1.webp',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 6,
+        color: '#000',
+        coverImage: './images/2.png',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 7,
+        color: '#859',
+        coverImage: './images/um2.gif',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 8,
+        color: '#859',
+        coverImage: './images/um1.webp',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 9,
+        color: '#000',
+        coverImage: './images/um2.gif',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 10,
+        color: '#859',
+        coverImage: './images/um3.gif',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 11,
+        color: '#000',
+        coverImage: './images/um4.gif',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 12,
+        color: '#000',
+        coverImage: './images/um5.gif',
+        innerImage: './images/1.jpg',
+    },
+    {
+        id: 13,
+        color: '#000',
+        coverImage: './images/um5.gif',
+        innerImage: './images/1.jpg',
+    },
 ];
