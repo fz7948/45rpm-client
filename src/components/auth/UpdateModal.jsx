@@ -75,7 +75,7 @@ const UpdateInput = styled.input`
 const UpdateCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
-  top: 0rem;
+  top: 1rem;
   left: 14.3rem;
   background: white;
   border: 0;
@@ -102,8 +102,26 @@ const UpdateSubmitBtn = styled.button`
   font-size: 0.8rem;
   font-weight: 400;
   &:hover {
-    background-color: lightgray;
+    background-color: #03154e;
     transition: all ease 0.3s;
+  }
+`;
+
+const WithdrawBtn = styled.div`
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+  button {
+    border: 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: white;
+    padding: 0;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -332,6 +350,10 @@ const UpdateModal = ({ open, close }) => {
     }
   };
 
+  const withdrawalBtn = () => {
+    alert('탈퇴할거니');
+  };
+
   return (
     <>
       <ModalBack disappear={!open}>
@@ -426,6 +448,9 @@ const UpdateModal = ({ open, close }) => {
             </ul>
             <p className="deny-message">{denyMessage}</p>
             <UpdateSubmitBtn onClick={handleSignup}>수정 완료</UpdateSubmitBtn>
+            <WithdrawBtn>
+              <button onClick={() => withdrawalBtn()}>탈퇴하기</button>
+            </WithdrawBtn>
           </UpdateWrapper>
         </ModalBox>
       </ModalBack>
