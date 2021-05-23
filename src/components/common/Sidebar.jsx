@@ -19,9 +19,22 @@ const SidebarWrapper = styled.div`
     margin-left: 12rem;
     font-size: 2rem;
     background: none;
+    color: #e8e8e8;
     &:hover {
-      color: #ff5959;
+      color: #07111e;
     }
+  }
+
+  .menu-close {
+    cursor: pointer;
+    margin-left: 12rem;
+    font-size: 2rem;
+    background: none;
+    color: black;
+    &:hover {
+      color: lightgray;
+    }
+  }
   }
 
   .nav-menu {
@@ -61,7 +74,7 @@ const SidebarWrapper = styled.div`
     padding: 0 16px;
     border-radius: 4px;
     &:hover {
-      color: #ff5959;
+      color: lightgray;
     }
   }
 
@@ -97,7 +110,7 @@ const Navbar = () => {
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
-            <div className="menu-bars">
+            <div className="menu-close">
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </div>
           </li>

@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  registerReq,
+  resetRegister,
+  resetRegisterMsg,
+} from '../../modules/auth';
 
 const RegisterWrapper = styled.div`
   display: flex;
@@ -26,7 +33,8 @@ const RegisterWrapper = styled.div`
     height: 12px;
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
     color: #f73d5c;
     word-break: keep-all;
   }
@@ -36,8 +44,9 @@ const RegisterLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   color: #707174;
-  margin: 0;
-  margin-bottom: 4px;
+  div {
+    margin-bottom: 3px;
+  }
 `;
 
 const RegisterInput = styled.input`
@@ -50,15 +59,16 @@ const RegisterInput = styled.input`
   color: #5f6063;
   &:focus {
     outline: none;
-    border: 1px solid #f73d5c;
+    border: 1px solid #313899;
     transition: all ease 0.3s;
   }
 `;
 
 const RegisterCloseBtn = styled.button`
+  cursor: pointer;
   position: relative;
-  top: -2rem;
-  left: 20rem;
+  top: -0.4rem;
+  left: 12.7rem;
   background: white;
   border: 0;
   outline: 0;
@@ -71,6 +81,7 @@ const RegisterCloseBtn = styled.button`
 `;
 
 const RegisterSubmitBtn = styled.button`
+  cursor: pointer;
   height: 2.2rem;
   width: 16rem;
   border-radius: 3px;
@@ -78,25 +89,33 @@ const RegisterSubmitBtn = styled.button`
   border: 0;
   outline: 0;
   margin-bottom: 0.5rem;
-  background-color: #f73d5c;
+  background-color: #311788;
   color: #fff;
   font-size: 0.8rem;
   font-weight: 400;
   &:hover {
-    background-color: #b3535b;
+    background-color: #03154e;
     transition: all ease 0.3s;
   }
 `;
 
-const RegisterModal = ({ open, close }) => {
+const RegisterModal = ({ open, close, history }) => {
+  const dispatch = useDispatch();
+  const { register, registerError } = useSelector(({ auth }) => ({
+    register: auth.register,
+    registerError: auth.registerError,
+  }));
+
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
+  const refID = useRef(null);
   const refEmail = useRef(null);
   const refUsername = useRef(null);
   const refPassword = useRef(null);
   const refPasswordCheck = useRef(null);
 
+  const [inputID, setInputID] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputUsername, setInputUsername] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -104,13 +123,36 @@ const RegisterModal = ({ open, close }) => {
   const [denyMessage, setDenyMessage] = useState('');
 
   useEffect(() => {
-    refEmail.current.focus();
+    if (registerError) {
+      if (registerError === 'Same user existed') {
+        setDenyMessage(registerError);
+        //이메일 아이디 구분 필요
+      }
+      return;
+    }
+    if (register) {
+      alert(register.message);
+      //모달로 만들어야함
+      history.push('/');
+      handleCloseBtn();
+      dispatch(resetRegister());
+    }
+  }, [register, registerError]);
+
+  useEffect(() => {
+    refID.current.focus();
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleCloseBtn();
       }
     });
   }, [open]);
+
+  const handleMoveToEmail = (e) => {
+    if (e.key === 'Enter') {
+      refEmail.current.focus();
+    }
+  };
 
   const handleMoveToUsername = (e) => {
     if (e.key === 'Enter') {
@@ -135,6 +177,13 @@ const RegisterModal = ({ open, close }) => {
       handleSignup();
     }
   };
+
+  const handleChangeID = useCallback(
+    (e) => {
+      setInputID(e.target.value);
+    },
+    [inputID],
+  );
 
   const handleChangeEmail = useCallback(
     (e) => {
@@ -165,11 +214,13 @@ const RegisterModal = ({ open, close }) => {
   );
 
   const handleCloseBtn = () => {
+    setInputID('');
     setInputEmail('');
     setInputUsername('');
     setInputPassword('');
     setInputPasswordCheck('');
     setDenyMessage('');
+    dispatch(resetRegisterMsg());
     close();
   };
 
@@ -212,6 +263,15 @@ const RegisterModal = ({ open, close }) => {
   );
 
   const handleCheckForm = () => {
+    if (inputID === '') {
+      refID.current.focus();
+      setDenyMessage('ID를 입력하세요');
+      return false;
+    } else if (inputID.length <= 5) {
+      setDenyMessage('ID는 6자리 이상 입력해야 합니다');
+      refID.current.focus();
+      return false;
+    }
     if (inputEmail === '') {
       refEmail.current.focus();
       setDenyMessage('E-mail을 입력하세요');
@@ -248,22 +308,36 @@ const RegisterModal = ({ open, close }) => {
   if (!animate && !localVisible) return null;
 
   const handleSignup = () => {
-    // 여기서 api 요청 보내야함 !!
     if (handleCheckForm()) {
-      alert('요청을 성공적으로 보냈습니다');
+      dispatch(registerReq(inputID, inputEmail, inputUsername, inputPassword));
     }
   };
 
   return (
     <>
       <ModalBack disappear={!open}>
-        <div className="modal_outsider" onClick={close}></div>
+        <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open} register>
-          <RegisterCloseBtn onClick={close}>X</RegisterCloseBtn>
+          <RegisterCloseBtn onClick={(close, handleCloseBtn)}>
+            X
+          </RegisterCloseBtn>
           <RegisterWrapper>
             <h2>회원가입</h2>
 
             <ul>
+              <li>
+                <RegisterLabel>
+                  <div>ID</div>
+                </RegisterLabel>
+                <RegisterInput
+                  type="text"
+                  value={inputID}
+                  onChange={handleChangeID}
+                  placeholder="사용하실 ID를 입력해주세요."
+                  onKeyPress={handleMoveToEmail}
+                  ref={refID}
+                />
+              </li>
               <li>
                 <RegisterLabel>
                   <div>E-mail</div>
@@ -272,20 +346,20 @@ const RegisterModal = ({ open, close }) => {
                   type="text"
                   value={inputEmail}
                   onChange={handleChangeEmail}
-                  placeholder="사용하실 E-mail을 입력해주세요."
+                  placeholder="E-mail을 입력해주세요."
                   onKeyPress={handleMoveToUsername}
                   ref={refEmail}
                 />
               </li>
               <li>
                 <RegisterLabel>
-                  <div>닉네임</div>
+                  <div>이름</div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
                   value={inputUsername}
                   onChange={handleChangeUsername}
-                  placeholder="사용하실 닉네임을 입력해주세요."
+                  placeholder="이름을 입력해주세요."
                   onKeyPress={handleMoveTopassword}
                   ref={refUsername}
                 />
@@ -328,4 +402,4 @@ const RegisterModal = ({ open, close }) => {
   );
 };
 
-export default RegisterModal;
+export default withRouter(RegisterModal);
