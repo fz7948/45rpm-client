@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 
-export const fadeIn = keyframes `
+export const fadeIn = keyframes`
   from{
     opacity: 0
   }
@@ -9,7 +9,7 @@ export const fadeIn = keyframes `
   }
 `;
 
-export const fadeOut = keyframes `
+export const fadeOut = keyframes`
   from{
     opacity: 1
   }
@@ -18,7 +18,7 @@ export const fadeOut = keyframes `
   }
 `;
 
-export const slideUp = keyframes `
+export const slideUp = keyframes`
   from{
     transform: translateY(20px);
   }
@@ -27,7 +27,7 @@ export const slideUp = keyframes `
   }
 `;
 
-const slideDown = keyframes `
+const slideDown = keyframes`
   from{
     transform: translateY(0px);
   }
@@ -36,7 +36,7 @@ const slideDown = keyframes `
   }
 `;
 
-export const ModalBack = styled.div `
+export const ModalBack = styled.div`
   position: fixed;
   z-index: 101;
   top: 0;
@@ -105,6 +105,12 @@ export const ModalBox = styled.div`
     props.register &&
     css`
       width: 450px;
-      height: 500px;
+      height: 550px;
+    `}
+  ${(props) =>
+    props.update &&
+    css`
+      width: 500px;
+      height: 680px;
     `}
 `;
