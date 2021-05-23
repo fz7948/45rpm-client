@@ -6,7 +6,6 @@ import Sidebar from '../../components/common/Sidebar';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { SliderData } from '../../components/data/SliderData';
-import Footer from '../../components/common/Footer';
 import {
   MypageWrapper,
   MypageContent,
@@ -73,7 +72,6 @@ const MypageForm = () => {
             onSubmitHand={onSubmitHand}
           />
         )}
-        <Footer />
       </MypageWrapper>
     </>
   );
