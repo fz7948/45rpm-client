@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../data/SidebarData';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../modules/user';
 
 const SidebarWrapper = styled.div`
   .navbar {
@@ -129,6 +131,8 @@ const SidebarWrapper = styled.div`
 `;
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => {
@@ -137,6 +141,7 @@ const Navbar = () => {
 
   const onLogout = () => {
     alert('로그아웃 됐다');
+    dispatch(logoutUser());
   };
 
   return (

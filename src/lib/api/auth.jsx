@@ -29,15 +29,48 @@ export const login = async ({ id, password }) => {
   return response.data;
 };
 
-export const update = async ({ email, username, oldpassword, newpassword }) => {
+export const update = async ({
+  email,
+  username,
+  oldpassword,
+  newpassword,
+  token,
+}) => {
+  console.log('쿠키확인', token);
   const response = await axios.patch(
     `http://localhost:4000/user/updateinfo`,
     { email, username, oldpassword, newpassword },
     {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     },
+    { withCredentials: true },
   );
-  console.log('토큰??', response.data);
+  console.log('뜨냐', response.data);
+  return response.data;
+};
+
+export const logout = async () => {
+  const response = await axios.post(`http://localhost:4000/user/logout`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true,
+  });
+  return response;
+};
+
+export const withdraw = async () => {
+  const response = await axios.delete(
+    `http://localhost:4000/user/withdrawal`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
   return response.data;
 };

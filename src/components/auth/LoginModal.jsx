@@ -144,17 +144,17 @@ const LoginModal = ({ open, close, history }) => {
       return;
     }
     if (login) {
-      console.log('토큰?', login);
       alert(login.message);
       //모달로 만들어야함
       history.push('/mypage');
       handleCloseBtn();
       dispatch(resetLogin());
-      console.log('날라가나?', login);
+      const token = document.cookie.split('=')[1];
       const payload = {
         id: login.data.id,
         email: login.data.email,
         username: login.data.username,
+        token: token,
       };
       dispatch(loginUser(payload));
     }

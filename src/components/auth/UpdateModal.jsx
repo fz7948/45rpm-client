@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { updateReq, resetUpdate } from '../../modules/auth';
+import { withdrawal } from '../../modules/user';
 
 const UpdateWrapper = styled.div`
   display: flex;
@@ -127,9 +128,10 @@ const WithdrawBtn = styled.div`
 
 const UpdateModal = ({ open, close }) => {
   const dispatch = useDispatch();
-  const { update, updateError } = useSelector(({ auth }) => ({
+  const { update, updateError, token } = useSelector(({ auth, user }) => ({
     update: auth.update,
     updateError: auth.updateError,
+    token: user.token,
   }));
 
   const [animate, setAnimate] = useState(false);
@@ -338,13 +340,13 @@ const UpdateModal = ({ open, close }) => {
 
   const handleSignup = () => {
     if (handleCheckForm()) {
-      console.log('잘보내지니');
       dispatch(
         updateReq(
           inputEmail,
           inputUsername,
           inputOldPassword,
           inputNewPassword,
+          token,
         ),
       );
     }
@@ -352,6 +354,7 @@ const UpdateModal = ({ open, close }) => {
 
   const withdrawalBtn = () => {
     alert('탈퇴할거니');
+    dispatch(withdrawal());
   };
 
   return (
