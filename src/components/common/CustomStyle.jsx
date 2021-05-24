@@ -10,13 +10,22 @@ export const Container = styled.div `
 `;
 
 export const MainContentWrapper = styled.div `
-  min-width: 10px;
-  height: 90vh;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SectionWrapper = styled.div `
   display: flex;
-  width: 100%;
+  width: inherit;
+  height: inherit;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const CdCaseContent = styled.div `
@@ -24,31 +33,26 @@ export const CdCaseContent = styled.div `
   flex: 1;
   width: 100%;
   height: 100%;
-  transition: all 1s ease;
-
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-  }
 `;
 
 export const Disk = styled.div `
-  position: absolute;
-  z-index: 1;
   flex: 1;
-  width: 550px;
-  height: 550px;
+  position: absolute;
+  width: 470px;
+  height: 470px;
+  top: 26%;
   border-radius: 50%;
   box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
-  opacity: 1;
 
   @media screen and (max-width: 768px) {
-    width: 350px;
-    height: 350px;
-    top: 220px;
+    width: 320px;
+    height: 320px;
+    position: absolute;
+    top: 10%;
   }
 
   &:hover {
-    animation: rotation 1.5s linear infinite;
+    animation: rotation 2s linear infinite;
     left: 10%;
     transition-delay: 5s;
   }
@@ -69,7 +73,6 @@ export const InnerDisk = styled.div `
   transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
-  background-color: #0473a4;
   border-radius: 50%;
 
   &::after {
@@ -83,31 +86,36 @@ export const InnerDisk = styled.div `
     background-color: black;
     border-radius: 50%;
   }
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 export const Img1 = styled.img `
   width: 150px;
   height: 150px;
   border-radius: 50%;
-`;
-
-export const Img2 = styled.img `
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const CoverImg = styled.div `
-  position: fixed;
   flex: 1;
-  z-index: 2;
+  z-index: 1;
   transform: translateX(-40%);
-  width: 590px;
-  height: 590px;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 25%;
   box-shadow: 1px 3px 2px 3px rgba(0, 1, 1, 1);
 
   @media screen and (max-width: 768px) {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 9%;
   }
 `;
 
@@ -117,75 +125,56 @@ export const Img = styled.img `
 `;
 
 export const CustomContent = styled.div `
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   width: 100%;
   height: 100%;
-  padding: 2rem;
-  flex: 1;
-  z-index: 2;
-
-  @media screen and (max-width: 768px) {
-    width: 50vw;
-    height: 50%;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CustomElement = styled.div `
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 2rem;
-  border-radius: 20px;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
-
+  justify-content: space-around;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.5rem;
+  padding: 1rem;
+  color: #fff;
   width: 100%;
   height: 100%;
-  background: linear-gradient(245deg, #143b7d, #fdfaf5);
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Button = styled.button `
-  width: 5rem;
+  width: 10rem;
   height: 3rem;
   font-size: 1rem;
   font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
-  border-radius: 20px;
+  font-family: 'Lato', sans-serif;
+  border: none;
   cursor: pointer;
   outline: none;
+  background: transparent;
   color: #fff;
-  background-image: linear-gradient(
-    120deg,
-    #264986 20%,
-    #5f78a3 50%,
-    #dee0e5 100%
-  );
-  &:hover {
-    animation: slidebg 2s linear infinite;
-  }
-
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
-  }
 `;
 
 const Input = css `
-  padding-bottom: 3rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
-    font-size: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    padding: 1rem;
   }
-`;
-
-export const CustomLp = styled.div `
-  ${Input}
 `;
 
 export const CustomColor = styled.div `
@@ -201,72 +190,35 @@ export const CustomCenterCover = styled.div `
 `;
 
 export const InputFile = styled.input `
-  border: 3px solid lightblue;
-  border-radius: 20px;
   color: #fff;
-  font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   cursor: pointer;
-  width: 100%;
-  box-shadow: 1px 3px 2px 1px rgba(0, 1, 1, 1);
-  background-image: linear-gradient(
-    120deg,
-    #264986 20%,
-    #5f78a3 50%,
-    #dee0e5 100%
-  );
-  &:hover {
-    animation: slidebg 2s linear infinite;
-  }
+  outline: none;
+  width: 40%;
+  border: 1px solid #fff;
+  border-radius: 6px;
 
   @media screen and (max-width: 768px) {
-    width: 90%;
-  }
-
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
+    margin-top: 1rem;
+    width: 50%;
+    height: 44%;
   }
 `;
 
 export const SaveBtn = styled.button `
   background: transparent;
-  color: orange;
+  color: #fff;
   border: none;
-  height: 60px;
-  font-size: 2.5rem;
-  padding: 0 3.5rem;
   cursor: pointer;
-  transition: 2s ease all;
   outline: none;
-  font-family: 'Lobster', cursive;
-  animation: change 5s infinite linear;
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3px;
-    width: 0;
-    border: rgba(233, 212, 96, 1);
-    transition: 1.5s ease all;
-  }
-  &:hover {
-    &::before,
-    &::after {
-      width: 100%;
-      transition: 1s ease all;
-    }
-  }
-  @keyframes change {
-    from {
-      filter: hue-rotate(0deg);
-    }
-    to {
-      filter: hue-rotate(360deg);
-    }
+  width: 100%;
+  padding: 4rem;
+  font-size: 2.5rem;
+  font-family: 'Lato', sans-serif;
+
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+    font-size: 2rem;
   }
 `;

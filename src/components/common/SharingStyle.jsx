@@ -1,15 +1,4 @@
-import styled, { css } from 'styled-components';
-
-const Common = css `
-  &:hover {
-    animation: slidebg 5s linear infinite;
-  }
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
-    }
-  }
-`;
+import styled from 'styled-components';
 
 export const Container = styled.div `
   display: flex;
@@ -19,116 +8,177 @@ export const Container = styled.div `
   background: linear-gradient(120deg, #03154e, #311788);
 `;
 
-export const ContentWrapper = styled.div `
-  display: flex;
-  width: 100%;
-  height: 83vh;
-`;
-
-export const ImgWrapper = styled.div `
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  width: 100%;
-  height: 100%;
-`;
-
-export const LeftWrapper = styled.div `
+export const TitleWrapper = styled.div `
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 2rem;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+`;
+
+export const H1Title = styled.h1 `
+  color: #fff;
+  font-size: 4.7rem;
+  font-family: 'Lato', sans-serif;
+  padding-bottom: 1rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 3rem;
+  }
+`;
+
+export const SubTitle = styled.h5 `
+  color: #fff;
+  font-size: 2rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const ContentWrapper = styled.div `
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 2rem;
+  overflow: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 6rem;
+
+  @media screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 1rem;
+    padding-left: 2rem;
+  }
+`;
+
+export const CdCaseContent = styled.div `
+  display: flex;
   width: 100%;
   height: 100%;
-  flex: 2;
+  position: relative;
 `;
+
+export const CoverImg = styled.div `
+  flex: 1;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
 export const Img = styled.img `
   width: inherit;
   height: inherit;
-  object-fit: contain;
+  position: absolute;
+  z-index: 2;
 `;
 
-export const SharingWrapper = styled.div `
-  width: inherit;
-  height: inherit;
-  display: flex;
-  padding: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ImgArray = styled.div `
-  display: flex;
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 1);
-  width: 100%;
-  height: 80%;
-  margin: 1rem;
-  padding: 1rem;
-  overflow: auto;
-
-  ::-webkit-scrollbar {
-    width: 1px;
-    height: 15px;
+export const Disk = styled.div `
+  flex: 1;
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 1rem;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  left: 35%;
+  z-index: 1;
+  @media screen and (max-width: 768px) {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 1rem;
+    left: 35%;
   }
-  ::-webkit-scrollbar-track {
-    /* 스크롤이 움직이는 영역  */
-    background-color: #f9f9f9;
-  }
-  ::-webkit-scrollbar-thumb {
-    /*  스크롤  */
-    background-color: gold;
-    border-radius: 30px;
-  }
-  ::-webkit-scrollbar-button:start:decrement,
-  ::-webkit-scrollbar-button:end:increment {
-    display: block;
-    height: 5px;
-    background-color: #000;
-  }
-`;
-
-export const Image = styled.img `
-  display: inline-block;
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
-  border-radius: 20px;
-  padding: 1rem;
-  margin: 0 2%;
-  cursor: pointer;
-  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0);
-  object-fit: cover;
-  transition: all 0.3s ease-in-out 0s;
 
   &:hover {
-    box-shadow: 0 0 10px 5px rgba(172, 126, 0, 0.781);
+    animation: rotation 2s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
-export const ContinueBtn = styled.button `
-  width: 250px;
-  height: 200px;
-  font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
-  font-size: 2rem;
-  border-radius: 20px;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  background-image: linear-gradient(
-    120deg,
-    #264986 20%,
-    #5f78a3 50%,
-    #dee0e5 100%
-  );
-  @media screen and (max-width: 768px) {
-    font-size: 1.5rem;
-    width: 150px;
-    height: 50px;
+export const InnerDisk = styled.div `
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
   }
-  ${Common}
+  @media screen and (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+export const Img1 = styled.img `
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  @media screen and (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+export const ContinueBtn = styled.div `
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+export const Button = styled.button `
+  cursor: pointer;
+  width: calc(10vw + 6px);
+  height: calc(3vw + 6px);
+  color: #000;
+  background-color: #fff;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-family: 'Jua', sans-serif;
+  font-size: 1.5rem;
+  outline: none;
+
+  @media screen and (max-width: 768px) {
+    width: calc(20vw + 6px);
+    height: calc(7vw + 6px);
+    font-size: 1rem;
+  }
 `;

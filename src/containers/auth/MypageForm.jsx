@@ -6,17 +6,17 @@ import Sidebar from '../../components/common/Sidebar';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { SliderData } from '../../components/data/SliderData';
-import Footer from '../../components/common/Footer';
 import {
-  MypageWrapper,
-  MypageContent,
-  MypageImage,
-  MypageInfo,
-  MypageSlide,
-  MypageButton,
+  MyPageWrapper,
+  MyPageContent,
+  MyPageInfoWrapper,
+  MyPageImage,
+  MyPageInfo,
+  MyPageSlide,
+  MyPageButton,
 } from '../../components/common/MyPageStyle';
 
-const MypageForm = () => {
+const MyPageForm = () => {
   const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
@@ -39,22 +39,25 @@ const MypageForm = () => {
 
   return (
     <>
-      <MypageWrapper>
+      <MyPageWrapper>
         <Sidebar />
-        <MypageContent>
-          <MypageImage>
-            <img src="/images/add.png"></img>
-            <p>사진 올리기</p>
-          </MypageImage>
-          <MypageInfo>
-            <p>안녕하세요</p>
-            <p>오우영</p>
-            <p>fz7948@gmail.com</p>
-          </MypageInfo>
-        </MypageContent>
-        <MypageSlide>
+        <MyPageContent>
+          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
+          <MyPageInfoWrapper>
+            <MyPageImage>
+              <img src="/images/add.png"></img>
+              <p>사진 올리기</p>
+            </MyPageImage>
+            <MyPageInfo>
+              <p>안녕하세요</p>
+              <p>오우영</p>
+              <p>fz7948@gmail.com</p>
+            </MyPageInfo>
+          </MyPageInfoWrapper>
+        </MyPageContent>
+        <MyPageSlide>
           <Hero slides={SliderData} openModal={openDetailModal} />
-        </MypageSlide>
+        </MyPageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
             slides={SliderData}
@@ -63,9 +66,6 @@ const MypageForm = () => {
             onSubmitHand={onSubmitHand}
           />
         )}
-        <div className="infoBtn">
-          <MypageButton onClick={aboutInfoModal}>정보 수정</MypageButton>
-        </div>
         {isType === 'info' && (
           <UpdateModal
             open={checkModal}
@@ -73,10 +73,9 @@ const MypageForm = () => {
             onSubmitHand={onSubmitHand}
           />
         )}
-        <Footer />
-      </MypageWrapper>
+      </MyPageWrapper>
     </>
   );
 };
 
-export default MypageForm;
+export default MyPageForm;

@@ -4,7 +4,7 @@ import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 
 export const HeroSection = styled.section `
   width: 80%;
-  height: 20vh;
+  height: 30vh;
   max-height: 1100px;
   border-radius: 6px;
   position: relative;
@@ -77,18 +77,10 @@ export const HeroContent = styled.div `
   flex-direction: column;
   width: calc(100% - 100px);
   color: #fff;
+  font-size: 2rem;
 
-  h1 {
-    font-size: clamp(1rem, 8vw, 2rem);
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-    text-align: left;
-    margin-bottom: 0.8rem;
-  }
-
-  p {
-    margin-bottom: 1.2rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.4rem;
   }
 `;
 

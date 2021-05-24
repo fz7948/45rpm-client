@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { inquiryModal, closeModal } from '../../modules/modal';
+import { showModal, closeModal } from '../../modules/modal';
 import Header from '../common/Header';
-import Sidebar from '../common/Sidebar';
+import { questionAdd } from '../../modules/question';
 
 import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
@@ -22,28 +22,26 @@ import {
 } from '../common/InquiryStyle';
 
 const Inquires = () => {
-  //   const [viewContent, setViewContent] = useState([]);
-  // 나중에 요청 받아서 뿌려 줄 데이터
-  //   // viewContent
-  //   useEffect(() => {
-  //     axios.get('httpP://localhost:5000/').then((res) => {
-  //       setViewContent(res.data);
-  //     });
-  //   }, [viewContent]);
-  const [isLogin, setIsLogin] = useState(true);
-  const { checkModal, isType } = useSelector(({ modal }) => ({
+  const { checkModal, token } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
-    isType: modal.isType,
+    token: user.token,
   }));
+
   const dispatch = useDispatch();
   const openModal = () => {
-    dispatch(inquiryModal());
+    dispatch(showModal());
   };
   const shutModal = () => {
     dispatch(closeModal());
   };
 
-  const onSubmitHand = (data) => {};
+  const onSubmitHand = (data, category) => {
+    const { title, content } = data;
+    const data1 = content.split('<p>')[1];
+    const contents = data1.split('</p>')[0];
+    dispatch(questionAdd(title, contents, category.value, token));
+  };
+
   return (
     <Container>
       <Header />
@@ -66,13 +64,11 @@ const Inquires = () => {
           </InquiryContent>
         </InquiryContainer>
         <Button onClick={openModal}>글쓰기</Button>
-        {isType === 'inquiry' && (
-          <InquiryModal
-            open={checkModal}
-            close={shutModal}
-            onSubmitHand={onSubmitHand}
-          ></InquiryModal>
-        )}
+        <InquiryModal
+          open={checkModal}
+          close={shutModal}
+          onSubmitHand={onSubmitHand}
+        ></InquiryModal>
       </InquiryWrapper>
     </Container>
   );

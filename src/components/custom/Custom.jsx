@@ -13,7 +13,6 @@ import {
   CoverImg,
   Img,
   Img1,
-  Img2,
   CustomContent,
   CustomElement,
   CustomColor,
@@ -22,7 +21,6 @@ import {
   SaveBtn,
   Button,
   InputFile,
-  CustomLp,
 } from '../common/CustomStyle';
 const Custom = () => {
   const history = useHistory();
