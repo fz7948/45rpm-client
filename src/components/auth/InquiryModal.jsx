@@ -105,17 +105,21 @@ const InquirySubmitBtn = styled.button`
 const InquiryModal = ({ open, close, onSubmitHand }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
+
   const [inquiryContent, setInquiryContent] = useState({
     title: '',
     content: '',
   });
+
   const [value, setValue] = useState();
+
   const [options, setOptions] = useState([
     { value: 'genre', label: 'Genre' },
     { value: 'song', label: 'Song' },
     { value: 'name', label: 'Name' },
     { value: 'LP', label: 'lp' },
   ]);
+
   const handleChange = useCallback((inputValue) => setValue(inputValue), []);
 
   const handleCreate = useCallback(
@@ -139,7 +143,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    onSubmitHand();
+    onSubmitHand(inquiryContent, value);
   };
   //    // submit button click ==> sending data
   //   const submitInquiry = () => {
@@ -185,6 +189,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                     </InquiryTitle>
                     <InquiryInput
                       type="text"
+                      name="title"
                       placeholder="title"
                       onChange={getValue}
                     />
@@ -212,7 +217,6 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                       onReady={(editor) => {}}
                       onChange={(event, editor) => {
                         const data = editor.getData();
-                        console.log({ event, editor, data });
                         setInquiryContent({
                           ...inquiryContent,
                           content: data,
