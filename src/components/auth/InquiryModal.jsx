@@ -3,7 +3,6 @@ import { ModalBack, ModalBox } from '../common/InquiryModalStyle';
 import styled from 'styled-components';
 import AsyncCreatableSelect from 'react-select/creatable';
 
-// import axios from 'axios';
 import '../common/CkEditor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -111,7 +110,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
     content: '',
   });
 
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
 
   const [options, setOptions] = useState([
     { value: 'genre', label: 'Genre' },
@@ -145,19 +144,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
     e.preventDefault();
     onSubmitHand(inquiryContent, value);
   };
-  //    // submit button click ==> sending data
-  //   const submitInquiry = () => {
-  //     axios
-  //       .post('http://localhost:5000/', {
-  //         title: inquiryContent.title,
-  //         content: inquiryContent.content,
-  //       })
-  //       .then(() => {
-  //         alert('등록 완료!!');
-  //       });
-  //   };
 
-  // Input get Value
   const getValue = (e) => {
     const { name, value } = e.target;
     setInquiryContent({ ...inquiryContent, [name]: value });
@@ -214,7 +201,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                     </InquiryTitle>
                     <CKEditor
                       editor={ClassicEditor}
-                      onReady={(editor) => {}}
+                      // onReady={(editor) => {}}
                       onChange={(event, editor) => {
                         const data = editor.getData();
                         setInquiryContent({
@@ -222,17 +209,14 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                           content: data,
                         });
                       }}
-                      onBlur={(event, editor) => {
-                        console.log('Blur.', editor);
-                      }}
-                      onFocus={(event, editor) => {
-                        console.log('Focus.', editor);
-                      }}
+                      // onBlur={(event, editor) => {
+                      // }}
+                      // onFocus={(event, editor) => {
+                      // }}
                     />
                   </li>
                 </ul>
               </InquiryContent>
-              {/* onClick = {submitInquiry} */}
               <InquirySubmitBtn> 제출하기 </InquirySubmitBtn>
             </InquiryWrapper>
           </form>

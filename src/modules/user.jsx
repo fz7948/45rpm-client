@@ -12,9 +12,10 @@ export const loginUser = ({ id, email, username, token }) => ({
   username,
 });
 
-export const logoutUser = () => async (dispatch) => {
+export const logoutUser = (token) => async (dispatch) => {
+  console.log('로그아웃되냐');
   try {
-    const logoutRes = await authAPI.logout();
+    const logoutRes = await authAPI.logout(token);
     dispatch({ type: LOGOUT_USER });
     // removeSessionStorage();
   } catch (error) {
@@ -22,9 +23,9 @@ export const logoutUser = () => async (dispatch) => {
   }
 };
 
-export const withdrawal = () => async (dispatch) => {
+export const withdrawal = (token) => async (dispatch) => {
   try {
-    const withdraw = await authAPI.withdraw();
+    const withdraw = await authAPI.withdraw(token);
     dispatch({ type: WITHDRAW });
     // removeSessionStorage();
   } catch (error) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
-import Sidebar from '../../components/common/Sidebar';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { SliderData } from '../../components/data/SliderData';
@@ -17,11 +16,11 @@ import {
 } from '../../components/common/MyPageStyle';
 
 const MyPageForm = () => {
+  const dispatch = useDispatch();
   const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
   }));
-  const dispatch = useDispatch();
 
   const aboutInfoModal = () => {
     dispatch(infoModal());
@@ -35,12 +34,9 @@ const MyPageForm = () => {
     dispatch(albumDetailModal());
   };
 
-  const onSubmitHand = (data) => {};
-
   return (
     <>
       <MyPageWrapper>
-        <Sidebar />
         <MyPageContent>
           <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
           <MyPageInfoWrapper>
@@ -63,15 +59,10 @@ const MyPageForm = () => {
             slides={SliderData}
             open={checkModal}
             close={shutModal}
-            onSubmitHand={onSubmitHand}
           />
         )}
         {isType === 'info' && (
-          <UpdateModal
-            open={checkModal}
-            close={shutModal}
-            onSubmitHand={onSubmitHand}
-          />
+          <UpdateModal open={checkModal} close={shutModal} />
         )}
       </MyPageWrapper>
     </>

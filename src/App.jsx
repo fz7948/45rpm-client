@@ -6,12 +6,20 @@ import MyPage from './pages/MyPage';
 import SharingPage from './pages/SharingPage';
 import CustomPage from './pages/CustomPage';
 import GlobalStyles from './components/common/GlobalStyles';
+import Header from './components/common/Header';
+import Sidebar from './components/common/Sidebar';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { isLogin } = useSelector(({ user }) => ({
+    isLogin: user.isLogin,
+  }));
+
   return (
     <>
       <GlobalStyles />
       <Router>
+        {isLogin ? <Sidebar /> : <Header />}
         <Switch>
           <Route component={MainPage} path="/" exact />
           <Route component={CustomPage} path="/1" />

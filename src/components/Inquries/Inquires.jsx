@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal } from '../../modules/modal';
-import Header from '../common/Header';
-import { questionAdd } from '../../modules/question';
+import { questionAddReq, questionListReq } from '../../modules/question';
 
 import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
@@ -22,12 +21,15 @@ import {
 } from '../common/InquiryStyle';
 
 const Inquires = () => {
-  const { checkModal, token } = useSelector(({ modal, user }) => ({
-    checkModal: modal.checkModal,
-    token: user.token,
-  }));
-
   const dispatch = useDispatch();
+  const { checkModal, token, questionList } = useSelector(
+    ({ modal, user, question }) => ({
+      checkModal: modal.checkModal,
+      token: user.token,
+      questionList: question.questionList,
+    }),
+  );
+
   const openModal = () => {
     dispatch(showModal());
   };
@@ -35,16 +37,22 @@ const Inquires = () => {
     dispatch(closeModal());
   };
 
+  useEffect(() => {
+    dispatch(questionListReq(token));
+    console.log('리스트요청 보내냐');
+  }, [checkModal]);
+
+  console.log('되냐', questionList);
+
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
     const data1 = content.split('<p>')[1];
     const contents = data1.split('</p>')[0];
-    dispatch(questionAdd(title, contents, category.value, token));
+    dispatch(questionAddReq(title, contents, category.value, token));
   };
 
   return (
     <Container>
-      <Header />
       <InquiryWrapper>
         <InquiryContainer>
           <InquiryTitle>문의 내역</InquiryTitle>

@@ -60,7 +60,7 @@ const SongContainer = styled.div`
   width: 100%;
 `;
 
-const AlbumDetailModal = ({ open, close, onSubmitHand, slides }) => {
+const AlbumDetailModal = ({ open, close, slides }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
   const [current, setCurrent] = useState(0);
@@ -75,58 +75,51 @@ const AlbumDetailModal = ({ open, close, onSubmitHand, slides }) => {
 
   if (!animate && !localVisible) return null;
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    onSubmitHand();
-  };
-
   return (
     <>
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open}>
-          <form onSubmit={onSubmitHandler}>
-            <InfoCloseBtn onClick={close}> X </InfoCloseBtn>
-            {slides.map((slide, index) => {
-              return (
-                <InfoWrapper key={index}>
-                  {index === current && (
-                    <>
-                      <h2> 앨범 정보 </h2>
-                      <ul>
-                        <li>
-                          <InfoLabel>
-                            <div> Producer </div>
-                          </InfoLabel>
-                          <div> {slide.producer} </div>
-                        </li>
-                        <li>
-                          <InfoLabel>
-                            <div> Genre </div>
-                          </InfoLabel>
-                          <div> {slide.genre} </div>
-                        </li>
-                        <li>
-                          <InfoLabel>
-                            <div> Title </div>
-                          </InfoLabel>
-                          <div> {slide.song} </div>
-                        </li>
-                        <li>
-                          <InfoLabel>
-                            <div> Song List </div>
-                          </InfoLabel>
-                          <SongContainer>
-                            <DragDrop />
-                          </SongContainer>
-                        </li>
-                      </ul>
-                    </>
-                  )}
-                </InfoWrapper>
-              );
-            })}
-          </form>
+          <InfoCloseBtn onClick={close}> X </InfoCloseBtn>
+          {slides.map((slide, index) => {
+            return (
+              <InfoWrapper key={index}>
+                {index === current && (
+                  <>
+                    <h2> 앨범 정보 </h2>
+                    <ul>
+                      <li>
+                        <InfoLabel>
+                          <div> Producer </div>
+                        </InfoLabel>
+                        <div> {slide.producer} </div>
+                      </li>
+                      <li>
+                        <InfoLabel>
+                          <div> Genre </div>
+                        </InfoLabel>
+                        <div> {slide.genre} </div>
+                      </li>
+                      <li>
+                        <InfoLabel>
+                          <div> Title </div>
+                        </InfoLabel>
+                        <div> {slide.song} </div>
+                      </li>
+                      <li>
+                        <InfoLabel>
+                          <div> Song List </div>
+                        </InfoLabel>
+                        <SongContainer>
+                          <DragDrop />
+                        </SongContainer>
+                      </li>
+                    </ul>
+                  </>
+                )}
+              </InfoWrapper>
+            );
+          })}
         </ModalBox>
       </ModalBack>
     </>

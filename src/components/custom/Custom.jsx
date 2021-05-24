@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
-import Header from '../common/Header';
-import Footer from '../common/Footer';
 import {
   Container,
   MainContentWrapper,
@@ -67,7 +65,6 @@ const Custom = () => {
   return (
     <>
       <Container>
-        <Header />
         <MainContentWrapper>
           <SectionWrapper>
             <CdCaseContent>
