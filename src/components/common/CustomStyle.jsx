@@ -213,12 +213,12 @@ export const SaveBtn = styled.button `
   cursor: pointer;
   outline: none;
   width: 100%;
-  padding: 4rem;
+  padding: 4.5rem;
   font-size: 2.5rem;
   font-family: 'Lato', sans-serif;
 
   @media screen and (max-width: 768px) {
-    padding: 1rem;
+    padding: 3.5rem;
     font-size: 2rem;
   }
 `;
