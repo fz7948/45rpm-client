@@ -11,11 +11,12 @@ export const Container = styled.div `
 export const TitleWrapper = styled.div `
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 4rem;
   text-align: center;
 
   @media screen and (max-width: 768px) {
     text-align: center;
+    padding: 3rem;
   }
 `;
 
@@ -26,7 +27,7 @@ export const H1Title = styled.h1 `
   padding-bottom: 1rem;
 
   @media screen and (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.7rem;
   }
 `;
 

@@ -6,125 +6,111 @@ export const Container = styled.div `
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #03154e, #311788);
-`;
-
-export const InquiryWrapper = styled.div `
-  width: 100%;
-  height: 83vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: #fff;
+  padding-top: 3rem;
 `;
 
 export const InquiryContainer = styled.div `
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 1);
-  background: #f5f5dc;
-  width: 65%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1rem;
-  padding: 1rem;
   overflow: auto;
+  border: 5px solid red;
+  width: 100%;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
+  @media screen and (max-width: 768px) {
+    border: 5px solid red;
+    width: 100%;
+    height: 100%;
+    padding-top: 3rem;
+    padding-right: 1rem;
+  }
+`;
+
+export const InquiryTop = styled.div `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 
   @media screen and (max-width: 768px) {
-    width: 90%;
-    height: 100%;
-    margin: 1rem;
+    0rem;
   }
 `;
 
 export const InquiryTitle = styled.h1 `
-  text-shadow: 2px 2px 20px yellow;
+  width: 100%;
   text-align: center;
-  font-size: 4rem;
-  font-family: 'Nanum Brush Script', cursive;
+  padding-left: 8rem;
+
   @media screen and (max-width: 768px) {
-    font-size: 2.5rem;
+    padding: 1rem;
+    padding-left: 7rem;
+  }
+`;
+
+export const Button = styled.button `
+  width: 10rem;
+  height: 3.5rem;
+  font-size: 1rem;
+
+  @media screen and (max-width: 768px) {
+    width: 8rem;
+    height: 3rem;
   }
 `;
 
 export const InquiryContent = styled.div `
-  display: flex;
-  flex-direction: column;
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   padding: 1rem;
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const Title = styled.div `
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Nanum Brush Script', cursive;
-  font-size: 1.4rem;
-  border-radius: 20px;
-  padding: 1rem;
-  margin: 1rem;
-  box-shadow: 0 0 10px #fa8072;
-
-  &:hover {
-    box-shadow: 0 0 10px rgba(233, 228, 206);
-    transform: translateY(10px);
-  }
-
-  &:active {
-    transform: translateY(-10px);
+  border-bottom: 1px solid lightgray;
+  @media screen and (max-width: 768px) {
+    padding: 0rem;
   }
 `;
 
 export const TextWrapper = styled.div `
-  display: flex;
-  flex-direction: column;
-`;
-export const InnerContent = styled.div `
-  font-size: 1.6rem;
-`;
-
-export const Content = styled.div `
-  display: flex;
-  flex-direction: column;
   width: 100%;
-`;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
 
-export const Button = styled.button `
-  border-radius: 20px;
-  padding: 0.5rem;
-  color: #fff;
-  cursor: pointer;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'Nanum Brush Script', cursive;
-  width: 200px;
-  background-image: linear-gradient(
-    120deg,
-    #264986 20%,
-    #5f78a3 50%,
-    #dee0e5 100%
-  );
-  &:hover {
-    animation: slidebg 5s linear infinite;
+  h2 {
+    margin-right: 1.5rem;
   }
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-  @keyframes slidebg {
-    to {
-      background-position: 20vw;
+    h2 {
+      margin-right: 1rem;
     }
   }
-
+`;
+export const InnerContent = styled.div `
   @media screen and (max-width: 768px) {
-    font-size: 1.5rem;
-    width: 100px;
+    padding-top: 1rem;
   }
 `;
 
 export const QuestIcon = styled(FaQuestion)
-`
-  color: #000;
-  font-size: 2rem;
-`;
+``;
