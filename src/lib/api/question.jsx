@@ -16,7 +16,6 @@ export const questionAdd = async ({ title, contents, category, token }) => {
     },
     { withCredentials: true },
   );
-  console.log('보냈냐', response.data);
   return response.data;
 };
 
@@ -46,6 +45,5 @@ export const questionList = async ({ token }) => {
     },
     { withCredentials: true },
   );
-  console.log('리스트 나옴?', response.data);
   return response.data;
 };

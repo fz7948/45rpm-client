@@ -14,6 +14,7 @@ import {
   MyPageInfo,
   MyPageSlide,
   MyPageButton,
+  ButtonWrapper,
 } from '../../components/common/MyPageStyle';
 
 const MyPageForm = () => {
@@ -28,6 +29,7 @@ const MyPageForm = () => {
   );
 
   const [infoData, setInfoData] = useState('');
+  const [heroListNumber, setHeroListNumber] = useState(0);
 
   useEffect(() => {
     dispatch(userInfoReq(token));
@@ -53,11 +55,13 @@ const MyPageForm = () => {
     dispatch(albumDetailModal());
   };
 
+  const herohandler = (data) => {
+    setHeroListNumber(data);
+  };
   return (
     <>
       <MyPageWrapper>
         <MyPageContent>
-          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
           <MyPageInfoWrapper>
             <MyPageImage>
               <img src="/images/add.png"></img>
@@ -70,14 +74,22 @@ const MyPageForm = () => {
             </MyPageInfo>
           </MyPageInfoWrapper>
         </MyPageContent>
+        <ButtonWrapper>
+          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
+        </ButtonWrapper>
         <MyPageSlide>
-          <Hero slides={SliderData} openModal={openDetailModal} />
+          <Hero
+            slides={SliderData}
+            openModal={openDetailModal}
+            herohandler={herohandler}
+          />
         </MyPageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
             slides={SliderData}
             open={checkModal}
             close={shutModal}
+            heroListNumber={heroListNumber}
           />
         )}
         {isType === 'info' && (
