@@ -6,7 +6,7 @@ import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const LoginWrapper = styled.div `
+const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -36,7 +36,7 @@ const LoginWrapper = styled.div `
   }
 `;
 
-const LoginLabel = styled.label `
+const LoginLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   color: #707174;
@@ -46,7 +46,7 @@ const LoginLabel = styled.label `
   }
 `;
 
-const LoginInput = styled.input `
+const LoginInput = styled.input`
   height: 1.2rem;
   width: 14rem;
   padding: 1rem;
@@ -61,7 +61,7 @@ const LoginInput = styled.input `
   }
 `;
 
-const LoginCloseBtn = styled.button `
+const LoginCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
   top: -0.8rem;
@@ -77,7 +77,7 @@ const LoginCloseBtn = styled.button `
   }
 `;
 
-const LoginSubmitBtn = styled.button `
+const LoginSubmitBtn = styled.button`
   cursor: pointer;
   height: 2.2rem;
   width: 14rem;
@@ -95,7 +95,7 @@ const LoginSubmitBtn = styled.button `
   }
 `;
 
-const LoginSocialBtn = styled.button `
+const LoginSocialBtn = styled.button`
   cursor: pointer;
   height: 2.2rem;
   width: 14rem;
@@ -116,162 +116,153 @@ const LoginSocialBtn = styled.button `
 `;
 
 const LoginModal = ({ open, close, history }) => {
-    const dispatch = useDispatch();
-    const { login, loginError } = useSelector(({ auth }) => ({
-        login: auth.login,
-        loginError: auth.loginError,
-    }));
+  const dispatch = useDispatch();
+  const { login, loginError } = useSelector(({ auth }) => ({
+    login: auth.login,
+    loginError: auth.loginError,
+  }));
 
-    const [animate, setAnimate] = useState(false);
-    const [localVisible, setLocalVisible] = useState(open);
+  const [animate, setAnimate] = useState(false);
+  const [localVisible, setLocalVisible] = useState(open);
 
-    const refID = useRef(null);
-    const refPassword = useRef(null);
+  const refID = useRef(null);
+  const refPassword = useRef(null);
 
-    const [inputID, setInputID] = useState('');
-    const [inputPassword, setInputPassword] = useState('');
-    const [denyMessage, setDenyMessage] = useState('');
+  const [inputID, setInputID] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+  const [denyMessage, setDenyMessage] = useState('');
 
-    useEffect(() => {
-        if (loginError) {
-            if (loginError === 'There is no user information') {
-                refID.current.focus();
-                setDenyMessage(loginError);
-            }
-            if (loginError === 'You wrote wrong password') {
-                refPassword.current.focus();
-                setDenyMessage(loginError);
-            }
-            return;
-        }
-        if (login) {
-            alert(login.message);
-            //모달로 만들어야함
-            history.push('/mypage');
-            handleCloseBtn();
-            dispatch(resetLogin());
-            const token = document.cookie.split('=')[1];
-            const payload = {
-                id: login.data.id,
-                email: login.data.email,
-                username: login.data.username,
-                token: token,
-            };
-            dispatch(loginUser(payload));
-        }
-    }, [login, loginError]);
-
-    useEffect(() => {
+  useEffect(() => {
+    if (loginError) {
+      if (loginError === 'There is no user information') {
         refID.current.focus();
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                handleCloseBtn();
-            }
-        });
-    }, [open]);
+        setDenyMessage(loginError);
+      }
+      if (loginError === 'You wrote wrong password') {
+        refPassword.current.focus();
+        setDenyMessage(loginError);
+      }
+      return;
+    }
+    if (login) {
+      alert(login.message);
+      //모달로 만들어야함
+      history.push('/mypage');
+      handleCloseBtn();
+      dispatch(resetLogin());
+      const token = document.cookie.split('=')[1];
+      const payload = {
+        id: login.data.id,
+        email: login.data.email,
+        username: login.data.username,
+        token: token,
+      };
+      dispatch(loginUser(payload));
+    }
+  }, [login, loginError]);
 
-    const handleMoveToPassword = (e) => {
-        if (e.key === 'Enter') {
-            refPassword.current.focus();
-        }
-    };
+  useEffect(() => {
+    refID.current.focus();
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        handleCloseBtn();
+      }
+    });
+  }, [open]);
 
-    const handleMoveToSignIn = (e) => {
-        if (e.key === 'Enter') {
-            handleSignIn();
-        }
-    };
+  const handleMoveToPassword = (e) => {
+    if (e.key === 'Enter') {
+      refPassword.current.focus();
+    }
+  };
 
-    const handleCloseBtn = () => {
-        setInputID('');
-        setInputPassword('');
-        setDenyMessage('');
-        dispatch(resetLoginMsg());
-        close();
-    };
+  const handleMoveToSignIn = (e) => {
+    if (e.key === 'Enter') {
+      handleSignIn();
+    }
+  };
 
-    const handleInputID = useCallback(
-        (e) => {
-            setInputID(e.target.value);
-        }, [inputID],
-    );
+  const handleCloseBtn = () => {
+    setInputID('');
+    setInputPassword('');
+    setDenyMessage('');
+    dispatch(resetLoginMsg());
+    close();
+  };
 
-    const handleInputPassword = useCallback(
-        (e) => {
-            setInputPassword(e.target.value);
-        }, [inputPassword],
-    );
+  const handleInputID = useCallback(
+    (e) => {
+      setInputID(e.target.value);
+    },
+    [inputID],
+  );
 
-    useEffect(() => {
-        if (localVisible && !open) {
-            setAnimate(true);
-            setTimeout(() => setAnimate(false), 250);
-        }
-        setLocalVisible(open);
-    }, [localVisible, open]);
+  const handleInputPassword = useCallback(
+    (e) => {
+      setInputPassword(e.target.value);
+    },
+    [inputPassword],
+  );
 
-    if (!animate && !localVisible) return null;
+  useEffect(() => {
+    if (localVisible && !open) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250);
+    }
+    setLocalVisible(open);
+  }, [localVisible, open]);
 
-    const handleSignIn = () => {
-        dispatch(loginReq(inputID, inputPassword));
-    };
+  if (!animate && !localVisible) return null;
 
-    return ( <
-        >
-        <
-        ModalBack disappear = {!open } >
-        <
-        div className = "modal_outsider"
-        onClick = {
-            (close, handleCloseBtn) } > { ' ' } <
-        /div>{' '} <
-        ModalBox disappear = {!open } >
-        <
-        LoginCloseBtn onClick = {
-            (close, handleCloseBtn) } > X < /LoginCloseBtn>{' '} <
-        LoginWrapper >
-        <
-        h2 > 로그인 < /h2>{' '} <
-        ul >
-        <
-        li >
-        <
-        LoginLabel >
-        <
-        div > ID < /div>{' '} <
-        /LoginLabel>{' '} <
-        LoginInput type = "text"
-        value = { inputID }
-        onChange = { handleInputID }
-        placeholder = "ID를 입력해주세요"
-        onKeyPress = { handleMoveToPassword }
-        ref = { refID }
-        />{' '} <
-        /li>{' '} <
-        li >
-        <
-        LoginLabel >
-        <
-        div > 비밀번호 < /div>{' '} <
-        /LoginLabel>{' '} <
-        LoginInput type = "password"
-        value = { inputPassword }
-        onChange = { handleInputPassword }
-        placeholder = "Password"
-        onKeyPress = { handleMoveToSignIn }
-        ref = { refPassword }
-        />{' '} <
-        /li>{' '} <
-        /ul>{' '} <
-        p className = "deny-message" > { denyMessage } < /p>{' '} <
-        LoginSubmitBtn onClick = { handleSignIn } > 로그인 < /LoginSubmitBtn>{' '} <
-        LoginSocialBtn > 구글 < /LoginSocialBtn>{' '} <
-        LoginSocialBtn > 카카오 < /LoginSocialBtn>{' '} <
-        /LoginWrapper>{' '} <
-        /ModalBox>{' '} <
-        /ModalBack>{' '} <
-        />
-    );
+  const handleSignIn = () => {
+    dispatch(loginReq(inputID, inputPassword));
+  };
+
+  return (
+    <>
+      <ModalBack disappear={!open}>
+        <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
+        <ModalBox disappear={!open}>
+          <LoginCloseBtn onClick={(close, handleCloseBtn)}> X </LoginCloseBtn>{' '}
+          <LoginWrapper>
+            <h2> 로그인 </h2>
+            <ul>
+              <li>
+                <LoginLabel>
+                  <div> ID </div>
+                </LoginLabel>
+                <LoginInput
+                  type="text"
+                  value={inputID}
+                  onChange={handleInputID}
+                  placeholder="ID를 입력해주세요"
+                  onKeyPress={handleMoveToPassword}
+                  ref={refID}
+                />
+              </li>
+              <li>
+                <LoginLabel>
+                  <div> 비밀번호 </div>
+                </LoginLabel>
+                <LoginInput
+                  type="password"
+                  value={inputPassword}
+                  onChange={handleInputPassword}
+                  placeholder="Password"
+                  onKeyPress={handleMoveToSignIn}
+                  ref={refPassword}
+                />
+              </li>
+            </ul>
+            <p className="deny-message"> {denyMessage} </p>
+            <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
+            <LoginSocialBtn> 구글 </LoginSocialBtn>
+            <LoginSocialBtn> 카카오 </LoginSocialBtn>
+          </LoginWrapper>
+        </ModalBox>
+      </ModalBack>
+    </>
+  );
 };
 
 export default withRouter(LoginModal);

@@ -8,15 +8,16 @@ import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
 import {
   Container,
+  InquiryWrapper,
   InquiryContainer,
   InquiryTitle,
   InquiryContent,
+  Content,
   Button,
   Title,
   InnerContent,
   QuestIcon,
   TextWrapper,
-  InquiryTop,
 } from '../common/InquiryStyle';
 
 const Inquires = () => {
@@ -54,38 +55,31 @@ const Inquires = () => {
     const data1 = content.split('<p>')[1];
     const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
-    dispatch(questionListReq(token));
   };
 
   return (
     <Container>
-      <InquiryWrapper>
       <InquiryContainer>
-        <InquiryTop>
-          <InquiryTitle>문의 내역</InquiryTitle>
-          <InquiryContent>
-            <Content>
-              {lnquireList[0].data.map((el) => (
-                <Title>
-                  <TextWrapper>
-                    <h2>{el.title}</h2>
-                    <h4>{el.category}</h4>
-                    <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
-                  </TextWrapper>
-                  <QuestIcon />
-                </Title>
-              ))}
-            </Content>
-          </InquiryContent>
-        </InquiryContainer>
-        <Button onClick={openModal}>글쓰기</Button>
-        <InquiryModal
-          open={checkModal}
-          close={shutModal}
-          onSubmitHand={onSubmitHand}
-        ></InquiryModal>
-      </InquiryWrapper>
-
+        <InquiryTitle>문의 내역</InquiryTitle>
+        <InquiryContent>
+          {InquiryDataList.map((el) => (
+            <Title>
+              <TextWrapper>
+                <h2>{el.title}</h2>
+                <h4>{el.category}</h4>
+                <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
+              </TextWrapper>
+              <QuestIcon />
+            </Title>
+          ))}
+        </InquiryContent>
+      </InquiryContainer>
+      <Button onClick={openModal}>글쓰기</Button>
+      <InquiryModal
+        open={checkModal}
+        close={shutModal}
+        onSubmitHand={onSubmitHand}
+      ></InquiryModal>
     </Container>
   );
 };
