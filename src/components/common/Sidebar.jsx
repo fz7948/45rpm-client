@@ -12,6 +12,10 @@ const SidebarWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
     background: black;
     padding: 0.8rem;
   }
