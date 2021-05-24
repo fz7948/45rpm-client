@@ -9,11 +9,11 @@ import { logoutUser } from '../../modules/user';
 
 const SidebarWrapper = styled.div`
   .navbar {
-    padding-right: 1rem;
-    margin-top: 5px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    background: black;
+    padding: 0.8rem;
   }
 
   .menu-bars {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal } from '../../modules/modal';
-import Header from '../common/Header';
 import { questionAdd } from '../../modules/question';
 
 import ReactHtmlParser from 'react-html-parser';
@@ -44,7 +43,6 @@ const Inquires = () => {
 
   return (
     <Container>
-      <Header />
       <InquiryWrapper>
         <InquiryContainer>
           <InquiryTitle>문의 내역</InquiryTitle>

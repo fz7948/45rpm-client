@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../../pages/sass/Main.scss';
-import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { BsFillSkipEndFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
@@ -105,7 +104,6 @@ function Main() {
   return (
     <>
       <div className="container">
-        <Header />
         <article className="wrapperContent">
           <div className="mainWrapper">
             <section className="sectionWrapper">
