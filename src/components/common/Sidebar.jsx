@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../data/SidebarData';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../modules/user';
+import { withRouter } from 'react-router-dom';
 
 const SidebarWrapper = styled.div`
   .navbar {
@@ -130,8 +131,11 @@ const SidebarWrapper = styled.div`
 
 `;
 
-const Navbar = () => {
+const Navbar = ({ history }) => {
   const dispatch = useDispatch();
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
 
   const [sidebar, setSidebar] = useState(false);
 
@@ -141,7 +145,10 @@ const Navbar = () => {
 
   const onLogout = () => {
     alert('로그아웃 됐다');
-    dispatch(logoutUser());
+    dispatch(logoutUser(token));
+    console.log('토큰뜨냐', token);
+    history.push('/');
+    showSidebar();
   };
 
   return (
@@ -159,7 +166,7 @@ const Navbar = () => {
           {Sidebar.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
+                <Link to={item.path} onClick={showSidebar}>
                   {item.icon} <span> {item.title} </span>
                 </Link>
               </li>
@@ -174,4 +181,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

@@ -354,7 +354,7 @@ const UpdateModal = ({ open, close }) => {
 
   const withdrawalBtn = () => {
     alert('탈퇴할거니');
-    dispatch(withdrawal());
+    dispatch(withdrawal(token));
   };
 
   return (

@@ -16,11 +16,11 @@ import {
 } from '../../components/common/MyPageStyle';
 
 const MyPageForm = () => {
+  const dispatch = useDispatch();
   const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
   }));
-  const dispatch = useDispatch();
 
   const aboutInfoModal = () => {
     dispatch(infoModal());
@@ -33,8 +33,6 @@ const MyPageForm = () => {
   const openDetailModal = () => {
     dispatch(albumDetailModal());
   };
-
-  const onSubmitHand = (data) => {};
 
   return (
     <>
@@ -61,15 +59,10 @@ const MyPageForm = () => {
             slides={SliderData}
             open={checkModal}
             close={shutModal}
-            onSubmitHand={onSubmitHand}
           />
         )}
         {isType === 'info' && (
-          <UpdateModal
-            open={checkModal}
-            close={shutModal}
-            onSubmitHand={onSubmitHand}
-          />
+          <UpdateModal open={checkModal} close={shutModal} />
         )}
       </MyPageWrapper>
     </>

@@ -1,17 +1,21 @@
 import * as questionAPI from '../lib/api/question';
 
-const QUESTION = 'QUESTION';
-const QUESTION_ADD = 'QUESTION_ADD';
-const QUESTION_FAILURE = 'QUESTION_FAILURE';
+const QUESTION_ADD = 'QUESTION';
+const QUESTION_ADD_SUCCESS = 'QUESTION_ADD';
+const QUESTION_ADD_FAILURE = 'QUESTION_FAILURE';
 
 const QUESTION_UPDATE = 'QUESTION_UPDATE';
 const QUESTION_UPDATE_SUCCESS = 'QUESTION_UPDATE_SUCCESS';
 const QUESTION_UPDATE_FAILURE = 'QUESTION_UPDATE_FAILURE';
 
-export const questionAdd = (title, contents, category, token) => async (
+const QUESTION_LIST = 'QUESTION_LIST';
+const QUESTION_LIST_SUCCESS = 'QUESTION_LIST_SUCCESS';
+const QUESTION_LIST_FAILURE = 'QUESTION_LIST_FAILURE';
+
+export const questionAddReq = (title, contents, category, token) => async (
   dispatch,
 ) => {
-  dispatch({ type: QUESTION });
+  dispatch({ type: QUESTION_ADD });
   try {
     const questionRes = await questionAPI.questionAdd({
       title,
@@ -20,62 +24,83 @@ export const questionAdd = (title, contents, category, token) => async (
       token,
     });
     dispatch({
-      type: QUESTION_ADD,
-      question: questionRes,
+      type: QUESTION_ADD_SUCCESS,
+      questionAdd: questionRes,
     });
   } catch (error) {
     dispatch({
-      type: QUESTION_FAILURE,
-      questionError: error.response.message,
+      type: QUESTION_ADD_FAILURE,
+      questionAddError: error,
     });
   }
 };
 
-export const questionUpdate = () => async (dispatch) => {
+export const questionUpdateReq = () => async (dispatch) => {
   dispatch({ type: QUESTION_UPDATE });
   try {
-    const questionUpdateRes = await questionAPI.questionAdd({});
+    const questionUpdateRes = await questionAPI.questionUpdate({});
     dispatch({
       type: QUESTION_UPDATE_SUCCESS,
-      question: questionUpdateRes,
+      questionUpdate: questionUpdateRes,
     });
   } catch (error) {
     dispatch({
       type: QUESTION_UPDATE_FAILURE,
-      questionError: error.response.message,
+      questionUpdateError: error,
     });
   }
 };
 
-export const resetQuestion = () => ({ type: QUESTION });
+export const questionListReq = (token) => async (dispatch) => {
+  dispatch({ type: QUESTION_LIST });
+  try {
+    console.log('여긴 들어와짐?');
+    const questionListRes = await questionAPI.questionList({ token });
+    dispatch({
+      type: QUESTION_LIST_SUCCESS,
+      questionList: questionListRes,
+    });
+  } catch (error) {
+    console.log('리스트 에러', error);
+    dispatch({
+      type: QUESTION_LIST_FAILURE,
+      questionListError: error,
+    });
+  }
+};
+
+export const resetAddQuestion = () => ({ type: QUESTION_ADD });
 export const resetUpdateQuestion = () => ({ type: QUESTION_UPDATE });
+export const resetListQuestion = () => ({ type: QUESTION_LIST });
 
 const initialState = {
-  question: null,
-  questionError: null,
+  questionAdd: null,
+  questionAddError: null,
   questionUpdate: null,
   questionUpdateError: null,
+  questionList: null,
+  questionListError: null,
 };
 
 function question(state = initialState, action) {
   switch (action.type) {
-    case QUESTION:
-      return {
-        ...state,
-        question: null,
-        questionError: null,
-      };
     case QUESTION_ADD:
       return {
         ...state,
-        question: action.question,
-        questionError: null,
+        questionAdd: null,
+        questionAddError: null,
       };
-    case QUESTION_FAILURE:
+    case QUESTION_ADD_SUCCESS:
       return {
         ...state,
-        question: null,
-        questionError: null,
+        questionAdd: action.questionAdd,
+        questionAddError: null,
+      };
+    case QUESTION_ADD_FAILURE:
+      return {
+        ...state,
+        questionAdd: null,
+        questionAddError: action.questionAddError,
       };
     case QUESTION_UPDATE:
       return {
@@ -93,7 +118,25 @@ function question(state = initialState, action) {
       return {
         ...state,
         questionUpdate: null,
-        questionUpdateError: null,
+        questionUpdateError: action.questionUpdateError,
+      };
+    case QUESTION_LIST:
+      return {
+        ...state,
+        questionList: null,
+        questionListError: null,
+      };
+    case QUESTION_LIST_SUCCESS:
+      return {
+        ...state,
+        questionList: action.questionList,
+        questionListError: null,
+      };
+    case QUESTION_LIST_FAILURE:
+      return {
+        ...state,
+        questionList: null,
+        questionListError: action.questionListError,
       };
     default:
       return state;
