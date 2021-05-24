@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Header from '../common/Header';
-import Sidebar from '../common/Sidebar';
 import { useHistory } from 'react-router-dom';
 import { SharingArr } from '../data/SharingData';
 
@@ -30,7 +28,6 @@ const Sharing = () => {
 
   return (
     <Container>
-      <Header />
       <TitleWrapper>
         <H1Title>세상에 하나밖에 없는 당신만의 LP</H1Title>
         <SubTitle>
