@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const signup = async ({ id, email, username, password }) => {
   const response = await axios.post(
-    `http://localhost:4000/user/signup`,
+    `${process.env.REACT_APP_SERVER_URI}/user/signup`,
     {
       id,
       email,
@@ -19,7 +19,7 @@ export const signup = async ({ id, email, username, password }) => {
 
 export const login = async ({ id, password }) => {
   const response = await axios.post(
-    `http://localhost:4000/user/login`,
+    `${process.env.REACT_APP_SERVER_URI}/user/login`,
     { id, password },
     {
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,7 @@ export const update = async ({
 }) => {
   console.log('쿠키확인', token);
   const response = await axios.patch(
-    `http://localhost:4000/user/updateinfo`,
+    `${process.env.REACT_APP_SERVER_URI}/user/updateinfo`,
     { email, username, oldpassword, newpassword },
     {
       headers: {
@@ -53,18 +53,21 @@ export const update = async ({
 };
 
 export const logout = async () => {
-  const response = await axios.post(`http://localhost:4000/user/logout`, {
-    headers: {
-      'Content-Type': 'application/json',
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URI}/user/logout`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
     },
-    withCredentials: true,
-  });
+  );
   return response;
 };
 
 export const withdraw = async () => {
   const response = await axios.delete(
-    `http://localhost:4000/user/withdrawal`,
+    `${process.env.REACT_APP_SERVER_URI}/user/withdrawal`,
     {
       headers: {
         'Content-Type': 'application/json',
