@@ -13,6 +13,7 @@ const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h2 {
     color: #191919;
     font-weight: 700;
@@ -322,12 +323,11 @@ const RegisterModal = ({ open, close, history }) => {
             X
           </RegisterCloseBtn>
           <RegisterWrapper>
-            <h2>회원가입</h2>
-
+            <h2> 회원가입 </h2>
             <ul>
               <li>
                 <RegisterLabel>
-                  <div>ID</div>
+                  <div> ID </div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
@@ -340,7 +340,7 @@ const RegisterModal = ({ open, close, history }) => {
               </li>
               <li>
                 <RegisterLabel>
-                  <div>E-mail</div>
+                  <div> E - mail </div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
@@ -353,7 +353,7 @@ const RegisterModal = ({ open, close, history }) => {
               </li>
               <li>
                 <RegisterLabel>
-                  <div>이름</div>
+                  <div> 이름 </div>
                 </RegisterLabel>
                 <RegisterInput
                   type="text"
@@ -366,7 +366,7 @@ const RegisterModal = ({ open, close, history }) => {
               </li>
               <li>
                 <RegisterLabel>
-                  <div>비밀번호</div>
+                  <div> 비밀번호 </div>
                 </RegisterLabel>
                 <RegisterInput
                   type="password"
@@ -379,7 +379,7 @@ const RegisterModal = ({ open, close, history }) => {
               </li>
               <li>
                 <RegisterLabel>
-                  <div>비밀번호 확인</div>
+                  <div> 비밀번호 확인 </div>
                 </RegisterLabel>
                 <RegisterInput
                   type="password"
@@ -391,7 +391,7 @@ const RegisterModal = ({ open, close, history }) => {
                 />
               </li>
             </ul>
-            <p className="deny-message">{denyMessage}</p>
+            <p className="deny-message"> {denyMessage} </p>
             <RegisterSubmitBtn onClick={handleSignup}>
               회원가입
             </RegisterSubmitBtn>

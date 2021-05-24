@@ -11,11 +11,12 @@ export const Container = styled.div `
 export const TitleWrapper = styled.div `
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 4rem;
   text-align: center;
 
   @media screen and (max-width: 768px) {
     text-align: center;
+    padding: 3rem;
   }
 `;
 
@@ -26,7 +27,7 @@ export const H1Title = styled.h1 `
   padding-bottom: 1rem;
 
   @media screen and (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.7rem;
   }
 `;
 
@@ -47,6 +48,7 @@ export const ContentWrapper = styled.div `
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 6rem;
+  margin-bottom: 4rem;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -167,7 +169,8 @@ export const ContinueBtn = styled.div `
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem;
+  padding-bottom: 2rem;
+  padding-right: 1rem;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -177,8 +180,8 @@ export const ContinueBtn = styled.div `
 
 export const Button = styled.button `
   cursor: pointer;
-  width: calc(10vw + 6px);
-  height: calc(3vw + 6px);
+  width: 10rem;
+  height: 3rem;
   color: #000;
   background-color: #fff;
   border-radius: 20px;
@@ -186,10 +189,12 @@ export const Button = styled.button `
   font-family: 'Jua', sans-serif;
   font-size: 1.5rem;
   outline: none;
+  margin-bottom: 5rem;
 
   @media screen and (max-width: 768px) {
     width: calc(20vw + 6px);
     height: calc(7vw + 6px);
     font-size: 1rem;
+    margin-bottom: 3rem;
   }
 `;
