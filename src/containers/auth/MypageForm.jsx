@@ -14,6 +14,7 @@ import {
   MyPageInfo,
   MyPageSlide,
   MyPageButton,
+  ButtonWrapper,
 } from '../../components/common/MyPageStyle';
 
 const MyPageForm = () => {
@@ -57,7 +58,6 @@ const MyPageForm = () => {
     <>
       <MyPageWrapper>
         <MyPageContent>
-          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
           <MyPageInfoWrapper>
             <MyPageImage>
               <img src="/images/add.png"></img>
@@ -70,6 +70,9 @@ const MyPageForm = () => {
             </MyPageInfo>
           </MyPageInfoWrapper>
         </MyPageContent>
+        <ButtonWrapper>
+          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
+        </ButtonWrapper>
         <MyPageSlide>
           <Hero slides={SliderData} openModal={openDetailModal} />
         </MyPageSlide>
