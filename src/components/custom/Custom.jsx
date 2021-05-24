@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import {
   Container,
   MainContentWrapper,
@@ -28,6 +30,9 @@ const Custom = () => {
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
 
   const handleChangeFile = (e) => {
     let reader = new FileReader();
@@ -60,6 +65,27 @@ const Custom = () => {
   const handleChangeColor = (color) => {
     setColor(color.hex);
     console.log(color.hex);
+  };
+
+  const submitHandler = async () => {
+    if (!color || !imgFile || !imgFile1) {
+      alert('모두 입력되어야 등록이 가능합니다.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('color', color);
+    formData.append('albumPic', imgFile);
+    formData.append('recordPic', imgFile1);
+
+    await axios.post(`http://localhost:4000/customs/add-custom`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    history.push('/mypage');
   };
 
   return (
@@ -111,7 +137,7 @@ const Custom = () => {
                   />
                 </CustomCenterCover>
               </CustomElement>
-              <SaveBtn onClick={() => history.push('/')}>Save</SaveBtn>
+              <SaveBtn onClick={submitHandler}>Save</SaveBtn>
             </CustomContent>
           </SectionWrapper>
         </MainContentWrapper>
