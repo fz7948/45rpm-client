@@ -30,7 +30,7 @@ const Inquires = () => {
     }),
   );
 
-  const [lnquireList, setLnquireList] = useState([]);
+  const [lnquireList, setLnquireList] = useState([{}]);
 
   const openModal = () => {
     dispatch(showModal());
@@ -47,16 +47,15 @@ const Inquires = () => {
     if (questionList) {
       setLnquireList(questionList);
     }
-    console.log('문의 리스트', lnquireList);
-  });
-
-  console.log('되냐', questionList);
+  }, [questionList]);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
+    console.log('split이니?', title, content);
     const data1 = content.split('<p>')[1];
     const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
+    dispatch(questionListReq(token));
   };
 
   return (
@@ -66,12 +65,12 @@ const Inquires = () => {
           <InquiryTitle>문의 내역</InquiryTitle>
           <InquiryContent>
             <Content>
-              {InquiryDataList.map((el) => (
+              {lnquireList[0].data.map((el) => (
                 <Title>
                   <TextWrapper>
                     <h2>{el.title}</h2>
                     <h4>{el.category}</h4>
-                    <InnerContent>{ReactHtmlParser(el.content)}</InnerContent>
+                    <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
                   </TextWrapper>
                   <QuestIcon />
                 </Title>

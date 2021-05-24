@@ -11,10 +11,15 @@ import {
   NextArrow,
 } from '../common/HeroStyle';
 
-const Hero = ({ slides, openModal }) => {
+const Hero = ({ slides, openModal, herohandler }) => {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
   const timeout = useRef(null);
+
+  const herohandlerIndex = () => {
+    openModal();
+    herohandler(current);
+  };
 
   useEffect(() => {
     const nextSlide = () => {
@@ -54,7 +59,7 @@ const Hero = ({ slides, openModal }) => {
           return (
             <HeroSlide key={index}>
               {index === current && (
-                <HeroSlider onClick={openModal}>
+                <HeroSlider onClick={herohandlerIndex}>
                   <HeroImage>
                     <img src={slide.image} alt={slide.alt} />
                   </HeroImage>

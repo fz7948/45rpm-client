@@ -54,7 +54,6 @@ export const questionUpdateReq = () => async (dispatch) => {
 export const questionListReq = (token) => async (dispatch) => {
   dispatch({ type: QUESTION_LIST });
   try {
-    console.log('여긴 들어와짐?');
     const questionListRes = await questionAPI.questionList({ token });
     dispatch({
       type: QUESTION_LIST_SUCCESS,

@@ -28,6 +28,7 @@ const MyPageForm = () => {
   );
 
   const [infoData, setInfoData] = useState('');
+  const [heroListNumber, setHeroListNumber] = useState(0);
 
   useEffect(() => {
     dispatch(userInfoReq(token));
@@ -53,6 +54,9 @@ const MyPageForm = () => {
     dispatch(albumDetailModal());
   };
 
+  const herohandler = (data) => {
+    setHeroListNumber(data);
+  };
   return (
     <>
       <MyPageWrapper>
@@ -71,13 +75,18 @@ const MyPageForm = () => {
           </MyPageInfoWrapper>
         </MyPageContent>
         <MyPageSlide>
-          <Hero slides={SliderData} openModal={openDetailModal} />
+          <Hero
+            slides={SliderData}
+            openModal={openDetailModal}
+            herohandler={herohandler}
+          />
         </MyPageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
             slides={SliderData}
             open={checkModal}
             close={shutModal}
+            heroListNumber={heroListNumber}
           />
         )}
         {isType === 'info' && (
