@@ -1,53 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(120deg, #03154e, #311788);
-`;
-
-export const TitleWrapper = styled.div `
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  text-align: center;
-
-  @media screen and (max-width: 768px) {
-    text-align: center;
-  }
-`;
-
-export const H1Title = styled.h1 `
-  color: #fff;
-  font-size: 4.7rem;
-  font-family: 'Lato', sans-serif;
-  padding-bottom: 1rem;
-
-  @media screen and (max-width: 768px) {
-    font-size: 3rem;
-  }
-`;
-
-export const SubTitle = styled.h5 `
-  color: #fff;
-  font-size: 2rem;
-
-  @media screen and (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-export const ContentWrapper = styled.div `
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-row-gap: 2rem;
   overflow: auto;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 6rem;
-
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -58,6 +17,49 @@ export const ContentWrapper = styled.div `
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
   }
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    padding: 3rem;
+  }
+`;
+
+export const H1Title = styled.h1`
+  color: #fff;
+  font-size: 4.7rem;
+  font-family: 'Lato', sans-serif;
+  padding-bottom: 1rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.7rem;
+  }
+`;
+
+export const SubTitle = styled.h5`
+  color: #fff;
+  font-size: 2rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 2rem;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 6rem;
+  margin-bottom: 4rem;
 
   @media screen and (max-width: 768px) {
     display: grid;
@@ -67,14 +69,14 @@ export const ContentWrapper = styled.div `
   }
 `;
 
-export const CdCaseContent = styled.div `
+export const CdCaseContent = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
   position: relative;
 `;
 
-export const CoverImg = styled.div `
+export const CoverImg = styled.div`
   flex: 1;
   width: 200px;
   height: 200px;
@@ -85,14 +87,14 @@ export const CoverImg = styled.div `
   }
 `;
 
-export const Img = styled.img `
+export const Img = styled.img`
   width: inherit;
   height: inherit;
   position: absolute;
   z-index: 2;
 `;
 
-export const Disk = styled.div `
+export const Disk = styled.div`
   flex: 1;
   width: 170px;
   height: 170px;
@@ -124,7 +126,7 @@ export const Disk = styled.div `
   }
 `;
 
-export const InnerDisk = styled.div `
+export const InnerDisk = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -150,7 +152,7 @@ export const InnerDisk = styled.div `
   }
 `;
 
-export const Img1 = styled.img `
+export const Img1 = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -161,13 +163,14 @@ export const Img1 = styled.img `
   }
 `;
 
-export const ContinueBtn = styled.div `
+export const ContinueBtn = styled.div`
   width: 100%;
   height: 10vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 1rem;
+  padding-bottom: 2rem;
+  padding-right: 1rem;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -175,10 +178,10 @@ export const ContinueBtn = styled.div `
   }
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   cursor: pointer;
-  width: calc(10vw + 6px);
-  height: calc(3vw + 6px);
+  width: 10rem;
+  height: 3rem;
   color: #000;
   background-color: #fff;
   border-radius: 20px;
@@ -186,10 +189,12 @@ export const Button = styled.button `
   font-family: 'Jua', sans-serif;
   font-size: 1.5rem;
   outline: none;
+  margin-bottom: 5rem;
 
   @media screen and (max-width: 768px) {
     width: calc(20vw + 6px);
     height: calc(7vw + 6px);
     font-size: 1rem;
+    margin-bottom: 3rem;
   }
 `;

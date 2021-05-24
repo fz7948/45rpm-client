@@ -8,16 +8,15 @@ import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
 import {
   Container,
-  InquiryWrapper,
   InquiryContainer,
   InquiryTitle,
   InquiryContent,
-  Content,
   Button,
   Title,
   InnerContent,
   QuestIcon,
   TextWrapper,
+  InquiryTop,
 } from '../common/InquiryStyle';
 
 const Inquires = () => {
@@ -60,8 +59,8 @@ const Inquires = () => {
 
   return (
     <Container>
-      <InquiryWrapper>
-        <InquiryContainer>
+      <InquiryContainer>
+        <InquiryTop>
           <InquiryTitle>문의 내역</InquiryTitle>
           <InquiryContent>
             <Content>
@@ -85,6 +84,7 @@ const Inquires = () => {
           onSubmitHand={onSubmitHand}
         ></InquiryModal>
       </InquiryWrapper>
+
     </Container>
   );
 };

@@ -22,6 +22,7 @@ export const MyPageContent = styled.div `
   padding: 1rem;
   border: 1px solid #fff;
   border-radius: 6px;
+  background: #437299;
   @media screen and (max-width: 768px) {
     width: 90%;
     height: 100%;
@@ -32,8 +33,12 @@ export const MyPageInfoWrapper = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const MyPageImage = styled.div `
@@ -44,21 +49,28 @@ export const MyPageImage = styled.div `
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  height: 200px;
   border: 2px dashed #ccc;
+  height: 200px;
+  margin-right: 3.5rem;
   color: #fff;
   img {
     height: 1rem;
-    opacity: 0.5;
+    opacity: 1;
   }
   p {
     opacity: 0.7;
     font-size: 0.9rem;
+    color: #000;
     margin-top: 0.5rem;
   }
   &:hover {
-    background-color: #f3667236;
+    background-color: #c8d2dd;
+    opacity: 0.5;
     transition: 0.5s all ease;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 0;
   }
 `;
 
@@ -66,7 +78,7 @@ export const MyPageInfo = styled.div `
   flex: 1.5;
   height: 200px;
   margin-left: 1rem;
-  background: #ccc;
+  background: #c8d2dd;
   padding: 30px;
   font-size: small;
   @media screen and (max-width: 768px) {
@@ -91,24 +103,35 @@ export const MyPageSlide = styled.div `
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  margin-top: 3rem;
-
+  margin-top: 0.5rem;
   @media screen and (max-width: 768px) {
     display: flex;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
     width: 100%;
     height: 100%;
   }
 `;
 
+export const ButtonWrapper = styled.div `
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  padding-right: 27rem;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    padding-right: 1.3rem;
+  }
+`;
+
 export const MyPageButton = styled.button `
-  border: 3px solid black;
   cursor: pointer;
   background-color: #eee;
-  height: 5rem;
-  width: 13rem;
-  border-radius: 3px;
+  height: 3rem;
+  width: 9rem;
+  border-radius: 6px;
   outline: 0;
   font-family: 'Jua', sans-serif;
   font-size: 1.5rem;
@@ -118,7 +141,7 @@ export const MyPageButton = styled.button `
   }
   @media screen and (max-width: 768px) {
     height: 2.5rem;
-    width: 8.5rem;
+    width: 6.5rem;
     font-size: 1rem;
   }
 `;
