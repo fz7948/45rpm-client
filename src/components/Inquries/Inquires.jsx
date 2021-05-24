@@ -59,6 +59,7 @@ const Inquires = () => {
 
   return (
     <Container>
+      <InquiryWrapper>
       <InquiryContainer>
         <InquiryTop>
           <InquiryTitle>문의 내역</InquiryTitle>
