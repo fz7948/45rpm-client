@@ -14,9 +14,9 @@ const UPDATE = 'UPDATE';
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 const UPDATE_FAILURE = 'UPDATE_FAILURE';
 
-// const INFORMATION = 'INFORMATION';
-// const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
-// const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
+const INFORMATION = 'INFORMATION';
+const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
+const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
 
 export const registerReq = (id, email, username, password) => async (
   dispatch,
@@ -82,31 +82,30 @@ export const updateReq = (
   }
 };
 
-// export const userInfoReq = () => async (dispatch) => {
-//   dispatch({
-//     type: INFORMATION,
-//   });
-
-//   try {
-//     const infoRes = await authAPI.info();
-//     dispatch({
-//       type: INFORMATION_SUCCESS,
-//       info: infoRes,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: INFORMATION_FAILURE,
-//       infoError: error.response,
-//     });
-//   }
-// };
+export const userInfoReq = (token) => async (dispatch) => {
+  dispatch({ type: INFORMATION });
+  try {
+    console.log('잘들어옴?');
+    const infoRes = await authAPI.info(token);
+    dispatch({
+      type: INFORMATION_SUCCESS,
+      info: infoRes,
+    });
+  } catch (error) {
+    console.log('에러뜨나');
+    dispatch({
+      type: INFORMATION_FAILURE,
+      infoError: error.response,
+    });
+  }
+};
 
 export const resetRegister = () => ({ type: REGISTER });
 export const resetRegisterMsg = () => ({ type: REGISTER_RESET_MSG });
 export const resetLogin = () => ({ type: LOGIN });
 export const resetLoginMsg = () => ({ type: LOGIN_RESET_MSG });
 export const resetUpdate = () => ({ type: UPDATE });
-// export const resetInfo = () => ({ type: INFORMATION });
+export const resetInfo = () => ({ type: INFORMATION });
 
 const initialState = {
   register: null,
@@ -180,23 +179,23 @@ function auth(state = initialState, action) {
         ...state,
         updateError: action.updateError,
       };
-    // case INFORMATION:
-    //   return {
-    //     ...state,
-    //     info: null,
-    //     infoError: null,
-    //   };
-    // case INFORMATION_SUCCESS:
-    //   return {
-    //     ...state,
-    //     info: action.info,
-    //     infoError: null,
-    //   };
-    // case INFORMATION_FAILURE:
-    //   return {
-    //     ...state,
-    //     infoError: action.infoError,
-    //   };
+    case INFORMATION:
+      return {
+        ...state,
+        info: null,
+        infoError: null,
+      };
+    case INFORMATION_SUCCESS:
+      return {
+        ...state,
+        info: action.info,
+        infoError: null,
+      };
+    case INFORMATION_FAILURE:
+      return {
+        ...state,
+        infoError: action.infoError,
+      };
     default:
       return state;
   }

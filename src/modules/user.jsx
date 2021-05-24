@@ -13,7 +13,7 @@ export const loginUser = ({ id, email, username, token }) => ({
 });
 
 export const logoutUser = (token) => async (dispatch) => {
-  console.log('로그아웃되냐');
+  console.log('로그아웃되냐', token);
   try {
     const logoutRes = await authAPI.logout(token);
     dispatch({ type: LOGOUT_USER });

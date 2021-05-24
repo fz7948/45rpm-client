@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
+import { userInfoReq } from '../../modules/auth';
 import { SliderData } from '../../components/data/SliderData';
 import {
   MyPageWrapper,
@@ -17,10 +18,28 @@ import {
 
 const MyPageForm = () => {
   const dispatch = useDispatch();
-  const { checkModal, isType } = useSelector(({ modal }) => ({
-    checkModal: modal.checkModal,
-    isType: modal.isType,
-  }));
+  const { checkModal, isType, info, token } = useSelector(
+    ({ modal, auth, user }) => ({
+      checkModal: modal.checkModal,
+      isType: modal.isType,
+      info: auth.info,
+      token: user.token,
+    }),
+  );
+
+  const [infoData, setInfoData] = useState('');
+
+  useEffect(() => {
+    dispatch(userInfoReq(token));
+  }, [checkModal, dispatch]);
+
+  useEffect(() => {
+    if (info) {
+      console.log('??', info);
+      const { id, email, username } = info.data;
+      setInfoData({ email, username });
+    }
+  }, [info]);
 
   const aboutInfoModal = () => {
     dispatch(infoModal());
@@ -46,8 +65,8 @@ const MyPageForm = () => {
             </MyPageImage>
             <MyPageInfo>
               <p>안녕하세요</p>
-              <p>오우영</p>
-              <p>fz7948@gmail.com</p>
+              <p>{infoData.username}</p>
+              <p>{infoData.email}</p>
             </MyPageInfo>
           </MyPageInfoWrapper>
         </MyPageContent>

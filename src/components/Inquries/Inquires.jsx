@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal } from '../../modules/modal';
 import { questionAddReq, questionListReq } from '../../modules/question';
@@ -30,6 +30,8 @@ const Inquires = () => {
     }),
   );
 
+  const [lnquireList, setLnquireList] = useState([]);
+
   const openModal = () => {
     dispatch(showModal());
   };
@@ -39,8 +41,14 @@ const Inquires = () => {
 
   useEffect(() => {
     dispatch(questionListReq(token));
-    console.log('리스트요청 보내냐');
-  }, [checkModal]);
+  }, [checkModal, dispatch]);
+
+  useEffect(() => {
+    if (questionList) {
+      setLnquireList(questionList);
+    }
+    console.log('문의 리스트', lnquireList);
+  });
 
   console.log('되냐', questionList);
 

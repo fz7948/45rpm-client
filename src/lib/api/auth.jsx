@@ -51,8 +51,10 @@ export const update = async ({
 };
 
 export const logout = async (token) => {
+  console.log('이건?', token);
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URI}/user/logout`,
+    {},
     {
       headers: {
         authorization: `Bearer ${token}`,
@@ -76,16 +78,21 @@ export const withdraw = async (token) => {
     },
     { withCredentials: true },
   );
+  console.log('탈퇴완료?', response.data);
   return response.data;
 };
 
-// export const info = async () => {
-//   const response = await axios.get(
-//     `${process.env.REACT_APP_SERVER_URI}/users`,
-//     {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     },
-//   );
-//   return response.data;
-// };
+export const info = async (token) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_SERVER_URI}/user/getuserinfo`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
+  console.log('유저정보', response.data);
+  return response.data;
+};
