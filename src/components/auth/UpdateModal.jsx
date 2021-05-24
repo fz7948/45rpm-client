@@ -3,7 +3,7 @@ import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateReq, resetUpdate } from '../../modules/auth';
+import { updateReq, resetUpdate} from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 
 const UpdateWrapper = styled.div`
@@ -126,13 +126,15 @@ const WithdrawBtn = styled.div`
   }
 `;
 
-const UpdateModal = ({ open, close }) => {
+const UpdateModal = ({ open, close, history }) => {
   const dispatch = useDispatch();
-  const { update, updateError, token } = useSelector(({ auth, user }) => ({
-    update: auth.update,
-    updateError: auth.updateError,
-    token: user.token,
-  }));
+  const { update, updateError, token, info } = useSelector(
+    ({ auth, user }) => ({
+      update: auth.update,
+      updateError: auth.updateError,
+      token: user.token,
+    }),
+  );
 
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
@@ -162,10 +164,12 @@ const UpdateModal = ({ open, close }) => {
     if (update) {
       alert(update.message);
       dispatch(resetUpdate());
+      handleCloseBtn();
       //모달로 만들어야함
     }
   }, [update, updateError]);
 
+ 
   useEffect(() => {
     refID.current.focus();
     window.addEventListener('keydown', (e) => {
@@ -355,6 +359,7 @@ const UpdateModal = ({ open, close }) => {
   const withdrawalBtn = () => {
     alert('탈퇴할거니');
     dispatch(withdrawal(token));
+    history.push('/');
   };
 
   return (
