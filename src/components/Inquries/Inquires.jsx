@@ -29,7 +29,7 @@ const Inquires = () => {
     }),
   );
 
-  const [lnquireList, setLnquireList] = useState([]);
+  const [lnquireList, setLnquireList] = useState([{}]);
 
   const openModal = () => {
     dispatch(showModal());
@@ -46,16 +46,15 @@ const Inquires = () => {
     if (questionList) {
       setLnquireList(questionList);
     }
-    console.log('문의 리스트', lnquireList);
-  });
-
-  console.log('되냐', questionList);
+  }, [questionList]);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
+    console.log('split이니?', title, content);
     const data1 = content.split('<p>')[1];
     const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
+    dispatch(questionListReq(token));
   };
 
   return (
@@ -63,26 +62,29 @@ const Inquires = () => {
       <InquiryContainer>
         <InquiryTop>
           <InquiryTitle>문의 내역</InquiryTitle>
-          <Button onClick={openModal}>문의하기</Button>
-        </InquiryTop>
-        <InquiryContent>
-          {InquiryDataList.map((el) => (
-            <Title>
-              <TextWrapper>
-                <h2>{el.title}</h2>
-                <h4>{el.category}</h4>
-                <InnerContent>{ReactHtmlParser(el.content)}</InnerContent>
-              </TextWrapper>
-              <QuestIcon />
-            </Title>
-          ))}
-        </InquiryContent>
-      </InquiryContainer>
-      <InquiryModal
-        open={checkModal}
-        close={shutModal}
-        onSubmitHand={onSubmitHand}
-      ></InquiryModal>
+          <InquiryContent>
+            <Content>
+              {lnquireList[0].data.map((el) => (
+                <Title>
+                  <TextWrapper>
+                    <h2>{el.title}</h2>
+                    <h4>{el.category}</h4>
+                    <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
+                  </TextWrapper>
+                  <QuestIcon />
+                </Title>
+              ))}
+            </Content>
+          </InquiryContent>
+        </InquiryContainer>
+        <Button onClick={openModal}>글쓰기</Button>
+        <InquiryModal
+          open={checkModal}
+          close={shutModal}
+          onSubmitHand={onSubmitHand}
+        ></InquiryModal>
+      </InquiryWrapper>
+
     </Container>
   );
 };
