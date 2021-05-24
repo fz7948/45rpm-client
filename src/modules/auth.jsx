@@ -14,6 +14,10 @@ const UPDATE = 'UPDATE';
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 const UPDATE_FAILURE = 'UPDATE_FAILURE';
 
+// const INFORMATION = 'INFORMATION';
+// const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
+// const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
+
 export const registerReq = (id, email, username, password) => async (
   dispatch,
 ) => {
@@ -36,6 +40,7 @@ export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
   try {
     const loginRes = await authAPI.login({ id, password });
+    console.log('로그인 Res', loginRes);
     dispatch({
       type: LOGIN_SUCCESS,
       login: loginRes,
@@ -72,16 +77,36 @@ export const updateReq = (
   } catch (error) {
     dispatch({
       type: UPDATE_FAILURE,
-      updateError: error.response.data.message,
+      updateError: error.response.message,
     });
   }
 };
+
+// export const userInfoReq = () => async (dispatch) => {
+//   dispatch({
+//     type: INFORMATION,
+//   });
+
+//   try {
+//     const infoRes = await authAPI.info();
+//     dispatch({
+//       type: INFORMATION_SUCCESS,
+//       info: infoRes,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: INFORMATION_FAILURE,
+//       infoError: error.response,
+//     });
+//   }
+// };
 
 export const resetRegister = () => ({ type: REGISTER });
 export const resetRegisterMsg = () => ({ type: REGISTER_RESET_MSG });
 export const resetLogin = () => ({ type: LOGIN });
 export const resetLoginMsg = () => ({ type: LOGIN_RESET_MSG });
 export const resetUpdate = () => ({ type: UPDATE });
+// export const resetInfo = () => ({ type: INFORMATION });
 
 const initialState = {
   register: null,
@@ -90,6 +115,8 @@ const initialState = {
   loginError: null,
   update: null,
   updateError: null,
+  info: null,
+  infoError: null,
 };
 
 function auth(state = initialState, action) {
@@ -153,6 +180,23 @@ function auth(state = initialState, action) {
         ...state,
         updateError: action.updateError,
       };
+    // case INFORMATION:
+    //   return {
+    //     ...state,
+    //     info: null,
+    //     infoError: null,
+    //   };
+    // case INFORMATION_SUCCESS:
+    //   return {
+    //     ...state,
+    //     info: action.info,
+    //     infoError: null,
+    //   };
+    // case INFORMATION_FAILURE:
+    //   return {
+    //     ...state,
+    //     infoError: action.infoError,
+    //   };
     default:
       return state;
   }

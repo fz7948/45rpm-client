@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
-import Sidebar from '../common/Sidebar';
 
 const Header = () => {
   const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
@@ -28,8 +27,6 @@ const Header = () => {
     dispatch(closeModal());
   };
 
-  const onSubmitHand = (data) => {};
-
   return (
     <>
       <header className="header">
@@ -45,11 +42,7 @@ const Header = () => {
           </div>
         </div>
         {isType === 'login' && (
-          <LoginModal
-            open={checkModal}
-            close={shutModal}
-            onSubmitHand={onSubmitHand}
-          ></LoginModal>
+          <LoginModal open={checkModal} close={shutModal}></LoginModal>
         )}
         {isType === 'register' && (
           <RegisterModal open={checkModal} close={shutModal}></RegisterModal>

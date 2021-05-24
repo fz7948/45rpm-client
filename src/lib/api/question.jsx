@@ -34,3 +34,18 @@ export const questionUpdate = async ({}) => {
   );
   return response.data;
 };
+
+export const questionList = async ({ token }) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_SERVER_URI}/user/question/questionlist`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
+  console.log('리스트 나옴?', response.data);
+  return response.data;
+};
