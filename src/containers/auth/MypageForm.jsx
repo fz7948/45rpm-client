@@ -37,8 +37,7 @@ const MyPageForm = () => {
 
   useEffect(() => {
     if (info) {
-      console.log('??', info);
-      const { id, email, username } = info.data;
+      const { email, username } = info.data;
       setInfoData({ email, username });
     }
   }, [info]);

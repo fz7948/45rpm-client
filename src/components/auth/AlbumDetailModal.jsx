@@ -63,7 +63,6 @@ const SongContainer = styled.div`
 const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
-  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (localVisible && !open) {
@@ -74,7 +73,6 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
   }, [localVisible, open]);
 
   if (!animate && !localVisible) return null;
-  console.log('슬라이드!', slides);
 
   return (
     <>
