@@ -11,11 +11,12 @@ import styled from 'styled-components';
 import { Button } from '../common/InquiryStyle';
 
 const Inquires = () => {
-  const AllWrapper = styled.div`
+  const Container = styled.div`
+    border: 3px solid yellow;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
       width: 8px;
@@ -27,12 +28,6 @@ const Inquires = () => {
       background-color: rgba(0, 0, 0, 0.3);
       border-radius: 6px;
     }
-  `;
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
   `;
   const InquiryIntro = styled.div`
     display: flex;
@@ -108,31 +103,29 @@ const Inquires = () => {
     dataGroup.length -= 1;
   };
   return (
-    <AllWrapper>
-      <Container>
-        <InquiryIntro>문의 목록</InquiryIntro>
-        <CommonTable
-          headersName={[
-            '글 번호',
-            '카테고리',
-            '제목',
-            '답변 상태',
-            '등록일',
-            '관리',
-          ]}
-        >
-          <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
-        </CommonTable>
-        <InquiryModal
-          open={checkModal}
-          close={shutModal}
-          onSubmitHand={onSubmitHand}
-        ></InquiryModal>
-      </Container>
-      <ButtonWrapper>
+    <Container>
+      <InquiryIntro>문의 목록</InquiryIntro>
+      <CommonTable
+        headersName={[
+          '글 번호',
+          '카테고리',
+          '제목',
+          '답변 상태',
+          '등록일',
+          '관리',
+        ]}
+      >
+        <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
+      </CommonTable>
+      {/* <ButtonWrapper>
         <Button onClick={openModal}> 문의하기 </Button>
-      </ButtonWrapper>
-    </AllWrapper>
+      </ButtonWrapper> */}
+      <InquiryModal
+        open={checkModal}
+        close={shutModal}
+        onSubmitHand={onSubmitHand}
+      ></InquiryModal>
+    </Container>
   );
 };
 
