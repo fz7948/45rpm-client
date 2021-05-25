@@ -14,7 +14,6 @@ const InquiryView = ({ match }) => {
     padding-top: 2rem;
     color: #000;
 
-    ${'' /* background: linear-gradient(120deg, #03154e, #311788); */}
     @media screen and (max-width: 768px) {
       width: 100vw;
       height: 100vh;
@@ -49,7 +48,7 @@ const InquiryView = ({ match }) => {
 
   return (
     <Container>
-      <H2Title> 문의 상세정보 </H2Title> <ViewTable data={data} />
+      <H2Title>문의 상세정보</H2Title> <ViewTable data={data} />
     </Container>
   );
 };
