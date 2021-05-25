@@ -248,6 +248,7 @@ const LoginModal = ({ open, close, history }) => {
               },
               success: function (response) {
                 dispatch(kakaoLoginReq(response));
+                alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
                 history.push('/mypage');
               },
               fail: function (error) {
