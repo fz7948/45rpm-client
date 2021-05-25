@@ -8,25 +8,31 @@ import { InquiryDataList } from '../data/InquiryData';
 import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
-import {
-  Container,
-  InquiryContainer,
-  InquiryTitle,
-  InquiryContent,
-  Button,
-  Title,
-  InnerContent,
-  QuestIcon,
-  TextWrapper,
-} from '../common/InquiryStyle';
+import { Button } from '../common/InquiryStyle';
 
 const Inquires = () => {
+  const AllWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+    }
+  `;
   const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;
   `;
   const InquiryIntro = styled.div`
     display: flex;
@@ -36,14 +42,22 @@ const Inquires = () => {
     height: 200px;
     font-size: 2.5rem;
     background: lightgray;
-    padding-top: 3rem;
 
     @media screen and (max-width: 768px) {
       height: 150px;
       font-size: 2rem;
-      padding-top: 3rem;
+      padding-top: 1rem;
+      flex: 0.5;
     }
   `;
+
+  const ButtonWrapper = styled.div`
+    width: 100%;
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+  `;
+
   const dispatch = useDispatch();
   const [dataGroup, setDataGroup] = useState([]);
   const { checkModal, token, questionList } = useSelector(
@@ -94,27 +108,31 @@ const Inquires = () => {
     dataGroup.length -= 1;
   };
   return (
-    <Container>
-      <InquiryIntro>문의 목록</InquiryIntro>
-      <CommonTable
-        headersName={[
-          '글 번호',
-          '카테고리',
-          '제목',
-          '답변 상태',
-          '등록일',
-          '관리',
-        ]}
-      >
-        <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
-      </CommonTable>
-      <Button onClick={openModal}> 문의하기 </Button>
-      <InquiryModal
-        open={checkModal}
-        close={shutModal}
-        onSubmitHand={onSubmitHand}
-      ></InquiryModal>
-    </Container>
+    <AllWrapper>
+      <Container>
+        <InquiryIntro>문의 목록</InquiryIntro>
+        <CommonTable
+          headersName={[
+            '글 번호',
+            '카테고리',
+            '제목',
+            '답변 상태',
+            '등록일',
+            '관리',
+          ]}
+        >
+          <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
+        </CommonTable>
+        <InquiryModal
+          open={checkModal}
+          close={shutModal}
+          onSubmitHand={onSubmitHand}
+        ></InquiryModal>
+      </Container>
+      <ButtonWrapper>
+        <Button onClick={openModal}> 문의하기 </Button>
+      </ButtonWrapper>
+    </AllWrapper>
   );
 };
 
