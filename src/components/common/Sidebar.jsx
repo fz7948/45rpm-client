@@ -10,22 +10,23 @@ import { withRouter } from 'react-router-dom';
 
 const NavSidebar = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   left: 0;
   top: 0;
   background: black;
-  padding: 5px;
+  padding: 5px 10px 5px 0px;
 
   .menu-bars {
     cursor: pointer;
-    margin-left: 12rem;
-    font-size: 2rem;
+    font-size: 30px;
     background: none;
-    color: #e8e8e8;
+    color: gray;
+    margin-right: 5px;
     &:hover {
-      color: #07111e;
+      color: white;
+      transition: all 0.15s ease-in-out;
     }
   }
 `;
@@ -34,7 +35,7 @@ const SideLogoutBtn = styled.div`
   display: flex;
   width: 225px;
   justify-content: flex-end;
-  padding-bottom: 2rem;
+  padding-bottom: 30px;
   div {
     display: flex;
     justify-content: center;
@@ -42,9 +43,9 @@ const SideLogoutBtn = styled.div`
     font-size: 12px;
     font-weight: 700;
     border-radius: 4px;
-    width: 13rem;
-    height: 2rem;
-    margin-left: 1.5rem;
+    width: 300px;
+    height: 34px;
+    margin: 0px 15px;
     background-color: #fff;
     border: 1px solid #03154e;
     outline: 0;
@@ -61,26 +62,44 @@ const SideLogoutBtn = styled.div`
 `;
 
 const SidebarWrapper = styled.div`
-  .menu-close {
+  .logo {
     cursor: pointer;
-    margin-left: 12rem;
-    font-size: 2rem;
-    background: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 35px;
+    font-size: 25px;
+    font-family: 'Syncopate', sans-serif;
+    &:hover {
+      color: gray;
+      transition: all 0.2s ease-in-out;
+    }
+    @media #{$small} {
+      font-size: 18px;
+    }
+  }
+
+  .menu-close {
+    margin-top: -25px;
+    cursor: pointer;
+    margin-left: 188px;
+    font-size: 30px;
     color: black;
     &:hover {
-      color: lightgray;
+      color: #f74848;
+      transition: all 0.15s ease-in-out;
     }
   }
 
   .nav-menu {
     background-color: #fff;
-    width: 250px;
+    width: 230px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    z-index: 9;
+    z-index: 999;
     top: 0;
     right: -100%;
     transition: 850ms;
@@ -156,6 +175,9 @@ const Navbar = ({ history }) => {
   return (
     <SidebarWrapper>
       <NavSidebar>
+        <div className="logo" onClick={() => history.push('/')}>
+          45RPM
+        </div>
         <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
       </NavSidebar>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

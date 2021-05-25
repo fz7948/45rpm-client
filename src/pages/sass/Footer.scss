@@ -1,83 +1,89 @@
 $small: 'screen and (max-width:768px)';
+
 .footer {
-    z-index: 1;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    padding-top: 0.5rem;
-    background-color: #000;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-top: 5px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  .remainder {
+    display: flex;
+    justify-content: center;
+    .member {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      .gitWrapper {
+        display: flex;
+        margin-left: -15px;
+        .gitImg {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          img {
+            padding-left: 17px;
+            width: 50px;
+            height: 28px;
+            @media #{$small} {
+              width: 46px;
+              height: 23px;
+            }
+          }
+        }
+        .memberTitle {
+          display: flex;
+          font-size: 10px;
+          padding-left: 9px;
+          text-decoration: none;
+          .class1,
+          .class2,
+          .class3,
+          .class4 {
+            text-decoration: none;
+            color: gray;
+            padding: 13px 15px 3px 10px;
+            .class_font {
+              font-size: 15px;
+            }
+            &:hover {
+              color: white;
+              transition: all 0.2s ease-in-out;
+            }
+            @media #{$small} {
+              .class_font {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .sns {
     display: flex;
     flex-direction: column;
-    .remainder {
-        display: flex;
-        justify-content: center;
-        .member {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-weight: bold;
-            font-size: 2rem;
-            @media #{$small} {
-                font-size: 1rem;
-            }
-            .gitWrapper {
-                display: flex;
-                margin-left: -1rem;
-                .gitImg {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    img {
-                        padding-left: 1rem;
-                        width: 55px;
-                        height: 33px;
-                    }
-                }
-                .memberTitle {
-                    display: flex;
-                    font-size: 1.2rem;
-                    padding-left: 0.2rem;
-                    text-decoration: none;
-                    .class1,
-                    .class2,
-                    .class3,
-                    .class4 {
-                        text-decoration: none;
-                        color: #fff;
-                        padding: 0.5rem;
-                        &:hover {
-                            color: lightgray;
-                        }
-                        @media #{$small} {
-                            font-size: 1rem;
-                        }
-                    }
-                }
-            }
-        }
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    img {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
     }
-    .sns {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        img {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-        }
-        .copyright {
-            font-family: 'Lato', sans-serif;
-            color: #fff;
-            font-size: 1.3rem;
-            @media #{$small} {
-                font-size: 1rem;
-            }
-        }
+    .copyright {
+      font-family: 'Lato', sans-serif;
+      color: #fff;
+      font-size: 12px;
+      @media #{$small} {
+        font-size: 10px;
+      }
     }
+  }
 }
