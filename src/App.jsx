@@ -14,12 +14,14 @@ function App() {
   const { isLogin } = useSelector(({ user }) => ({
     isLogin: user.isLogin,
   }));
-
+  console.log('랜더링?');
   return (
     <>
       <GlobalStyles />
       <Router>
-        {isLogin ? <Sidebar /> : <Header />}
+        {/* {isLogin ? <Sidebar /> : <Header />} */}
+        <Sidebar />
+        {/* <Header /> */}
         <Switch>
           <Route component={MainPage} path="/" exact />
           <Route component={CustomPage} path="/1" />

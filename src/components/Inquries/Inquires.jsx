@@ -8,11 +8,9 @@ import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
 import {
   Container,
-  InquiryWrapper,
   InquiryContainer,
   InquiryTitle,
   InquiryContent,
-  Content,
   Button,
   Title,
   InnerContent,

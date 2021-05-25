@@ -8,18 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
-const SidebarWrapper = styled.div`
-  .navbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    background: black;
-    padding: 0.8rem;
-  }
+const NavSidebar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: black;
+  padding: 5px;
 
   .menu-bars {
     cursor: pointer;
@@ -31,7 +28,39 @@ const SidebarWrapper = styled.div`
       color: #07111e;
     }
   }
+`;
 
+const SideLogoutBtn = styled.div`
+  display: flex;
+  width: 225px;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    width: 13rem;
+    height: 2rem;
+    margin-left: 1.5rem;
+    background-color: #fff;
+    border: 1px solid #03154e;
+    outline: 0;
+    color: #03154e;
+    &:hover {
+      cursor: pointer;
+      background-color: #03154e;
+      border: 0;
+      outline: 0;
+      color: #fff;
+      transition: all ease 0.2s;
+    }
+  }
+`;
+
+const SidebarWrapper = styled.div`
   .menu-close {
     cursor: pointer;
     margin-left: 12rem;
@@ -42,47 +71,19 @@ const SidebarWrapper = styled.div`
       color: lightgray;
     }
   }
-  }
 
   .nav-menu {
     background-color: #fff;
     width: 250px;
     height: 100vh;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    z-index: 999;
+    z-index: 9;
     top: 0;
     right: -100%;
     transition: 850ms;
-   
-    .logoutBtn {
-      display: flex;
-      width: 225px;
-      justify-content: flex-end;
-      padding-bottom:2rem;
-      button {
-        font-size: 12px;
-        font-weight: 700;
-        border-radius: 4px;
-        width: 13rem;
-        height: 2rem;
-        margin-left: 1.5rem;
-        background-color: #fff;
-        border: 1px solid #03154e;
-        outline: 0;
-        color: #03154e;
-        &:hover {
-          cursor: pointer;
-          background-color: #03154e;
-          border: 0;
-          outline: 0;
-          color: #fff;
-          transition: all ease 0.2s;
-        }
-      }
-    }
   }
 
   .nav-menu.active {
@@ -115,7 +116,7 @@ const SidebarWrapper = styled.div`
 
   .nav-menu-items {
     width: 100%;
-    height:80%;
+    height: 80%;
   }
 
   .navbar-toggle {
@@ -130,9 +131,6 @@ const SidebarWrapper = styled.div`
   span {
     margin-left: 16px;
   }
-
-
-
 `;
 
 const Navbar = ({ history }) => {
@@ -157,9 +155,9 @@ const Navbar = ({ history }) => {
 
   return (
     <SidebarWrapper>
-      <div className="navbar">
+      <NavSidebar>
         <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
-      </div>
+      </NavSidebar>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
@@ -177,9 +175,9 @@ const Navbar = ({ history }) => {
             );
           })}
         </ul>
-        <div className="logoutBtn">
-          <button onClick={onLogout}>로그아웃</button>
-        </div>
+        <SideLogoutBtn>
+          <div onClick={onLogout}>로그아웃</div>
+        </SideLogoutBtn>
       </nav>
     </SidebarWrapper>
   );
