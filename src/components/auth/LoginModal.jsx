@@ -136,11 +136,11 @@ const LoginModal = ({ open, close, history }) => {
     if (loginError) {
       if (loginError === 'There is no user information') {
         refID.current.focus();
-        setDenyMessage(loginError);
+        setDenyMessage('해당 유저가 존재하지 않습니다.');
       }
       if (loginError === 'You wrote wrong password') {
         refPassword.current.focus();
-        setDenyMessage(loginError);
+        setDenyMessage('비밀번호를 확인해주세요.');
       }
       return;
     }
@@ -215,6 +215,16 @@ const LoginModal = ({ open, close, history }) => {
   if (!animate && !localVisible) return null;
 
   const handleSignIn = () => {
+    if (inputID === '') {
+      refID.current?.focus();
+      setDenyMessage('이메일을 입력하세요');
+      return;
+    }
+    if (inputPassword === '') {
+      refPassword.current?.focus();
+      setDenyMessage('비밀번호를 입력하세요');
+      return;
+    }
     dispatch(loginReq(inputID, inputPassword));
   };
 
