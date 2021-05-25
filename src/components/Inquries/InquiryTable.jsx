@@ -4,17 +4,6 @@ import CommonTableRow from '../table/CommonTableRow';
 import { Link } from 'react-router-dom';
 
 const Inquiry = ({ inquiry, handleRemove }) => {
-  const [color, setColor] = useState('');
-  const [color1, setColor1] = useState('');
-
-  const StbyEvent = () => {
-    setColor('red');
-  };
-
-  const CompletedEvent = () => {
-    setColor1('lightgray');
-  };
-
   return (
     <CommonTableRow>
       <CommonTableColumn>{inquiry.id}</CommonTableColumn>
@@ -28,12 +17,8 @@ const Inquiry = ({ inquiry, handleRemove }) => {
         </Link>
       </CommonTableColumn>
       <CommonTableColumn>
-        <button style={{ background: color }} onClick={StbyEvent}>
-          답변대기
-        </button>
-        <button style={{ background: color1 }} onClick={CompletedEvent}>
-          답변완료
-        </button>
+        <button>답변대기</button>
+        <button>답변완료</button>
       </CommonTableColumn>
       <CommonTableColumn>{inquiry.createdAt}</CommonTableColumn>
       <CommonTableColumn>

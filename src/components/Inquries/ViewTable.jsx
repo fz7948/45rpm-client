@@ -149,7 +149,6 @@ const View = ({ view }) => {
             <ButtonWrap onClick={() => history.goBack()}>
               목록으로 돌아가기
             </ButtonWrap>
-            <Button>수정</Button>
           </ButtonWrapper>
         </InquiryWrapper>
       ) : (
