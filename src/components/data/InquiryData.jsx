@@ -1,38 +1,50 @@
-export const InquiryDataList = [
-  {
-    id: 1,
-    title: 'shit',
-    category: 'genre',
-    content: 'What the hell',
-  },
-  {
-    id: 2,
-    title: 'woow',
-    category: 'name',
-    content: 'What the woow',
-  },
-  {
-    id: 3,
-    title: 'hey',
-    category: 'Lp',
-    content: 'What the hey',
-  },
-  {
-    id: 4,
-    title: 'OMG',
-    category: 'name',
-    content: 'What the OMG',
-  },
-  {
-    id: 5,
-    title: 'OTL',
-    content: 'What the OTL',
-    category: 'name',
-  },
-  {
-    id: 6,
-    title: 'HA',
-    category: 'name',
-    content: 'What the HA',
-  },
+const InquiryDataList = [{
+        id: 1,
+        category: 'genre',
+        title: 'shit',
+        content: ' 내용입니다.',
+        createdAt: new Date().toDateString(),
+    },
+    {
+        id: 2,
+        category: 'name',
+        title: 'woow',
+        content: ' 내용입니다',
+        createdAt: new Date().toDateString(),
+    },
+    {
+        id: 3,
+        category: 'Lp',
+        title: 'hey',
+        content: '내용입니다.',
+        createdAt: new Date().toDateString(),
+    },
+    {
+        id: 4,
+        category: 'name',
+        title: 'OMG',
+        content: '내용입니다.',
+        createdAt: new Date().toDateString(),
+    },
+    {
+        id: 5,
+
+        title: 'OTL',
+        content: '내용입니다',
+        category: 'name',
+        createdAt: new Date().toDateString(),
+    },
+    {
+        id: 6,
+        category: 'name',
+        title: 'HA',
+        content: '내용입니다',
+        createdAt: new Date().toDateString(),
+    },
 ];
+
+const getInquiryByNo = (id) => {
+    const arr = InquiryDataList.filter((e) => e.id !== id);
+    return arr[id - 1];
+};
+export { InquiryDataList, getInquiryByNo };

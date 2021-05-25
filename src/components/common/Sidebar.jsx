@@ -42,26 +42,25 @@ const SidebarWrapper = styled.div`
       color: lightgray;
     }
   }
-  }
 
   .nav-menu {
     background-color: #fff;
     width: 250px;
     height: 100vh;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: space-between;
     position: fixed;
     z-index: 999;
     top: 0;
     right: -100%;
     transition: 850ms;
-   
+
     .logoutBtn {
       display: flex;
       width: 225px;
       justify-content: flex-end;
-      padding-bottom:2rem;
+      padding-bottom: 2rem;
       button {
         font-size: 12px;
         font-weight: 700;
@@ -115,7 +114,7 @@ const SidebarWrapper = styled.div`
 
   .nav-menu-items {
     width: 100%;
-    height:80%;
+    height: 80%;
   }
 
   .navbar-toggle {
@@ -130,9 +129,6 @@ const SidebarWrapper = styled.div`
   span {
     margin-left: 16px;
   }
-
-
-
 `;
 
 const Navbar = ({ history }) => {
@@ -178,7 +174,7 @@ const Navbar = ({ history }) => {
           })}
         </ul>
         <div className="logoutBtn">
-          <button onClick={onLogout}>로그아웃</button>
+          <button onClick={onLogout}> 로그아웃 </button>
         </div>
       </nav>
     </SidebarWrapper>

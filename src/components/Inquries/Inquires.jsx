@@ -2,25 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal } from '../../modules/modal';
 import { questionAddReq, questionListReq } from '../../modules/question';
-
-import ReactHtmlParser from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
-import {
-  Container,
-  InquiryContainer,
-  InquiryTitle,
-  InquiryContent,
-  Button,
-  Title,
-  InnerContent,
-  QuestIcon,
-  TextWrapper,
-  InquiryTop,
-} from '../common/InquiryStyle';
+import { Button } from '../common/InquiryStyle';
+import CommonTable from '../table/CommonTable';
+import InquiryTable from './InquiryTable';
+import styled from 'styled-components';
 
 const Inquires = () => {
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  `;
+  const InquiryIntro = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    font-size: 2.5rem;
+    background: lightgray;
+    padding-top: 3rem;
+
+    @media screen and (max-width: 768px) {
+      height: 150px;
+      font-size: 2rem;
+      padding-top: 3rem;
+    }
+  `;
   const dispatch = useDispatch();
+  const [dataGroup, setDataGroup] = useState([]);
   const { checkModal, token, questionList } = useSelector(
     ({ modal, user, question }) => ({
       checkModal: modal.checkModal,
@@ -39,6 +54,10 @@ const Inquires = () => {
   };
 
   useEffect(() => {
+    setDataGroup(InquiryDataList);
+  }, [dataGroup]);
+
+  useEffect(() => {
     dispatch(questionListReq(token));
   }, [checkModal, dispatch]);
 
@@ -47,9 +66,9 @@ const Inquires = () => {
       setLnquireList(questionList);
     }
     console.log('문의 리스트', lnquireList);
-  });
+  }, [dataGroup]);
 
-  console.log('되냐', questionList);
+  // console.log('되냐', questionList);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
@@ -58,26 +77,27 @@ const Inquires = () => {
     dispatch(questionAddReq(title, contents, category.value, token));
   };
 
+  const handleRemove = (id) => {
+    setDataGroup(dataGroup.filter((el) => el.id !== id));
+    dataGroup.length -= 1;
+  };
+
   return (
     <Container>
-      <InquiryContainer>
-        <InquiryTop>
-          <InquiryTitle>문의 내역</InquiryTitle>
-          <Button onClick={openModal}>문의하기</Button>
-        </InquiryTop>
-        <InquiryContent>
-          {InquiryDataList.map((el) => (
-            <Title>
-              <TextWrapper>
-                <h2>{el.title}</h2>
-                <h4>{el.category}</h4>
-                <InnerContent>{ReactHtmlParser(el.content)}</InnerContent>
-              </TextWrapper>
-              <QuestIcon />
-            </Title>
-          ))}
-        </InquiryContent>
-      </InquiryContainer>
+      <InquiryIntro>문의 목록</InquiryIntro>
+      <CommonTable
+        headersName={[
+          '글 번호',
+          '카테고리',
+          '제목',
+          '답변 상태',
+          '등록일',
+          '관리',
+        ]}
+      >
+        <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
+      </CommonTable>
+      <Button onClick={openModal}> 문의하기 </Button>
       <InquiryModal
         open={checkModal}
         close={shutModal}
