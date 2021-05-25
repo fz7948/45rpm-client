@@ -4,7 +4,6 @@ import { showModal, closeModal, inquiryModal } from '../../modules/modal';
 import { questionAddReq, questionListReq } from '../../modules/question';
 // import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
-import { InquiryDataList } from '../data/InquiryData';
 import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
@@ -70,7 +69,6 @@ const Inquires = () => {
   `;
 
   const dispatch = useDispatch();
-  const [dataGroup, setDataGroup] = useState([]);
   const { checkModal, token, questionList, isType } = useSelector(
     ({ modal, user, question }) => ({
       checkModal: modal.checkModal,
@@ -79,8 +77,8 @@ const Inquires = () => {
       questionList: question.questionList,
     }),
   );
-
-  const [lnquireList, setLnquireList] = useState([{}]);
+  // console.log(',.QUEISITO', questionList.data);
+  const [lnquireList, setLnquireList] = useState({ data: [{}] });
 
   const openModal = () => {
     dispatch(showModal());
@@ -93,9 +91,9 @@ const Inquires = () => {
     dispatch(inquiryModal());
   };
 
-  useEffect(() => {
-    setDataGroup(InquiryDataList);
-  }, [dataGroup]);
+  // useEffect(() => {
+  //   setDataGroup(InquiryDataList);
+  // }, [dataGroup]);
 
   useEffect(() => {
     dispatch(questionListReq(token));
@@ -104,25 +102,32 @@ const Inquires = () => {
   useEffect(() => {
     if (questionList) {
       setLnquireList(questionList);
+      console.log('문의 리스트', lnquireList.data);
     }
+  });
 
-    console.log('문의 리스트', lnquireList);
-  }, [dataGroup]);
-
-  // console.log('되냐', questionList);
+  // useEffect(() => {
+  //   dispatch(questionAddReq());
+  // }, []);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
     console.log('split이니?', title, content);
-    const data1 = content.split('<p>')[1];
-    const contents = data1.split('</p>')[0];
+    const content1 = content.replace('<p>', '');
+    const contents = content1.replace('</p>', '');
+    console.log('con>>>>>>', contents);
+    // const data1 = content.split('<p>')[1];
+    // const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
+    shutModal();
   };
 
   const handleRemove = (id) => {
-    setDataGroup(dataGroup.filter((el) => el.id !== id));
-    dataGroup.length -= 1;
+    setLnquireList(lnquireList.data.filter((el) => el.id !== id));
+    // lnquireList.length -= 1;
+    console.log(',,,.Remove', lnquireList);
   };
+
   return (
     <Container>
       <HeaderWrapper>
@@ -138,7 +143,7 @@ const Inquires = () => {
           '관리',
         ]}
       >
-        <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
+        <InquiryTable lnquireList={lnquireList} handleRemove={handleRemove} />
       </CommonTable>
       <ButtonWrapper>
         <Button onClick={openInquiryModal}>문의하기</Button>
