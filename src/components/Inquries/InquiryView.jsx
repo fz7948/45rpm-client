@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getInquiryByNo } from '../data/InquiryData';
 import ViewTable from './ViewTable';
 
 const InquiryView = ({ match }) => {
@@ -43,7 +42,10 @@ const InquiryView = ({ match }) => {
   const { id } = match.params;
 
   useEffect(() => {
-    setData(getInquiryByNo(id));
+    {
+      /* Here Filtering by id */
+    }
+    // setData(getInquiryByNo(id));
   }, [data]);
 
   return (

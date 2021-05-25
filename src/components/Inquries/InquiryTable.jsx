@@ -4,6 +4,7 @@ import CommonTableRow from '../table/CommonTableRow';
 import { Link } from 'react-router-dom';
 
 const Inquiry = ({ inquiry, handleRemove }) => {
+  console.log('fsd,fsdf,.ds/f', inquiry);
   return (
     <CommonTableRow>
       <CommonTableColumn>{inquiry.id}</CommonTableColumn>
@@ -29,11 +30,11 @@ const Inquiry = ({ inquiry, handleRemove }) => {
   );
 };
 
-const InquiryTable = ({ dataGroup, handleRemove }) => {
-  console.log(dataGroup);
+const InquiryTable = ({ lnquireList, handleRemove }) => {
+  console.log('REALLLY?????', lnquireList);
   return (
     <>
-      {dataGroup.map((inquiry) => (
+      {lnquireList.data.map((inquiry) => (
         <Inquiry
           inquiry={inquiry}
           key={inquiry.id}
