@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showModal, closeModal, inquiryModal } from '../../modules/modal';
-import { questionAddReq, questionListReq } from '../../modules/question';
+import {
+  questionAddReq,
+  questionListReq,
+  questionDeleteReq,
+} from '../../modules/question';
 // import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
 import CommonTable from '../table/CommonTable';
@@ -77,7 +81,7 @@ const Inquires = () => {
       questionList: question.questionList,
     }),
   );
-  // console.log(',.QUEISITO', questionList.data);
+
   const [lnquireList, setLnquireList] = useState({ data: [{}] });
 
   const openModal = () => {
@@ -102,20 +106,17 @@ const Inquires = () => {
   useEffect(() => {
     if (questionList) {
       setLnquireList(questionList);
-      console.log('문의 리스트', lnquireList.data);
     }
-  });
+  }, [dispatch, questionList]);
 
   // useEffect(() => {
-  //   dispatch(questionAddReq());
+  //   dispatch(questionDeleteReq(token));
   // }, []);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
-    console.log('split이니?', title, content);
     const content1 = content.replace('<p>', '');
     const contents = content1.replace('</p>', '');
-    console.log('con>>>>>>', contents);
     // const data1 = content.split('<p>')[1];
     // const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
@@ -124,9 +125,9 @@ const Inquires = () => {
 
   const handleRemove = (id) => {
     setLnquireList(lnquireList.data.filter((el) => el.id !== id));
-    // lnquireList.length -= 1;
-    console.log(',,,.Remove', lnquireList);
+    console.log('@@@@@@@@@@,,,.Remove', lnquireList);
   };
+  console.log(',,,.Remove111111111', lnquireList.data);
 
   return (
     <Container>
