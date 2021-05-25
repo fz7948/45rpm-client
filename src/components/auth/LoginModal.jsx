@@ -253,7 +253,12 @@ const LoginModal = ({ open, close, history }) => {
             window.Kakao.API.request({
               url: '/v2/user/me',
               data: {
-                property_keys: ['kakao_account.email', 'kakao_account.profile'],
+                property_keys: [
+                  'kakao_account.email',
+                  'kakao_account.profile.nickname',
+                  'kakao_account.profile.profile_image_url',
+                  'kakao_account.profile.thumbnail_image_url',
+                ],
               },
               success: function (response) {
                 dispatch(kakaoLoginReq(response));
