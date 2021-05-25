@@ -11,17 +11,34 @@ const Footer = () => {
               <img src="./images/github.png" alt="" />
             </div>
             <div className="memberTitle">
-              <a className="class1" href="https://github.com/tyufjvbn2">
-                박종혁
+              <a
+                className="class1"
+                href="https://github.com/tyufjvbn2"
+                target="_blank"
+              >
+                <div className="class_font">박종혁</div>
               </a>
-              <a className="class2" href="https://github.com/dodo9128">
-                오우영
+              <a
+                className="class4"
+                href="https://github.com/DLSKAGHD"
+                target="_blank"
+              >
+                <div className="class_font"> 이성재</div>
               </a>
-              <a className="class3" href="https://github.com/fz7948">
-                이재윤
+
+              <a
+                className="class3"
+                href="https://github.com/dodo9128"
+                target="_blank"
+              >
+                <div className="class_font">이재윤</div>
               </a>
-              <a className="class4" href="https://github.com/DLSKAGHD">
-                이성재
+              <a
+                className="class2"
+                href="https://github.com/fz7948"
+                target="_blank"
+              >
+                <div className="class_font">오우영</div>
               </a>
             </div>
           </div>

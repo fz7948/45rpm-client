@@ -19,9 +19,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router>
-        {/* {isLogin ? <Sidebar /> : <Header />} */}
-        <Sidebar />
-        {/* <Header /> */}
+        {isLogin ? <Sidebar /> : <Header />}
         <Switch>
           <Route component={MainPage} path="/" exact />
           <Route component={CustomPage} path="/1" />
