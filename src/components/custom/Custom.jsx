@@ -23,6 +23,9 @@ import {
   SaveBtn,
   Button,
   InputFile,
+  TextInput,
+  CustomTitleCover,
+  CustomSongListCover,
 } from '../common/CustomStyle';
 const Custom = () => {
   const history = useHistory();
@@ -32,6 +35,8 @@ const Custom = () => {
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const [title, setTitle] = useState('');
+  const [songList, setSongList] = useState([]);
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
@@ -83,8 +88,16 @@ const Custom = () => {
     console.log(color.hex);
   };
 
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleChangeSongList = (e) => {
+    setSongList([e.target.value]);
+  };
+
   const submitHandler = async () => {
-    if (!color || !imgFile || !imgFile1) {
+    if (!color || !imgFile || !imgFile1 || !title || !songList) {
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
     } else if (!token) {
@@ -95,6 +108,8 @@ const Custom = () => {
     formData.append('color', color);
     formData.append('albumPic', imgFile);
     formData.append('recordPic', imgFile1);
+    formData.append('title', title);
+    formData.append('songList', songList);
 
     await axios.post(
       `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
@@ -158,6 +173,20 @@ const Custom = () => {
                     onChange={handleChangeFile1}
                   />
                 </CustomCenterCover>
+                <CustomTitleCover>
+                  Title
+                  <TextInput
+                    placeholder="LP 이름을 입력하세요"
+                    onChange={handleChangeTitle}
+                  />
+                </CustomTitleCover>
+                <CustomSongListCover>
+                  SongList
+                  <TextInput
+                    placeHolder="추가하고 싶은 음악을 입력하세요"
+                    onChange={handleChangeSongList}
+                  />
+                </CustomSongListCover>
               </CustomElement>
               <SaveBtn onClick={submitHandler}>Save</SaveBtn>
             </CustomContent>
