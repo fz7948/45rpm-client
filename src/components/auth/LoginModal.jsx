@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
+import {
+  loginReq,
+  resetLogin,
+  resetLoginMsg,
+  kakaoLoginReq,
+} from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -255,8 +260,7 @@ const LoginModal = ({ open, close, history }) => {
                       },
                     )
                     .then((response) => {
-                      console.log(response.data);
-                      handleCloseBtn();
+                      dispatch(kakaoLoginReq(response.data));
                       history.push('/mypage');
                     });
                 };
