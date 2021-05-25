@@ -1,16 +1,20 @@
 import React from 'react';
 import '../../pages/sass/Header.scss';
-import { loginModal, registerModal, closeModal } from '../../modules/modal';
+import {
+  showModal,
+  loginModal,
+  registerModal,
+  closeModal,
+} from '../../modules/modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
 
 const Header = () => {
-  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+  const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
-    isLogin: user.isLogin,
   }));
   const history = useHistory();
   const dispatch = useDispatch();

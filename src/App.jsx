@@ -15,7 +15,6 @@ function App() {
   const { isLogin } = useSelector(({ user }) => ({
     isLogin: user.isLogin,
   }));
-  console.log('랜더링?');
   return (
     <>
       <GlobalStyles />

@@ -17,6 +17,19 @@ export const signup = async ({ id, email, username, password }) => {
   return response.data;
 };
 
+export const kakaoLogin = async (data) => {
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,
+    {
+      data,
+    },
+    {
+      withCredentials: true,
+    },
+  );
+  return response.data;
+};
+
 export const login = async ({ id, password }) => {
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URI}/user/login`,
@@ -51,7 +64,6 @@ export const update = async ({
 };
 
 export const logout = async (token) => {
-  console.log('이건?', token);
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URI}/user/logout`,
     {},
@@ -63,7 +75,6 @@ export const logout = async (token) => {
       withCredentials: true,
     },
   );
-  console.log('되지?');
   return response;
 };
 
@@ -78,7 +89,6 @@ export const withdraw = async (token) => {
     },
     { withCredentials: true },
   );
-  console.log('탈퇴완료?', response.data);
   return response.data;
 };
 
@@ -93,6 +103,5 @@ export const info = async (token) => {
     },
     { withCredentials: true },
   );
-  console.log('유저정보', response.data);
   return response.data;
 };

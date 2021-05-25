@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
+import {
+  loginReq,
+  resetLogin,
+  resetLoginMsg,
+  kakaoLoginReq,
+} from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+import AlertModal from '../common/AlertModal';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -118,7 +123,7 @@ const LoginSocialBtn = styled.button`
 
 const LoginModal = ({ open, close, history }) => {
   const dispatch = useDispatch();
-  const { login, loginError } = useSelector(({ auth }) => ({
+  const { login, loginError, alertModalCheck } = useSelector(({ auth }) => ({
     login: auth.login,
     loginError: auth.loginError,
   }));
@@ -133,24 +138,30 @@ const LoginModal = ({ open, close, history }) => {
   const [inputPassword, setInputPassword] = useState('');
   const [denyMessage, setDenyMessage] = useState('');
 
+  const [openModal, setOpenModal] = useState(false);
+  const [modalComment, setModalComment] = useState('');
+
+  const handleModalOpen = () => {
+    setOpenModal(true);
+  };
+  const handleModalClose = () => {
+    setOpenModal(false);
+  };
+
   useEffect(() => {
     if (loginError) {
       if (loginError === 'There is no user information') {
         refID.current.focus();
         setDenyMessage('해당 유저가 존재하지 않습니다.');
+        return;
       }
       if (loginError === 'You wrote wrong password') {
         refPassword.current.focus();
         setDenyMessage('비밀번호를 확인해주세요.');
+        return;
       }
-      return;
     }
     if (login) {
-      alert(login.message);
-      //모달로 만들어야함
-      history.push('/mypage');
-      handleCloseBtn();
-      dispatch(resetLogin());
       const token = document.cookie.split('=')[1];
       const payload = {
         id: login.data.id,
@@ -159,6 +170,8 @@ const LoginModal = ({ open, close, history }) => {
         token: token,
       };
       dispatch(loginUser(payload));
+      history.push('/mypage');
+      dispatch(resetLogin());
     }
   }, [login, loginError]);
 
@@ -243,24 +256,9 @@ const LoginModal = ({ open, close, history }) => {
                 property_keys: ['kakao_account.email', 'kakao_account.profile'],
               },
               success: function (response) {
-                const loginLogic = async () => {
-                  await axios
-                    .post(
-                      `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,
-                      {
-                        response,
-                      },
-                      {
-                        withCredentials: true,
-                      },
-                    )
-                    .then((response) => {
-                      console.log(response.data);
-                      handleCloseBtn();
-                      history.push('/mypage');
-                    });
-                };
-                loginLogic();
+                dispatch(kakaoLoginReq(response));
+                alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
+                history.push('/mypage');
               },
               fail: function (error) {
                 console.log(error);
@@ -279,6 +277,11 @@ const LoginModal = ({ open, close, history }) => {
 
   return (
     <>
+      <AlertModal
+        openModal={openModal}
+        closeModal={handleModalClose}
+        comment={modalComment}
+      />
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open}>

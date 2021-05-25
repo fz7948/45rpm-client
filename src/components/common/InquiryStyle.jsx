@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button `
+export const Button = styled.button`
   width: 10rem;
   height: 4rem;
   margin-top: 3rem;
@@ -21,4 +21,5 @@ export const Button = styled.button `
     font-size: 1rem;
     margin-top: 3rem;
   }
-`;
+`
+
