@@ -48,7 +48,6 @@ export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
   try {
     const loginRes = await authAPI.login({ id, password });
-    console.log('로그인 Res', loginRes);
     dispatch({
       type: LOGIN_SUCCESS,
       login: loginRes,
@@ -64,16 +63,20 @@ export const loginReq = (id, password) => async (dispatch) => {
 export const kakaoLoginReq = (data) => async (dispatch) => {
   dispatch({ type: KAKAO_LOGIN });
   try {
+
     const kakaoLoginRes = await authAPI.kakaoLogin(data);
     console.log('kakao 로그인 Res', kakaoLoginRes);
+
     dispatch({
       type: KAKAO_LOGIN_SUCCESS,
       login: kakaoLoginRes,
     });
   } catch (error) {
     dispatch({
+
       type: KAKAO_LOGIN_FAILURE,
       loginError: error.response.data.message,
+
     });
   }
 };
@@ -105,14 +108,12 @@ export const updateReq =
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });
   try {
-    console.log('잘들어옴?');
     const infoRes = await authAPI.info(token);
     dispatch({
       type: INFORMATION_SUCCESS,
       info: infoRes,
     });
   } catch (error) {
-    console.log('에러뜨나');
     dispatch({
       type: INFORMATION_FAILURE,
       infoError: error.response,
