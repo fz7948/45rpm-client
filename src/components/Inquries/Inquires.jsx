@@ -5,7 +5,6 @@ import { questionAddReq, questionListReq } from '../../modules/question';
 // import ReactHtmlParser from 'react-html-parser';
 import InquiryModal from '../auth/InquiryModal';
 import { InquiryDataList } from '../data/InquiryData';
-import { Button } from '../common/InquiryStyle';
 import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
@@ -20,7 +19,6 @@ import {
   QuestIcon,
   TextWrapper,
 } from '../common/InquiryStyle';
-
 
 const Inquires = () => {
   const Container = styled.div`
@@ -83,9 +81,6 @@ const Inquires = () => {
 
   // console.log('되냐', questionList);
 
-  }, [questionList]);
-
-
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
     console.log('split이니?', title, content);
@@ -114,22 +109,6 @@ const Inquires = () => {
         <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
       </CommonTable>
       <Button onClick={openModal}> 문의하기 </Button>
-      <InquiryContainer>
-        <InquiryTitle>문의 내역</InquiryTitle>
-        <InquiryContent>
-          {InquiryDataList.map((el) => (
-            <Title>
-              <TextWrapper>
-                <h2>{el.title}</h2>
-                <h4>{el.category}</h4>
-                <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
-              </TextWrapper>
-              <QuestIcon />
-            </Title>
-          ))}
-        </InquiryContent>
-      </InquiryContainer>
-      <Button onClick={openModal}>글쓰기</Button>
       <InquiryModal
         open={checkModal}
         close={shutModal}
