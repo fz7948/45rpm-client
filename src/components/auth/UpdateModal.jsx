@@ -3,7 +3,7 @@ import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateReq, resetUpdate} from '../../modules/auth';
+import { updateReq, resetUpdate } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 
 const UpdateWrapper = styled.div`
@@ -128,18 +128,15 @@ const WithdrawBtn = styled.div`
 
 const UpdateModal = ({ open, close, history }) => {
   const dispatch = useDispatch();
-  const { update, updateError, token, info } = useSelector(
-    ({ auth, user }) => ({
-      update: auth.update,
-      updateError: auth.updateError,
-      token: user.token,
-    }),
-  );
+  const { update, updateError, token } = useSelector(({ auth, user }) => ({
+    update: auth.update,
+    updateError: auth.updateError,
+    token: user.token,
+  }));
 
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
-  const refID = useRef(null);
   const refEmail = useRef(null);
   const refUsername = useRef(null);
   const refOldPassword = useRef(null);
@@ -156,34 +153,39 @@ const UpdateModal = ({ open, close, history }) => {
 
   useEffect(() => {
     if (updateError) {
-      if (updateError === '') {
-        setDenyMessage(updateError);
+      if (updateError === 'Wrong password') {
+        setDenyMessage('기존 비밀번호를 확인해주세요.');
+        refOldPassword.current.focus();
+      }
+      if (updateError === 'This is your Origin Email') {
+        setDenyMessage('이메일이 기존 이메일과 같습니다.');
+        refEmail.current.focus();
+      }
+      if (updateError === 'This Email is already used') {
+        setDenyMessage('이미 사용중인 이메일입니다.');
+        refEmail.current.focus();
+      }
+      if (updateError === 'You already use this password') {
+        setDenyMessage('새 비밀번호가 현재 비밀번호와 같습니다.');
+        refNewPassword.current.focus();
       }
       return;
     }
     if (update) {
-      alert(update.message);
       dispatch(resetUpdate());
       handleCloseBtn();
-      //모달로 만들어야함
+      history.push('/');
     }
   }, [update, updateError]);
 
- 
   useEffect(() => {
-    refID.current.focus();
+    refEmail.current.focus();
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleCloseBtn();
       }
     });
   }, [open]);
-
-  const handleMoveToEmail = (e) => {
-    if (e.key === 'Enter') {
-      refEmail.current.focus();
-    }
-  };
 
   const handleMoveToUsername = (e) => {
     if (e.key === 'Enter') {
@@ -371,8 +373,8 @@ const UpdateModal = ({ open, close, history }) => {
           <UpdateWrapper>
             <h2>계정 정보 수정</h2>
             <div className="update_info">
-              <p>E - mail은 변경이 불가능합니다.</p>
-              <p>닉네임을 입력하지 않을 시, 유지됩니다.</p>
+              <p>ID는 변경이 불가능합니다.</p>
+              <p>E-mail, 이름을 입력하지 않을 시, 유지됩니다.</p>
             </div>
             <ul>
               <li>
@@ -384,8 +386,6 @@ const UpdateModal = ({ open, close, history }) => {
                   value={inputID}
                   placeholder="id"
                   onChange={handleChangeID}
-                  onKeyPress={handleMoveToEmail}
-                  ref={refID}
                 />
               </li>
               <li>

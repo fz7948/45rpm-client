@@ -40,7 +40,6 @@ export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
   try {
     const loginRes = await authAPI.login({ id, password });
-    console.log('로그인 Res', loginRes);
     dispatch({
       type: LOGIN_SUCCESS,
       login: loginRes,
@@ -62,7 +61,6 @@ export const updateReq = (
 ) => async (dispatch) => {
   dispatch({ type: UPDATE });
   try {
-    console.log('토큰 확인', token);
     const updateRes = await authAPI.update({
       email,
       username,
@@ -77,7 +75,7 @@ export const updateReq = (
   } catch (error) {
     dispatch({
       type: UPDATE_FAILURE,
-      updateError: error.response.message,
+      updateError: error.response.data.message,
     });
   }
 };
@@ -85,14 +83,12 @@ export const updateReq = (
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });
   try {
-    console.log('잘들어옴?');
     const infoRes = await authAPI.info(token);
     dispatch({
       type: INFORMATION_SUCCESS,
       info: infoRes,
     });
   } catch (error) {
-    console.log('에러뜨나');
     dispatch({
       type: INFORMATION_FAILURE,
       infoError: error.response,

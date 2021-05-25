@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaQuestion } from 'react-icons/fa';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -10,7 +10,7 @@ export const Container = styled.div `
   padding-top: 3rem;
 `;
 
-export const InquiryContainer = styled.div `
+export const InquiryContainer = styled.div`
   overflow: auto;
   border: 5px solid red;
   width: 100%;
@@ -35,18 +35,14 @@ export const InquiryContainer = styled.div `
   }
 `;
 
-export const InquiryTop = styled.div `
+export const InquiryTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-
-  @media screen and (max-width: 768px) {
-    0rem;
-  }
 `;
 
-export const InquiryTitle = styled.h1 `
+export const InquiryTitle = styled.h1`
   width: 100%;
   text-align: center;
   padding-left: 8rem;
@@ -57,7 +53,7 @@ export const InquiryTitle = styled.h1 `
   }
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   width: 10rem;
   height: 3.5rem;
   font-size: 1rem;
@@ -68,7 +64,7 @@ export const Button = styled.button `
   }
 `;
 
-export const InquiryContent = styled.div `
+export const InquiryContent = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -77,7 +73,7 @@ export const InquiryContent = styled.div `
   }
 `;
 
-export const Title = styled.div `
+export const Title = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,7 +83,7 @@ export const Title = styled.div `
   }
 `;
 
-export const TextWrapper = styled.div `
+export const TextWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -106,11 +102,10 @@ export const TextWrapper = styled.div `
     }
   }
 `;
-export const InnerContent = styled.div `
+export const InnerContent = styled.div`
   @media screen and (max-width: 768px) {
     padding-top: 1rem;
   }
 `;
 
-export const QuestIcon = styled(FaQuestion)
-``;
+export const QuestIcon = styled(FaQuestion)``;

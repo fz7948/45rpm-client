@@ -113,4 +113,10 @@ export const ModalBox = styled.div`
       width: 500px;
       height: 680px;
     `}
+  ${(props) =>
+    props.alert &&
+    css`
+      width: 380px;
+      height: 210px;
+    `}
 `;

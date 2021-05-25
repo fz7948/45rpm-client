@@ -125,9 +125,19 @@ const RegisterModal = ({ open, close, history }) => {
 
   useEffect(() => {
     if (registerError) {
-      if (registerError === 'Same user existed') {
-        setDenyMessage(registerError);
-        //이메일 아이디 구분 필요
+      if (
+        registerError === 'These ID and Email are already used on other user'
+      ) {
+        setDenyMessage('ID와 Email이 이미 사용중입니다.');
+        refID.current.focus();
+      }
+      if (registerError === 'This ID is already used on other user') {
+        setDenyMessage('사용중인 ID입니다.');
+        refID.current.focus();
+      }
+      if (registerError === 'This Email is already used on other user') {
+        setDenyMessage('사용중인 Email입니다.');
+        refEmail.current.focus();
       }
       return;
     }
