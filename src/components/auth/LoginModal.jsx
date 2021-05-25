@@ -5,6 +5,7 @@ import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginWrapper = styled.div`
   display: flex;
