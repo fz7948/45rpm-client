@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import RegisterModal from '../../components/auth/RegisterModal';
+import { registerModal, closeModal } from '../../modules/modal';
 import {
   Container,
   MainContentWrapper,
@@ -33,6 +35,20 @@ const Custom = () => {
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
+  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    isLogin: user.isLogin,
+  }));
+  const dispatch = useDispatch();
+
+  const openRegisterModal = () => {
+    dispatch(registerModal());
+  };
+
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
 
   const handleChangeFile = (e) => {
     let reader = new FileReader();
@@ -71,6 +87,8 @@ const Custom = () => {
     if (!color || !imgFile || !imgFile1) {
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
+    } else if (!token) {
+      openRegisterModal();
     }
 
     const formData = new FormData();
@@ -78,13 +96,17 @@ const Custom = () => {
     formData.append('albumPic', imgFile);
     formData.append('recordPic', imgFile1);
 
-    await axios.post(`http://localhost:4000/customs/add-custom`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        authorization: `Bearer ${token}`,
+    await axios.post(
+      `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
       },
-      withCredentials: true,
-    });
+    );
     history.push('/mypage');
   };
 
@@ -142,6 +164,9 @@ const Custom = () => {
           </SectionWrapper>
         </MainContentWrapper>
       </Container>
+      {isType === 'register' && (
+        <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
+      )}
     </>
   );
 };
