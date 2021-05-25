@@ -228,6 +228,54 @@ const LoginModal = ({ open, close, history }) => {
     dispatch(loginReq(inputID, inputPassword));
   };
 
+  const kakaoLoginHandler = () => {
+    try {
+      return new Promise((resolve, reject) => {
+        if (!window.Kakao) {
+          reject('Kakao 인스턴스가 존재하지 않습니다.');
+        }
+        window.Kakao.Auth.login({
+          success: (auth) => {
+            window.Kakao.API.request({
+              url: '/v2/user/me',
+              data: {
+                property_keys: ['kakao_account.email', 'kakao_account.profile'],
+              },
+              success: function (response) {
+                const loginLogic = async () => {
+                  await axios
+                    .post(
+                      `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,
+                      {
+                        response,
+                      },
+                      {
+                        withCredentials: true,
+                      },
+                    )
+                    .then((response) => {
+                      console.log(response.data);
+                      handleCloseBtn();
+                      history.push('/mypage');
+                    });
+                };
+                loginLogic();
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          },
+          fail: (err) => {
+            console.error(err);
+          },
+        });
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <ModalBack disappear={!open}>
@@ -267,7 +315,10 @@ const LoginModal = ({ open, close, history }) => {
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
             <LoginSocialBtn> 구글 </LoginSocialBtn>
-            <LoginSocialBtn> 카카오 </LoginSocialBtn>
+            <LoginSocialBtn onClick={kakaoLoginHandler}>
+              {' '}
+              카카오{' '}
+            </LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>
       </ModalBack>
