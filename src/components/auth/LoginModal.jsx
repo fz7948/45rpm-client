@@ -10,7 +10,6 @@ import {
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -248,23 +247,8 @@ const LoginModal = ({ open, close, history }) => {
                 property_keys: ['kakao_account.email', 'kakao_account.profile'],
               },
               success: function (response) {
-                const loginLogic = async () => {
-                  await axios
-                    .post(
-                      `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,
-                      {
-                        response,
-                      },
-                      {
-                        withCredentials: true,
-                      },
-                    )
-                    .then((response) => {
-                      dispatch(kakaoLoginReq(response.data));
-                      history.push('/mypage');
-                    });
-                };
-                loginLogic();
+                dispatch(kakaoLoginReq(response));
+                history.push('/mypage');
               },
               fail: function (error) {
                 console.log(error);

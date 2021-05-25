@@ -61,13 +61,14 @@ export const loginReq = (id, password) => async (dispatch) => {
   }
 };
 
-export const kakaoLoginReq = (response) => async (dispatch) => {
+export const kakaoLoginReq = (data) => async (dispatch) => {
   dispatch({ type: KAKAO_LOGIN });
   try {
-    console.log('kakao 로그인 Res', response);
+    const kakaoLoginRes = await authAPI.kakaoLogin(data);
+    console.log('kakao 로그인 Res', kakaoLoginRes);
     dispatch({
       type: KAKAO_LOGIN_SUCCESS,
-      login: response,
+      login: kakaoLoginRes,
     });
   } catch (error) {
     dispatch({
