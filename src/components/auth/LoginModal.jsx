@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
+import {
+  loginReq,
+  resetLogin,
+  resetLoginMsg,
+  kakaoLoginReq,
+} from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -237,6 +242,39 @@ const LoginModal = ({ open, close, history }) => {
     dispatch(loginReq(inputID, inputPassword));
   };
 
+  const kakaoLoginHandler = () => {
+    try {
+      return new Promise((resolve, reject) => {
+        if (!window.Kakao) {
+          reject('Kakao 인스턴스가 존재하지 않습니다.');
+        }
+        window.Kakao.Auth.login({
+          success: (auth) => {
+            window.Kakao.API.request({
+              url: '/v2/user/me',
+              data: {
+                property_keys: ['kakao_account.email', 'kakao_account.profile'],
+              },
+              success: function (response) {
+                dispatch(kakaoLoginReq(response));
+                alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
+                history.push('/mypage');
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          },
+          fail: (err) => {
+            console.error(err);
+          },
+        });
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <AlertModal
@@ -281,7 +319,10 @@ const LoginModal = ({ open, close, history }) => {
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
             <LoginSocialBtn> 구글 </LoginSocialBtn>
-            <LoginSocialBtn> 카카오 </LoginSocialBtn>
+            <LoginSocialBtn onClick={kakaoLoginHandler}>
+              {' '}
+              카카오{' '}
+            </LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>
       </ModalBack>

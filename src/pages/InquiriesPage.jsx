@@ -1,5 +1,5 @@
 import React from 'react';
-import Inquires from '../components/Inquries/Inquires';
+import Inquires from '../components/Inquries/InquiryMain';
 
 const InquiriesPage = () => {
   return <Inquires />;

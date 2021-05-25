@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { updateReq, resetUpdate } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 
-const UpdateWrapper = styled.div`
+const UpdateWrapper = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@ const UpdateWrapper = styled.div`
   }
 `;
 
-const UpdateLabel = styled.label`
+const UpdateLabel = styled.label `
   font-size: 12px;
   font-weight: 600;
   color: #707174;
@@ -57,7 +57,7 @@ const UpdateLabel = styled.label`
   }
 `;
 
-const UpdateInput = styled.input`
+const UpdateInput = styled.input `
   height: 1rem;
   width: 16rem;
   padding: 1rem;
@@ -73,7 +73,7 @@ const UpdateInput = styled.input`
   }
 `;
 
-const UpdateCloseBtn = styled.button`
+const UpdateCloseBtn = styled.button `
   cursor: pointer;
   position: relative;
   top: 1rem;
@@ -89,12 +89,11 @@ const UpdateCloseBtn = styled.button`
   }
 `;
 
-const UpdateSubmitBtn = styled.button`
+const UpdateSubmitBtn = styled.button `
   cursor: pointer;
   height: 2.2rem;
   width: 16rem;
   border-radius: 3px;
-  margin: 1.5rem;
   border: 0;
   outline: 0;
   margin-bottom: 0.7rem;
@@ -108,7 +107,7 @@ const UpdateSubmitBtn = styled.button`
   }
 `;
 
-const WithdrawBtn = styled.div`
+const WithdrawBtn = styled.div `
   width: 100%;
   background: white;
   display: flex;

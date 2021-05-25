@@ -10,6 +10,10 @@ const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAILURE = 'LOGIN_FAILURE';
 const LOGIN_RESET_MSG = 'LOGIN_RESET_MSG';
 
+const KAKAO_LOGIN = 'KAKAO_LOGIN';
+const KAKAO_LOGIN_SUCCESS = 'KAKAO_LOGIN_SUCCESS';
+const KAKAO_LOGIN_FAILURE = 'KAKAO_LOGIN_FAILURE';
+
 const UPDATE = 'UPDATE';
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 const UPDATE_FAILURE = 'UPDATE_FAILURE';
@@ -18,23 +22,27 @@ const INFORMATION = 'INFORMATION';
 const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
 const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
 
-export const registerReq = (id, email, username, password) => async (
-  dispatch,
-) => {
-  dispatch({ type: REGISTER });
-  try {
-    const registerRes = await authAPI.signup({ id, email, username, password });
-    dispatch({
-      type: REGISTER_SUCCESS,
-      register: registerRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: REGISTER_FAILURE,
-      registerError: error.response.data.message,
-    });
-  }
-};
+export const registerReq =
+  (id, email, username, password) => async (dispatch) => {
+    dispatch({ type: REGISTER });
+    try {
+      const registerRes = await authAPI.signup({
+        id,
+        email,
+        username,
+        password,
+      });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        register: registerRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_FAILURE,
+        registerError: error.response.data.message,
+      });
+    }
+  };
 
 export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
@@ -52,33 +60,50 @@ export const loginReq = (id, password) => async (dispatch) => {
   }
 };
 
-export const updateReq = (
-  email,
-  username,
-  oldpassword,
-  newpassword,
-  token,
-) => async (dispatch) => {
-  dispatch({ type: UPDATE });
+export const kakaoLoginReq = (data) => async (dispatch) => {
+  dispatch({ type: KAKAO_LOGIN });
   try {
-    const updateRes = await authAPI.update({
-      email,
-      username,
-      oldpassword,
-      newpassword,
-      token,
-    });
+
+    const kakaoLoginRes = await authAPI.kakaoLogin(data);
+    console.log('kakao 로그인 Res', kakaoLoginRes);
+
     dispatch({
-      type: UPDATE_SUCCESS,
-      update: updateRes,
+      type: KAKAO_LOGIN_SUCCESS,
+      login: kakaoLoginRes,
     });
   } catch (error) {
     dispatch({
-      type: UPDATE_FAILURE,
-      updateError: error.response.data.message,
+
+      type: KAKAO_LOGIN_FAILURE,
+      loginError: error.response.data.message,
+
     });
   }
 };
+
+export const updateReq =
+  (email, username, oldpassword, newpassword, token) => async (dispatch) => {
+    dispatch({ type: UPDATE });
+    try {
+      console.log('토큰 확인', token);
+      const updateRes = await authAPI.update({
+        email,
+        username,
+        oldpassword,
+        newpassword,
+        token,
+      });
+      dispatch({
+        type: UPDATE_SUCCESS,
+        update: updateRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_FAILURE,
+        updateError: error.response.message,
+      });
+    }
+  };
 
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });
@@ -150,6 +175,23 @@ function auth(state = initialState, action) {
         loginError: null,
       };
     case LOGIN_FAILURE:
+      return {
+        ...state,
+        loginError: action.loginError,
+      };
+    case KAKAO_LOGIN:
+      return {
+        ...state,
+        login: null,
+        loginError: null,
+      };
+    case KAKAO_LOGIN_SUCCESS:
+      return {
+        ...state,
+        login: action.login,
+        loginError: null,
+      };
+    case KAKAO_LOGIN_FAILURE:
       return {
         ...state,
         loginError: action.loginError,
