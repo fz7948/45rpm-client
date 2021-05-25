@@ -8,44 +8,92 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
-const SidebarWrapper = styled.div`
-  .navbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    background: black;
-    padding: 0.8rem;
-  }
+const NavSidebar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: black;
+  padding: 5px 10px 5px 0px;
 
   .menu-bars {
     cursor: pointer;
-    margin-left: 12rem;
-    font-size: 2rem;
+    font-size: 30px;
     background: none;
-    color: #e8e8e8;
+    color: gray;
+    margin-right: 5px;
     &:hover {
-      color: #07111e;
+      color: white;
+      transition: all 0.15s ease-in-out;
+    }
+  }
+`;
+
+const SideLogoutBtn = styled.div`
+  display: flex;
+  width: 225px;
+  justify-content: flex-end;
+  padding-bottom: 30px;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    width: 300px;
+    height: 34px;
+    margin: 0px 15px;
+    background-color: #fff;
+    border: 1px solid #03154e;
+    outline: 0;
+    color: #03154e;
+    &:hover {
+      cursor: pointer;
+      background-color: #03154e;
+      border: 0;
+      outline: 0;
+      color: #fff;
+      transition: all ease 0.2s;
+    }
+  }
+`;
+
+const SidebarWrapper = styled.div`
+  .logo {
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 35px;
+    font-size: 25px;
+    font-family: 'Syncopate', sans-serif;
+    &:hover {
+      color: gray;
+      transition: all 0.2s ease-in-out;
+    }
+    @media #{$small} {
+      font-size: 18px;
     }
   }
 
   .menu-close {
+    margin-top: -25px;
     cursor: pointer;
-    margin-left: 12rem;
-    font-size: 2rem;
-    background: none;
+    margin-left: 188px;
+    font-size: 30px;
     color: black;
     &:hover {
-      color: lightgray;
+      color: #f74848;
+      transition: all 0.15s ease-in-out;
     }
   }
 
   .nav-menu {
     background-color: #fff;
-    width: 250px;
+    width: 230px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -55,33 +103,6 @@ const SidebarWrapper = styled.div`
     top: 0;
     right: -100%;
     transition: 850ms;
-
-    .logoutBtn {
-      display: flex;
-      width: 225px;
-      justify-content: flex-end;
-      padding-bottom: 2rem;
-      button {
-        font-size: 12px;
-        font-weight: 700;
-        border-radius: 4px;
-        width: 13rem;
-        height: 2rem;
-        margin-left: 1.5rem;
-        background-color: #fff;
-        border: 1px solid #03154e;
-        outline: 0;
-        color: #03154e;
-        &:hover {
-          cursor: pointer;
-          background-color: #03154e;
-          border: 0;
-          outline: 0;
-          color: #fff;
-          transition: all ease 0.2s;
-        }
-      }
-    }
   }
 
   .nav-menu.active {
@@ -153,9 +174,12 @@ const Navbar = ({ history }) => {
 
   return (
     <SidebarWrapper>
-      <div className="navbar">
+      <NavSidebar>
+        <div className="logo" onClick={() => history.push('/')}>
+          45RPM
+        </div>
         <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
-      </div>
+      </NavSidebar>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
@@ -173,9 +197,9 @@ const Navbar = ({ history }) => {
             );
           })}
         </ul>
-        <div className="logoutBtn">
-          <button onClick={onLogout}> 로그아웃 </button>
-        </div>
+        <SideLogoutBtn>
+          <div onClick={onLogout}>로그아웃</div>
+        </SideLogoutBtn>
       </nav>
     </SidebarWrapper>
   );

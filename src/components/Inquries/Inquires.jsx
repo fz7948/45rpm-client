@@ -9,6 +9,18 @@ import { Button } from '../common/InquiryStyle';
 import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
+import {
+  Container,
+  InquiryContainer,
+  InquiryTitle,
+  InquiryContent,
+  Button,
+  Title,
+  InnerContent,
+  QuestIcon,
+  TextWrapper,
+} from '../common/InquiryStyle';
+
 
 const Inquires = () => {
   const Container = styled.div`
@@ -44,7 +56,7 @@ const Inquires = () => {
     }),
   );
 
-  const [lnquireList, setLnquireList] = useState([]);
+  const [lnquireList, setLnquireList] = useState([{}]);
 
   const openModal = () => {
     dispatch(showModal());
@@ -65,13 +77,18 @@ const Inquires = () => {
     if (questionList) {
       setLnquireList(questionList);
     }
+
     console.log('문의 리스트', lnquireList);
   }, [dataGroup]);
 
   // console.log('되냐', questionList);
 
+  }, [questionList]);
+
+
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
+    console.log('split이니?', title, content);
     const data1 = content.split('<p>')[1];
     const contents = data1.split('</p>')[0];
     dispatch(questionAddReq(title, contents, category.value, token));
@@ -81,7 +98,6 @@ const Inquires = () => {
     setDataGroup(dataGroup.filter((el) => el.id !== id));
     dataGroup.length -= 1;
   };
-
   return (
     <Container>
       <InquiryIntro>문의 목록</InquiryIntro>
@@ -98,6 +114,22 @@ const Inquires = () => {
         <InquiryTable dataGroup={dataGroup} handleRemove={handleRemove} />
       </CommonTable>
       <Button onClick={openModal}> 문의하기 </Button>
+      <InquiryContainer>
+        <InquiryTitle>문의 내역</InquiryTitle>
+        <InquiryContent>
+          {InquiryDataList.map((el) => (
+            <Title>
+              <TextWrapper>
+                <h2>{el.title}</h2>
+                <h4>{el.category}</h4>
+                <InnerContent>{ReactHtmlParser(el.contents)}</InnerContent>
+              </TextWrapper>
+              <QuestIcon />
+            </Title>
+          ))}
+        </InquiryContent>
+      </InquiryContainer>
+      <Button onClick={openModal}>글쓰기</Button>
       <InquiryModal
         open={checkModal}
         close={shutModal}

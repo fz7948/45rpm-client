@@ -5,8 +5,9 @@ import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
-const LoginWrapper = styled.div `
+const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -36,7 +37,7 @@ const LoginWrapper = styled.div `
   }
 `;
 
-const LoginLabel = styled.label `
+const LoginLabel = styled.label`
   font-size: 12px;
   font-weight: 600;
   color: #707174;
@@ -46,7 +47,7 @@ const LoginLabel = styled.label `
   }
 `;
 
-const LoginInput = styled.input `
+const LoginInput = styled.input`
   height: 1.2rem;
   width: 14rem;
   padding: 1rem;
@@ -61,7 +62,7 @@ const LoginInput = styled.input `
   }
 `;
 
-const LoginCloseBtn = styled.button `
+const LoginCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
   top: -0.8rem;
@@ -77,7 +78,7 @@ const LoginCloseBtn = styled.button `
   }
 `;
 
-const LoginSubmitBtn = styled.button `
+const LoginSubmitBtn = styled.button`
   cursor: pointer;
   height: 2.2rem;
   width: 14rem;
@@ -95,7 +96,7 @@ const LoginSubmitBtn = styled.button `
   }
 `;
 
-const LoginSocialBtn = styled.button `
+const LoginSocialBtn = styled.button`
   cursor: pointer;
   height: 2.2rem;
   width: 14rem;
@@ -116,162 +117,214 @@ const LoginSocialBtn = styled.button `
 `;
 
 const LoginModal = ({ open, close, history }) => {
-    const dispatch = useDispatch();
-    const { login, loginError } = useSelector(({ auth }) => ({
-        login: auth.login,
-        loginError: auth.loginError,
-    }));
+  const dispatch = useDispatch();
+  const { login, loginError } = useSelector(({ auth }) => ({
+    login: auth.login,
+    loginError: auth.loginError,
+  }));
 
-    const [animate, setAnimate] = useState(false);
-    const [localVisible, setLocalVisible] = useState(open);
+  const [animate, setAnimate] = useState(false);
+  const [localVisible, setLocalVisible] = useState(open);
 
-    const refID = useRef(null);
-    const refPassword = useRef(null);
+  const refID = useRef(null);
+  const refPassword = useRef(null);
 
-    const [inputID, setInputID] = useState('');
-    const [inputPassword, setInputPassword] = useState('');
-    const [denyMessage, setDenyMessage] = useState('');
+  const [inputID, setInputID] = useState('');
+  const [inputPassword, setInputPassword] = useState('');
+  const [denyMessage, setDenyMessage] = useState('');
 
-    useEffect(() => {
-        if (loginError) {
-            if (loginError === 'There is no user information') {
-                refID.current.focus();
-                setDenyMessage(loginError);
-            }
-            if (loginError === 'You wrote wrong password') {
-                refPassword.current.focus();
-                setDenyMessage(loginError);
-            }
-            return;
-        }
-        if (login) {
-            alert(login.message);
-            //모달로 만들어야함
-            history.push('/mypage');
-            handleCloseBtn();
-            dispatch(resetLogin());
-            const token = document.cookie.split('=')[1];
-            const payload = {
-                id: login.data.id,
-                email: login.data.email,
-                username: login.data.username,
-                token: token,
-            };
-            dispatch(loginUser(payload));
-        }
-    }, [login, loginError]);
-
-    useEffect(() => {
+  useEffect(() => {
+    if (loginError) {
+      if (loginError === 'There is no user information') {
         refID.current.focus();
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                handleCloseBtn();
-            }
+        setDenyMessage('해당 유저가 존재하지 않습니다.');
+      }
+      if (loginError === 'You wrote wrong password') {
+        refPassword.current.focus();
+        setDenyMessage('비밀번호를 확인해주세요.');
+      }
+      return;
+    }
+    if (login) {
+      alert(login.message);
+      //모달로 만들어야함
+      history.push('/mypage');
+      handleCloseBtn();
+      dispatch(resetLogin());
+      const token = document.cookie.split('=')[1];
+      const payload = {
+        id: login.data.id,
+        email: login.data.email,
+        username: login.data.username,
+        token: token,
+      };
+      dispatch(loginUser(payload));
+    }
+  }, [login, loginError]);
+
+  useEffect(() => {
+    refID.current.focus();
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        handleCloseBtn();
+      }
+    });
+  }, [open]);
+
+  const handleMoveToPassword = (e) => {
+    if (e.key === 'Enter') {
+      refPassword.current.focus();
+    }
+  };
+
+  const handleMoveToSignIn = (e) => {
+    if (e.key === 'Enter') {
+      handleSignIn();
+    }
+  };
+
+  const handleCloseBtn = () => {
+    setInputID('');
+    setInputPassword('');
+    setDenyMessage('');
+    dispatch(resetLoginMsg());
+    close();
+  };
+
+  const handleInputID = useCallback(
+    (e) => {
+      setInputID(e.target.value);
+    },
+    [inputID],
+  );
+
+  const handleInputPassword = useCallback(
+    (e) => {
+      setInputPassword(e.target.value);
+    },
+    [inputPassword],
+  );
+
+  useEffect(() => {
+    if (localVisible && !open) {
+      setAnimate(true);
+      setTimeout(() => setAnimate(false), 250);
+    }
+    setLocalVisible(open);
+  }, [localVisible, open]);
+
+  if (!animate && !localVisible) return null;
+
+  const handleSignIn = () => {
+    if (inputID === '') {
+      refID.current?.focus();
+      setDenyMessage('이메일을 입력하세요');
+      return;
+    }
+    if (inputPassword === '') {
+      refPassword.current?.focus();
+      setDenyMessage('비밀번호를 입력하세요');
+      return;
+    }
+    dispatch(loginReq(inputID, inputPassword));
+  };
+
+  const kakaoLoginHandler = () => {
+    try {
+      return new Promise((resolve, reject) => {
+        if (!window.Kakao) {
+          reject('Kakao 인스턴스가 존재하지 않습니다.');
+        }
+        window.Kakao.Auth.login({
+          success: (auth) => {
+            window.Kakao.API.request({
+              url: '/v2/user/me',
+              data: {
+                property_keys: ['kakao_account.email', 'kakao_account.profile'],
+              },
+              success: function (response) {
+                const loginLogic = async () => {
+                  await axios
+                    .post(
+                      `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,
+                      {
+                        response,
+                      },
+                      {
+                        withCredentials: true,
+                      },
+                    )
+                    .then((response) => {
+                      console.log(response.data);
+                      handleCloseBtn();
+                      history.push('/mypage');
+                    });
+                };
+                loginLogic();
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          },
+          fail: (err) => {
+            console.error(err);
+          },
         });
-    }, [open]);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    const handleMoveToPassword = (e) => {
-        if (e.key === 'Enter') {
-            refPassword.current.focus();
-        }
-    };
-
-    const handleMoveToSignIn = (e) => {
-        if (e.key === 'Enter') {
-            handleSignIn();
-        }
-    };
-
-    const handleCloseBtn = () => {
-        setInputID('');
-        setInputPassword('');
-        setDenyMessage('');
-        dispatch(resetLoginMsg());
-        close();
-    };
-
-    const handleInputID = useCallback(
-        (e) => {
-            setInputID(e.target.value);
-        }, [inputID],
-    );
-
-    const handleInputPassword = useCallback(
-        (e) => {
-            setInputPassword(e.target.value);
-        }, [inputPassword],
-    );
-
-    useEffect(() => {
-        if (localVisible && !open) {
-            setAnimate(true);
-            setTimeout(() => setAnimate(false), 250);
-        }
-        setLocalVisible(open);
-    }, [localVisible, open]);
-
-    if (!animate && !localVisible) return null;
-
-    const handleSignIn = () => {
-        dispatch(loginReq(inputID, inputPassword));
-    };
-
-    return ( <
-        >
-        <
-        ModalBack disappear = {!open } >
-        <
-        div className = "modal_outsider"
-        onClick = {
-            (close, handleCloseBtn) } > { ' ' } <
-        /div>{' '} <
-        ModalBox disappear = {!open } >
-        <
-        LoginCloseBtn onClick = {
-            (close, handleCloseBtn) } > X < /LoginCloseBtn>{' '} <
-        LoginWrapper >
-        <
-        h2 > 로그인 < /h2>{' '} <
-        ul >
-        <
-        li >
-        <
-        LoginLabel >
-        <
-        div > ID < /div>{' '} <
-        /LoginLabel>{' '} <
-        LoginInput type = "text"
-        value = { inputID }
-        onChange = { handleInputID }
-        placeholder = "ID를 입력해주세요"
-        onKeyPress = { handleMoveToPassword }
-        ref = { refID }
-        />{' '} <
-        /li>{' '} <
-        li >
-        <
-        LoginLabel >
-        <
-        div > 비밀번호 < /div>{' '} <
-        /LoginLabel>{' '} <
-        LoginInput type = "password"
-        value = { inputPassword }
-        onChange = { handleInputPassword }
-        placeholder = "Password"
-        onKeyPress = { handleMoveToSignIn }
-        ref = { refPassword }
-        />{' '} <
-        /li>{' '} <
-        /ul>{' '} <
-        p className = "deny-message" > { denyMessage } < /p>{' '} <
-        LoginSubmitBtn onClick = { handleSignIn } > 로그인 < /LoginSubmitBtn>{' '} <
-        LoginSocialBtn > 구글 < /LoginSocialBtn>{' '} <
-        LoginSocialBtn > 카카오 < /LoginSocialBtn>{' '} <
-        /LoginWrapper>{' '} <
-        /ModalBox>{' '} <
-        /ModalBack>{' '} <
-        />
-    );
+  return (
+    <>
+      <ModalBack disappear={!open}>
+        <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
+        <ModalBox disappear={!open}>
+          <LoginCloseBtn onClick={(close, handleCloseBtn)}> X </LoginCloseBtn>{' '}
+          <LoginWrapper>
+            <h2> 로그인 </h2>
+            <ul>
+              <li>
+                <LoginLabel>
+                  <div> ID </div>
+                </LoginLabel>
+                <LoginInput
+                  type="text"
+                  value={inputID}
+                  onChange={handleInputID}
+                  placeholder="ID를 입력해주세요"
+                  onKeyPress={handleMoveToPassword}
+                  ref={refID}
+                />
+              </li>
+              <li>
+                <LoginLabel>
+                  <div> 비밀번호 </div>
+                </LoginLabel>
+                <LoginInput
+                  type="password"
+                  value={inputPassword}
+                  onChange={handleInputPassword}
+                  placeholder="Password"
+                  onKeyPress={handleMoveToSignIn}
+                  ref={refPassword}
+                />
+              </li>
+            </ul>
+            <p className="deny-message"> {denyMessage} </p>
+            <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
+            <LoginSocialBtn> 구글 </LoginSocialBtn>
+            <LoginSocialBtn onClick={kakaoLoginHandler}>
+              {' '}
+              카카오{' '}
+            </LoginSocialBtn>
+          </LoginWrapper>
+        </ModalBox>
+      </ModalBack>
+    </>
+  );
 };
 
 export default withRouter(LoginModal);

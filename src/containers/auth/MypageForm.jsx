@@ -29,6 +29,7 @@ const MyPageForm = () => {
   );
 
   const [infoData, setInfoData] = useState('');
+  const [heroListNumber, setHeroListNumber] = useState(0);
 
   useEffect(() => {
     dispatch(userInfoReq(token));
@@ -36,8 +37,7 @@ const MyPageForm = () => {
 
   useEffect(() => {
     if (info) {
-      console.log('??', info);
-      const { id, email, username } = info.data;
+      const { email, username } = info.data;
       setInfoData({ email, username });
     }
   }, [info]);
@@ -54,6 +54,9 @@ const MyPageForm = () => {
     dispatch(albumDetailModal());
   };
 
+  const herohandler = (data) => {
+    setHeroListNumber(data);
+  };
   return (
     <>
       <MyPageWrapper>
@@ -74,13 +77,18 @@ const MyPageForm = () => {
           <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
         </ButtonWrapper>
         <MyPageSlide>
-          <Hero slides={SliderData} openModal={openDetailModal} />
+          <Hero
+            slides={SliderData}
+            openModal={openDetailModal}
+            herohandler={herohandler}
+          />
         </MyPageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
             slides={SliderData}
             open={checkModal}
             close={shutModal}
+            heroListNumber={heroListNumber}
           />
         )}
         {isType === 'info' && (

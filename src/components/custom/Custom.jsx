@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import RegisterModal from '../../components/auth/RegisterModal';
+import { registerModal, closeModal } from '../../modules/modal';
 import {
   Container,
   MainContentWrapper,
@@ -28,6 +32,23 @@ const Custom = () => {
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
+  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    isLogin: user.isLogin,
+  }));
+  const dispatch = useDispatch();
+
+  const openRegisterModal = () => {
+    dispatch(registerModal());
+  };
+
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
 
   const handleChangeFile = (e) => {
     let reader = new FileReader();
@@ -60,6 +81,33 @@ const Custom = () => {
   const handleChangeColor = (color) => {
     setColor(color.hex);
     console.log(color.hex);
+  };
+
+  const submitHandler = async () => {
+    if (!color || !imgFile || !imgFile1) {
+      alert('모두 입력되어야 등록이 가능합니다.');
+      return;
+    } else if (!token) {
+      openRegisterModal();
+    }
+
+    const formData = new FormData();
+    formData.append('color', color);
+    formData.append('albumPic', imgFile);
+    formData.append('recordPic', imgFile1);
+
+    await axios.post(
+      `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      },
+    );
+    history.push('/mypage');
   };
 
   return (
@@ -111,11 +159,14 @@ const Custom = () => {
                   />
                 </CustomCenterCover>
               </CustomElement>
-              <SaveBtn onClick={() => history.push('/')}>Save</SaveBtn>
+              <SaveBtn onClick={submitHandler}>Save</SaveBtn>
             </CustomContent>
           </SectionWrapper>
         </MainContentWrapper>
       </Container>
+      {isType === 'register' && (
+        <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
+      )}
     </>
   );
 };

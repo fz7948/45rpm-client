@@ -60,10 +60,9 @@ const SongContainer = styled.div`
   width: 100%;
 `;
 
-const AlbumDetailModal = ({ open, close, slides }) => {
+const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
-  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (localVisible && !open) {
@@ -84,7 +83,7 @@ const AlbumDetailModal = ({ open, close, slides }) => {
           {slides.map((slide, index) => {
             return (
               <InfoWrapper key={index}>
-                {index === current && (
+                {index === heroListNumber && (
                   <>
                     <h2> 앨범 정보 </h2>
                     <ul>
