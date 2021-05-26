@@ -78,14 +78,20 @@ const Button = styled.button`
 
 const Inquires = () => {
   const dispatch = useDispatch();
-  const { checkModal, token, questionList, isType } = useSelector(
-    ({ modal, user, question }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      token: user.token,
-      questionList: question.questionList,
-    }),
-  );
+  const {
+    checkModal,
+    token,
+    questionList,
+    isType,
+    questionAdd,
+    questionUpdate,
+    questionListDelete,
+  } = useSelector(({ modal, user, question }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    token: user.token,
+    questionList: question.questionList,
+  }));
 
   const [lnquireList, setLnquireList] = useState({ data: [{}] });
 
@@ -99,7 +105,7 @@ const Inquires = () => {
 
   useEffect(() => {
     dispatch(questionListReq(token));
-  }, []);
+  }, [questionListDelete, questionAdd, questionUpdate]);
 
   useEffect(() => {
     if (questionList) {

@@ -101,6 +101,10 @@ const initialState = {
   questionListError: null,
   questionListDelete: null,
   questionListDeleteError: null,
+  questionAdd: null,
+  questionAddError: null,
+  questionUpdate: null,
+  questionUpdateError: null,
 };
 
 function question(state = initialState, action) {
@@ -108,38 +112,38 @@ function question(state = initialState, action) {
     case QUESTION_ADD:
       return {
         ...state,
-        questionList: null,
-        questionListError: null,
+        questionAdd: null,
+        questionAddError: null,
       };
     case QUESTION_ADD_SUCCESS:
       return {
         ...state,
-        questionList: action.questionAdd,
-        questionListError: null,
+        questionAdd: action.questionAdd,
+        questionAddError: null,
       };
     case QUESTION_ADD_FAILURE:
       return {
         ...state,
-        questionList: null,
-        questionListError: action.questionAddError,
+        questionAdd: null,
+        questionAddError: action.questionAddError,
       };
     case QUESTION_UPDATE:
       return {
         ...state,
-        questionList: null,
-        questionListError: null,
+        questionUpdate: null,
+        questionUpdateError: null,
       };
     case QUESTION_UPDATE_SUCCESS:
       return {
         ...state,
-        questionList: action.questionUpdate,
-        questionListError: null,
+        questionUpdate: action.questionUpdate,
+        questionUpdateError: null,
       };
     case QUESTION_UPDATE_FAILURE:
       return {
         ...state,
-        questionList: null,
-        questionListError: action.questionUpdateError,
+        questionUpdate: null,
+        questionUpdateError: action.questionUpdateError,
       };
     case QUESTION_LIST:
       return {
