@@ -29,6 +29,7 @@ import {
 } from '../common/CustomStyle';
 import { customAddReq } from '../../modules/custom';
 const Custom = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
   const [imgFile, setImgFile] = useState(null);
@@ -43,7 +44,6 @@ const Custom = () => {
     token: user.token,
   }));
   const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
-
     checkModal: modal.checkModal,
     isType: modal.isType,
     token: user.token,
@@ -90,7 +90,6 @@ const Custom = () => {
     console.log(color.hex);
   };
 
-
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -101,7 +100,6 @@ const Custom = () => {
 
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
-
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
     } else if (!token) {
