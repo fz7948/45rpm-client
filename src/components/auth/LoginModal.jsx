@@ -11,7 +11,6 @@ import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -252,9 +251,10 @@ const LoginModal = ({ open, close, history }) => {
                 ],
               },
               success: function (response) {
-                dispatch(kakaoLoginReq(response));
-                alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
-                history.push('/mypage');
+                dispatch(kakaoLoginReq(response)).then(() => {
+                  alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
+                  history.push('/mypage');
+                });
               },
               fail: function (error) {
                 console.log(error);
