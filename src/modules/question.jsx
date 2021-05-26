@@ -95,11 +95,12 @@ export const questionDeleteReq = (token, questionId) => async (dispatch) => {
 export const resetAddQuestion = () => ({ type: QUESTION_ADD });
 export const resetUpdateQuestion = () => ({ type: QUESTION_UPDATE });
 export const resetListQuestion = () => ({ type: QUESTION_LIST });
-export const resetDeleteQuestion = () => ({ type: QUESTION_DELETE });
 
 const initialState = {
   questionList: null,
   questionListError: null,
+  questionListDelete: null,
+  questionListDeleteError: null,
 };
 
 function question(state = initialState, action) {
@@ -161,20 +162,20 @@ function question(state = initialState, action) {
     case QUESTION_DELETE:
       return {
         ...state,
-        questionList: null,
-        questionListError: null,
+        questionListDelete: null,
+        questionListDeleteError: null,
       };
     case QUESTION_DELETE_SUCCESS:
       return {
         ...state,
-        questionList: action.questionDelete,
-        questionListError: null,
+        questionListDelete: action.questionDelete,
+        questionListDeleteError: null,
       };
     case QUESTION_DELETE_FAILURE:
       return {
         ...state,
-        questionList: null,
-        questionListError: action.questionDeleteError,
+        questionListDelete: null,
+        questionListDeleteError: action.questionDeleteError,
       };
     default:
       return state;

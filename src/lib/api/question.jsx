@@ -49,16 +49,17 @@ export const questionList = async ({ token }) => {
 };
 
 export const questionDelete = async ({ token, questionId }) => {
+  console.log('토큰?', token);
   const response = await axios.delete(
     `${process.env.REACT_APP_SERVER_URI}/user/question/delete`,
-    { data: { questionId } },
     {
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
+      data: { questionId },
+      withCredentials: true,
     },
-    { withCredentials: true },
   );
   console.log('delete 요청 확인', response.data);
   return response.data;
