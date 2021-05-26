@@ -16,27 +16,28 @@ const QUESTION_DELETE = 'QUESTION_DELETE';
 const QUESTION_DELETE_SUCCESS = 'QUESTION_DELETE_SUCCESS';
 const QUESTION_DELETE_FAILURE = 'QUESTION_DELETE_FAILURE';
 
-export const questionAddReq =
-  (title, contents, category, token) => async (dispatch) => {
-    dispatch({ type: QUESTION_ADD });
-    try {
-      const questionRes = await questionAPI.questionAdd({
-        title,
-        contents,
-        category,
-        token,
-      });
-      dispatch({
-        type: QUESTION_ADD_SUCCESS,
-        questionAdd: questionRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_ADD_FAILURE,
-        questionAddError: error,
-      });
-    }
-  };
+export const questionAddReq = (title, contents, category, token) => async (
+  dispatch,
+) => {
+  dispatch({ type: QUESTION_ADD });
+  try {
+    const questionRes = await questionAPI.questionAdd({
+      title,
+      contents,
+      category,
+      token,
+    });
+    dispatch({
+      type: QUESTION_ADD_SUCCESS,
+      questionAdd: questionRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_ADD_FAILURE,
+      questionAddError: error,
+    });
+  }
+};
 
 export const questionUpdateReq = () => async (dispatch) => {
   dispatch({ type: QUESTION_UPDATE });
@@ -71,10 +72,13 @@ export const questionListReq = (token) => async (dispatch) => {
   }
 };
 
-export const questionDeleteReq = (token) => async (dispatch) => {
+export const questionDeleteReq = (token, questionId) => async (dispatch) => {
   dispatch({ type: QUESTION_DELETE });
   try {
-    const questionDeleteRes = await questionAPI.questionDelete({ token });
+    const questionDeleteRes = await questionAPI.questionDelete({
+      token,
+      questionId,
+    });
     dispatch({
       type: QUESTION_DELETE_SUCCESS,
       questionDelete: questionDeleteRes,
@@ -94,14 +98,8 @@ export const resetListQuestion = () => ({ type: QUESTION_LIST });
 export const resetDeleteQuestion = () => ({ type: QUESTION_DELETE });
 
 const initialState = {
-  questionAdd: null,
-  questionAddError: null,
-  questionUpdate: null,
-  questionUpdateError: null,
   questionList: null,
   questionListError: null,
-  questionDelete: null,
-  questionDeleteError: null,
 };
 
 function question(state = initialState, action) {
@@ -109,38 +107,38 @@ function question(state = initialState, action) {
     case QUESTION_ADD:
       return {
         ...state,
-        questionAdd: null,
-        questionAddError: null,
+        questionList: null,
+        questionListError: null,
       };
     case QUESTION_ADD_SUCCESS:
       return {
         ...state,
-        questionAdd: action.questionAdd,
-        questionAddError: null,
+        questionList: action.questionAdd,
+        questionListError: null,
       };
     case QUESTION_ADD_FAILURE:
       return {
         ...state,
-        questionAdd: null,
-        questionAddError: action.questionAddError,
+        questionList: null,
+        questionListError: action.questionAddError,
       };
     case QUESTION_UPDATE:
       return {
         ...state,
-        questionUpdate: null,
-        questionUpdateError: null,
+        questionList: null,
+        questionListError: null,
       };
     case QUESTION_UPDATE_SUCCESS:
       return {
         ...state,
-        questionUpdate: action.questionUpdate,
-        questionUpdateError: null,
+        questionList: action.questionUpdate,
+        questionListError: null,
       };
     case QUESTION_UPDATE_FAILURE:
       return {
         ...state,
-        questionUpdate: null,
-        questionUpdateError: action.questionUpdateError,
+        questionList: null,
+        questionListError: action.questionUpdateError,
       };
     case QUESTION_LIST:
       return {
@@ -163,20 +161,20 @@ function question(state = initialState, action) {
     case QUESTION_DELETE:
       return {
         ...state,
-        questionDelete: null,
-        questionDeleteError: null,
+        questionList: null,
+        questionListError: null,
       };
     case QUESTION_DELETE_SUCCESS:
       return {
         ...state,
-        questionDelete: action.questionDelete,
-        questionDeleteError: null,
+        questionList: action.questionDelete,
+        questionListError: null,
       };
     case QUESTION_DELETE_FAILURE:
       return {
         ...state,
-        questionDelete: null,
-        questionDeleteError: action.questionDeleteError,
+        questionList: null,
+        questionListError: action.questionDeleteError,
       };
     default:
       return state;

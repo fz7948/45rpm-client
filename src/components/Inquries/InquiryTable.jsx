@@ -4,6 +4,11 @@ import CommonTableRow from '../table/CommonTableRow';
 import { Link } from 'react-router-dom';
 
 const Inquiry = ({ inquiry, handleRemove }) => {
+  const handleDelete = () => {
+    console.log(inquiry);
+    handleRemove(inquiry._id);
+  };
+
   return (
     <CommonTableRow>
       <CommonTableColumn>{inquiry.userId}</CommonTableColumn>
@@ -23,7 +28,7 @@ const Inquiry = ({ inquiry, handleRemove }) => {
       <CommonTableColumn>{inquiry.createdAt}</CommonTableColumn>
       <CommonTableColumn>
         <button>관리</button>
-        <button onClick={() => handleRemove(inquiry.id)}>삭제</button>
+        <button onClick={handleDelete}>삭제</button>
       </CommonTableColumn>
     </CommonTableRow>
   );
