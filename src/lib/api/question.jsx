@@ -47,3 +47,17 @@ export const questionList = async ({ token }) => {
   );
   return response.data;
 };
+
+export const questionDelete = async ({ token }) => {
+  const response = await axios.delete(
+    `${process.env.REACT_APP_SERVER_URI}/user/question/delete`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
+  return response.data;
+};

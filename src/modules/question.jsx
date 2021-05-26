@@ -12,28 +12,31 @@ const QUESTION_LIST = 'QUESTION_LIST';
 const QUESTION_LIST_SUCCESS = 'QUESTION_LIST_SUCCESS';
 const QUESTION_LIST_FAILURE = 'QUESTION_LIST_FAILURE';
 
-export const questionAddReq = (title, contents, category, token) => async (
-  dispatch,
-) => {
-  dispatch({ type: QUESTION_ADD });
-  try {
-    const questionRes = await questionAPI.questionAdd({
-      title,
-      contents,
-      category,
-      token,
-    });
-    dispatch({
-      type: QUESTION_ADD_SUCCESS,
-      questionAdd: questionRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: QUESTION_ADD_FAILURE,
-      questionAddError: error,
-    });
-  }
-};
+const QUESTION_DELETE = 'QUESTION_DELETE';
+const QUESTION_DELETE_SUCCESS = 'QUESTION_DELETE_SUCCESS';
+const QUESTION_DELETE_FAILURE = 'QUESTION_DELETE_FAILURE';
+
+export const questionAddReq =
+  (title, contents, category, token) => async (dispatch) => {
+    dispatch({ type: QUESTION_ADD });
+    try {
+      const questionRes = await questionAPI.questionAdd({
+        title,
+        contents,
+        category,
+        token,
+      });
+      dispatch({
+        type: QUESTION_ADD_SUCCESS,
+        questionAdd: questionRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: QUESTION_ADD_FAILURE,
+        questionAddError: error,
+      });
+    }
+  };
 
 export const questionUpdateReq = () => async (dispatch) => {
   dispatch({ type: QUESTION_UPDATE });
@@ -68,9 +71,27 @@ export const questionListReq = (token) => async (dispatch) => {
   }
 };
 
+export const questionDeleteReq = (token) => async (dispatch) => {
+  dispatch({ type: QUESTION_DELETE });
+  try {
+    const questionDeleteRes = await questionAPI.questionDelete({ token });
+    dispatch({
+      type: QUESTION_DELETE_SUCCESS,
+      questionDelete: questionDeleteRes,
+    });
+  } catch (error) {
+    console.log('DELETE ERROR', error);
+    dispatch({
+      type: QUESTION_DELETE_FAILURE,
+      questionDeleteError: error,
+    });
+  }
+};
+
 export const resetAddQuestion = () => ({ type: QUESTION_ADD });
 export const resetUpdateQuestion = () => ({ type: QUESTION_UPDATE });
 export const resetListQuestion = () => ({ type: QUESTION_LIST });
+export const resetDeleteQuestion = () => ({ type: QUESTION_DELETE });
 
 const initialState = {
   questionAdd: null,
@@ -79,6 +100,8 @@ const initialState = {
   questionUpdateError: null,
   questionList: null,
   questionListError: null,
+  questionDelete: null,
+  questionDeleteError: null,
 };
 
 function question(state = initialState, action) {
@@ -136,6 +159,24 @@ function question(state = initialState, action) {
         ...state,
         questionList: null,
         questionListError: action.questionListError,
+      };
+    case QUESTION_DELETE:
+      return {
+        ...state,
+        questionDelete: null,
+        questionDeleteError: null,
+      };
+    case QUESTION_DELETE_SUCCESS:
+      return {
+        ...state,
+        questionDelete: action.questionDelete,
+        questionDeleteError: null,
+      };
+    case QUESTION_DELETE_FAILURE:
+      return {
+        ...state,
+        questionDelete: null,
+        questionDeleteError: action.questionDeleteError,
       };
     default:
       return state;

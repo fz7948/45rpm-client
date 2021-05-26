@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -9,7 +9,7 @@ export const Container = styled.div `
   background: linear-gradient(120deg, #03154e, #311788);
 `;
 
-export const MainContentWrapper = styled.div `
+export const MainContentWrapper = styled.div`
   flex: 1;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ export const MainContentWrapper = styled.div `
   flex-direction: column;
 `;
 
-export const SectionWrapper = styled.div `
+export const SectionWrapper = styled.div`
   display: flex;
   width: inherit;
   height: inherit;
@@ -28,14 +28,14 @@ export const SectionWrapper = styled.div `
   }
 `;
 
-export const CdCaseContent = styled.div `
+export const CdCaseContent = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
   height: 100%;
 `;
 
-export const Disk = styled.div `
+export const Disk = styled.div`
   flex: 1;
   position: absolute;
   width: 470px;
@@ -66,7 +66,7 @@ export const Disk = styled.div `
   }
 `;
 
-export const InnerDisk = styled.div `
+export const InnerDisk = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -91,7 +91,7 @@ export const InnerDisk = styled.div `
     height: 100px;
   }
 `;
-export const Img1 = styled.img `
+export const Img1 = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -101,7 +101,7 @@ export const Img1 = styled.img `
   }
 `;
 
-export const CoverImg = styled.div `
+export const CoverImg = styled.div`
   flex: 1;
   z-index: 1;
   transform: translateX(-40%);
@@ -119,12 +119,12 @@ export const CoverImg = styled.div `
   }
 `;
 
-export const Img = styled.img `
+export const Img = styled.img`
   width: inherit;
   height: inherit;
 `;
 
-export const CustomContent = styled.div `
+export const CustomContent = styled.div`
   flex: 1;
   width: 100%;
   height: 100%;
@@ -132,7 +132,7 @@ export const CustomContent = styled.div `
   flex-direction: column;
 `;
 
-export const CustomElement = styled.div `
+export const CustomElement = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -149,7 +149,7 @@ export const CustomElement = styled.div `
   }
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   width: 10rem;
   height: 3rem;
   font-size: 1rem;
@@ -162,7 +162,7 @@ export const Button = styled.button `
   color: #fff;
 `;
 
-const Input = css `
+const Input = css`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -177,19 +177,27 @@ const Input = css `
   }
 `;
 
-export const CustomColor = styled.div `
+export const CustomColor = styled.div`
   ${Input}
 `;
 
-export const CustomAlbumCover = styled.div `
+export const CustomAlbumCover = styled.div`
   ${Input}
 `;
 
-export const CustomCenterCover = styled.div `
+export const CustomCenterCover = styled.div`
   ${Input}
 `;
 
-export const InputFile = styled.input `
+export const CustomTitleCover = styled.div`
+  ${Input}
+`;
+
+export const CustomSongListCover = styled.div`
+  ${Input}
+`;
+
+export const InputFile = styled.input`
   color: #fff;
   font-family: 'Lato', sans-serif;
   font-size: 1rem;
@@ -206,7 +214,17 @@ export const InputFile = styled.input `
   }
 `;
 
-export const SaveBtn = styled.button `
+export const TextInput = styled.input`
+  font-size: 18px;
+  border: none;
+  border-radius: 3px;
+  ::placeholder {
+    color: plum;
+  }
+  background-color: '#000';
+`;
+
+export const SaveBtn = styled.button`
   background: transparent;
   color: #fff;
   border: none;
