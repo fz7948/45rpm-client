@@ -17,38 +17,42 @@ const Inquires = () => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+    }
   `;
   const HeaderWrapper = styled.div`
     display: flex;
-    width: inherit;
-    height: inherit;
-  `;
-  const InquiryIntro = styled.div`
-    display: flex;
     justify-content: center;
     align-items: center;
-    width: inherit;
-    height: inherit;
+    background: lightgray;
+    width: 100%;
+    padding: 3rem 0;
+    @media screen and (max-width: 768px) {
+      padding: 4rem 0;
+    }
+  `;
+  const InquiryIntro = styled.div`
     font-size: 2.5rem;
     background: lightgray;
 
     @media screen and (max-width: 768px) {
       font-size: 2rem;
-      padding-top: 1rem;
-      width: inherit;
-      height: inherit;
     }
   `;
 
   const ButtonWrapper = styled.div`
-    width: inherit;
-    height: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5rem;
   `;
   const Button = styled.button`
     width: calc(15vw + 6px);
@@ -58,6 +62,7 @@ const Inquires = () => {
     font-family: 'Jua', sans-serif;
     outline: none;
     background-color: #eee;
+
     cursor: pointer;
     &:hover {
       background-color: #ddd;
@@ -136,7 +141,7 @@ const Inquires = () => {
       </HeaderWrapper>
       <CommonTable
         headersName={[
-          '글 번호',
+          '작성자',
           '카테고리',
           '제목',
           '답변 상태',
@@ -146,9 +151,7 @@ const Inquires = () => {
       >
         <InquiryTable lnquireList={lnquireList} handleRemove={handleRemove} />
       </CommonTable>
-      <ButtonWrapper>
-        <Button onClick={openInquiryModal}>문의하기</Button>
-      </ButtonWrapper>
+
       {isType === 'inquiry' && (
         <InquiryModal
           open={checkModal}
@@ -156,6 +159,9 @@ const Inquires = () => {
           onSubmitHand={onSubmitHand}
         ></InquiryModal>
       )}
+      <ButtonWrapper>
+        <Button onClick={openInquiryModal}>문의하기</Button>
+      </ButtonWrapper>
     </Container>
   );
 };

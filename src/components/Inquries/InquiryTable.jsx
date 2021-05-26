@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 const Inquiry = ({ inquiry, handleRemove }) => {
   return (
     <CommonTableRow>
-      <CommonTableColumn>{inquiry.id}</CommonTableColumn>
+      <CommonTableColumn>{inquiry.userId}</CommonTableColumn>
       <CommonTableColumn>{inquiry.category}</CommonTableColumn>
       <CommonTableColumn>
         <Link
-          to={`/InquiryView/${inquiry.id}`}
+          to={`/InquiryView/${inquiry.userId}`}
           style={{ textDecoration: 'none', color: '#000', fontWeight: 'bold' }}
         >
           {inquiry.title}
@@ -23,7 +23,7 @@ const Inquiry = ({ inquiry, handleRemove }) => {
       <CommonTableColumn>{inquiry.createdAt}</CommonTableColumn>
       <CommonTableColumn>
         <button>관리</button>
-        <button onClick={() => handleRemove(inquiry.id)}>삭제</button>
+        <button onClick={() => handleRemove(inquiry.userId)}>삭제</button>
       </CommonTableColumn>
     </CommonTableRow>
   );
