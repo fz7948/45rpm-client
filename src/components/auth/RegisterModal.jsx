@@ -142,7 +142,6 @@ const RegisterModal = ({ open, close, history }) => {
       return;
     }
     if (register) {
-      alert(register.message);
       //모달로 만들어야함
       history.push('/');
       handleCloseBtn();

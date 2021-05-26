@@ -34,26 +34,26 @@ const AlertFont = styled.div`
   word-break: keep-all;
 `;
 
-const AlertModal = ({ openModal, closeModal, comment }) => {
+const AlertModal = ({ openHandle, closeHandle, comment }) => {
   const [animate, setAnimate] = useState(false);
-  const [localVisible, setLocalVisible] = useState(openModal);
+  const [localVisible, setLocalVisible] = useState(openHandle);
 
   useEffect(() => {
-    if (localVisible && !openModal) {
+    if (localVisible && !openHandle) {
       setAnimate(true);
       setTimeout(() => setAnimate(false), 250);
     }
-    setLocalVisible(openModal);
-  }, [localVisible, openModal]);
+    setLocalVisible(openHandle);
+  }, [localVisible, openHandle]);
 
   if (!animate && !localVisible) return null;
 
   return (
     <>
-      <ModalBack disappear={!openModal}>
-        <div className="modal_outsider" onClick={closeModal}></div>
-        <ModalBox disappear={!openModal} alert>
-          <AlertCloseBtn onClick={closeModal}>X</AlertCloseBtn>
+      <ModalBack disappear={!openHandle}>
+        <div className="modal_outsider" onClick={closeHandle}></div>
+        <ModalBox disappear={!openHandle} alert>
+          <AlertCloseBtn onClick={closeHandle}>X</AlertCloseBtn>
           <AlertIcon>
             <FaExclamation />
           </AlertIcon>

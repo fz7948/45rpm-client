@@ -6,6 +6,9 @@ const ALBUM_DETAIL_MODAL = 'ALBUM_DETAIL_MODAL';
 const INFO_MODAL = 'INFO_MODAL';
 const INQUIRY_MODAL = 'INQUIRY_MODAL';
 
+const ALERT_MODAL_SUCCESS = 'ALERT_MODAL_SUCCESS';
+const ALERT_MODAL_FAILURE = 'ALERT_MODAL_FAILURE';
+
 export const showModal = () => ({ type: SHOW_MODAL });
 export const loginModal = () => ({ type: LOGIN_MODAL });
 export const registerModal = () => ({ type: REGISTER_MODAL });
@@ -14,9 +17,13 @@ export const infoModal = () => ({ type: INFO_MODAL });
 export const inquiryModal = () => ({ type: INQUIRY_MODAL });
 export const closeModal = () => ({ type: CLOSE_MODAL });
 
+export const alertOpenModal = () => ({ type: ALERT_MODAL_SUCCESS });
+export const alertCloseModal = () => ({ type: ALERT_MODAL_FAILURE });
+
 const initialState = {
   checkModal: false,
   isType: null,
+  alertCheck: false,
 };
 
 export default function modal(state = initialState, action) {
@@ -55,6 +62,16 @@ export default function modal(state = initialState, action) {
       return {
         checkModal: false,
         isType: null,
+      };
+    case ALERT_MODAL_SUCCESS:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alert',
+      };
+    case ALERT_MODAL_FAILURE:
+      return {
+        alertCheck: false,
       };
     default:
       return state;
