@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Inquiry = ({ inquiry, handleRemove }) => {
   const handleDelete = () => {
-    console.log(inquiry);
+    console.log('문의 리스트', inquiry);
     handleRemove(inquiry._id);
   };
 
@@ -15,7 +15,7 @@ const Inquiry = ({ inquiry, handleRemove }) => {
       <CommonTableColumn>{inquiry.category}</CommonTableColumn>
       <CommonTableColumn>
         <Link
-          to={`/InquiryView/${inquiry.userId}`}
+          to={`/InquiryView/${inquiry._id}`}
           style={{ textDecoration: 'none', color: '#000', fontWeight: 'bold' }}
         >
           {inquiry.title}

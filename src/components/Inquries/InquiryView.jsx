@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ViewTable from './ViewTable';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   display: flex;
@@ -40,31 +40,34 @@ const H2Title = styled.h2`
 `;
 
 const InquiryView = ({ match }) => {
-  console.log('매치가 뭐야', match);
-  const dispatch = useDispatch();
   const { questionList } = useSelector(({ question }) => ({
     questionList: question.questionList,
   }));
+
+  const [data, setData] = useState({ data: [{}] });
+  const { id } = match.params;
 
   useEffect(() => {
     if (questionList) {
       setData(questionList.data);
     }
-  }, [questionList]);
+  }, []);
 
-  const [data, setData] = useState({});
-  const { id } = match.params;
-
-  const filterData = () => {
-    questionList.data.filter((el) => el._id);
+  const filterData = (id) => {
+    console.log('id', id);
+    const array = questionList.data.filter((el) => el._id === `${id}`);
+    console.log('array??', array);
+    return array;
   };
 
-  console.log('데이터가 뭐니', data);
-  console.log('아이디가 뭐니', id);
+  useEffect(() => {
+    setData(filterData(id));
+  }, []);
+
   return (
     <Container>
       <H2Title>문의 상세정보</H2Title>
-      <ViewTable data={data} userId={id} />
+      <ViewTable data={data} key={data._id} />
     </Container>
   );
 };

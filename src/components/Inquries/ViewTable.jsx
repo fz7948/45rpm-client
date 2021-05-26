@@ -118,31 +118,31 @@ const Button = styled.button`
 
 const View = ({ view }) => {
   const history = useHistory();
-
+  console.log('뷰', view);
   return (
     <>
-      {view ? (
+      {view.length > 0 && (
         <InquiryWrapper>
           <InquiryCollection>
             <InquiryRow>
               <label>작성자</label>
-              <label>{view.userId}</label>
+              <label>{view[0].userId}</label>
             </InquiryRow>
             <InquiryRow>
               <label>카테고리</label>
-              <label>{view.category}</label>
+              <label>{view[0].category}</label>
             </InquiryRow>
             <InquiryRow>
               <label>제목</label>
-              <label>{view.title}</label>
+              <label>{view[0].title}</label>
             </InquiryRow>
             <InquiryRow>
               <label>등록일</label>
-              <label>{view.createdAt}</label>
+              <label>{view[0].createdAt}</label>
             </InquiryRow>
             <InquiryRow>
               <label>내용</label>
-              <label>{view.content}</label>
+              <label>{view[0].contents}</label>
             </InquiryRow>
           </InquiryCollection>
           <ButtonWrapper>
@@ -151,18 +151,15 @@ const View = ({ view }) => {
             </ButtonWrap>
           </ButtonWrapper>
         </InquiryWrapper>
-      ) : (
-        '해당 게시글을 찾을 수 없습니다.'
       )}
     </>
   );
 };
 
-const ViewTable = ({ data, userId }) => {
-  console.log('!!!!!!!HEY', data);
+const ViewTable = ({ data }) => {
   return (
     <>
-      <View view={data} key={userId} />
+      <View view={data} key={data._id} />
     </>
   );
 };
