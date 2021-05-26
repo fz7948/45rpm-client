@@ -91,23 +91,18 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
                         <InfoLabel>
                           <div> Producer </div>
                         </InfoLabel>
-                        <div> {slide.producer} </div>
-                      </li>
-                      <li>
-                        <InfoLabel>
-                          <div> Genre </div>
-                        </InfoLabel>
-                        <div> {slide.genre} </div>
+                        <div> {slide.userId} </div>
                       </li>
                       <li>
                         <InfoLabel>
                           <div> Title </div>
                         </InfoLabel>
-                        <div> {slide.song} </div>
+                        <div> {slide.title} </div>
                       </li>
                       <li>
                         <InfoLabel>
                           <div> Song List </div>
+                          {/* 배열로 들어오는 제목들 추가해야 합니다 */}
                         </InfoLabel>
                         <SongContainer>
                           <DragDrop />

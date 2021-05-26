@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CommonTableColumn from '../table/CommonTableColumn';
 import CommonTableRow from '../table/CommonTableRow';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 const Inquiry = ({ inquiry, handleRemove }) => {
   return (
     <CommonTableRow>
-      <CommonTableColumn>{inquiry.id}</CommonTableColumn>
+      <CommonTableColumn>{inquiry.userId}</CommonTableColumn>
       <CommonTableColumn>{inquiry.category}</CommonTableColumn>
       <CommonTableColumn>
         <Link
-          to={`/InquiryView/${inquiry.id}`}
+          to={`/InquiryView/${inquiry.userId}`}
           style={{ textDecoration: 'none', color: '#000', fontWeight: 'bold' }}
         >
           {inquiry.title}
@@ -29,17 +29,17 @@ const Inquiry = ({ inquiry, handleRemove }) => {
   );
 };
 
-const InquiryTable = ({ dataGroup, handleRemove }) => {
-  console.log(dataGroup);
+const InquiryTable = ({ lnquireList, handleRemove }) => {
   return (
     <>
-      {dataGroup.map((inquiry) => (
-        <Inquiry
-          inquiry={inquiry}
-          key={inquiry.id}
-          handleRemove={handleRemove}
-        />
-      ))}
+      {lnquireList.data &&
+        lnquireList.data.map((inquiry) => (
+          <Inquiry
+            inquiry={inquiry}
+            key={inquiry.id}
+            handleRemove={handleRemove}
+          />
+        ))}
     </>
   );
 };

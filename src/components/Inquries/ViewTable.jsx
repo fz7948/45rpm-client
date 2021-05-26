@@ -144,7 +144,6 @@ const View = ({ view }) => {
               <label>{view.content}</label>
             </InquiryRow>
           </InquiryCollection>
-
           <ButtonWrapper>
             <ButtonWrap onClick={() => history.goBack()}>
               목록으로 돌아가기
