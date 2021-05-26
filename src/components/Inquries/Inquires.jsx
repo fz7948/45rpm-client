@@ -112,11 +112,9 @@ const Inquires = () => {
     if (questionList) {
       setLnquireList(questionList);
     }
-  }, [dispatch, questionList]);
+  }, []);
 
-  // useEffect(() => {
-  //   dispatch(questionDeleteReq(token));
-  // }, []);
+  useEffect(() => {}, []);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
@@ -129,10 +127,10 @@ const Inquires = () => {
   };
 
   const handleRemove = (id) => {
-    setLnquireList(lnquireList.data.filter((el) => el.id !== id));
-    console.log('@@@@@@@@@@,,,.Remove', lnquireList);
+    dispatch(questionDeleteReq(token));
+    const newList = lnquireList.data.filter((el) => el.id !== id);
+    setLnquireList(newList);
   };
-  console.log(',,,.Remove111111111', lnquireList.data);
 
   return (
     <Container>

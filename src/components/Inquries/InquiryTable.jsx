@@ -23,7 +23,7 @@ const Inquiry = ({ inquiry, handleRemove }) => {
       <CommonTableColumn>{inquiry.createdAt}</CommonTableColumn>
       <CommonTableColumn>
         <button>관리</button>
-        <button onClick={() => handleRemove(inquiry.userId)}>삭제</button>
+        <button onClick={() => handleRemove(inquiry.id)}>삭제</button>
       </CommonTableColumn>
     </CommonTableRow>
   );
@@ -32,13 +32,14 @@ const Inquiry = ({ inquiry, handleRemove }) => {
 const InquiryTable = ({ lnquireList, handleRemove }) => {
   return (
     <>
-      {lnquireList.data.map((inquiry) => (
-        <Inquiry
-          inquiry={inquiry}
-          key={inquiry.id}
-          handleRemove={handleRemove}
-        />
-      ))}
+      {lnquireList.data &&
+        lnquireList.data.map((inquiry) => (
+          <Inquiry
+            inquiry={inquiry}
+            key={inquiry.id}
+            handleRemove={handleRemove}
+          />
+        ))}
     </>
   );
 };
