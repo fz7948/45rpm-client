@@ -1,4 +1,5 @@
 import * as authAPI from '../lib/api/auth';
+import { loginKakao } from '../modules/user';
 
 const REGISTER = 'REGISTER';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -63,20 +64,27 @@ export const loginReq = (id, password) => async (dispatch) => {
 export const kakaoLoginReq = (data) => async (dispatch) => {
   dispatch({ type: KAKAO_LOGIN });
   try {
-
     const kakaoLoginRes = await authAPI.kakaoLogin(data);
     console.log('kakao 로그인 Res', kakaoLoginRes);
 
+    const token = document.cookie.split('=')[1];
+    console.log('토큰 확인', token);
+    const payload = {
+      id: kakaoLoginRes.data.id,
+      email: kakaoLoginRes.data.email,
+      username: kakaoLoginRes.data.username,
+      token: token,
+    };
+    dispatch(loginKakao(payload));
     dispatch({
       type: KAKAO_LOGIN_SUCCESS,
       login: kakaoLoginRes,
     });
   } catch (error) {
+    console.error(error);
     dispatch({
-
       type: KAKAO_LOGIN_FAILURE,
       loginError: error.response.data.message,
-
     });
   }
 };

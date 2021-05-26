@@ -3,9 +3,18 @@ import * as authAPI from '../lib/api/auth';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const WITHDRAW = 'WITHDRAW';
+const KAKAO_LOGIN = 'KAKAO_LOGIN';
 
 export const loginUser = ({ id, email, username, token }) => ({
   type: LOGIN_USER,
+  token,
+  id,
+  email,
+  username,
+});
+
+export const loginKakao = ({ id, email, username, token }) => ({
+  type: KAKAO_LOGIN,
   token,
   id,
   email,
@@ -44,6 +53,15 @@ const initialState = {
 function user(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:
+      return {
+        ...state,
+        isLogin: true,
+        token: action.token,
+        id: action.id,
+        email: action.email,
+        username: action.username,
+      };
+    case KAKAO_LOGIN:
       return {
         ...state,
         isLogin: true,
