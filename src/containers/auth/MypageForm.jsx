@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { userInfoReq } from '../../modules/auth';
-import { SliderData } from '../../components/data/SliderData';
 import {
   MyPageWrapper,
   MyPageContent,
@@ -30,6 +30,7 @@ const MyPageForm = () => {
 
   const [infoData, setInfoData] = useState('');
   const [heroListNumber, setHeroListNumber] = useState(0);
+  const [customData, setCustomData] = useState([]);
 
   useEffect(() => {
     dispatch(userInfoReq(token));
@@ -41,6 +42,16 @@ const MyPageForm = () => {
       setInfoData({ email, username });
     }
   }, [info]);
+
+  useEffect(async () => {
+    return await axios
+      .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
+        headers: { authorization: `Bearer ${token}`, withCredential: true },
+      })
+      .then((response) => {
+        setCustomData(response.data.data);
+      });
+  }, []);
 
   const aboutInfoModal = () => {
     dispatch(infoModal());
@@ -78,14 +89,14 @@ const MyPageForm = () => {
         </ButtonWrapper>
         <MyPageSlide>
           <Hero
-            slides={SliderData}
+            slides={customData}
             openModal={openDetailModal}
             herohandler={herohandler}
           />
         </MyPageSlide>
         {isType === 'detail' && (
           <AlbumDetailModal
-            slides={SliderData}
+            slides={customData}
             open={checkModal}
             close={shutModal}
             heroListNumber={heroListNumber}

@@ -1,4 +1,7 @@
+import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   HeroSection,
   HeroWrapper,
@@ -12,14 +15,32 @@ import {
 } from '../common/HeroStyle';
 
 const Hero = ({ slides, openModal, herohandler }) => {
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
   const [current, setCurrent] = useState(0);
   const length = slides.length;
   const timeout = useRef(null);
+  const [albumPic, setAlbumPic] = useState([]);
 
   const herohandlerIndex = () => {
     openModal();
     herohandler(current);
   };
+
+  useEffect(async () => {
+    if (slides) {
+      for (let i = 0; i < length; i++) {
+        await axios
+          .get(`${process.env.REACT_APP_SERVER_URI}/customs/getalbumphoto`, {
+            headers: { authorization: `Bearer ${token}`, withCredential: true },
+          })
+          .then((response) => {
+            setAlbumPic([...albumPic, response.data.data[0].albumPic]);
+          });
+      }
+    }
+  }, [slides]);
 
   useEffect(() => {
     const nextSlide = () => {
@@ -61,12 +82,24 @@ const Hero = ({ slides, openModal, herohandler }) => {
               {index === current && (
                 <HeroSlider onClick={herohandlerIndex}>
                   <HeroImage>
-                    <img src={slide.image} alt={slide.alt} />
+                    <img
+                      src={`${process.env.REACT_APP_SERVER_URI}/${slide.albumPic}`}
+                    />
                   </HeroImage>
                   <HeroContent>
-                    <h1>{slide.producer}</h1>
-                    <p>{slide.genre}</p>
-                    <p>{slide.song}</p>
+                    <h1>{`Producer : ${slide.userId}`}</h1>
+                    <p>{`LP Name : ${slide.title}`}</p>
+                    {slide.songList.length !== 1 ? (
+                      slide.songList.map((songname) => {
+                        return (
+                          <p>{`${
+                            slide.songList.indexOf(songname) + 1
+                          }. ${songname}`}</p>
+                        );
+                      })
+                    ) : (
+                      <p>{slide.songList}</p>
+                    )}
                   </HeroContent>
                 </HeroSlider>
               )}
