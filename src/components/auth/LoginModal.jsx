@@ -10,8 +10,7 @@ import {
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import AlertModal from '../common/AlertModal';
-import { alertOpenModal } from '../../modules/modal';
+
 
 const LoginWrapper = styled.div`
   display: flex;

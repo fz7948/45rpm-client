@@ -165,43 +165,43 @@ const Navbar = ({ history }) => {
   };
 
   const onLogout = () => {
-    alert('로그아웃 됐다');
     dispatch(logoutUser(token));
-    console.log('토큰뜨냐', token);
     history.push('/');
     showSidebar();
   };
 
   return (
-    <SidebarWrapper>
-      <NavSidebar>
-        <div className="logo" onClick={() => history.push('/')}>
-          45RPM
-        </div>
-        <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
-      </NavSidebar>
-      <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <ul className="nav-menu-items">
-          <li className="navbar-toggle">
-            <div className="menu-close">
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </div>
-          </li>
-          {Sidebar.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                <Link to={item.path} onClick={showSidebar}>
-                  {item.icon} <span> {item.title} </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <SideLogoutBtn>
-          <div onClick={onLogout}>로그아웃</div>
-        </SideLogoutBtn>
-      </nav>
-    </SidebarWrapper>
+    <>
+      <SidebarWrapper>
+        <NavSidebar>
+          <div className="logo" onClick={() => history.push('/')}>
+            45RPM
+          </div>
+          <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
+        </NavSidebar>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className="nav-menu-items">
+            <li className="navbar-toggle">
+              <div className="menu-close">
+                <AiIcons.AiOutlineClose onClick={showSidebar} />
+              </div>
+            </li>
+            {Sidebar.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path} onClick={showSidebar}>
+                    {item.icon} <span> {item.title} </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <SideLogoutBtn>
+            <div onClick={onLogout}>로그아웃</div>
+          </SideLogoutBtn>
+        </nav>
+      </SidebarWrapper>
+    </>
   );
 };
 
