@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { SharingArr } from '../data/SharingData';
+import { closeModal, albumDetailModal } from '../../modules/modal';
+import axios from 'axios';
+import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 
 import {
   Container,
@@ -20,10 +23,35 @@ import {
 
 const Sharing = () => {
   const history = useHistory();
-  const [color, setColor] = useState('');
+  const dispatch = useDispatch();
+  const { checkModal, isType } = useSelector(({ modal }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+  }));
+  const [sharedData, setSharedData] = useState([]);
+  const [sharedListNumber, setSharedListNumber] = useState(0);
 
-  const handleChangeColor = () => {
-    setColor();
+  useEffect(async () => {
+    return await axios
+      .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
+      .then((response) => {
+        console.log(response);
+        setSharedData(response.data.data);
+        console.log(sharedData);
+      });
+  }, []);
+
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
+
+  const openDetailModal = function () {
+    dispatch(albumDetailModal());
+  };
+
+  const modalOpen = async function (data) {
+    setSharedListNumber(data);
+    await openDetailModal();
   };
 
   return (
@@ -35,20 +63,36 @@ const Sharing = () => {
         </SubTitle>
       </TitleWrapper>
       <ContentWrapper>
-        {SharingArr.map((el) => {
+        {sharedData.map((el) => {
           return (
-            <CdCaseContent key={el.id}>
+            <CdCaseContent
+              key={el.title}
+              slides={el}
+              onClick={() => modalOpen(sharedData.indexOf(el))}
+            >
               <CoverImg>
-                <Img src={el.coverImage} />
+                <Img
+                  src={`${process.env.REACT_APP_SERVER_URI}/${el.albumPic}`}
+                />
               </CoverImg>
-              <Disk>
+              <Disk style={{ background: el.color }}>
                 <InnerDisk>
-                  <Img1 src={el.innerImage} />
+                  <Img1
+                    src={`${process.env.REACT_APP_SERVER_URI}/${el.recordPic}`}
+                  />
                 </InnerDisk>
               </Disk>
             </CdCaseContent>
           );
         })}
+        {isType === 'detail' && (
+          <AlbumDetailModal
+            slides={sharedData}
+            open={checkModal}
+            close={shutModal}
+            heroListNumber={sharedListNumber}
+          />
+        )}
       </ContentWrapper>
       <ContinueBtn>
         <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
