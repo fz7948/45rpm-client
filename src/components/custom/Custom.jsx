@@ -24,6 +24,7 @@ import {
   Button,
   InputFile,
 } from '../common/CustomStyle';
+import { customAddReq } from '../../modules/custom';
 const Custom = () => {
   const history = useHistory();
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
@@ -32,15 +33,13 @@ const Custom = () => {
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const { token } = useSelector(({ user }) => ({
-    token: user.token,
-  }));
-  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+
+  const dispatch = useDispatch();
+  const { checkModal, isType, token } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
-    isLogin: user.isLogin,
+    token: user.token,
   }));
-  const dispatch = useDispatch();
 
   const openRegisterModal = () => {
     dispatch(registerModal());
@@ -83,30 +82,23 @@ const Custom = () => {
     console.log(color.hex);
   };
 
-  const submitHandler = async () => {
+  const submitHandler = () => {
     if (!color || !imgFile || !imgFile1) {
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
     } else if (!token) {
       openRegisterModal();
+      return;
     }
-
     const formData = new FormData();
     formData.append('color', color);
     formData.append('albumPic', imgFile);
     formData.append('recordPic', imgFile1);
 
-    await axios.post(
-      `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      },
-    );
+    console.log('커스텀 토큰', token);
+    console.log('커스텀 폼데이터', formData);
+    dispatch(customAddReq(token, formData));
+
     history.push('/mypage');
   };
 

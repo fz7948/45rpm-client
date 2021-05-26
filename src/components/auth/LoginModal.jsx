@@ -11,6 +11,7 @@ import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import AlertModal from '../common/AlertModal';
+import { alertOpenModal } from '../../modules/modal';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -123,7 +124,7 @@ const LoginSocialBtn = styled.button`
 
 const LoginModal = ({ open, close, history }) => {
   const dispatch = useDispatch();
-  const { login, loginError, alertModalCheck } = useSelector(({ auth }) => ({
+  const { login, loginError } = useSelector(({ auth }) => ({
     login: auth.login,
     loginError: auth.loginError,
   }));
@@ -137,16 +138,6 @@ const LoginModal = ({ open, close, history }) => {
   const [inputID, setInputID] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [denyMessage, setDenyMessage] = useState('');
-
-  const [openModal, setOpenModal] = useState(false);
-  const [modalComment, setModalComment] = useState('');
-
-  const handleModalOpen = () => {
-    setOpenModal(true);
-  };
-  const handleModalClose = () => {
-    setOpenModal(false);
-  };
 
   useEffect(() => {
     if (loginError) {
@@ -172,8 +163,9 @@ const LoginModal = ({ open, close, history }) => {
       dispatch(loginUser(payload));
       history.push('/mypage');
       dispatch(resetLogin());
+      handleCloseBtn();
     }
-  }, [login, loginError]);
+  }, [login, loginError, dispatch]);
 
   useEffect(() => {
     refID.current.focus();
@@ -277,15 +269,10 @@ const LoginModal = ({ open, close, history }) => {
 
   return (
     <>
-      <AlertModal
-        openModal={openModal}
-        closeModal={handleModalClose}
-        comment={modalComment}
-      />
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open}>
-          <LoginCloseBtn onClick={(close, handleCloseBtn)}> X </LoginCloseBtn>{' '}
+          <LoginCloseBtn onClick={(close, handleCloseBtn)}> X </LoginCloseBtn>
           <LoginWrapper>
             <h2> 로그인 </h2>
             <ul>
@@ -319,10 +306,7 @@ const LoginModal = ({ open, close, history }) => {
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
             <LoginSocialBtn> 구글 </LoginSocialBtn>
-            <LoginSocialBtn onClick={kakaoLoginHandler}>
-              {' '}
-              카카오{' '}
-            </LoginSocialBtn>
+            <LoginSocialBtn onClick={kakaoLoginHandler}>카카오</LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>
       </ModalBack>
