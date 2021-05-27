@@ -1,5 +1,5 @@
 $small: 'screen and (max-width:1100px)';
-$medium: 'screen and (max-width:1500px)';
+$medium: 'screen and (max-width:1600px)';
 body {
     overflow: hidden;
     .container {
@@ -77,7 +77,7 @@ body {
                                 background-color: black;
                             }
                             @media #{$small} {
-                                top: 20%;
+                                top: -15%;
                                 width: 270px;
                                 height: 270px;
                             }
@@ -98,7 +98,7 @@ body {
                             box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             @media #{$small} {
-                                top: 25%;
+                                top: -10%;
                                 width: 240px;
                                 height: 240px;
                             }
@@ -132,20 +132,20 @@ body {
                         position: absolute;
                         flex: 1;
                         top: 15%;
-                        left: 60%;
+                        left: 40%;
                         transform: translate(-50%, -50%);
-                        width: inherit;
-                        height: inherit;
+                        width: 950px;
+                        height: 550px;
                         visibility: hidden;
                         opacity: 0;
                         transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                        transform: rotate(90deg);
+                        transform: rotate(0deg);
                         .textWrapper {
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            transform: rotate(270deg);
+                            // transform: rotate(270deg);
                             padding-left: 2rem;
                             @media #{$small} {
                                 font-size: 1.5rem;
@@ -208,17 +208,17 @@ body {
                             }
                         }
                         @media #{$medium} {
-                            top: 20%;
-                            left: 50%;
-                            width: 400px;
-                            height: 400px;
+                            top: 15%;
+                            left: 40%;
+                            width: 600px;
+                            height: 500px;
                             transform: translate(-50%, -50%);
                             transform: rotate(90deg);
                         }
                         @media #{$small} {
-                            top: 25%;
-                            left: 28%;
-                            width: 350px;
+                            top: 23%;
+                            left: 16%;
+                            width: 400px;
                             height: 350px;
                             transform: translate(-50%, -50%);
                             transform: rotate(90deg);
@@ -231,34 +231,34 @@ body {
                             animation: fadeIn 2s ease-in-out;
                             .card {
                                 left: 30%;
-                                width: inherit;
-                                height: inherit;
+                                width: 950px;
+                                height: 550px;
                                 transition-delay: 1.5s;
                                 transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                                 animation: fadeIn 2s ease-in-out;
                                 @media #{$medium} {
-                                    width: 400px;
-                                    height: 400px;
+                                    width: 600px;
+                                    height: 500px;
                                 }
                                 @media #{$small} {
-                                    width: 300px;
-                                    height: 300px;
+                                    width: 400px;
+                                    height: 350px;
                                 }
                                 img {
                                     border-radius: 10px;
-                                    width: 600px;
-                                    height: 500px;
+                                    width: 950px;
+                                    height: 550px;
                                     box-shadow: 1px 1px 15px rgba(0, 0, 1, 1);
                                     animation: fadeIn 2s ease-in-out;
                                     opacity: 1;
-                                    transform: rotate(270deg);
                                     @media #{$medium} {
-                                        width: 400px;
-                                        height: 400px;
+                                        width: 600px;
+                                        height: 500px;
+                                        transform: rotate(270deg);
                                     }
                                     @media #{$small} {
-                                        width: 300px;
-                                        height: 300px;
+                                        width: 400px;
+                                        height: 350px;
                                         top: 10%;
                                         left: -10%;
                                     }
@@ -282,7 +282,7 @@ body {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    padding-bottom: 3rem;
+                    padding-bottom: 1rem;
                     .fingerBtn {
                         display: flex;
                         justify-content: center;
@@ -298,7 +298,7 @@ body {
                         display: flex;
                         justify-content: flex-end;
                         margin-right: 1rem;
-                        margin-bottom: 1rem;
+                        margin-bottom: 2.5rem;
                         button {
                             display: flex;
                             align-items: center;
