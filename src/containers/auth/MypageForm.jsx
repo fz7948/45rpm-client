@@ -5,7 +5,7 @@ import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
-import { userInfoReq } from '../../modules/auth';
+import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
 import {
   MyPageWrapper,
   MyPageContent,
@@ -16,15 +16,17 @@ import {
   MyPageButton,
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
+import AlertModal from '../../components/common/AlertModal';
 
 const MyPageForm = () => {
   const dispatch = useDispatch();
-  const { checkModal, isType, info, token } = useSelector(
+  const { checkModal, isType, info, token, alertCheck } = useSelector(
     ({ modal, auth, user }) => ({
       checkModal: modal.checkModal,
       isType: modal.isType,
       info: auth.info,
       token: user.token,
+      alertCheck: modal.alertCheck,
     }),
   );
 
@@ -114,6 +116,13 @@ const MyPageForm = () => {
             userEmail={infoDefaultEmail.email}
             username={infoDefaultUsername.username}
           />
+        )}
+        {isType === 'alert' && (
+          <AlertModal
+            openHandle={alertCheck}
+            closeHandle={shutModal}
+            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+          ></AlertModal>
         )}
       </MyPageWrapper>
     </>
