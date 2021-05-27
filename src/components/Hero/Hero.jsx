@@ -22,6 +22,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
   const length = slides.length;
   const timeout = useRef(null);
   const [albumPic, setAlbumPic] = useState([]);
+  const [customData, setCustomData] = useState([]);
 
   const herohandlerIndex = () => {
     openModal();
@@ -29,18 +30,28 @@ const Hero = ({ slides, openModal, herohandler }) => {
   };
 
   useEffect(async () => {
-    if (slides) {
-      for (let i = 0; i < length; i++) {
-        await axios
-          .get(`${process.env.REACT_APP_SERVER_URI}/customs/getalbumphoto`, {
-            headers: { authorization: `Bearer ${token}`, withCredential: true },
-          })
-          .then((response) => {
-            setAlbumPic([...albumPic, response.data.data[0].albumPic]);
-          });
-      }
-    }
-  }, [slides]);
+    return await axios
+      .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
+        headers: { authorization: `Bearer ${token}`, withCredential: true },
+      })
+      .then((response) => {
+        setCustomData(response.data.data);
+      })
+      .then(async () => {
+        for (let i = 0; i < customData.length; i++) {
+          await axios
+            .get(`${process.env.REACT_APP_SERVER_URI}/customs/getalbumphoto`, {
+              headers: {
+                authorization: `Bearer ${token}`,
+                withCredential: true,
+              },
+            })
+            .then((response) => {
+              setAlbumPic([...albumPic, response.data.data[0].albumPic]);
+            });
+        }
+      });
+  }, []);
 
   useEffect(() => {
     const nextSlide = () => {
@@ -69,6 +80,27 @@ const Hero = ({ slides, openModal, herohandler }) => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
+  const shareStateHandler = async function (data) {
+    console.log('shareStateHandler');
+    await axios
+      .patch(
+        `${process.env.REACT_APP_SERVER_URI}/customs/share-custom`,
+        { data },
+        {
+          headers: { authorization: `Bearer ${token}`, withCredential: true },
+        },
+      )
+      .then(async () => {
+        return await axios
+          .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
+            headers: { authorization: `Bearer ${token}`, withCredential: true },
+          })
+          .then((response) => {
+            setCustomData(response.data.data);
+          });
+      });
+  };
+
   if (!Array.isArray(slides) || slides.length <= 0) {
     return null;
   }
@@ -76,7 +108,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
   return (
     <HeroSection>
       <HeroWrapper>
-        {slides.map((slide, index) => {
+        {customData.map((slide, index) => {
           return (
             <HeroSlide key={index}>
               {index === current && (
@@ -99,6 +131,25 @@ const Hero = ({ slides, openModal, herohandler }) => {
                       })
                     ) : (
                       <p>{slide.songList}</p>
+                    )}
+                    {slide.share === true ? (
+                      <span>
+                        <input
+                          type="checkbox"
+                          checked={slide.share}
+                          onClick={() => shareStateHandler(slide._id)}
+                        />{' '}
+                        공유해제
+                      </span>
+                    ) : (
+                      <span>
+                        <input
+                          type="checkbox"
+                          checked={slide.share}
+                          onClick={() => shareStateHandler(slide._id)}
+                        />{' '}
+                        공유하기
+                      </span>
                     )}
                   </HeroContent>
                 </HeroSlider>
