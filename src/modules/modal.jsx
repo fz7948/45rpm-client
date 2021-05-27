@@ -61,6 +61,7 @@ export default function modal(state = initialState, action) {
     case CLOSE_MODAL:
       return {
         checkModal: false,
+        alertCheck: false,
         isType: null,
       };
     case ALERT_MODAL_SUCCESS:
@@ -71,6 +72,7 @@ export default function modal(state = initialState, action) {
       };
     case ALERT_MODAL_FAILURE:
       return {
+        checkModal: false,
         alertCheck: false,
       };
     default:
