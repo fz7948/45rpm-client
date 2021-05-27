@@ -9,25 +9,26 @@ function Main() {
   const history = useHistory();
   let prevBtn, nextBtn, skipBtn;
   let header;
-  let container;
+  let wrapperContent;
   let innerDisk;
   let pageNum = 0;
   let totalNum = 0;
   let cdCase;
   let movingImg;
   let colorArray = [
-    ['#03154E', '#311788'],
-    ['#03154E', '#311788'],
-    ['#03154E', '#311788'],
-    ['#03154E', '#311788'],
-    ['#03154E', '#311788'],
+    ['./images/1111.jpg'],
+    ['./images/a.jpg'],
+    ['./images/1111.jpg'],
+    ['./images/555.jpg'],
+    ['./images/888.jpg'],
+    ['./images/888.jpg'],
   ];
 
   useEffect(() => {
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
-    container = document.querySelector('.container');
+    wrapperContent = document.querySelector('.wrapperContent');
     innerDisk = document.querySelectorAll('.innerDisk');
     cdCase = document.querySelectorAll('.cdCase');
     movingImg = document.querySelectorAll('.movingImg');
@@ -54,7 +55,7 @@ function Main() {
 
     skipBtn.addEventListener('click', function () {
       if (true) {
-        pageNum = 4;
+        pageNum = 5;
       }
       pageFunc();
       removeFunc();
@@ -63,15 +64,13 @@ function Main() {
   });
 
   function pageFunc() {
-    container.style.background =
-      'linear-gradient(120deg,' +
-      colorArray[pageNum][0] +
-      ',' +
-      colorArray[pageNum][1] +
-      ')';
+    wrapperContent.style.background = 'url(' + colorArray[pageNum][0] + ')';
+    wrapperContent.style.background = 'opacity:0.6';
+    wrapperContent.style.backgroundSize = 'cover';
+    wrapperContent.style.backgroundRepeat = 'no-repeat';
 
-    cdCase[4].classList.add('active');
-    movingImg[4].classList.add('active');
+    cdCase[5].classList.add('active');
+    movingImg[5].classList.add('active');
     innerDisk[pageNum].style.background = colorArray[pageNum][0];
   }
 
@@ -83,12 +82,10 @@ function Main() {
   }
 
   function pageChangeFunc() {
-    container.style.background =
-      'linear-gradient(120deg,' +
-      colorArray[pageNum][0] +
-      ',' +
-      colorArray[pageNum][1] +
-      ')';
+    wrapperContent.style.background = 'url(' + colorArray[pageNum][0] + ')';
+    wrapperContent.style.background = 'opacity:0.6';
+    wrapperContent.style.backgroundSize = 'cover';
+    wrapperContent.style.backgroundRepeat = 'no-repeat';
 
     for (var i = 0; i < totalNum; i++) {
       if (pageNum === i) {
@@ -112,12 +109,29 @@ function Main() {
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
+                  <img src="./images/4.jpg" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="textWrapper">
+                  <h1>
+                    지금 바로 <p>만들어 보세요</p>
+                  </h1>
+                </div>
+              </div>
+            </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
                   <img src="./images/1.webp" alt="" />
                 </div>
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/um1.webp" alt="" />
+                  <img src="./images/c.gif" alt="" />
                 </div>
               </div>
             </section>
@@ -132,7 +146,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/um2.gif" alt="" />
+                  <img src="./images/e.gif" alt="" />
                 </div>
               </div>
             </section>
@@ -147,7 +161,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/um3.gif" alt="" />
+                  <img src="./images/c.gif" alt="" />
                 </div>
               </div>
             </section>
@@ -162,7 +176,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/um4.gif" alt="" />
+                  <img src="./images/e.gif" alt="" />
                 </div>
               </div>
             </section>
