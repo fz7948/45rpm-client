@@ -119,19 +119,15 @@ const Hero = ({ slides, openModal, herohandler }) => {
                     />
                   </HeroImage>
                   <HeroContent>
-                    <h1>{`Producer : ${slide.userId}`}</h1>
-                    <p>{`LP Name : ${slide.title}`}</p>
-                    {slide.songList.length !== 1 ? (
-                      slide.songList.map((songname) => {
-                        return (
-                          <p>{`${
-                            slide.songList.indexOf(songname) + 1
-                          }. ${songname}`}</p>
-                        );
-                      })
-                    ) : (
-                      <p>{slide.songList}</p>
-                    )}
+                    {/* <h1>{`Producer : ${slide.userId}`}</h1> */}
+                    <h1>{slide.title}</h1>
+                    {slide.songList.map((songname) => {
+                      return (
+                        <p>{`${
+                          slide.songList.indexOf(songname) + 1
+                        }. ${songname}`}</p>
+                      );
+                    })}
                     {slide.share === true ? (
                       <span>
                         <input
