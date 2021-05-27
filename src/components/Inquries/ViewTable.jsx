@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { questionUpdateReq, questionListReq } from '../../modules/question';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -116,9 +118,90 @@ const Button = styled.button`
   }
 `;
 
+const InputDetailStyle = styled.input`
+  outline: none;
+  padding-left: 10px;
+  border: 0px;
+  box-sizing: border-box;
+  width: 250px;
+  height: 2.2rem;
+  font-size: 20px;
+  &:focus {
+    outline: 0;
+    border: 1px solid #f73d5c;
+    transition: all ease 0.3s;
+  }
+`;
+
 const View = ({ view }) => {
   const history = useHistory();
-  console.log('뷰', view);
+  const dispatch = useDispatch();
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
+
+  const [detailID, setDetailID] = useState('');
+  const [detailCategory, setDetailCategory] = useState('');
+  const [detailTitle, setDetailTitle] = useState('');
+  const [detailCreatedAt, setDetailCreatedAt] = useState('');
+  const [detailContent, setDetailCotent] = useState('');
+
+  const handleChangeID = useCallback(
+    (e) => {
+      setDetailID(view[0].userId);
+    },
+    [detailID],
+  );
+
+  const handleChangeCategory = useCallback(
+    (e) => {
+      setDetailCategory(e.target.value);
+    },
+    [detailCategory],
+  );
+
+  const handleChangeTitle = useCallback(
+    (e) => {
+      setDetailTitle(e.target.value);
+    },
+    [detailTitle],
+  );
+
+  const handleChangeCreatedAt = useCallback(
+    (e) => {
+      setDetailCreatedAt(view[0].createdAt);
+    },
+    [detailCreatedAt],
+  );
+
+  const handleChangeContent = useCallback(
+    (e) => {
+      setDetailCotent(e.target.value);
+    },
+    [detailContent],
+  );
+
+  const detailUpdateHandler = () => {
+    console.log('이건?', view[0]._id);
+    dispatch(questionUpdateReq(view[0]._id, detailTitle, detailContent, token));
+    setTimeout(onDispatchHandler, 100);
+  };
+
+  const onDispatchHandler = () => {
+    dispatch(questionListReq(token));
+  };
+
+  // {view[0].userId}
+  // {view[0].category}
+  // {view[0].title}
+  // {view[0].createdAt}
+  // {view[0].contents}
+
+  // console.log('입력값 category', detailCategory);
+  // console.log('입력값 title', detailTitle);
+  // console.log('입력값 contents', detailContent);
+
+  console.log('뷰@@', view);
   return (
     <>
       {view.length > 0 && (
@@ -126,29 +209,55 @@ const View = ({ view }) => {
           <InquiryCollection>
             <InquiryRow>
               <label>작성자</label>
-              <label>{view[0].userId}</label>
+              <InputDetailStyle
+                type="text"
+                value={view[0].userId}
+                onChange={handleChangeID}
+                readOnly
+              />
             </InquiryRow>
             <InquiryRow>
               <label>카테고리</label>
-              <label>{view[0].category}</label>
+              <InputDetailStyle
+                type="text"
+                value={view[0].category}
+                onChange={handleChangeCategory}
+                readOnly
+              />
             </InquiryRow>
             <InquiryRow>
               <label>제목</label>
-              <label>{view[0].title}</label>
+              <InputDetailStyle
+                type="text"
+                value={detailTitle}
+                placeholder={view[0].title}
+                onChange={handleChangeTitle}
+              />
             </InquiryRow>
             <InquiryRow>
               <label>등록일</label>
-              <label>{view[0].createdAt}</label>
+              <InputDetailStyle
+                type="text"
+                value={view[0].createdAt}
+                onChange={handleChangeCreatedAt}
+                readOnly
+              />
             </InquiryRow>
             <InquiryRow>
               <label>내용</label>
-              <label>{view[0].contents}</label>
+              <InputDetailStyle
+                type="text"
+                value={detailContent}
+                placeholder={view[0].contents}
+                onChange={handleChangeContent}
+              />
             </InquiryRow>
           </InquiryCollection>
           <ButtonWrapper>
-            <ButtonWrap onClick={() => history.goBack()}>
+            <ButtonWrap onClick={() => history.push('/2')}>
               목록으로 돌아가기
             </ButtonWrap>
+            <ButtonWrap onClick={detailUpdateHandler}>수정하기</ButtonWrap>
           </ButtonWrapper>
         </InquiryWrapper>
       )}

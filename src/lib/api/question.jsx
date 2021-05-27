@@ -16,21 +16,28 @@ export const questionAdd = async ({ title, contents, category, token }) => {
     },
     { withCredentials: true },
   );
-  return response.data;
+  console.log('데이터', response.data.data);
+  return response.data.data;
 };
 
-export const questionUpdate = async ({}) => {
+export const questionUpdate = async ({
+  questionId,
+  title,
+  contents,
+  token,
+}) => {
   const response = await axios.patch(
     `${process.env.REACT_APP_SERVER_URI}/user/question/update`,
-    {},
+    { questionId, title, contents, token },
     {
       headers: {
-        // authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     },
     { withCredentials: true },
   );
+  console.log('뭐니', response.data);
   return response.data;
 };
 

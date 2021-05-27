@@ -35,13 +35,14 @@ const Inquiry = ({ inquiry, handleRemove }) => {
 };
 
 const InquiryTable = ({ lnquireList, handleRemove }) => {
+  console.log('랜더링 확인', lnquireList);
   return (
     <>
       {lnquireList.data &&
         lnquireList.data.map((inquiry) => (
           <Inquiry
+            key={inquiry._id}
             inquiry={inquiry}
-            key={inquiry.id}
             handleRemove={handleRemove}
           />
         ))}

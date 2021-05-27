@@ -16,6 +16,9 @@ const QUESTION_DELETE = 'QUESTION_DELETE';
 const QUESTION_DELETE_SUCCESS = 'QUESTION_DELETE_SUCCESS';
 const QUESTION_DELETE_FAILURE = 'QUESTION_DELETE_FAILURE';
 
+const DETAIL_UPDATE = 'DETAIL_UPDATE';
+const DETAIL_LIST = 'DETAIL_LIST';
+
 export const questionAddReq = (title, contents, category, token) => async (
   dispatch,
 ) => {
@@ -39,10 +42,17 @@ export const questionAddReq = (title, contents, category, token) => async (
   }
 };
 
-export const questionUpdateReq = () => async (dispatch) => {
+export const questionUpdateReq = (questionId, title, contents, token) => async (
+  dispatch,
+) => {
   dispatch({ type: QUESTION_UPDATE });
   try {
-    const questionUpdateRes = await questionAPI.questionUpdate({});
+    const questionUpdateRes = await questionAPI.questionUpdate({
+      questionId,
+      title,
+      contents,
+      token,
+    });
     dispatch({
       type: QUESTION_UPDATE_SUCCESS,
       questionUpdate: questionUpdateRes,
@@ -92,6 +102,9 @@ export const questionDeleteReq = (token, questionId) => async (dispatch) => {
   }
 };
 
+export const detailListReq = () => ({ type: DETAIL_LIST });
+export const detailUpdateReq = () => ({ type: DETAIL_UPDATE });
+
 export const resetAddQuestion = () => ({ type: QUESTION_ADD });
 export const resetUpdateQuestion = () => ({ type: QUESTION_UPDATE });
 export const resetListQuestion = () => ({ type: QUESTION_LIST });
@@ -105,6 +118,7 @@ const initialState = {
   questionAddError: null,
   questionUpdate: null,
   questionUpdateError: null,
+  isDetail: null,
 };
 
 function question(state = initialState, action) {
@@ -180,6 +194,14 @@ function question(state = initialState, action) {
         ...state,
         questionListDelete: null,
         questionListDeleteError: action.questionDeleteError,
+      };
+    case DETAIL_LIST:
+      return {
+        isDetail: 'list',
+      };
+    case DETAIL_UPDATE:
+      return {
+        isUpdate: 'update',
       };
     default:
       return state;
