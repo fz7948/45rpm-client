@@ -5,13 +5,12 @@ import {
   registerModal,
   closeModal,
   alertOpenModal,
-  alertCloseModal,
 } from '../../modules/modal';
+import { resetLogin, resetLoginMsg, kakaoLoginReq } from '../../modules/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
-import AlertModal from './AlertModal';
 
 const Header = () => {
   const { checkModal, isType, login, alertCheck } = useSelector(
@@ -19,6 +18,7 @@ const Header = () => {
       checkModal: modal.checkModal,
       isType: modal.isType,
       login: auth.login,
+      alertCheck: modal.alertCheck,
     }),
   );
   const history = useHistory();
@@ -36,6 +36,47 @@ const Header = () => {
     dispatch(closeModal());
   };
 
+  const kakaoLoginHandler = () => {
+    try {
+      return new Promise((resolve, reject) => {
+        if (!window.Kakao) {
+          reject('Kakao 인스턴스가 존재하지 않습니다.');
+        }
+        window.Kakao.Auth.login({
+          success: (auth) => {
+            window.Kakao.API.request({
+              url: '/v2/user/me',
+              data: {
+                property_keys: [
+                  'kakao_account.email',
+                  'kakao_account.profile.nickname',
+                  'kakao_account.profile.profile_image_url',
+                  'kakao_account.profile.thumbnail_image_url',
+                ],
+              },
+              success: function (response) {
+                dispatch(kakaoLoginReq(response)).then(() => {
+                  history.push('/mypage');
+                  dispatch(resetLogin());
+                  dispatch(resetLoginMsg());
+                  dispatch(alertOpenModal());
+                });
+              },
+              fail: function (error) {
+                console.log(error);
+              },
+            });
+          },
+          fail: (err) => {
+            console.error(err);
+          },
+        });
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <header className="header">
@@ -51,7 +92,11 @@ const Header = () => {
           </div>
         </div>
         {isType === 'login' && (
-          <LoginModal open={checkModal} close={shutModal}></LoginModal>
+          <LoginModal
+            open={checkModal}
+            close={shutModal}
+            kakaoLoginHandler={kakaoLoginHandler}
+          ></LoginModal>
         )}
         {isType === 'register' && (
           <RegisterModal open={checkModal} close={shutModal}></RegisterModal>

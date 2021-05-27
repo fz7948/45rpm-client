@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import {
-  loginReq,
-  resetLogin,
-  resetLoginMsg,
-  kakaoLoginReq,
-} from '../../modules/auth';
+import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -120,7 +115,7 @@ const LoginSocialBtn = styled.button`
   }
 `;
 
-const LoginModal = ({ open, close, history }) => {
+const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
   const dispatch = useDispatch();
   const { login, loginError } = useSelector(({ auth }) => ({
     login: auth.login,
@@ -230,48 +225,6 @@ const LoginModal = ({ open, close, history }) => {
       return;
     }
     dispatch(loginReq(inputID, inputPassword));
-  };
-
-  const kakaoLoginHandler = () => {
-    try {
-      return new Promise((resolve, reject) => {
-        if (!window.Kakao) {
-          reject('Kakao 인스턴스가 존재하지 않습니다.');
-        }
-        window.Kakao.Auth.login({
-          success: (auth) => {
-            window.Kakao.API.request({
-              url: '/v2/user/me',
-              data: {
-                property_keys: [
-                  'kakao_account.email',
-                  'kakao_account.profile.nickname',
-                  'kakao_account.profile.profile_image_url',
-                  'kakao_account.profile.thumbnail_image_url',
-                ],
-              },
-              success: function (response) {
-                dispatch(kakaoLoginReq(response)).then(() => {
-                  alert('기본 비밀번호는 카카오 계정의 이메일 주소입니다');
-                  history.push('/mypage');
-                  dispatch(resetLogin());
-                  dispatch(resetLoginMsg());
-                  close();
-                });
-              },
-              fail: function (error) {
-                console.log(error);
-              },
-            });
-          },
-          fail: (err) => {
-            console.error(err);
-          },
-        });
-      });
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
