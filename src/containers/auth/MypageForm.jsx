@@ -28,18 +28,22 @@ const MyPageForm = () => {
     }),
   );
 
-  const [infoData, setInfoData] = useState('');
+  const [infoDefaultId, setInfoDefaultId] = useState('');
+  const [infoDefaultEmail, setInfoDefaultEmail] = useState('');
+  const [infoDefaultUsername, setInfoDefaultUsername] = useState('');
   const [heroListNumber, setHeroListNumber] = useState(0);
   const [customData, setCustomData] = useState([]);
 
   useEffect(() => {
     dispatch(userInfoReq(token));
-  }, [checkModal, dispatch]);
+  }, [checkModal]);
 
   useEffect(() => {
     if (info) {
-      const { email, username } = info.data;
-      setInfoData({ email, username });
+      const { id, email, username } = info.data;
+      setInfoDefaultEmail({ email });
+      setInfoDefaultUsername({ username });
+      setInfoDefaultId({ id });
     }
   }, [info]);
 
@@ -79,8 +83,8 @@ const MyPageForm = () => {
             </MyPageImage>
             <MyPageInfo>
               <p>안녕하세요</p>
-              <p>{infoData.username}</p>
-              <p>{infoData.email}</p>
+              <p>{infoDefaultEmail.email}</p>
+              <p>{infoDefaultUsername.username}</p>
             </MyPageInfo>
           </MyPageInfoWrapper>
         </MyPageContent>
@@ -103,7 +107,13 @@ const MyPageForm = () => {
           />
         )}
         {isType === 'info' && (
-          <UpdateModal open={checkModal} close={shutModal} />
+          <UpdateModal
+            open={checkModal}
+            close={shutModal}
+            userId={infoDefaultId.id}
+            userEmail={infoDefaultEmail.email}
+            username={infoDefaultUsername.username}
+          />
         )}
       </MyPageWrapper>
     </>
