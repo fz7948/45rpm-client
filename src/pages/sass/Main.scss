@@ -132,20 +132,20 @@ body {
                         position: absolute;
                         flex: 1;
                         top: 15%;
-                        left: 40%;
+                        left: 60%;
                         transform: translate(-50%, -50%);
-                        width: 950px;
-                        height: 550px;
+                        width: inherit;
+                        height: inherit;
                         visibility: hidden;
                         opacity: 0;
                         transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                        transform: rotate(0deg);
+                        transform: rotate(90deg);
                         .textWrapper {
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            // transform: rotate(270deg);
+                            transform: rotate(270deg);
                             padding-left: 2rem;
                             @media #{$small} {
                                 font-size: 1.5rem;
@@ -208,17 +208,17 @@ body {
                             }
                         }
                         @media #{$medium} {
-                            top: 15%;
-                            left: 40%;
-                            width: 600px;
-                            height: 500px;
+                            top: 20%;
+                            left: 50%;
+                            width: 400px;
+                            height: 400px;
                             transform: translate(-50%, -50%);
                             transform: rotate(90deg);
                         }
                         @media #{$small} {
-                            top: 23%;
-                            left: 16%;
-                            width: 400px;
+                            top: 25%;
+                            left: 28%;
+                            width: 350px;
                             height: 350px;
                             transform: translate(-50%, -50%);
                             transform: rotate(90deg);
@@ -231,34 +231,34 @@ body {
                             animation: fadeIn 2s ease-in-out;
                             .card {
                                 left: 30%;
-                                width: 950px;
-                                height: 550px;
+                                width: inherit;
+                                height: inherit;
                                 transition-delay: 1.5s;
                                 transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                                 animation: fadeIn 2s ease-in-out;
                                 @media #{$medium} {
-                                    width: 600px;
-                                    height: 500px;
+                                    width: 400px;
+                                    height: 400px;
                                 }
                                 @media #{$small} {
-                                    width: 400px;
-                                    height: 350px;
+                                    width: 300px;
+                                    height: 300px;
                                 }
                                 img {
                                     border-radius: 10px;
-                                    width: 950px;
-                                    height: 550px;
+                                    width: 600px;
+                                    height: 500px;
                                     box-shadow: 1px 1px 15px rgba(0, 0, 1, 1);
                                     animation: fadeIn 2s ease-in-out;
                                     opacity: 1;
+                                    transform: rotate(270deg);
                                     @media #{$medium} {
-                                        width: 600px;
-                                        height: 500px;
-                                        transform: rotate(270deg);
+                                        width: 400px;
+                                        height: 400px;
                                     }
                                     @media #{$small} {
-                                        width: 400px;
-                                        height: 350px;
+                                        width: 300px;
+                                        height: 300px;
                                         top: 10%;
                                         left: -10%;
                                     }
@@ -274,57 +274,57 @@ body {
                     }
                 }
             }
-            .wrapBtn {
-                @media screen and (max-width: 768px) {
-                    bottom: 15vh;
+        }
+    }
+    .wrapBtn {
+        @media screen and (max-width: 768px) {
+            bottom: 15vh;
+        }
+        .btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            .fingerBtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin-bottom: -1rem;
+                @media #{$small} {
+                    font-size: 2em;
+                    padding: 0 1.5rem;
                 }
-                .btn {
+            }
+            .skipBtn {
+                display: flex;
+                justify-content: flex-end;
+                margin-right: 1rem;
+                margin-bottom: 2.5rem;
+                button {
                     display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    padding-bottom: 1rem;
-                    .fingerBtn {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%;
-                        margin-bottom: -1rem;
-                        @media #{$small} {
-                            font-size: 2em;
-                            padding: 0 1.5rem;
-                        }
+                    align-items: center;
+                    &:hover {
+                        color: rgb(163, 158, 158);
                     }
-                    .skipBtn {
-                        display: flex;
-                        justify-content: flex-end;
-                        margin-right: 1rem;
-                        margin-bottom: 2.5rem;
-                        button {
-                            display: flex;
-                            align-items: center;
-                            &:hover {
-                                color: rgb(163, 158, 158);
-                            }
-                        }
-                    }
-                    button {
-                        background: transparent;
-                        color: lightgray;
-                        height: 60px;
-                        font-family: 'Jua', sans-serif;
-                        font-size: 2.5rem;
-                        padding: 0 4rem;
-                        cursor: pointer;
-                        border: none;
-                        outline: none;
-                        &:hover {
-                            color: rgb(163, 158, 158);
-                        }
-                        @media #{$small} {
-                            font-size: 1.6em;
-                            padding: 0 1.5rem;
-                        }
-                    }
+                }
+            }
+            button {
+                background: transparent;
+                color: lightgray;
+                height: 60px;
+                font-family: 'Jua', sans-serif;
+                font-size: 2.5rem;
+                padding: 0 4rem;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                &:hover {
+                    color: rgb(163, 158, 158);
+                }
+                @media #{$small} {
+                    font-size: 1.6em;
+                    padding: 0 1.5rem;
                 }
             }
         }
