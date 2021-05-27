@@ -24,6 +24,7 @@ $small: 'screen and (max-width:768px)';
         align-items: center;
         .signIn,
         .signUp {
+            z-index: 999;
             background: transparent;
             outline: none;
             border: none;
