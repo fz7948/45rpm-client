@@ -6,6 +6,8 @@ import AsyncCreatableSelect from 'react-select/creatable';
 import '../common/CkEditor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { questionListReq } from '../../modules/question';
+import { useDispatch, useSelector } from 'react-redux';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -102,6 +104,11 @@ const InquirySubmitBtn = styled.button`
 `;
 
 const InquiryModal = ({ open, close, onSubmitHand }) => {
+  const dispatch = useDispatch();
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
+
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(open);
 
@@ -140,9 +147,14 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
 
   if (!animate && !localVisible) return null;
 
+  const onDispatchHandler = () => {
+    dispatch(questionListReq(token));
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     onSubmitHand(inquiryContent, value);
+    setTimeout(onDispatchHandler, 100);
   };
 
   const getValue = (e) => {

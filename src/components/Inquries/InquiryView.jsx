@@ -50,8 +50,12 @@ const InquiryView = ({ match }) => {
   useEffect(() => {
     if (questionList) {
       setData(questionList.data);
+      console.log('상세페이지??', questionList.data);
+      console.log('데이터', data);
     }
   }, []);
+
+  console.log('랜더링???', data);
 
   const filterData = (id) => {
     console.log('id', id);

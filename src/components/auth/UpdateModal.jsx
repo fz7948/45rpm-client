@@ -227,12 +227,9 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
     close();
   };
 
-  // const handleChangeID = useCallback(
-  //   (e) => {
-  //     setInputID(e.target.value);
-  //   },
-  //   [inputID],
-  // );
+  const handleChangeID = useCallback((e) => {
+    setInputID(userId);
+  }, []);
 
   const handleChangeEmail = useCallback(
     (e) => {
@@ -286,6 +283,9 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
 
   const checkValidPassword = useCallback(
     (password) => {
+      if (password === '') {
+        return true;
+      }
       if (!/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/.test(password)) {
         setDenyMessage(
           '영문자 + 숫자/특수문자 조합으로 8~20자리를 사용해야 합니다.',
@@ -383,8 +383,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
                 <UpdateInput
                   type="text"
                   value={inputID}
-                  placeholder="id"
-                  // onChange={handleChangeID}
+                  onChange={handleChangeID}
                   readonly
                 />
               </li>
@@ -432,7 +431,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
                 <UpdateInput
                   type="password"
                   value={inputNewPassword}
-                  placeholder="Password"
+                  placeholder="입력하지 않으면 기존 비밀번호가 유지됩니다."
                   onChange={handleChangeNewPassword}
                   onKeyPress={handleMoveToNewpasswordCheck}
                   ref={refNewPassword}
@@ -445,7 +444,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
                 <UpdateInput
                   type="password"
                   value={inputNewPasswordCheck}
-                  placeholder="Password Confirm"
+                  placeholder="입력하지 않으면 기존 비밀번호가 유지됩니다."
                   onChange={handleChangeNewPasswordCheck}
                   onKeyPress={handleMoveToSignUp}
                   ref={refNewPasswordCheck}

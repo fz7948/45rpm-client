@@ -78,20 +78,24 @@ const Button = styled.button`
 
 const Inquires = () => {
   const dispatch = useDispatch();
-  const {
-    checkModal,
-    token,
-    questionList,
-    isType,
-    questionAdd,
-    questionUpdate,
-    questionListDelete,
-  } = useSelector(({ modal, user, question }) => ({
-    checkModal: modal.checkModal,
-    isType: modal.isType,
-    token: user.token,
-    questionList: question.questionList,
-  }));
+  const { checkModal, token, questionList, isType } = useSelector(
+    ({ modal, user, question }) => ({
+      checkModal: modal.checkModal,
+      isType: modal.isType,
+      token: user.token,
+      questionList: question.questionList,
+    }),
+  );
+
+  useEffect(() => {
+    dispatch(questionListReq(token));
+  }, []);
+
+  useEffect(() => {
+    if (questionList) {
+      setLnquireList(questionList);
+    }
+  }, [questionList]);
 
   const [lnquireList, setLnquireList] = useState({ data: [{}] });
 
@@ -102,16 +106,6 @@ const Inquires = () => {
   const openInquiryModal = () => {
     dispatch(inquiryModal());
   };
-
-  useEffect(() => {
-    dispatch(questionListReq(token));
-  }, [questionListDelete, questionAdd, questionUpdate]);
-
-  useEffect(() => {
-    if (questionList) {
-      setLnquireList(questionList);
-    }
-  }, [questionList]);
 
   const onSubmitHand = (data, category) => {
     const { title, content } = data;
@@ -127,6 +121,8 @@ const Inquires = () => {
     const newList = lnquireList.data.filter((el) => el._id !== data);
     setLnquireList({ data: newList });
   };
+
+  console.log('문의 리스트', questionList);
 
   return (
     <Container>
