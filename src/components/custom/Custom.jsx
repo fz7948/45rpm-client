@@ -27,7 +27,7 @@ import {
   CustomTitleCover,
   CustomSongListCover,
 } from '../common/CustomStyle';
-import { customAddReq } from '../../modules/custom';
+
 const Custom = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -105,19 +105,31 @@ const Custom = () => {
     } else if (!token) {
       openRegisterModal();
       return;
+    } else {
+      const formData = new FormData();
+      formData.append('color', color);
+      formData.append('albumPic', imgFile);
+      formData.append('recordPic', imgFile1);
+      formData.append('title', title);
+      formData.append('songList', songList);
+
+      console.log('커스텀 토큰', token);
+      for (let p of formData) {
+        console.log(p);
+      }
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        },
+      );
+      history.push('/mypage');
     }
-    const formData = new FormData();
-    formData.append('color', color);
-    formData.append('albumPic', imgFile);
-    formData.append('recordPic', imgFile1);
-    formData.append('title', title);
-    formData.append('songList', songList);
-
-    console.log('커스텀 토큰', token);
-    console.log('커스텀 폼데이터', formData);
-    dispatch(customAddReq(token, formData));
-
-    history.push('/mypage');
   };
 
   return (
