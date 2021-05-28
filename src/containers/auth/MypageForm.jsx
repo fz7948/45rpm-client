@@ -125,13 +125,13 @@ const MyPageForm = () => {
             username={infoDefaultUsername.username}
           />
         )}
-        {isType === 'alert' && (
+        {/* {isType === 'alert' && (
           <AlertModal
             openHandle={alertCheck}
             closeHandle={shutModal}
-            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다.'}
-          />
-        )}
+            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+          ></AlertModal>
+        )} */}
       </MyPageWrapper>
     </>
   );
