@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
+import { FaShareAlt } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -112,7 +114,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
           return (
             <HeroSlide key={index}>
               {index === current && (
-                <HeroSlider onClick={herohandlerIndex}>
+                <HeroSlider>
                   <HeroImage>
                     <img
                       src={`${process.env.REACT_APP_SERVER_URI}/${slide.albumPic}`}
@@ -129,22 +131,28 @@ const Hero = ({ slides, openModal, herohandler }) => {
                       );
                     })}
                     {slide.share === true ? (
-                      <span>
-                        <input
-                          type="checkbox"
-                          checked={slide.share}
-                          onClick={() => shareStateHandler(slide._id)}
-                        />{' '}
-                        공유해제
+                      <span
+                        checked={slide.share}
+                        style={{
+                          fontSize: '40px',
+                          paddingTop: '10px',
+                          width: '10%',
+                        }}
+                        onClick={() => shareStateHandler(slide._id)}
+                      >
+                        <GiCancel style={{ width: '100%' }} />
                       </span>
                     ) : (
-                      <span>
-                        <input
-                          type="checkbox"
-                          checked={slide.share}
-                          onClick={() => shareStateHandler(slide._id)}
-                        />{' '}
-                        공유하기
+                      <span
+                        checked={slide.share}
+                        style={{
+                          fontSize: '40px',
+                          paddingTop: '10px',
+                          width: '10%',
+                        }}
+                        onClick={() => shareStateHandler(slide._id)}
+                      >
+                        <FaShareAlt style={{ width: '100%' }} />
                       </span>
                     )}
                   </HeroContent>

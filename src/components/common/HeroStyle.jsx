@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 
-export const HeroSection = styled.section `
+export const HeroSection = styled.section`
   width: 80%;
   height: 30vh;
   max-height: 1100px;
@@ -11,7 +11,7 @@ export const HeroSection = styled.section `
   overflow: hidden;
 `;
 
-export const HeroWrapper = styled.div `
+export const HeroWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -21,13 +21,13 @@ export const HeroWrapper = styled.div `
   position: relative;
 `;
 
-export const HeroSlide = styled.div `
+export const HeroSlide = styled.div`
   z-index: 1;
   width: 100%;
   height: 100%;
 `;
 
-export const HeroSlider = styled.div `
+export const HeroSlider = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -56,7 +56,7 @@ export const HeroSlider = styled.div `
   }
 `;
 
-export const HeroImage = styled.div `
+export const HeroImage = styled.div`
   width: 100%;
   height: 100%;
   img {
@@ -70,21 +70,21 @@ export const HeroImage = styled.div `
   }
 `;
 
-export const HeroContent = styled.div `
+export const HeroContent = styled.div`
   position: absolute;
   z-index: 10;
   display: flex;
   flex-direction: column;
   width: calc(100% - 100px);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.5rem;
 
   @media screen and (max-width: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 
-export const SliderButtons = styled.div `
+export const SliderButtons = styled.div`
   position: absolute;
   bottom: 50px;
   right: 50px;
@@ -92,7 +92,7 @@ export const SliderButtons = styled.div `
   z-index: 10;
 `;
 
-export const arrowButtons = css `
+export const arrowButtons = css`
   width: 50px;
   height: 50px;
   color: #fff;
@@ -114,12 +114,10 @@ export const arrowButtons = css `
   }
 `;
 
-export const PrevArrow = styled(IoArrowBack)
-`
+export const PrevArrow = styled(IoArrowBack)`
   ${arrowButtons}
 `;
 
-export const NextArrow = styled(IoArrowForward)
-`
+export const NextArrow = styled(IoArrowForward)`
   ${arrowButtons}
 `;
