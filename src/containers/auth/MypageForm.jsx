@@ -36,28 +36,31 @@ const MyPageForm = () => {
   const [heroListNumber, setHeroListNumber] = useState(0);
   const [customData, setCustomData] = useState([]);
 
-  useEffect(() => {
-    dispatch(userInfoReq(token));
-  }, [checkModal]);
+  useEffect(async () => {
+    if (token) {
+      dispatch(userInfoReq(token)).then(async () => {
+        await axios
+          .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
+            headers: {
+              authorization: `Bearer ${token}`,
+              withCredential: true,
+            },
+          })
+          .then((response) => {
+            setCustomData(response.data.data);
+          });
+      });
+    }
+  }, [token]);
 
-  useEffect(() => {
-    if (info) {
+  useEffect(async () => {
+    if (info !== undefined && info !== null) {
       const { id, email, username } = info.data;
       setInfoDefaultEmail({ email });
       setInfoDefaultUsername({ username });
       setInfoDefaultId({ id });
     }
   }, [info]);
-
-  useEffect(async () => {
-    return await axios
-      .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
-        headers: { authorization: `Bearer ${token}`, withCredential: true },
-      })
-      .then((response) => {
-        setCustomData(response.data.data);
-      });
-  }, []);
 
   const aboutInfoModal = () => {
     dispatch(infoModal());
