@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 
-export const HeroSection = styled.section`
+export const HeroSection = styled.section `
   width: 80%;
   height: 30vh;
   max-height: 1100px;
@@ -11,7 +11,7 @@ export const HeroSection = styled.section`
   overflow: hidden;
 `;
 
-export const HeroWrapper = styled.div`
+export const HeroWrapper = styled.div `
   width: 100%;
   height: 100%;
   display: flex;
@@ -21,13 +21,13 @@ export const HeroWrapper = styled.div`
   position: relative;
 `;
 
-export const HeroSlide = styled.div`
+export const HeroSlide = styled.div `
   z-index: 1;
   width: 100%;
   height: 100%;
 `;
 
-export const HeroSlider = styled.div`
+export const HeroSlider = styled.div `
   position: absolute;
   top: 0;
   left: 0;
@@ -56,7 +56,7 @@ export const HeroSlider = styled.div`
   }
 `;
 
-export const HeroImage = styled.div`
+export const HeroImage = styled.div `
   width: 100%;
   height: 100%;
   img {
@@ -70,7 +70,7 @@ export const HeroImage = styled.div`
   }
 `;
 
-export const HeroContent = styled.div`
+export const HeroContent = styled.div `
   position: absolute;
   z-index: 10;
   display: flex;
@@ -82,17 +82,31 @@ export const HeroContent = styled.div`
   @media screen and (max-width: 768px) {
     font-size: 1.2rem;
   }
+
+  button {
+    width: 30px;
+    height: 40px;
+    font-size: 15px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    outline: 0;
+    color: #fff;
+  }
 `;
 
-export const SliderButtons = styled.div`
+export const SliderButtons = styled.div `
   position: absolute;
   bottom: 50px;
   right: 50px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 10;
 `;
 
-export const arrowButtons = css`
+export const arrowButtons = css `
   width: 50px;
   height: 50px;
   color: #fff;
@@ -114,10 +128,38 @@ export const arrowButtons = css`
   }
 `;
 
-export const PrevArrow = styled(IoArrowBack)`
+export const PrevArrow = styled(IoArrowBack)
+`
   ${arrowButtons}
 `;
 
-export const NextArrow = styled(IoArrowForward)`
+export const NextArrow = styled(IoArrowForward)
+`
   ${arrowButtons}
+`;
+
+export const Arrow = styled.div `
+  display: flex;
+`;
+
+export const Button = styled.button `
+  margin-top: 1rem;
+  font-size: 15px;
+  font-family: 'Jua', sans-serif;
+  background-color: #eee;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  outline: 0;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  &:hover {
+    background-color: #ddd;
+    transition: all ease 0.4s;
+  }
+  @media screen and (max-width: 768px) {
+    width: 90px;
+    height: 30px;
+    font-size: 1rem;
+  }
 `;
