@@ -117,48 +117,8 @@ function Main() {
     }
     innerDisk[pageNum].style.background = colorArray[pageNum][0];
   }
-
-  const shutModal = () => {
-    dispatch(closeModal());
-  };
-
   return (
     <>
-      {isType === 'alertRegister' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'회원가입이 완료되었습니다.'}
-        />
-      )}
-      {isType === 'alertLogin' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'로그인이 완료되었습니다.'}
-        />
-      )}
-      {isType === 'alertLogout' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'로그아웃이 완료되었습니다.'}
-        />
-      )}
-      {isType === 'alertUpdate' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'정보 수정이 완료되었습니다.'}
-        />
-      )}
-      {isType === 'alertWithdrawal' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'회원 탈퇴가 완료되었습니다.'}
-        />
-      )}
       <div className="container">
         <article className="wrapperContent">
           <div className="mainWrapper">

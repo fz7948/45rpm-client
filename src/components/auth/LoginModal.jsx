@@ -5,7 +5,6 @@ import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
 import { loginUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { alertLoginModal } from '../../modules/modal';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -162,8 +161,7 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
       dispatch(loginUser(payload));
       history.push('/');
       dispatch(resetLogin());
-      dispatch(alertLoginModal());
-      handleCloseModal();
+      handleCloseBtn();
     }
   }, [login, loginError, dispatch]);
 
@@ -193,13 +191,6 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
     setInputPassword('');
     setDenyMessage('');
     close();
-  };
-
-  const handleCloseModal = () => {
-    setInputID('');
-    setInputPassword('');
-    setDenyMessage('');
-    dispatch(resetLoginMsg());
   };
 
   const handleInputID = useCallback(

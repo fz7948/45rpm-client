@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
-import {
-  closeModal,
-  albumDetailModal,
-  infoModal,
-  alertUpdateModal,
-} from '../../modules/modal';
+import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
 import {
   MyPageWrapper,
