@@ -134,11 +134,24 @@ const InputDetailStyle = styled.input`
 `;
 
 const View = ({ view }) => {
+  // if (Object.keys(view) === 0) {
+  //   console.log('뜨냐');
+  // }
   const history = useHistory();
   const dispatch = useDispatch();
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
+
+  console.log('view???', view);
+
+  // view[0].userId;
+  // view[0].category;
+  // view[0].title;
+  // view[0].createdAt;
+  // view[0].contents;
+
+  // let view = [{ title: '', contents: '' }];
 
   const [detailID, setDetailID] = useState('');
   const [detailCategory, setDetailCategory] = useState('');
