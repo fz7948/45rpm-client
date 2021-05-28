@@ -73,6 +73,7 @@ export const ModalBack = styled.div `
 `;
 
 export const ModalBox = styled.div`
+  border: 3px solid yellow;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -109,6 +110,6 @@ export const ModalBox = styled.div`
     `}
 
   @media screen and (max-width:768px) {
-    width: 510px;
+    width: 400px;
   }
 `;
