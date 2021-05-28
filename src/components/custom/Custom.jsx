@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import { useDispatch, useSelector } from 'react-redux';
+import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import RegisterModal from '../../components/auth/RegisterModal';
 import { registerModal, closeModal } from '../../modules/modal';
@@ -21,29 +23,28 @@ import {
   CustomAlbumCover,
   CustomCenterCover,
   SaveBtn,
-  Button,
   InputFile,
   TextInput,
   CustomTitleCover,
   CustomSongListCover,
+  Wrapper,
 } from '../common/CustomStyle';
 
 const Custom = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [index, setIndex] = useState(0);
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
   const [imgFile, setImgFile] = useState(null);
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
-  const [showColorPicker, setShowColorPicker] = useState(false);
-
   const [title, setTitle] = useState('');
   const [songList, setSongList] = useState([]);
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
-  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+  const { checkModal, isType } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
     token: user.token,
@@ -95,7 +96,7 @@ const Custom = () => {
   };
 
   const handleChangeSongList = (e) => {
-    setSongList([e.target.value]);
+    setSongList(...songList, [e.target.value]);
   };
 
   const submitHandler = async () => {
@@ -149,51 +150,73 @@ const Custom = () => {
             </CdCaseContent>
             <CustomContent>
               <CustomElement>
-                <CustomColor>
-                  Color
-                  <Button
-                    onClick={() =>
-                      setShowColorPicker((showColorPicker) => !showColorPicker)
-                    }
-                  >
-                    {showColorPicker ? 'CLOSE' : 'CHOOSE COLOR'}
-                  </Button>
-                  {showColorPicker && (
-                    <ChromePicker color={color} onChange={handleChangeColor} />
-                  )}
-                </CustomColor>
-                <CustomAlbumCover>
-                  AlbumCover
-                  <InputFile
-                    type="file"
-                    name="imgFile"
-                    id="imgFile"
-                    onChange={handleChangeFile}
-                  />
-                </CustomAlbumCover>
-                <CustomCenterCover>
-                  CenterCover
-                  <InputFile
-                    type="file"
-                    name="imgFile"
-                    id="imgFile"
-                    onChange={handleChangeFile1}
-                  />
-                </CustomCenterCover>
-                <CustomTitleCover>
-                  Title
-                  <TextInput
-                    placeholder="LP 이름을 입력하세요"
-                    onChange={handleChangeTitle}
-                  />
-                </CustomTitleCover>
-                <CustomSongListCover>
-                  SongList
-                  <TextInput
-                    placeHolder="추가하고 싶은 음악을 입력하세요"
-                    onChange={handleChangeSongList}
-                  />
-                </CustomSongListCover>
+                <h2>Custom List</h2>
+                <Tabs
+                  selectedIndex={index}
+                  onSelect={(index) => setIndex(index)}
+                >
+                  <Wrapper>
+                    <Tab style={{ border: '1px solid black' }}>
+                      <span>Color</span>
+                    </Tab>
+                    <Tab>
+                      <span>AlbumCover</span>
+                    </Tab>
+                    <Tab>
+                      <span>CenterCover</span>
+                    </Tab>
+                    <Tab>
+                      <span>Title</span>
+                    </Tab>
+                    <Tab>
+                      <span>SongList</span>
+                    </Tab>
+                  </Wrapper>
+                  <TabPanel>
+                    <CustomColor>
+                      <ChromePicker
+                        color={color}
+                        onChange={handleChangeColor}
+                      />
+                    </CustomColor>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomAlbumCover>
+                      <InputFile
+                        type="file"
+                        name="imgFile"
+                        id="imgFile"
+                        onChange={handleChangeFile}
+                      />
+                    </CustomAlbumCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomCenterCover>
+                      <InputFile
+                        type="file"
+                        name="imgFile"
+                        id="imgFile"
+                        onChange={handleChangeFile1}
+                      />
+                    </CustomCenterCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomTitleCover>
+                      <TextInput
+                        placeholder="LP 이름을 입력하세요"
+                        onChange={handleChangeTitle}
+                      />
+                    </CustomTitleCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomSongListCover>
+                      <TextInput
+                        placeHolder="추가하고 싶은 음악을 입력하세요"
+                        onChange={handleChangeSongList}
+                      />
+                    </CustomSongListCover>
+                  </TabPanel>
+                </Tabs>
               </CustomElement>
               <SaveBtn onClick={submitHandler}>Save</SaveBtn>
             </CustomContent>
