@@ -51,7 +51,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
             });
         }
       });
-  }, []);
+  }, [slides]);
 
   useEffect(() => {
     const nextSlide = () => {

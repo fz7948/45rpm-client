@@ -56,7 +56,7 @@ const Header = () => {
               },
               success: function (response) {
                 dispatch(kakaoLoginReq(response)).then(() => {
-                  history.push('/mypage');
+                  history.push('/');
                   dispatch(resetLogin());
                   dispatch(resetLoginMsg());
                   dispatch(alertOpenModal());
