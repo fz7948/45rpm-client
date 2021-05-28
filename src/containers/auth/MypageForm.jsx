@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
-import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
+import {
+  closeModal,
+  albumDetailModal,
+  infoModal,
+  alertUpdateModal,
+} from '../../modules/modal';
 import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
 import {
   MyPageWrapper,
@@ -121,8 +126,8 @@ const MyPageForm = () => {
           <AlertModal
             openHandle={alertCheck}
             closeHandle={shutModal}
-            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
-          ></AlertModal>
+            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다.'}
+          />
         )}
       </MyPageWrapper>
     </>

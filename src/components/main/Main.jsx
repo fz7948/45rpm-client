@@ -4,8 +4,17 @@ import '../../pages/sass/Main.scss';
 import Footer from '../common/Footer';
 import { BsFillSkipEndFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import AlertModal from '../../components/common/AlertModal';
+import { useSelector, useDispatch } from 'react-redux';
+import { closeModal } from '../../modules/modal';
 
 function Main() {
+  const dispatch = useDispatch();
+  const { alertCheck, isType } = useSelector(({ modal }) => ({
+    alertCheck: modal.alertCheck,
+    isType: modal.isType,
+  }));
+
   const history = useHistory();
   let prevBtn, nextBtn, skipBtn;
   let header;
@@ -98,8 +107,48 @@ function Main() {
     }
     innerDisk[pageNum].style.background = colorArray[pageNum][0];
   }
+
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
+
   return (
     <>
+      {isType === 'alertRegister' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'회원가입이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertLogin' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'로그인이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertLogout' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'로그아웃이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertUpdate' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'정보 수정이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertWithdrawal' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'회원 탈퇴가 완료되었습니다.'}
+        />
+      )}
       <div className="container">
         <article className="wrapperContent">
           <div className="mainWrapper">
