@@ -28,6 +28,7 @@ import {
   CustomTitleCover,
   CustomSongListCover,
   Wrapper,
+  H2Title,
 } from '../common/CustomStyle';
 
 const Custom = () => {
@@ -96,7 +97,14 @@ const Custom = () => {
   };
 
   const handleChangeSongList = (e) => {
-    setSongList(...songList, [e.target.value]);
+    if (
+      e.target.value.includes(',') &&
+      songList.length >= 0 &&
+      e.target.value !== ''
+    ) {
+      setSongList(e.target.value.split(','));
+      console.log('>>>>songList', songList);
+    }
   };
 
   const submitHandler = async () => {
@@ -116,7 +124,7 @@ const Custom = () => {
 
       console.log('커스텀 토큰', token);
       for (let p of formData) {
-        console.log(p);
+        console.log('<<>F>D????D>>', p);
       }
       await axios.post(
         `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
@@ -150,13 +158,13 @@ const Custom = () => {
             </CdCaseContent>
             <CustomContent>
               <CustomElement>
-                <h2>Custom List</h2>
+                <H2Title>Custom List</H2Title>
                 <Tabs
                   selectedIndex={index}
                   onSelect={(index) => setIndex(index)}
                 >
                   <Wrapper>
-                    <Tab style={{ border: '1px solid black' }}>
+                    <Tab>
                       <span>Color</span>
                     </Tab>
                     <Tab>
