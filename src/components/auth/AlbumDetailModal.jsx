@@ -18,10 +18,6 @@ const InfoWrapper = styled.div`
   ul {
     padding: 0;
   }
-  li {
-    list-style: none;
-    margin-bottom: 0.5rem;
-  }
 `;
 
 const InfoLabel = styled.label`
@@ -52,12 +48,29 @@ const InfoCloseBtn = styled.button`
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
     top: 1rem;
-    left: 29rem;
+    left: 10rem;
+  }
+`;
+
+const ProducerLi = styled.li`
+  padding-left: 2rem;
+`;
+
+const TitleLi = styled.li`
+  padding-left: 2rem;
+`;
+
+const SongListLi = styled.li`
+  @media screen and (max-width: 768px) {
   }
 `;
 
 const SongContainer = styled.div`
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
@@ -87,27 +100,34 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
                   <>
                     <h2> 앨범 정보 </h2>
                     <ul>
-                      <li>
+                      <ProducerLi>
                         <InfoLabel>
                           <div> Producer </div>
                         </InfoLabel>
                         <div> {slide.userId} </div>
-                      </li>
-                      <li>
+                      </ProducerLi>
+                      <TitleLi>
                         <InfoLabel>
                           <div> Title </div>
                         </InfoLabel>
                         <div> {slide.title} </div>
-                      </li>
-                      <li>
+                      </TitleLi>
+                      <SongListLi>
                         <InfoLabel>
-                          <div> Song List </div>
+                          <div
+                            style={{
+                              paddingLeft: '2rem',
+                              paddingBottom: '1rem',
+                            }}
+                          >
+                            Song List
+                          </div>
                           {/* 배열로 들어오는 제목들 추가해야 합니다 */}
                         </InfoLabel>
                         <SongContainer>
                           <DragDrop />
                         </SongContainer>
-                      </li>
+                      </SongListLi>
                     </ul>
                   </>
                 )}
