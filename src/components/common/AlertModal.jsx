@@ -49,6 +49,8 @@ const AlertModal = ({ openHandle, closeHandle, comment }) => {
 
   if (!animate && !localVisible) return null;
 
+  setTimeout(closeHandle, 1000);
+
   return (
     <>
       <ModalBack disappear={!openHandle}>

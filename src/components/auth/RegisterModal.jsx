@@ -8,6 +8,7 @@ import {
   resetRegister,
   resetRegisterMsg,
 } from '../../modules/auth';
+import { alertRegisterModal } from '../../modules/modal';
 
 const RegisterWrapper = styled.div`
   display: flex;
@@ -142,10 +143,10 @@ const RegisterModal = ({ open, close, history }) => {
       return;
     }
     if (register) {
-      //모달로 만들어야함
       history.push('/');
-      handleCloseBtn();
       dispatch(resetRegister());
+      dispatch(alertRegisterModal());
+      handleCloseModal();
     }
   }, [register, registerError]);
 
@@ -232,6 +233,16 @@ const RegisterModal = ({ open, close, history }) => {
     setDenyMessage('');
     dispatch(resetRegisterMsg());
     close();
+  };
+
+  const handleCloseModal = () => {
+    setInputID('');
+    setInputEmail('');
+    setInputUsername('');
+    setInputPassword('');
+    setInputPasswordCheck('');
+    setDenyMessage('');
+    dispatch(resetRegisterMsg());
   };
 
   const checkValidEmail = useCallback(

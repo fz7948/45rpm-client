@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { updateReq, resetUpdate } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
+import { alertUpdateModal, alertWithdrawalModal } from '../../modules/modal';
 
 const UpdateWrapper = styled.div`
   display: flex;
@@ -172,7 +173,8 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
     }
     if (update) {
       dispatch(resetUpdate());
-      handleCloseBtn();
+      dispatch(alertUpdateModal());
+      handleCloseModal();
       history.push('/');
     }
   }, [update, updateError]);
@@ -225,6 +227,16 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
     setInputNewPasswordCheck('');
     setDenyMessage('');
     close();
+  };
+
+  const handleCloseModal = () => {
+    setInputID('');
+    setInputEmail('');
+    setInputUsername('');
+    setInputOldPassword('');
+    setInputNewPassword('');
+    setInputNewPasswordCheck('');
+    setDenyMessage('');
   };
 
   const handleChangeID = useCallback((e) => {
@@ -358,8 +370,8 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
   };
 
   const withdrawalBtn = () => {
-    alert('탈퇴할거니');
     dispatch(withdrawal(token));
+    dispatch(alertWithdrawalModal());
     history.push('/');
   };
 
