@@ -75,7 +75,7 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
       username: kakaoLoginRes.data.username,
       token: token,
     };
-    dispatch(loginKakao(payload));
+    dispatch(payload);
     dispatch({
       type: KAKAO_LOGIN_SUCCESS,
       login: kakaoLoginRes,

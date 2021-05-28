@@ -66,7 +66,7 @@ export const withdrawal = (token) => async (dispatch) => {
   try {
     const withdraw = await authAPI.withdraw(token);
     dispatch({ type: WITHDRAW });
-    // removeSessionStorage();
+    removeSessionStorage();
   } catch (error) {
     console.log(error);
   }
@@ -78,6 +78,7 @@ const initialState = {
   id: null,
   email: null,
   username: null,
+  ischeck: false,
 };
 
 function user(state = initialState, action) {
@@ -91,8 +92,10 @@ function user(state = initialState, action) {
         id: action.id,
         email: action.email,
         username: action.username,
+        ischeck: true,
       };
     case KAKAO_LOGIN:
+    case CHECK_SUCCESS:
       return {
         ...state,
         isLogin: true,
@@ -100,6 +103,7 @@ function user(state = initialState, action) {
         id: action.id,
         email: action.email,
         username: action.username,
+        ischeck: true,
       };
     case LOGOUT_USER:
     case CHECK:
@@ -111,6 +115,7 @@ function user(state = initialState, action) {
         id: null,
         email: null,
         username: null,
+        ischeck: false,
       };
     case WITHDRAW:
       return {
@@ -120,6 +125,7 @@ function user(state = initialState, action) {
         id: null,
         email: null,
         username: null,
+        ischeck: false,
       };
     default:
       return state;
