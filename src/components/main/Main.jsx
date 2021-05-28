@@ -10,16 +10,23 @@ import { closeModal } from '../../modules/modal';
 
 function Main() {
   const dispatch = useDispatch();
-  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
-    useSelector(({ modal, auth, user }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      login: auth.login,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      isLogin: user.isLogin,
-      isSocial: auth.isSocial,
-    }));
+  const {
+    checkModal,
+    isType,
+    login,
+    alertCheck,
+    token,
+    isLogin,
+    isSocial,
+  } = useSelector(({ modal, auth, user }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    login: auth.login,
+    alertCheck: modal.alertCheck,
+    token: user.token,
+    isLogin: user.isLogin,
+    isSocial: auth.isSocial,
+  }));
 
   const shutModal = () => {
     dispatch(closeModal());
@@ -120,6 +127,48 @@ function Main() {
 
   return (
     <>
+      {isSocial === 'kakao' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+        ></AlertModal>
+      )}
+      {isType === 'alertRegister' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'회원가입이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertLogin' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'로그인이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertLogout' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'로그아웃이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertUpdate' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'정보 수정이 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertWithdrawal' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'회원 탈퇴가 완료되었습니다.'}
+        />
+      )}
       <div className="container">
         <article className="wrapperContent">
           <div className="mainWrapper">
@@ -244,13 +293,6 @@ function Main() {
         </article>
       </div>
       <Footer />
-      {isSocial === 'kakao' && (
-        <AlertModal
-          openHandle={alertCheck}
-          closeHandle={shutModal}
-          comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
-        ></AlertModal>
-      )}
     </>
   );
 }
