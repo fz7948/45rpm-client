@@ -4,6 +4,9 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const WITHDRAW = 'WITHDRAW';
 const KAKAO_LOGIN = 'KAKAO_LOGIN';
+const CHECK = 'CHECK';
+const CHECK_SUCCESS = 'CHECK_SUCCESS';
+const CHECK_ERROR = 'CHECK_ERROR';
 
 export const loginUser = ({ id, email, username, token }) => ({
   type: LOGIN_USER,
@@ -26,9 +29,36 @@ export const logoutUser = (token) => async (dispatch) => {
   try {
     const logoutRes = await authAPI.logout(token);
     dispatch({ type: LOGOUT_USER });
-    // removeSessionStorage();
+    removeSessionStorage();
   } catch (error) {
     console.log(error);
+  }
+};
+
+function removeSessionStorage() {
+  try {
+    sessionStorage.removeItem('id');
+  } catch (e) {
+    console.log('sessionStorage is not working');
+  }
+}
+
+export const checkUser = (ssID, token) => async (dispatch) => {
+  dispatch({ type: CHECK });
+  try {
+    const res = await authAPI.check(ssID);
+    console.log(res);
+    const { id, username, email, admin, social } = res.data;
+    dispatch({
+      type: CHECK_SUCCESS,
+      token,
+      id,
+      email,
+      username,
+    });
+  } catch (e) {
+    dispatch({ type: CHECK_ERROR });
+    removeSessionStorage();
   }
 };
 
@@ -53,6 +83,7 @@ const initialState = {
 function user(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:
+    case CHECK_SUCCESS:
       return {
         ...state,
         isLogin: true,
@@ -71,6 +102,8 @@ function user(state = initialState, action) {
         username: action.username,
       };
     case LOGOUT_USER:
+    case CHECK:
+    case CHECK_ERROR:
       return {
         ...state,
         isLogin: false,

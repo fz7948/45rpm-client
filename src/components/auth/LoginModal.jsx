@@ -153,8 +153,13 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
         username: login.data.username,
         token: token,
       };
+      try {
+        sessionStorage.setItem('id', payload.id);
+      } catch (e) {
+        console.log('sessionStorage is not working');
+      }
       dispatch(loginUser(payload));
-      history.push('/mypage');
+      history.push('/');
       dispatch(resetLogin());
       handleCloseBtn();
     }
