@@ -17,6 +17,21 @@ export const signup = async ({ id, email, username, password }) => {
   return response.data;
 };
 
+export const check = async (id) => {
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URI}/user/check`,
+    {
+      id,
+    },
+    {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    },
+  );
+  console.log(response);
+  return response.data;
+};
+
 export const kakaoLogin = async (data) => {
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URI}/user/oauth/kakao`,

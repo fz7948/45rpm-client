@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import { useDispatch, useSelector } from 'react-redux';
+import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabPanel } from 'react-tabs';
 import axios from 'axios';
 import RegisterModal from '../../components/auth/RegisterModal';
 import { registerModal, closeModal } from '../../modules/modal';
@@ -21,29 +23,29 @@ import {
   CustomAlbumCover,
   CustomCenterCover,
   SaveBtn,
-  Button,
   InputFile,
   TextInput,
   CustomTitleCover,
   CustomSongListCover,
+  Wrapper,
+  H2Title,
 } from '../common/CustomStyle';
 
 const Custom = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [index, setIndex] = useState(0);
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
   const [imgFile, setImgFile] = useState(null);
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
-  const [showColorPicker, setShowColorPicker] = useState(false);
-
   const [title, setTitle] = useState('');
   const [songList, setSongList] = useState([]);
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
-  const { checkModal, isType, isLogin } = useSelector(({ modal, user }) => ({
+  const { checkModal, isType } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
     token: user.token,
@@ -95,7 +97,14 @@ const Custom = () => {
   };
 
   const handleChangeSongList = (e) => {
-    setSongList([e.target.value]);
+    if (
+      e.target.value.includes(',') &&
+      songList.length >= 0 &&
+      e.target.value !== ''
+    ) {
+      setSongList(e.target.value.split(','));
+      console.log('>>>>songList', songList);
+    }
   };
 
   const submitHandler = async () => {
@@ -115,7 +124,7 @@ const Custom = () => {
 
       console.log('커스텀 토큰', token);
       for (let p of formData) {
-        console.log(p);
+        console.log('<<>F>D????D>>', p);
       }
       await axios.post(
         `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
@@ -149,51 +158,73 @@ const Custom = () => {
             </CdCaseContent>
             <CustomContent>
               <CustomElement>
-                <CustomColor>
-                  Color
-                  <Button
-                    onClick={() =>
-                      setShowColorPicker((showColorPicker) => !showColorPicker)
-                    }
-                  >
-                    {showColorPicker ? 'CLOSE' : 'CHOOSE COLOR'}
-                  </Button>
-                  {showColorPicker && (
-                    <ChromePicker color={color} onChange={handleChangeColor} />
-                  )}
-                </CustomColor>
-                <CustomAlbumCover>
-                  AlbumCover
-                  <InputFile
-                    type="file"
-                    name="imgFile"
-                    id="imgFile"
-                    onChange={handleChangeFile}
-                  />
-                </CustomAlbumCover>
-                <CustomCenterCover>
-                  CenterCover
-                  <InputFile
-                    type="file"
-                    name="imgFile"
-                    id="imgFile"
-                    onChange={handleChangeFile1}
-                  />
-                </CustomCenterCover>
-                <CustomTitleCover>
-                  Title
-                  <TextInput
-                    placeholder="LP 이름을 입력하세요"
-                    onChange={handleChangeTitle}
-                  />
-                </CustomTitleCover>
-                <CustomSongListCover>
-                  SongList
-                  <TextInput
-                    placeHolder="추가하고 싶은 음악을 입력하세요"
-                    onChange={handleChangeSongList}
-                  />
-                </CustomSongListCover>
+                <H2Title>Custom List</H2Title>
+                <Tabs
+                  selectedIndex={index}
+                  onSelect={(index) => setIndex(index)}
+                >
+                  <Wrapper>
+                    <Tab>
+                      <span>Color</span>
+                    </Tab>
+                    <Tab>
+                      <span>AlbumCover</span>
+                    </Tab>
+                    <Tab>
+                      <span>CenterCover</span>
+                    </Tab>
+                    <Tab>
+                      <span>Title</span>
+                    </Tab>
+                    <Tab>
+                      <span>SongList</span>
+                    </Tab>
+                  </Wrapper>
+                  <TabPanel>
+                    <CustomColor>
+                      <ChromePicker
+                        color={color}
+                        onChange={handleChangeColor}
+                      />
+                    </CustomColor>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomAlbumCover>
+                      <InputFile
+                        type="file"
+                        name="imgFile"
+                        id="imgFile"
+                        onChange={handleChangeFile}
+                      />
+                    </CustomAlbumCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomCenterCover>
+                      <InputFile
+                        type="file"
+                        name="imgFile"
+                        id="imgFile"
+                        onChange={handleChangeFile1}
+                      />
+                    </CustomCenterCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomTitleCover>
+                      <TextInput
+                        placeholder="LP 이름을 입력하세요"
+                        onChange={handleChangeTitle}
+                      />
+                    </CustomTitleCover>
+                  </TabPanel>
+                  <TabPanel>
+                    <CustomSongListCover>
+                      <TextInput
+                        placeHolder="추가하고 싶은 음악을 입력하세요"
+                        onChange={handleChangeSongList}
+                      />
+                    </CustomSongListCover>
+                  </TabPanel>
+                </Tabs>
               </CustomElement>
               <SaveBtn onClick={submitHandler}>Save</SaveBtn>
             </CustomContent>
