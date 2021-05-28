@@ -117,6 +117,7 @@ function Main() {
     }
     innerDisk[pageNum].style.background = colorArray[pageNum][0];
   }
+
   return (
     <>
       <div className="container">
