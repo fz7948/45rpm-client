@@ -4,8 +4,27 @@ import '../../pages/sass/Main.scss';
 import Footer from '../common/Footer';
 import { BsFillSkipEndFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import AlertModal from '../../components/common/AlertModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from '../../modules/modal';
 
 function Main() {
+  const dispatch = useDispatch();
+  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
+    useSelector(({ modal, auth, user }) => ({
+      checkModal: modal.checkModal,
+      isType: modal.isType,
+      login: auth.login,
+      alertCheck: modal.alertCheck,
+      token: user.token,
+      isLogin: user.isLogin,
+      isSocial: auth.isSocial,
+    }));
+
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
+
   const history = useHistory();
   let prevBtn, nextBtn, skipBtn;
   let header;
@@ -224,6 +243,13 @@ function Main() {
         </article>
       </div>
       <Footer />
+      {isSocial === 'kakao' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+        ></AlertModal>
+      )}
     </>
   );
 }

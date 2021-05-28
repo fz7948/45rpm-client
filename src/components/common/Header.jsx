@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { loginKakao } from '../../modules/user';
+
 import '../../pages/sass/Header.scss';
 import {
   loginModal,
@@ -13,16 +15,38 @@ import LoginModal from '../../components/auth/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
 
 const Header = () => {
-  const { checkModal, isType, login, alertCheck } = useSelector(
-    ({ modal, auth }) => ({
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
+    useSelector(({ modal, auth, user }) => ({
       checkModal: modal.checkModal,
       isType: modal.isType,
       login: auth.login,
       alertCheck: modal.alertCheck,
-    }),
-  );
-  const history = useHistory();
-  const dispatch = useDispatch();
+      token: user.token,
+      isLogin: user.isLogin,
+      isSocial: auth.isSocial,
+    }));
+
+  useEffect(async () => {
+    if (login) {
+      console.log('돌아간다');
+      const cookie = document.cookie.split('=')[1];
+
+      const payload = {
+        id: login.data.id,
+        email: login.data.email,
+        username: login.data.username,
+        token: cookie,
+      };
+      console.log(isSocial);
+      if (isSocial === 'kakao') {
+        console.log('카카오들어옴?');
+        dispatch(loginKakao(payload));
+        dispatch(alertOpenModal());
+      }
+    }
+  }, [login]);
 
   const openLoginModal = () => {
     dispatch(loginModal());
@@ -55,12 +79,19 @@ const Header = () => {
                 ],
               },
               success: function (response) {
-                dispatch(kakaoLoginReq(response)).then(() => {
-                  history.push('/');
-                  dispatch(resetLogin());
-                  dispatch(resetLoginMsg());
-                  dispatch(alertOpenModal());
-                });
+                dispatch(kakaoLoginReq(response));
+                // console.log(response);
+                // setTimeout(() => {
+                //   const cookie = document.cookie.split('=')[1];
+                //   const payload = {
+                //     id: response.kakao_account.email.split('@')[0],
+                //     email: response.kakao_account.email,
+                //     username: response.kakao_account.email.split('@')[0],
+                //     token: cookie,
+                //   };
+                //   console.log(payload);
+                //   return dispatch(loginKakao(payload)), 1000;
+                // });
               },
               fail: function (error) {
                 console.log(error);
