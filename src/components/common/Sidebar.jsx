@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
+import { alertLogoutModal } from '../../modules/modal';
 
 const NavSidebar = styled.div`
   display: flex;
@@ -166,6 +167,7 @@ const Navbar = ({ history }) => {
 
   const onLogout = () => {
     dispatch(logoutUser(token));
+    dispatch(alertLogoutModal());
     history.push('/');
     showSidebar();
   };
