@@ -190,7 +190,6 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
     setInputID('');
     setInputPassword('');
     setDenyMessage('');
-    dispatch(resetLoginMsg());
     close();
   };
 
@@ -219,6 +218,7 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
   if (!animate && !localVisible) return null;
 
   const handleSignIn = () => {
+    dispatch(resetLoginMsg());
     if (inputID === '') {
       refID.current?.focus();
       setDenyMessage('이메일을 입력하세요');

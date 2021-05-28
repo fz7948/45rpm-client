@@ -75,10 +75,16 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
       username: kakaoLoginRes.data.username,
       token: token,
     };
-    dispatch(payload);
+    try {
+      console.log('트라이');
+      sessionStorage.setItem('id', payload.id);
+    } catch (e) {
+      console.log('sessionStorage is not working');
+    }
     dispatch({
       type: KAKAO_LOGIN_SUCCESS,
       login: kakaoLoginRes,
+      isSocial: 'kakao',
     });
   } catch (error) {
     console.error(error);
@@ -145,6 +151,7 @@ const initialState = {
   updateError: null,
   info: null,
   infoError: null,
+  isSocial: null,
 };
 
 function auth(state = initialState, action) {
@@ -197,6 +204,7 @@ function auth(state = initialState, action) {
       return {
         ...state,
         login: action.login,
+        isSocial: action.isSocial,
         loginError: null,
       };
     case KAKAO_LOGIN_FAILURE:
@@ -207,6 +215,7 @@ function auth(state = initialState, action) {
     case LOGIN_RESET_MSG:
       return {
         loginError: null,
+        isSocial: null,
       };
     case UPDATE:
       return {
