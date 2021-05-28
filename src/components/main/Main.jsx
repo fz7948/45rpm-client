@@ -118,10 +118,6 @@ function Main() {
     innerDisk[pageNum].style.background = colorArray[pageNum][0];
   }
 
-  const shutModal = () => {
-    dispatch(closeModal());
-  };
-
   return (
     <>
       {isType === 'alertRegister' && (
