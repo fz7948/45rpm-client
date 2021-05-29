@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div `
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: #fff;
+  background: lightgray;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
 `;
 
-export const TitleWrapper = styled.div`
+export const TitleWrapper = styled.div `
   display: flex;
   flex-direction: column;
   padding: 4rem;
@@ -31,7 +31,7 @@ export const TitleWrapper = styled.div`
   }
 `;
 
-export const H1Title = styled.h1`
+export const H1Title = styled.h1 `
   color: #000;
   font-size: 4.7rem;
   font-family: 'Lato', sans-serif;
@@ -42,7 +42,7 @@ export const H1Title = styled.h1`
   }
 `;
 
-export const SubTitle = styled.h5`
+export const SubTitle = styled.h5 `
   color: #000;
   font-size: 2rem;
 
@@ -51,10 +51,10 @@ export const SubTitle = styled.h5`
   }
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div `
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 4rem;
+  grid-row-gap: 6rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 9rem;
@@ -79,14 +79,14 @@ export const ContentWrapper = styled.div`
   }
 `;
 
-export const CdCaseContent = styled.div`
+export const CdCaseContent = styled.div `
   display: flex;
   width: 70%;
   height: 100%;
   position: relative;
 `;
 
-export const CoverImg = styled.div`
+export const CoverImg = styled.div `
   flex: 1;
   width: 300px;
   height: 300px;
@@ -101,7 +101,7 @@ export const CoverImg = styled.div`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled.img `
   width: inherit;
   height: inherit;
   position: absolute;
@@ -110,7 +110,7 @@ export const Img = styled.img`
   border-radius: 3px;
 `;
 
-export const Disk = styled.div`
+export const Disk = styled.div `
   flex: 1;
   width: 270px;
   height: 270px;
@@ -120,6 +120,7 @@ export const Disk = styled.div`
   border: 1px solid #fff;
   left: 35%;
   z-index: 1;
+  box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
   @media screen and (max-width: 1000px) {
     width: 230px;
     height: 230px;
@@ -150,7 +151,7 @@ export const Disk = styled.div`
   }
 `;
 
-export const InnerDisk = styled.div`
+export const InnerDisk = styled.div `
   position: absolute;
   top: 50%;
   left: 50%;
@@ -180,7 +181,7 @@ export const InnerDisk = styled.div`
   }
 `;
 
-export const Img1 = styled.img`
+export const Img1 = styled.img `
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -195,7 +196,7 @@ export const Img1 = styled.img`
   }
 `;
 
-export const ContinueBtn = styled.div`
+export const ContinueBtn = styled.div `
   width: 100%;
   height: 10vh;
   display: flex;
@@ -216,7 +217,7 @@ export const ContinueBtn = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button `
   cursor: pointer;
   width: 10rem;
   height: 3rem;

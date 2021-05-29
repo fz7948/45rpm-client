@@ -116,11 +116,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
             <HeroSlide key={index}>
               {index === current && (
                 <HeroSlider>
-                  <HeroImage
-                    style={{
-                      border: '3px solid yellow',
-                    }}
-                  >
+                  <HeroImage>
                     <img
                       src={`${process.env.REACT_APP_SERVER_URI}/${slide.albumPic}`}
                     />
