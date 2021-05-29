@@ -91,10 +91,11 @@ const MyPageForm = () => {
               <p>{infoDefaultUsername.username}</p>
             </MyPageInfo>
           </MyPageInfoWrapper>
+          <ButtonWrapper>
+            <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
+          </ButtonWrapper>
         </MyPageContent>
-        <ButtonWrapper>
-          <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
-        </ButtonWrapper>
+
         <MyPageSlide>
           <Hero
             slides={customData}

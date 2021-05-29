@@ -3,12 +3,19 @@ import styled, { css } from 'styled-components';
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 
 export const HeroSection = styled.section `
-  width: 80%;
+  width: 50%;
   height: 30vh;
   max-height: 1100px;
   border-radius: 6px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const HeroWrapper = styled.div `

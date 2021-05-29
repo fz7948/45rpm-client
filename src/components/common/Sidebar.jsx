@@ -18,7 +18,7 @@ const NavSidebar = styled.div`
   left: 0;
   top: 0;
   background: black;
-  padding: 5px 10px 5px 0px;
+  padding: 10px 10px 10px 0px;
 
   .menu-bars {
     cursor: pointer;
@@ -70,14 +70,14 @@ const SidebarWrapper = styled.div`
     display: flex;
     align-items: center;
     padding-left: 35px;
-    font-size: 25px;
+    font-size: 30px;
     font-family: 'Syncopate', sans-serif;
     &:hover {
       color: gray;
       transition: all 0.2s ease-in-out;
     }
     @media #{$small} {
-      font-size: 18px;
+      font-size: 21px;
     }
   }
 
