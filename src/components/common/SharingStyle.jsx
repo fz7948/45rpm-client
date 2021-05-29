@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #03154e, #311788);
+  background: #fff;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
@@ -25,65 +25,79 @@ export const TitleWrapper = styled.div`
   padding: 4rem;
   text-align: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     text-align: center;
     padding: 4rem;
   }
 `;
 
 export const H1Title = styled.h1`
-  color: #fff;
+  color: #000;
   font-size: 4.7rem;
   font-family: 'Lato', sans-serif;
   padding-bottom: 1rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     font-size: 2.7rem;
   }
 `;
 
 export const SubTitle = styled.h5`
-  color: #fff;
+  color: #000;
   font-size: 2rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     font-size: 1rem;
   }
 `;
 
 export const ContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-row-gap: 2rem;
-
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 4rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 6rem;
+  padding-left: 9rem;
   margin-bottom: 4rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 1rem;
-    padding-left: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-row-gap: 4rem;
+    padding-left: 6rem;
+  }
+
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    grid-row-gap: 5rem;
+    padding-left: 6rem;
   }
 `;
 
 export const CdCaseContent = styled.div`
   display: flex;
-  width: 100%;
+  width: 70%;
   height: 100%;
   position: relative;
 `;
 
 export const CoverImg = styled.div`
   flex: 1;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   position: relative;
-  @media screen and (max-width: 768px) {
-    width: 100px;
-    height: 100px;
+  @media screen and (max-width: 1000px) {
+    width: 250px;
+    height: 250px;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    width: 350px;
+    height: 350px;
   }
 `;
 
@@ -92,28 +106,38 @@ export const Img = styled.img`
   height: inherit;
   position: absolute;
   z-index: 2;
+  box-shadow: 1px 1px 0px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
 `;
 
 export const Disk = styled.div`
   flex: 1;
-  width: 170px;
-  height: 170px;
+  width: 270px;
+  height: 270px;
   position: absolute;
   top: 1rem;
   border-radius: 50%;
   border: 1px solid #fff;
   left: 35%;
   z-index: 1;
-  @media screen and (max-width: 768px) {
-    width: 70px;
-    height: 70px;
+  @media screen and (max-width: 1000px) {
+    width: 230px;
+    height: 230px;
     position: absolute;
     top: 1rem;
-    left: 35%;
+    left: 45%;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 1rem;
+    left: 45%;
   }
 
   &:hover {
     animation: rotation 2s linear infinite;
+    left: 60%;
   }
 
   @keyframes rotation {
@@ -131,8 +155,8 @@ export const InnerDisk = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 
   &::after {
@@ -146,20 +170,28 @@ export const InnerDisk = styled.div`
     background-color: black;
     border-radius: 50%;
   }
-  @media screen and (max-width: 768px) {
-    width: 30px;
-    height: 30px;
+  @media screen and (max-width: 1000px) {
+    width: 80px;
+    height: 80px;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    width: 100px;
+    height: 100px;
   }
 `;
 
 export const Img1 = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 
-  @media screen and (max-width: 768px) {
-    width: 30px;
-    height: 30px;
+  @media screen and (max-width: 1000px) {
+    width: 80px;
+    height: 80px;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    width: 100px;
+    height: 100px;
   }
 `;
 
@@ -167,14 +199,20 @@ export const ContinueBtn = styled.div`
   width: 100%;
   height: 10vh;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding-bottom: 2rem;
   padding-right: 1rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     display: flex;
     justify-content: center;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
   }
 `;
 
@@ -184,14 +222,14 @@ export const Button = styled.button`
   height: 3rem;
   color: #000;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 5px;
   text-transform: uppercase;
   font-family: 'Jua', sans-serif;
   font-size: 1.5rem;
   outline: none;
   margin-bottom: 5rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     width: calc(20vw + 6px);
     height: calc(7vw + 6px);
     font-size: 1rem;

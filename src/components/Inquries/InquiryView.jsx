@@ -50,8 +50,8 @@ const InquiryView = ({ match }) => {
   useEffect(() => {
     if (questionList) {
       setData(questionList.data);
+      console.log('<D<F>D<D>F</D></F>', questionList);
       console.log('상세페이지??', questionList.data);
-      console.log('데이터', data);
     }
   }, []);
 
@@ -59,6 +59,8 @@ const InquiryView = ({ match }) => {
 
   const filterData = (id) => {
     console.log('id', id);
+    if (!questionList || !questionList.data) return null;
+
     const array = questionList.data.filter((el) => el._id === `${id}`);
     console.log('array??', array);
     return array;

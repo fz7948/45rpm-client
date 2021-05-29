@@ -16,7 +16,6 @@ import {
   MyPageButton,
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
-import AlertModal from '../../components/common/AlertModal';
 
 const MyPageForm = () => {
   const dispatch = useDispatch();

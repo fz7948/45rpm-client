@@ -279,6 +279,7 @@ const View = ({ view }) => {
 };
 
 const ViewTable = ({ data }) => {
+  console.log('DATA>>>>>>', data);
   return (
     <>
       <View view={data} key={data._id} />
