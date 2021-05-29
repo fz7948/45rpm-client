@@ -89,7 +89,7 @@ function Main() {
       // const googleData = decodeURIComponent(window.location.hash).split('&');
       console.log('구글구글', googleData);
 
-      GoogleAuth.signIn();
+      // GoogleAuth.signIn();
       return;
     }
   });
