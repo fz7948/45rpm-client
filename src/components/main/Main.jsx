@@ -7,26 +7,20 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import AlertModal from '../../components/common/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../modules/modal';
+import axios from 'axios';
 
 function Main() {
   const dispatch = useDispatch();
-  const {
-    checkModal,
-    isType,
-    login,
-    alertCheck,
-    token,
-    isLogin,
-    isSocial,
-  } = useSelector(({ modal, auth, user }) => ({
-    checkModal: modal.checkModal,
-    isType: modal.isType,
-    login: auth.login,
-    alertCheck: modal.alertCheck,
-    token: user.token,
-    isLogin: user.isLogin,
-    isSocial: auth.isSocial,
-  }));
+  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
+    useSelector(({ modal, auth, user }) => ({
+      checkModal: modal.checkModal,
+      isType: modal.isType,
+      login: auth.login,
+      alertCheck: modal.alertCheck,
+      token: user.token,
+      isLogin: user.isLogin,
+      isSocial: auth.isSocial,
+    }));
 
   const shutModal = () => {
     dispatch(closeModal());
@@ -51,6 +45,8 @@ function Main() {
   ];
 
   useEffect(() => {
+    console.log('이펙트 실행 시작');
+
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
@@ -87,6 +83,15 @@ function Main() {
       removeFunc();
     });
     pageChangeFunc();
+
+    if (window.location.hash !== '') {
+      const googleData = window.location.hash.split('&')[1].split('=')[1];
+      // const googleData = decodeURIComponent(window.location.hash).split('&');
+      console.log('구글구글', googleData);
+
+      GoogleAuth.signIn();
+      return;
+    }
   });
 
   function pageFunc() {
