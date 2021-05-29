@@ -122,8 +122,6 @@ const Inquires = () => {
     setLnquireList({ data: newList });
   };
 
-  console.log('문의 리스트', questionList);
-
   return (
     <Container>
       <HeaderWrapper>
