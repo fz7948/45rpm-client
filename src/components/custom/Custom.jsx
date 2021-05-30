@@ -45,10 +45,9 @@ const Custom = () => {
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
-  const { checkModal, isType } = useSelector(({ modal, user }) => ({
+  const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
-    token: user.token,
   }));
 
   const openRegisterModal = () => {

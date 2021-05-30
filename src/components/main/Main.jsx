@@ -10,21 +10,9 @@ import { closeModal } from '../../modules/modal';
 
 function Main() {
   const dispatch = useDispatch();
-  const {
-    checkModal,
-    isType,
-    login,
-    alertCheck,
-    token,
-    isLogin,
-    isSocial,
-  } = useSelector(({ modal, auth, user }) => ({
-    checkModal: modal.checkModal,
+  const { isType, alertCheck, isSocial } = useSelector(({ modal, auth }) => ({
     isType: modal.isType,
-    login: auth.login,
     alertCheck: modal.alertCheck,
-    token: user.token,
-    isLogin: user.isLogin,
     isSocial: auth.isSocial,
   }));
 

@@ -18,7 +18,7 @@ const NavSidebar = styled.div`
   left: 0;
   top: 0;
   background: black;
-  padding: 5px 10px 5px 0px;
+  padding: 10px 10px 10px 0px;
 
   .menu-bars {
     cursor: pointer;
@@ -69,15 +69,16 @@ const SidebarWrapper = styled.div`
     color: #fff;
     display: flex;
     align-items: center;
-    padding-left: 35px;
+    padding-left: 1rem;
     font-size: 25px;
     font-family: 'Syncopate', sans-serif;
     &:hover {
       color: gray;
       transition: all 0.2s ease-in-out;
     }
-    @media #{$small} {
-      font-size: 18px;
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      padding-left: 1rem;
     }
   }
 
@@ -179,7 +180,7 @@ const Navbar = ({ history }) => {
       <SidebarWrapper>
         <NavSidebar>
           <div className="logo" onClick={() => history.push('/')}>
-            45RPM
+            45 RPM
           </div>
           <FaIcons.FaBars className="menu-bars" onClick={showSidebar} />
         </NavSidebar>
@@ -201,7 +202,7 @@ const Navbar = ({ history }) => {
             })}
           </ul>
           <SideLogoutBtn>
-            <div onClick={onLogout}>로그아웃</div>
+            <div onClick={onLogout}> 로그아웃 </div>
           </SideLogoutBtn>
         </nav>
       </SidebarWrapper>
