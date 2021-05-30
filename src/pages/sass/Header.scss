@@ -3,22 +3,21 @@ $small: 'screen and (max-width:768px)';
     display: flex;
     justify-content: space-between;
     background-color: #000;
-    padding-bottom: 5px;
     .logo {
         cursor: pointer;
         color: #fff;
         display: flex;
         align-items: center;
-        padding-top: 5px;
-        padding-left: 35px;
-        font-size: 30px;
+        padding-left: 1rem;
+        font-size: 25px;
         font-family: 'Syncopate', sans-serif;
         &:hover {
             color: gray;
             transition: all 0.2s ease-in-out;
         }
         @media #{$small} {
-            font-size: 21px;
+            font-size: 16px;
+            padding-left: 1rem;
         }
     }
     .buttonWrapper {
@@ -31,8 +30,8 @@ $small: 'screen and (max-width:768px)';
             outline: none;
             border: none;
             padding: 10px 10px 10px 0px;
-            margin-right: 48px;
-            font-size: 30px;
+            margin-right: 2rem;
+            font-size: 21px;
             font-family: 'Noto Sans KR', sans-serif;
             cursor: pointer;
             color: lightgray;
@@ -41,8 +40,7 @@ $small: 'screen and (max-width:768px)';
                 transition: all 0.2s ease-in-out;
             }
             @media #{$small} {
-                font-size: 17px;
-                margin-right: 21px;
+                font-size: 16px;
             }
         }
     }

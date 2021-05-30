@@ -16,8 +16,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  width: 100%;
+  height: 94.9vh;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
@@ -32,31 +32,35 @@ const Container = styled.div`
 `;
 const HeaderWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: lightgray;
-  width: 100%;
+  width: 70%;
   padding: 3rem 0;
+  margin-top: 3rem;
   @media screen and (max-width: 768px) {
     padding: 4rem 0;
-  }
-`;
-const InquiryIntro = styled.div`
-  font-size: 2.5rem;
-  background: lightgray;
-
-  @media screen and (max-width: 768px) {
-    font-size: 2rem;
+    margin-top: 2rem;
+    width: 90%;
+    height: 10%;
   }
 `;
 
 const ButtonWrapper = styled.div`
-  padding-bottom: 5rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding-right: 1rem;
+  }
 `;
+
 const Button = styled.button`
-  width: calc(15vw + 6px);
-  height: calc(5vw + 6px);
-  margin-top: 3rem;
+  width: calc(10vw + 6px);
+  height: calc(3vw + 6px);
   font-size: 1.5rem;
   font-family: 'Jua', sans-serif;
   outline: none;
@@ -69,10 +73,18 @@ const Button = styled.button`
     border: none;
   }
   @media screen and (max-width: 768px) {
-    width: calc(20vw + 6px);
-    height: calc(7vw + 6px);
+    width: calc(18vw + 6px);
+    height: calc(5vw + 6px);
     font-size: 1rem;
-    margin-top: 3rem;
+  }
+`;
+
+const InquiryIntro = styled.div`
+  font-size: 2.5rem;
+  background: lightgray;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
@@ -126,6 +138,9 @@ const Inquires = () => {
     <Container>
       <HeaderWrapper>
         <InquiryIntro>문의 목록</InquiryIntro>
+        <ButtonWrapper>
+          <Button onClick={openInquiryModal}>문의하기</Button>
+        </ButtonWrapper>
       </HeaderWrapper>
       <CommonTable
         headersName={[
@@ -147,9 +162,6 @@ const Inquires = () => {
           onSubmitHand={onSubmitHand}
         ></InquiryModal>
       )}
-      <ButtonWrapper>
-        <Button onClick={openInquiryModal}>문의하기</Button>
-      </ButtonWrapper>
     </Container>
   );
 };
