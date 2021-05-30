@@ -57,7 +57,6 @@ const Custom = () => {
   const { checkModal, isType } = useSelector(({ modal, user }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
-    token: user.token,
   }));
 
   const openRegisterModal = () => {
@@ -88,12 +87,10 @@ const Custom = () => {
       const base64 = reader.result;
       if (base64) {
         setImgBase(base64.toString());
-        sessionStorage.setItem('center', base64.toString());
       }
     };
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
-
       setImgFile1(e.target.files[0]);
     }
   };
