@@ -19,13 +19,12 @@ import {
 
 const MyPageForm = () => {
   const dispatch = useDispatch();
-  const { checkModal, isType, info, token, alertCheck } = useSelector(
+  const { checkModal, isType, info, token } = useSelector(
     ({ modal, auth, user }) => ({
       checkModal: modal.checkModal,
       isType: modal.isType,
       info: auth.info,
       token: user.token,
-      alertCheck: modal.alertCheck,
     }),
   );
 

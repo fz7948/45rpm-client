@@ -112,7 +112,7 @@ const Header = () => {
     <>
       <header className="header">
         <div className="logo" onClick={() => history.push('/')}>
-          45RPM
+          45 RPM
         </div>
         <div className="buttonWrapper">
           <div className="signIn" onClick={openLoginModal}>
