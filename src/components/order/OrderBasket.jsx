@@ -32,6 +32,11 @@ const BasketOrder = styled.div`
   justify-content: space-around;
   font-size: 20px;
 
+  .small {
+    font-size: 17px;
+    padding-top: 4px;
+  }
+
   button {
     outline: 0;
     border: none;
@@ -89,7 +94,7 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
           <BasketOrder>
             <div>
               {cartItems.length === 0 && (
-                <div>결제 대기중인 내역이 없습니다.</div>
+                <div className="small">결제 대기중인 내역이 없습니다.</div>
               )}
             </div>
           </BasketOrder>
@@ -102,7 +107,7 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
                 {item.qty}
                 <button onClick={() => onRemove(item)}>-</button>
               </div>
-              <div>{item.price} 원</div>
+              <div className="small">{item.price} 원</div>
             </BasketOrder>
           ))}
         </BasketOrderList>
