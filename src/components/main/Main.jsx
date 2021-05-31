@@ -7,6 +7,8 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import AlertModal from '../../components/common/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../modules/modal';
+import axios from 'axios';
+import { googleLoginReq } from '../../modules/auth';
 
 function Main() {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ function Main() {
     alertCheck: modal.alertCheck,
     isSocial: auth.isSocial,
   }));
+
 
   const shutModal = () => {
     dispatch(closeModal());
@@ -39,6 +42,8 @@ function Main() {
   ];
 
   useEffect(() => {
+    console.log('이펙트 실행 시작');
+
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
@@ -75,6 +80,30 @@ function Main() {
       removeFunc();
     });
     pageChangeFunc();
+
+    if (window.location.hash !== '') {
+      const googleData = window.location.hash.split('&')[1].split('=')[1];
+      // const googleData = decodeURIComponent(window.location.hash).split('&');
+      console.log('구글구글', googleData);
+
+      if (googleData) {
+        axios
+          .get(`https://www.googleapis.com/oauth2/v3/userinfo`, {
+            params: {
+              access_token: googleData,
+            },
+          })
+          .then((res) => {
+            console.log('요청 결과물', res.data);
+
+            dispatch(googleLoginReq(res.data));
+          })
+          .then(() => {
+            history.push('/');
+          });
+      }
+      return;
+    }
   });
 
   function pageFunc() {
