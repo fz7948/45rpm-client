@@ -13,6 +13,7 @@ const ALERT_MODAL_REGISTER = 'ALERT_MODAL_REGISTER';
 const ALERT_MODAL_LOGOUT = 'ALERT_MODAL_LOGOUT';
 const ALERT_MODAL_UPDATE = 'ALERT_MODAL_UPDATE';
 const ALERT_MODAL_WITHDRAWAL = 'ALERT_MODAL_WITHDRAWAL';
+const ALERT_MODAL_ORDER = 'ALERT_MODAL_ORDER';
 
 export const showModal = () => ({ type: SHOW_MODAL });
 export const loginModal = () => ({ type: LOGIN_MODAL });
@@ -29,6 +30,7 @@ export const alertRegisterModal = () => ({ type: ALERT_MODAL_REGISTER });
 export const alertLogoutModal = () => ({ type: ALERT_MODAL_LOGOUT });
 export const alertUpdateModal = () => ({ type: ALERT_MODAL_UPDATE });
 export const alertWithdrawalModal = () => ({ type: ALERT_MODAL_WITHDRAWAL });
+export const alertOrderModal = () => ({ type: ALERT_MODAL_ORDER });
 
 const initialState = {
   checkModal: false,
@@ -109,6 +111,12 @@ export default function modal(state = initialState, action) {
         checkModal: false,
         alertCheck: true,
         isType: 'alertWithdrawal',
+      };
+    case ALERT_MODAL_ORDER:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertOrder',
       };
     case ALERT_MODAL_FAILURE:
       return {

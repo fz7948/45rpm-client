@@ -4,6 +4,9 @@ import OrderBasket from '../../components/order/OrderBasket';
 import OrderHeader from '../../components/order/OrderHeader';
 import orderData from '../../components/order/orderData';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from '../../modules/modal';
+import AlertModal from '../../components/common/AlertModal';
 
 const OrderWrapper = styled.div`
   width: 100%;
@@ -37,7 +40,12 @@ const OrderBasketWrapper = styled.div`
   height: 100vh;
 `;
 
-const OrderForm2 = () => {
+const OrderForm = () => {
+  const dispatch = useDispatch();
+  const { isType, alertCheck } = useSelector(({ modal, auth }) => ({
+    isType: modal.isType,
+    alertCheck: modal.alertCheck,
+  }));
   const { products } = orderData;
   const [cartItems, setCartItems] = useState([]);
 
@@ -67,10 +75,19 @@ const OrderForm2 = () => {
     }
   };
 
-  console.log('???', cartItems);
+  const shutModal = () => {
+    dispatch(closeModal());
+  };
 
   return (
     <>
+      {isType === 'alertOrder' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'서비스 준비중입니다.'}
+        />
+      )}
       <OrderWrapper>
         <OrderHeaderWrapper>
           <OrderHeader countCartItems={cartItems.length} />
@@ -92,4 +109,4 @@ const OrderForm2 = () => {
   );
 };
 
-export default OrderForm2;
+export default OrderForm;
