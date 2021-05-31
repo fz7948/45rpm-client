@@ -116,7 +116,13 @@ const LoginSocialBtn = styled.button`
   }
 `;
 
-const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
+const LoginModal = ({
+  open,
+  close,
+  history,
+  kakaoLoginHandler,
+  googleLoginHandler,
+}) => {
   const dispatch = useDispatch();
   const { login, loginError } = useSelector(({ auth }) => ({
     login: auth.login,
@@ -278,7 +284,7 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
             </ul>
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
-            <LoginSocialBtn> 구글 </LoginSocialBtn>
+            <LoginSocialBtn onClick={googleLoginHandler}> 구글 </LoginSocialBtn>
             <LoginSocialBtn onClick={kakaoLoginHandler}>카카오</LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>

@@ -45,6 +45,15 @@ export const kakaoLogin = async (data) => {
   return response.data;
 };
 
+export const googleLogin = async (data) => {
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URI}/user/oauth/google`,
+    { data },
+    { withCredentials: true },
+  );
+  return response.data;
+};
+
 export const login = async ({ id, password }) => {
   const response = await axios.post(
     `${process.env.REACT_APP_SERVER_URI}/user/login`,
