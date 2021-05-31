@@ -15,6 +15,7 @@ const OrderWrapper = styled.div`
   flex-direction: column;
   overflow: scroll;
   padding-top: 20px;
+  background-color: #ffffff;
 `;
 
 const OrderItem = styled.div`

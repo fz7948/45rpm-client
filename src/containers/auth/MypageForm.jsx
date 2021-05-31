@@ -6,6 +6,7 @@ import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
+import { RiUser3Fill } from 'react-icons/ri';
 import {
   MyPageWrapper,
   MyPageContent,
@@ -75,24 +76,35 @@ const MyPageForm = () => {
   const herohandler = (data) => {
     setHeroListNumber(data);
   };
+
   return (
     <>
       <MyPageWrapper>
         <MyPageContent>
           <MyPageInfoWrapper>
-            <MyPageImage>
-              <img src="/images/add.png"></img>
-              <p>사진 올리기</p>
-            </MyPageImage>
+            <div>
+              <MyPageImage>
+                <img src="/images/add.png"></img>
+                <p>사진 올리기</p>
+              </MyPageImage>
+              <ButtonWrapper>
+                <MyPageButton onClick={aboutInfoModal}>
+                  내 정보 수정
+                  <RiUser3Fill className="space" />
+                </MyPageButton>
+              </ButtonWrapper>
+            </div>
             <MyPageInfo>
-              <p>안녕하세요</p>
-              <p>{infoDefaultEmail.email}</p>
-              <p>{infoDefaultUsername.username}</p>
+              <p>{infoDefaultUsername.username}님, 안녕하세요!</p>
+              <p className="small">{infoDefaultEmail.email}</p>
+              <p className="small">
+                지금까지 {customData.length}개의 커스텀을 만들었습니다
+              </p>
+              <p className="very">
+                아래의 슬라이더로 커스텀을 공유하고, 상세정보를 확인해보세요
+              </p>
             </MyPageInfo>
           </MyPageInfoWrapper>
-          <ButtonWrapper>
-            <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
-          </ButtonWrapper>
         </MyPageContent>
 
         <MyPageSlide>

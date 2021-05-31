@@ -1,27 +1,24 @@
 import styled from 'styled-components';
 
-export const MyPageWrapper = styled.div `
+export const MyPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 10px;
   width: 100vw;
   height: 100vh;
-  background: lightgray;
+  background: #ffffff;
 `;
 
-export const MyPageContent = styled.div `
+export const MyPageContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: space-around;
   align-items: center;
-  width: 60%;
+  width: 70%;
   height: 100%;
   margin: 0 auto;
-  margin-top: 4rem;
-  padding: 1rem;
-  border-radius: 6px;
-  background: #000;
+  margin-top: 2rem;
 
   @media screen and (max-width: 768px) {
     width: 90%;
@@ -29,21 +26,23 @@ export const MyPageContent = styled.div `
   }
 `;
 
-export const MyPageInfoWrapper = styled.div `
+export const MyPageInfoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: 100%;
+  padding-left: 10rem;
 
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
+    padding-left: 0rem;
   }
 `;
 
-export const MyPageImage = styled.div `
-  flex: 1;
+export const MyPageImage = styled.div`
+  flex: 0.5;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -52,8 +51,9 @@ export const MyPageImage = styled.div `
   border-radius: 6px;
   border: 2px dashed #ccc;
   background: #fff;
-  height: 200px;
-  margin-right: 3.5rem;
+  height: 230px;
+  width: 14rem;
+  margin-right: 1rem;
   color: #fff;
   img {
     height: 1rem;
@@ -76,29 +76,46 @@ export const MyPageImage = styled.div `
   }
 `;
 
-export const MyPageInfo = styled.div `
+export const MyPageInfo = styled.div`
   flex: 1.5;
-  height: 200px;
-  margin-left: 1rem;
+  height: 20rem;
   background: #fff;
   border-radius: 6px;
-  padding: 30px;
-  font-size: small;
-  @media screen and (max-width: 768px) {
+  padding: 2rem 3.5rem;
+  @media screen and (max-width: 1000px) {
     flex: 1;
+    padding: 2rem 0.9rem;
   }
   p {
-    padding: 0.5rem;
-    font-size: 1.3rem;
-    font-family: 'Lato', sans-serif;
-    @media screen and (max-width: 768px) {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    color: #4c4c4c;
+    font-size: 40px;
+    @media screen and (max-width: 1000px) {
       padding: 0.5rem;
-      font-size: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+  .small {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    @media screen and (max-width: 1000px) {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+  .very {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 3rem;
+    @media screen and (max-width: 1000px) {
+      font-size: 0.5rem;
     }
   }
 `;
 
-export const MyPageSlide = styled.div `
+export const MyPageSlide = styled.div`
   flex: 1.5;
   display: flex;
   align-items: center;
@@ -106,39 +123,46 @@ export const MyPageSlide = styled.div `
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  margin-top: 0.5rem;
   @media screen and (max-width: 768px) {
     display: flex;
     margin: 0 auto;
-    margin-top: 0.5rem;
     margin-bottom: 3rem;
     width: 100%;
     height: 100%;
   }
 `;
 
-export const ButtonWrapper = styled.div `
+export const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 
-export const MyPageButton = styled.button `
+export const MyPageButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  background-color: #eee;
-  height: 3rem;
-  width: 9rem;
-  border-radius: 6px;
+  height: 2.5rem;
+  width: 14rem;
+  border-radius: 4px;
+  margin-top: 1.5rem;
   outline: 0;
-  font-family: 'Jua', sans-serif;
-  font-size: 1.5rem;
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  color: #4c4c4c;
+  font-size: 1.1rem;
   &:hover {
     background-color: #ddd;
     transition: all ease 0.4s;
   }
+  .space {
+    margin-left: 0.5rem;
+  }
   @media screen and (max-width: 768px) {
     height: 2.5rem;
-    width: 6.5rem;
+    width: 14rem;
     font-size: 1rem;
   }
 `;
