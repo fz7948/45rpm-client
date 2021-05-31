@@ -101,7 +101,7 @@ const Inquires = () => {
 
   useEffect(() => {
     dispatch(questionListReq(token));
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (questionList) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -122,15 +122,40 @@ const InputDetailStyle = styled.input`
     transition: all ease 0.3s;
   }
 
+  ${(props) =>
+    props.update &&
+    css`
+      color: gray;
+      &:focus {
+        color: black;
+      }
+    `}
+`;
+
+const InputDetailText = styled.textarea`
+  outline: none;
+  padding-left: 10px;
+  border: 0px;
+  box-sizing: border-box;
+  width: 500px;
+  height: 5rem;
+  font-size: 20px;
+  color: gray;
+  resize: none;
+  &:focus {
+    outline: 0;
+    color: black;
+    border: 1px solid #f73d5c;
+    transition: all ease 0.3s;
+
+
   @media screen and (max-width: 768px) {
     width: 200px;
+
   }
 `;
 
 const View = ({ view }) => {
-  // if (Object.keys(view) === 0) {
-  //   console.log('뜨냐');
-  // }
   const history = useHistory();
   const dispatch = useDispatch();
   const { token } = useSelector(({ user }) => ({
@@ -139,19 +164,11 @@ const View = ({ view }) => {
 
   console.log('view???', view);
 
-  // view[0].userId;
-  // view[0].category;
-  // view[0].title;
-  // view[0].createdAt;
-  // view[0].contents;
-
-  // let view = [{ title: '', contents: '' }];
-
-  const [detailID, setDetailID] = useState('');
-  const [detailCategory, setDetailCategory] = useState('');
-  const [detailTitle, setDetailTitle] = useState('');
-  const [detailCreatedAt, setDetailCreatedAt] = useState('');
-  const [detailContent, setDetailCotent] = useState('');
+  const [detailID, setDetailID] = useState(view[0].userId);
+  const [detailCategory, setDetailCategory] = useState(view[0].category);
+  const [detailTitle, setDetailTitle] = useState(view[0].title);
+  const [detailCreatedAt, setDetailCreatedAt] = useState(view[0].createdAt);
+  const [detailContent, setDetailCotent] = useState(view[0].contents);
 
   const handleChangeID = useCallback(
     (e) => {
@@ -189,7 +206,6 @@ const View = ({ view }) => {
   );
 
   const detailUpdateHandler = () => {
-    console.log('이건?', view[0]._id);
     dispatch(questionUpdateReq(view[0]._id, detailTitle, detailContent, token));
     setTimeout(onDispatchHandler, 100);
   };
@@ -198,17 +214,6 @@ const View = ({ view }) => {
     dispatch(questionListReq(token));
   };
 
-  // {view[0].userId}
-  // {view[0].category}
-  // {view[0].title}
-  // {view[0].createdAt}
-  // {view[0].contents}
-
-  // console.log('입력값 category', detailCategory);
-  // console.log('입력값 title', detailTitle);
-  // console.log('입력값 contents', detailContent);
-
-  console.log('뷰@@', view);
   return (
     <>
       {view.length > 0 && (
@@ -218,7 +223,7 @@ const View = ({ view }) => {
               <label> 작성자 </label>
               <InputDetailStyle
                 type="text"
-                value={view[0].userId}
+                value={detailID}
                 onChange={handleChangeID}
                 readOnly
               />
@@ -227,7 +232,7 @@ const View = ({ view }) => {
               <label> 카테고리 </label>
               <InputDetailStyle
                 type="text"
-                value={view[0].category}
+                value={detailCategory}
                 onChange={handleChangeCategory}
                 readOnly
               />
@@ -235,9 +240,9 @@ const View = ({ view }) => {
             <InquiryRow>
               <label> 제목 </label>
               <InputDetailStyle
+                update
                 type="text"
                 value={detailTitle}
-                placeholder={view[0].title}
                 onChange={handleChangeTitle}
               />
             </InquiryRow>
@@ -245,17 +250,18 @@ const View = ({ view }) => {
               <label> 등록일 </label>
               <InputDetailStyle
                 type="text"
-                value={view[0].createdAt}
+                value={detailCreatedAt}
                 onChange={handleChangeCreatedAt}
                 readOnly
               />
             </InquiryRow>
             <InquiryRow>
-              <label> 내용 </label>
-              <InputDetailStyle
+
+              <label>내용</label>
+              <InputDetailText
+
                 type="text"
                 value={detailContent}
-                placeholder={view[0].contents}
                 onChange={handleChangeContent}
               />
             </InquiryRow>

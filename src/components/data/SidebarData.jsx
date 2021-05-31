@@ -6,31 +6,37 @@ import * as BsIcons from 'react-icons/bs';
 
 const Sidebar = [
   {
-    title: 'Home',
+    title: '홈',
     path: '/',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text',
   },
   {
-    title: 'Custom Page',
+    title: '커스텀 만들기',
     path: '/1',
     icon: <BsIcons.BsHammer />,
     cName: 'nav-text',
   },
   {
-    title: 'My page',
+    title: '내 정보',
     path: '/mypage',
     icon: <GrIcons.GrContactInfo />,
     cName: 'nav-text',
   },
   {
-    title: 'Share Page',
+    title: '공유 하기',
     path: '/3',
     icon: <GiIcons.GiShare />,
     cName: 'nav-text',
   },
   {
-    title: 'Inquiries Page',
+    title: '주문 하기',
+    path: '/4',
+    icon: <AiIcons.AiOutlineShoppingCart />,
+    cName: 'nav-text',
+  },
+  {
+    title: '문의 하기',
     path: '/2',
     icon: <BsIcons.BsQuestionCircle />,
     cName: 'nav-text',
