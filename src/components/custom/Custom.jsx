@@ -40,15 +40,23 @@ const Custom = () => {
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
   const [color, setColor] = useState('#fff');
-  const [title, setTitle] = useState('');
-  const [songList, setSongList] = useState([]);
+  const [title, setTitle] = useState(sessionStorage.getItem('title'));
+  const [songList, setSongList] = useState(
+    sessionStorage.getItem('songList') === null
+      ? []
+      : sessionStorage
+          .getItem('songList')
+          .split(',')
+          .filter((el) => {
+            if (el) return el;
+          }),
+  );
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
-  const { checkModal, isType } = useSelector(({ modal, user }) => ({
+  const { checkModal, isType } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
-    token: user.token,
   }));
 
   const openRegisterModal = () => {
@@ -93,6 +101,7 @@ const Custom = () => {
   };
 
   const handleChangeTitle = (e) => {
+    sessionStorage.setItem('title', e.target.value);
     setTitle(e.target.value);
   };
 
@@ -102,19 +111,36 @@ const Custom = () => {
       songList.length >= 0 &&
       e.target.value !== ''
     ) {
-      setSongList(e.target.value.split(','));
-      console.log('>>>>songList', songList);
+      setSongList(
+        e.target.value.split(',').filter((el) => {
+          if (el) return el;
+        }),
+      );
+      sessionStorage.setItem('songList', e.target.value);
+    } else {
+      sessionStorage.setItem('songList', e.target.value);
+      if (sessionStorage.getItem('songList') === '') {
+        setSongList([]);
+      } else setSongList([sessionStorage.getItem('songList')]);
     }
+    console.log('>>>>songList', songList);
   };
 
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
+      console.log('색깔', color);
+      console.log('이미지', imgFile);
+      console.log('이미지 2', imgFile1);
+      console.log('제목', title);
+      console.log('노래', songList);
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
     } else if (!token) {
       openRegisterModal();
       return;
     } else {
+      sessionStorage.removeItem('title');
+      sessionStorage.removeItem('songList');
       const formData = new FormData();
       formData.append('color', color);
       formData.append('albumPic', imgFile);
@@ -212,6 +238,7 @@ const Custom = () => {
                     <CustomTitleCover>
                       <TextInput
                         placeholder="LP 이름을 입력하세요"
+                        value={sessionStorage.getItem('title')}
                         onChange={handleChangeTitle}
                       />
                     </CustomTitleCover>
@@ -220,6 +247,7 @@ const Custom = () => {
                     <CustomSongListCover>
                       <TextInput
                         placeHolder="추가하고 싶은 음악을 입력하세요"
+                        value={sessionStorage.getItem('songList')}
                         onChange={handleChangeSongList}
                       />
                     </CustomSongListCover>

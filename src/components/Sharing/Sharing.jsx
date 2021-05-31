@@ -45,14 +45,14 @@ const Sharing = () => {
     dispatch(closeModal());
   };
 
-  const openDetailModal = function () {
-    dispatch(albumDetailModal());
-  };
+  // const openDetailModal = function () {
+  //   dispatch(albumDetailModal());
+  // };
 
-  const modalOpen = async function (data) {
-    setSharedListNumber(data);
-    await openDetailModal();
-  };
+  // const modalOpen = async function (data) {
+  //   setSharedListNumber(data);
+  //   await openDetailModal();
+  // };
 
   return (
     <Container>
@@ -68,7 +68,7 @@ const Sharing = () => {
             <CdCaseContent
               key={el.title}
               slides={el}
-              onClick={() => modalOpen(sharedData.indexOf(el))}
+              // onClick={() => modalOpen(sharedData.indexOf(el))}
             >
               <CoverImg>
                 <Img
@@ -85,14 +85,14 @@ const Sharing = () => {
             </CdCaseContent>
           );
         })}
-        {isType === 'detail' && (
+        {/* {isType === 'detail' && (
           <AlbumDetailModal
             slides={sharedData}
             open={checkModal}
             close={shutModal}
             heroListNumber={sharedListNumber}
           />
-        )}
+        )} */}
       </ContentWrapper>
       <ContinueBtn>
         <Button onClick={() => history.push('/1')}>계속 만들기 </Button>

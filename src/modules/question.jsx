@@ -19,55 +19,54 @@ const QUESTION_DELETE_FAILURE = 'QUESTION_DELETE_FAILURE';
 const DETAIL_UPDATE = 'DETAIL_UPDATE';
 const DETAIL_LIST = 'DETAIL_LIST';
 
-export const questionAddReq = (title, contents, category, token) => async (
-  dispatch,
-) => {
-  dispatch({ type: QUESTION_ADD });
-  try {
-    const questionRes = await questionAPI.questionAdd({
-      title,
-      contents,
-      category,
-      token,
-    });
-    dispatch({
-      type: QUESTION_ADD_SUCCESS,
-      questionAdd: questionRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: QUESTION_ADD_FAILURE,
-      questionAddError: error,
-    });
-  }
-};
+export const questionAddReq =
+  (title, contents, category, token) => async (dispatch) => {
+    dispatch({ type: QUESTION_ADD });
+    try {
+      const questionRes = await questionAPI.questionAdd({
+        title,
+        contents,
+        category,
+        token,
+      });
+      dispatch({
+        type: QUESTION_ADD_SUCCESS,
+        questionAdd: questionRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: QUESTION_ADD_FAILURE,
+        questionAddError: error,
+      });
+    }
+  };
 
-export const questionUpdateReq = (questionId, title, contents, token) => async (
-  dispatch,
-) => {
-  dispatch({ type: QUESTION_UPDATE });
-  try {
-    const questionUpdateRes = await questionAPI.questionUpdate({
-      questionId,
-      title,
-      contents,
-      token,
-    });
-    dispatch({
-      type: QUESTION_UPDATE_SUCCESS,
-      questionUpdate: questionUpdateRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: QUESTION_UPDATE_FAILURE,
-      questionUpdateError: error,
-    });
-  }
-};
+export const questionUpdateReq =
+  (questionId, title, contents, token) => async (dispatch) => {
+    dispatch({ type: QUESTION_UPDATE });
+    try {
+      const questionUpdateRes = await questionAPI.questionUpdate({
+        questionId,
+        title,
+        contents,
+        token,
+      });
+      dispatch({
+        type: QUESTION_UPDATE_SUCCESS,
+        questionUpdate: questionUpdateRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: QUESTION_UPDATE_FAILURE,
+        questionUpdateError: error,
+      });
+    }
+  };
 
 export const questionListReq = (token) => async (dispatch) => {
-  console.log('토큰 받아오니?', token);
+
   dispatch({ type: QUESTION_LIST });
+
   try {
     const questionListRes = await questionAPI.questionList({ token });
     dispatch({

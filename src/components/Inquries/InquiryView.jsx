@@ -10,14 +10,19 @@ const Container = styled.div`
   align-content: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: 94.9vh;
   padding-top: 2rem;
   color: #000;
-
-  @media screen and (max-width: 768px) {
-    width: 100vw;
-    height: 100vh;
-    padding-top: 3rem;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
   }
 `;
 
@@ -28,14 +33,16 @@ const H2Title = styled.h2`
   align-items: center;
   font-size: 2.5rem;
   background: lightgray;
+  border: 1px solid gray;
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
 
   @media screen and (max-width: 768px) {
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
+    width: 90%;
     padding: 0.5rem 2rem;
-    margin: 0 auto;
     font-size: 1.6rem;
   }
 `;
@@ -54,6 +61,10 @@ const InquiryView = ({ match }) => {
     // setTimeout(questionHandler, 1000);
     if (questionList) {
       setData(questionList.data);
+
+      console.log('<D<F>D<D>F</D></F>', questionList);
+      console.log('상세페이지??', questionList.data);
+
     }
   }, [token]);
 
@@ -62,6 +73,11 @@ const InquiryView = ({ match }) => {
   };
 
   const filterData = (id) => {
+
+    console.log('id', id);
+    if (!questionList || !questionList.data) return null;
+
+
     const array = questionList.data.filter((el) => el._id === `${id}`);
     return array;
   };
@@ -74,8 +90,10 @@ const InquiryView = ({ match }) => {
 
   return (
     <Container>
+
       <H2Title>문의 상세정보</H2Title>
       {data.length > 0 && <ViewTable data={data} key={data._id} />}
+
     </Container>
   );
 };

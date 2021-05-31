@@ -6,7 +6,7 @@ export const MyPageWrapper = styled.div `
   padding-top: 10px;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(120deg, #03154e, #311788);
+  background: lightgray;
 `;
 
 export const MyPageContent = styled.div `
@@ -20,9 +20,9 @@ export const MyPageContent = styled.div `
   margin: 0 auto;
   margin-top: 4rem;
   padding: 1rem;
-  border: 1px solid #fff;
   border-radius: 6px;
-  background: #437299;
+  background: #000;
+
   @media screen and (max-width: 768px) {
     width: 90%;
     height: 100%;
@@ -35,6 +35,7 @@ export const MyPageInfoWrapper = styled.div `
   align-items: center;
   width: 80%;
   height: 100%;
+
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -50,6 +51,7 @@ export const MyPageImage = styled.div `
   justify-content: center;
   border-radius: 6px;
   border: 2px dashed #ccc;
+  background: #fff;
   height: 200px;
   margin-right: 3.5rem;
   color: #fff;
@@ -78,7 +80,8 @@ export const MyPageInfo = styled.div `
   flex: 1.5;
   height: 200px;
   margin-left: 1rem;
-  background: #c8d2dd;
+  background: #fff;
+  border-radius: 6px;
   padding: 30px;
   font-size: small;
   @media screen and (max-width: 768px) {
@@ -115,15 +118,9 @@ export const MyPageSlide = styled.div `
 `;
 
 export const ButtonWrapper = styled.div `
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-top: 1rem;
-  padding-right: 27rem;
-  width: 100%;
-
-  @media screen and (max-width: 768px) {
-    padding-right: 1.3rem;
-  }
 `;
 
 export const MyPageButton = styled.button `
