@@ -15,6 +15,10 @@ const KAKAO_LOGIN = 'KAKAO_LOGIN';
 const KAKAO_LOGIN_SUCCESS = 'KAKAO_LOGIN_SUCCESS';
 const KAKAO_LOGIN_FAILURE = 'KAKAO_LOGIN_FAILURE';
 
+const GOOGLE_LOGIN = 'GOOGLE_LOGIN';
+const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
+const GOOGLE_LOGIN_FAILURE = 'GOOGLE_LOGIN_FAILURE';
+
 const UPDATE = 'UPDATE';
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 const UPDATE_FAILURE = 'UPDATE_FAILURE';
@@ -91,6 +95,31 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
     dispatch({
       type: KAKAO_LOGIN_FAILURE,
       loginError: error.response.data.message,
+    });
+  }
+};
+
+export const googleLoginReq = (data) => async (dispatch) => {
+  dispatch({ type: GOOGLE_LOGIN });
+  try {
+    const googleLoginRes = await authAPI.googleLogin(data);
+    console.log('구글 로그인 res', googleLoginRes);
+
+    try {
+      sessionStorage.setItem('id', data.email.split('@')[0]);
+    } catch (err) {
+      console.error('sessionStorage is not working on google social login');
+    }
+    dispatch({
+      type: GOOGLE_LOGIN_SUCCESS,
+      login: googleLoginRes,
+      isSocial: 'google',
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: GOOGLE_LOGIN_FAILURE,
+      loginError: err.response.data.message,
     });
   }
 };
@@ -208,6 +237,24 @@ function auth(state = initialState, action) {
         loginError: null,
       };
     case KAKAO_LOGIN_FAILURE:
+      return {
+        ...state,
+        loginError: action.loginError,
+      };
+    case GOOGLE_LOGIN:
+      return {
+        ...state,
+        login: null,
+        loginError: null,
+      };
+    case GOOGLE_LOGIN_SUCCESS:
+      return {
+        ...state,
+        login: action.login,
+        isSocial: action.isSocial,
+        loginError: null,
+      };
+    case GOOGLE_LOGIN_FAILURE:
       return {
         ...state,
         loginError: action.loginError,

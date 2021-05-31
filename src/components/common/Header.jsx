@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loginKakao } from '../../modules/user';
+import { loginKakao, loginGoogle } from '../../modules/user';
 
 import '../../pages/sass/Header.scss';
 import {
@@ -32,6 +32,7 @@ const Header = () => {
     if (login) {
       console.log('돌아간다');
       const cookie = document.cookie.split('=')[1];
+      console.log('쿠키 확인', cookie);
 
       const payload = {
         id: login.data.id,
@@ -43,6 +44,11 @@ const Header = () => {
       if (isSocial === 'kakao') {
         console.log('카카오들어옴?');
         dispatch(loginKakao(payload));
+        dispatch(alertOpenModal());
+      }
+      if (isSocial == 'google') {
+        console.log('구글 확인');
+        dispatch(loginGoogle(payload));
         dispatch(alertOpenModal());
       }
     }
@@ -124,16 +130,6 @@ const Header = () => {
       };
       console.log('4');
 
-      // const googleTokenHandler = async () => {
-      //   if (window.location.hash !== '') {
-      //     console.log('7');
-      //     const googleData = await decodeURIComponent(
-      //       window.location.hash,
-      //     ).split('&');
-      //     console.log('8');
-      //     console.log('구글구글', googleData);
-      //   }
-      // };
       // Add form parameters as hidden input values.
       for (var p in params) {
         var input = document.createElement('input');
@@ -146,43 +142,8 @@ const Header = () => {
       // Add form to page and submit it to open the OAuth 2.0 endpoint.
       document.body.appendChild(form);
       form.submit();
-      // .then(() => {
-      //   googleTokenHandler();
-      // });
+
       console.log('6');
-      //리다이렉트 된 후 useEffect써서 함수 실행 돌리기
-      //여기서 다시 돌리자
-      // useEffect(() => {
-      //   if (window.location.hash !== '') {
-      //     const googleData = decodeURIComponent(window.location.hash).split(
-      //       '&',
-      //     );
-      //     console.log('구글구글', googleData);
-      //   }
-      // });
-      // if (window.location.hash !== '') {
-      //   console.log('7');
-      //   const googleData = await decodeURIComponent(window.location.hash).split(
-      //     '&',
-      //   );
-      //   console.log('8');
-      //   console.log('구글구글', googleData);
-      //   sessionStorage.setItem('gooooogle', googleData);
-      //   console.log('9');
-      //   let newHashData = '';
-      //   for (const el of googleData) {
-      //     const parsedData = el.split('=');
-      //     if (
-      //       (parsedData[0] === '#state' || parsedData[0] === 'state') &&
-      //       parsedData[1].indexOf('signup') > -1
-      //     ) {
-      //       newHashData += `${parsedData[0]}`;
-      //     } else newHashData += el + '&';
-      //   }
-      //   console.log('10');
-      //   console.log('정제된 구글', newHashData);
-      //   sessionStorage.setItem('new google', newHashData);
-      // }
     } catch (err) {
       console.error(err);
     }

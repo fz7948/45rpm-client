@@ -8,6 +8,7 @@ import AlertModal from '../../components/common/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../modules/modal';
 import axios from 'axios';
+import { googleLoginReq } from '../../modules/auth';
 
 function Main() {
   const dispatch = useDispatch();
@@ -89,7 +90,22 @@ function Main() {
       // const googleData = decodeURIComponent(window.location.hash).split('&');
       console.log('구글구글', googleData);
 
-      // GoogleAuth.signIn();
+      if (googleData) {
+        axios
+          .get(`https://www.googleapis.com/oauth2/v3/userinfo`, {
+            params: {
+              access_token: googleData,
+            },
+          })
+          .then((res) => {
+            console.log('요청 결과물', res.data);
+
+            dispatch(googleLoginReq(res.data));
+          })
+          .then(() => {
+            history.push('/');
+          });
+      }
       return;
     }
   });
