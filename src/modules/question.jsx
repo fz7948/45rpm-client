@@ -66,6 +66,7 @@ export const questionUpdateReq = (questionId, title, contents, token) => async (
 };
 
 export const questionListReq = (token) => async (dispatch) => {
+  console.log('토큰 받아오니?', token);
   dispatch({ type: QUESTION_LIST });
   try {
     const questionListRes = await questionAPI.questionList({ token });

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ViewTable from './ViewTable';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { questionListReq } from '../../modules/question';
 
 const Container = styled.div`
   display: flex;
@@ -40,38 +41,41 @@ const H2Title = styled.h2`
 `;
 
 const InquiryView = ({ match }) => {
-  const { questionList } = useSelector(({ question }) => ({
+  const dispatch = useDispatch();
+  const { questionList, token } = useSelector(({ question, user }) => ({
     questionList: question.questionList,
+    token: user.token,
   }));
 
   const [data, setData] = useState({ data: [{}] });
   const { id } = match.params;
 
   useEffect(() => {
+    // setTimeout(questionHandler, 1000);
     if (questionList) {
       setData(questionList.data);
-      console.log('상세페이지??', questionList.data);
-      console.log('데이터', data);
     }
-  }, []);
+  }, [token]);
 
-  console.log('랜더링???', data);
+  const questionHandler = () => {
+    dispatch(questionListReq(token));
+  };
 
   const filterData = (id) => {
-    console.log('id', id);
     const array = questionList.data.filter((el) => el._id === `${id}`);
-    console.log('array??', array);
     return array;
   };
 
   useEffect(() => {
     setData(filterData(id));
-  }, []);
+  }, [token]);
+
+  console.log('데이터는???', data);
 
   return (
     <Container>
       <H2Title>문의 상세정보</H2Title>
-      <ViewTable data={data} key={data._id} />
+      {data.length > 0 && <ViewTable data={data} key={data._id} />}
     </Container>
   );
 };

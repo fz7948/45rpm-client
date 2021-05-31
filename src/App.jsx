@@ -5,6 +5,7 @@ import InquiriesPage from './pages/InquiriesPage';
 import MyPage from './pages/MyPage';
 import SharingPage from './pages/SharingPage';
 import CustomPage from './pages/CustomPage';
+import OrderPage from './pages/OrderPage';
 import InquiryView from './components/Inquries/InquiryView';
 import GlobalStyles from './components/common/GlobalStyles';
 import Header from './components/common/Header';
@@ -27,6 +28,7 @@ function App() {
           <Route component={InquiriesPage} path="/2" />
           <Route component={MyPage} path="/mypage" />
           <Route component={SharingPage} path="/3" />
+          <Route component={OrderPage} path="/4" />
         </Switch>
       </Router>
     </>

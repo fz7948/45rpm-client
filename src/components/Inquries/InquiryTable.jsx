@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Inquiry = ({ inquiry, handleRemove }) => {
   const handleDelete = () => {
-    console.log('문의 리스트', inquiry);
     handleRemove(inquiry._id);
   };
 
@@ -35,7 +34,6 @@ const Inquiry = ({ inquiry, handleRemove }) => {
 };
 
 const InquiryTable = ({ lnquireList, handleRemove }) => {
-  console.log('랜더링 확인', lnquireList);
   return (
     <>
       {lnquireList.data &&
