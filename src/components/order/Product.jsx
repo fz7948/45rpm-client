@@ -8,7 +8,6 @@ const ProductWrapper = styled.div`
   img {
     max-width: 200px;
     display: flex;
-    padding-left: 30px;
   }
   .item {
     border: none;
@@ -20,7 +19,7 @@ const ProductName = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 15px 0px 15px 40px;
+  padding: 15px 0px 15px 0px;
 `;
 
 const ProductBtn = styled.button`
