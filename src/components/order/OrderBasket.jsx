@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { alertOrderModal } from '../../modules/modal';
+import { useDispatch } from 'react-redux';
 
 const BasketWrapper = styled.div`
   position: fixed;
@@ -53,10 +55,32 @@ const BasketPrice = styled.div`
   }
 `;
 
+const PriceBtn = styled.button`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 4px;
+  width: 230px;
+  height: 34px;
+  margin: 150px 0px 15px 15px;
+  background-color: #03154e;
+  outline: 0;
+  color: #fff;
+`;
+
 const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
+  const dispatch = useDispatch();
+
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const taxPrice = itemsPrice * 0.14;
   const totalPrice = itemsPrice + taxPrice;
+
+  const payHandler = () => {
+    dispatch(alertOrderModal());
+  };
   return (
     <>
       <BasketWrapper>
@@ -101,6 +125,7 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
               </div>
             </>
           )}
+          <PriceBtn onClick={payHandler}>결제하기</PriceBtn>
         </BasketPrice>
       </BasketWrapper>
     </>

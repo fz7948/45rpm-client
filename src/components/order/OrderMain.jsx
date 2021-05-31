@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Product from './Product';
+import { alertOrderModal } from '../../modules/modal';
+import { useDispatch } from 'react-redux';
 
 const MainOrder = styled.div`
   display: flex;
@@ -11,6 +13,10 @@ const MainOrderList = styled.div`
   height: 10vh;
   font-size: 23px;
   padding: 10px 0px 0px 30px;
+  cursor: pointer;
+  &:hover {
+    color: lightgray;
+  }
 `;
 
 const MainReadyList = styled.div`
@@ -25,8 +31,10 @@ const MainReadyList = styled.div`
 `;
 
 const OrderMain = ({ products, onAdd }) => {
+  const dispatch = useDispatch();
+
   const orderHandler = () => {
-    alert('준비중인 서비스입니다');
+    dispatch(alertOrderModal());
   };
   return (
     <>

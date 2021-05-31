@@ -32,7 +32,7 @@ const HeaderBtn = styled.button`
   border-radius: 10px;
 `;
 
-const OrderMain = ({ countCartItems }) => {
+const OrderHeader = ({ countCartItems }) => {
   return (
     <>
       <HeaderTitle>주문 페이지</HeaderTitle>
@@ -46,4 +46,4 @@ const OrderMain = ({ countCartItems }) => {
   );
 };
 
-export default OrderMain;
+export default OrderHeader;
