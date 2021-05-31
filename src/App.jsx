@@ -32,6 +32,8 @@ function App() {
       ) : (
         <Router>
           {isLogin ? <Sidebar /> : <Header />}
+          {/* <Header />
+          <Sidebar /> */}
           <Switch>
             <Route component={MainPage} path="/" exact />
             <Route component={CustomPage} path="/1" />
@@ -39,11 +41,10 @@ function App() {
             <Route component={InquiriesPage} path="/2" />
             <Route component={MyPage} path="/mypage" />
             <Route component={SharingPage} path="/3" />
-              <Route component={OrderPage} path="/4" />
+            <Route component={OrderPage} path="/4" />
           </Switch>
         </Router>
       )}
-
     </>
   );
 }

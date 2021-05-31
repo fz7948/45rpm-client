@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loginKakao, loginGoogle } from '../../modules/user';
+import { BiVideoRecording } from 'react-icons/bi';
 
 import '../../pages/sass/Header.scss';
 import {
@@ -17,16 +18,23 @@ import RegisterModal from '../../components/auth/RegisterModal';
 const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
-    useSelector(({ modal, auth, user }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      login: auth.login,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      isLogin: user.isLogin,
-      isSocial: auth.isSocial,
-    }));
+  const {
+    checkModal,
+    isType,
+    login,
+    alertCheck,
+    token,
+    isLogin,
+    isSocial,
+  } = useSelector(({ modal, auth, user }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    login: auth.login,
+    alertCheck: modal.alertCheck,
+    token: user.token,
+    isLogin: user.isLogin,
+    isSocial: auth.isSocial,
+  }));
 
   useEffect(async () => {
     if (login) {
@@ -153,14 +161,14 @@ const Header = () => {
     <>
       <header className="header">
         <div className="logo" onClick={() => history.push('/')}>
-          45 RPM
+          <div className="icon">45 RPM</div>
         </div>
         <div className="buttonWrapper">
           <div className="signIn" onClick={openLoginModal}>
-            로그인
+            <div className="login">로그인</div>
           </div>
           <div className="signUp" onClick={openRegisterModal}>
-            회원가입
+            <div className="register">회원가입</div>
           </div>
         </div>
         {isType === 'login' && (

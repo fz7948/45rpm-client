@@ -147,11 +147,10 @@ const InputDetailText = styled.textarea`
     color: black;
     border: 1px solid #f73d5c;
     transition: all ease 0.3s;
-
+  }
 
   @media screen and (max-width: 768px) {
     width: 200px;
-
   }
 `;
 
@@ -256,10 +255,8 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-
               <label>내용</label>
               <InputDetailText
-
                 type="text"
                 value={detailContent}
                 onChange={handleChangeContent}
