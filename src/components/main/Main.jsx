@@ -12,16 +12,12 @@ import { googleLoginReq } from '../../modules/auth';
 
 function Main() {
   const dispatch = useDispatch();
-  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
-    useSelector(({ modal, auth, user }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      login: auth.login,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      isLogin: user.isLogin,
-      isSocial: auth.isSocial,
-    }));
+  const { isType, alertCheck, isSocial } = useSelector(({ modal, auth }) => ({
+    isType: modal.isType,
+    alertCheck: modal.alertCheck,
+    isSocial: auth.isSocial,
+  }));
+
 
   const shutModal = () => {
     dispatch(closeModal());

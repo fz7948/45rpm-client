@@ -42,6 +42,7 @@ export const questionUpdate = async ({
 };
 
 export const questionList = async ({ token }) => {
+  console.log('TOKEN>>>', token);
   const response = await axios.get(
     `${process.env.REACT_APP_SERVER_URI}/user/question/questionlist`,
     {

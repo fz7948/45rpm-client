@@ -9,9 +9,11 @@ const InquiryWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
   flex: 5;
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
+  margin-bottom: 2.5rem;
   padding-top: 3rem;
+  border: 1px solid gray;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -20,7 +22,7 @@ const InquiryWrapper = styled.div`
     margin-top: 0rem;
     padding-left: 2rem;
     padding-bottom: 1rem;
-    width: 100%;
+    width: 90%;
     height: 100%;
   }
 `;
@@ -28,8 +30,7 @@ const InquiryWrapper = styled.div`
 const InquiryCollection = styled.div`
   display: flex;
   flex-direction: column;
-
-  padding-left: 10rem;
+  padding-left: 2rem;
 
   @media screen and (max-width: 768px) {
     padding-bottom: 1rem;
@@ -61,7 +62,7 @@ const InquiryRow = styled.div`
     margin-right: 1rem;
     label {
       &:nth-child(1) {
-        width: 8rem;
+        width: 150px;
         text-align: center;
         border: 1px solid black;
         margin-right: 2rem;
@@ -106,17 +107,6 @@ const ButtonWrap = styled.button`
     font-size: 1rem;
   }
 `;
-const Button = styled.button`
-  ${common}
-  width:7rem;
-  height: 4rem;
-
-  @media screen and (max-width: 768px) {
-    width: 4rem;
-    height: 3rem;
-    font-size: 1rem;
-  }
-`;
 
 const InputDetailStyle = styled.input`
   outline: none;
@@ -130,6 +120,10 @@ const InputDetailStyle = styled.input`
     outline: 0;
     border: 1px solid #f73d5c;
     transition: all ease 0.3s;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
   }
 `;
 
@@ -221,7 +215,7 @@ const View = ({ view }) => {
         <InquiryWrapper>
           <InquiryCollection>
             <InquiryRow>
-              <label>작성자</label>
+              <label> 작성자 </label>
               <InputDetailStyle
                 type="text"
                 value={view[0].userId}
@@ -230,7 +224,7 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-              <label>카테고리</label>
+              <label> 카테고리 </label>
               <InputDetailStyle
                 type="text"
                 value={view[0].category}
@@ -239,7 +233,7 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-              <label>제목</label>
+              <label> 제목 </label>
               <InputDetailStyle
                 type="text"
                 value={detailTitle}
@@ -248,7 +242,7 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-              <label>등록일</label>
+              <label> 등록일 </label>
               <InputDetailStyle
                 type="text"
                 value={view[0].createdAt}
@@ -257,7 +251,7 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-              <label>내용</label>
+              <label> 내용 </label>
               <InputDetailStyle
                 type="text"
                 value={detailContent}
@@ -270,7 +264,7 @@ const View = ({ view }) => {
             <ButtonWrap onClick={() => history.push('/2')}>
               목록으로 돌아가기
             </ButtonWrap>
-            <ButtonWrap onClick={detailUpdateHandler}>수정하기</ButtonWrap>
+            <ButtonWrap onClick={detailUpdateHandler}> 수정하기 </ButtonWrap>
           </ButtonWrapper>
         </InquiryWrapper>
       )}
@@ -279,6 +273,7 @@ const View = ({ view }) => {
 };
 
 const ViewTable = ({ data }) => {
+  console.log('DATA>>>>>>', data);
   return (
     <>
       <View view={data} key={data._id} />

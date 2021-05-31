@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaShareAlt } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   HeroSection,
   HeroWrapper,
@@ -14,6 +13,8 @@ import {
   SliderButtons,
   PrevArrow,
   NextArrow,
+  Arrow,
+  Button,
 } from '../common/HeroStyle';
 
 const Hero = ({ slides, openModal, herohandler }) => {
@@ -161,10 +162,12 @@ const Hero = ({ slides, openModal, herohandler }) => {
             </HeroSlide>
           );
         })}
-
         <SliderButtons>
-          <PrevArrow onClick={prevSlide} />
-          <NextArrow onClick={nextSlide} />
+          <Arrow>
+            <PrevArrow onClick={prevSlide} />
+            <NextArrow onClick={nextSlide} />
+          </Arrow>
+          <Button onClick={() => herohandlerIndex()}>SEE DETAIL</Button>
         </SliderButtons>
       </HeroWrapper>
     </HeroSection>
