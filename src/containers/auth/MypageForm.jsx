@@ -18,6 +18,7 @@ import {
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
 import styled from 'styled-components';
+import { cover } from 'polished';
 
 const MypageItems = styled.div`
   display: flex;
@@ -83,9 +84,16 @@ const MyPageForm = () => {
     setHeroListNumber(data);
   };
 
+  const style = {
+    width: '100%',
+    height: '100vh',
+    backgroundSize: 'cover',
+    backgroundImage: 'url(./images/ccc2.png)',
+  };
+
   return (
     <>
-      <MyPageWrapper>
+      <MyPageWrapper style={style}>
         <MyPageContent>
           <MyPageInfoWrapper>
             <MypageItems>
