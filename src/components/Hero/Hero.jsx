@@ -115,21 +115,12 @@ const Hero = ({ slides, openModal, herohandler }) => {
             <HeroSlide key={index}>
               {index === current && (
                 <HeroSlider>
-                  <HeroImage>
+                  <HeroImage style={{ zIndex: 5 }}>
                     <img
                       src={`${process.env.REACT_APP_SERVER_URI}/${slide.albumPic}`}
                     />
                   </HeroImage>
                   <HeroContent>
-                    {/* <h1>{`Producer : ${slide.userId}`}</h1> */}
-                    <h1>{slide.title}</h1>
-                    {slide.songList.map((songname) => {
-                      return (
-                        <p>{`${
-                          slide.songList.indexOf(songname) + 1
-                        }. ${songname}`}</p>
-                      );
-                    })}
                     {slide.share === true ? (
                       <span
                         checked={slide.share}
