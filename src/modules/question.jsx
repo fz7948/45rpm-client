@@ -64,7 +64,7 @@ export const questionUpdateReq =
   };
 
 export const questionListReq = (token) => async (dispatch) => {
-  console.log('TOKKENN?????', token);
+
   dispatch({ type: QUESTION_LIST });
 
   try {
