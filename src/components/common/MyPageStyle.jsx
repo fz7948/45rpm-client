@@ -13,9 +13,9 @@ export const MyPageContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 50%;
   height: 100%;
   margin: 0 auto;
   margin-top: 2rem;
@@ -32,7 +32,6 @@ export const MyPageInfoWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-left: 10rem;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -54,6 +53,7 @@ export const MyPageImage = styled.div`
   height: 230px;
   width: 14rem;
   margin-right: 1rem;
+  padding: 85px 0px;
   color: #fff;
   img {
     height: 1rem;
@@ -77,11 +77,11 @@ export const MyPageImage = styled.div`
 `;
 
 export const MyPageInfo = styled.div`
-  flex: 1.5;
+  flex: 1;
   height: 20rem;
   background: #fff;
   border-radius: 6px;
-  padding: 2rem 3.5rem;
+  padding: 2rem;
   @media screen and (max-width: 1000px) {
     flex: 1;
     padding: 2rem 0.9rem;
