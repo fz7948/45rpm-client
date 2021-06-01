@@ -6,7 +6,6 @@ export const MyPageWrapper = styled.div`
   padding-top: 10px;
   width: 100vw;
   height: 100vh;
-  background: #ffffff;
 `;
 
 export const MyPageContent = styled.div`
@@ -79,7 +78,7 @@ export const MyPageImage = styled.div`
 export const MyPageInfo = styled.div`
   flex: 1;
   height: 20rem;
-  background: #fff;
+  background: transparent;
   border-radius: 6px;
   padding: 2rem;
   @media screen and (max-width: 1000px) {

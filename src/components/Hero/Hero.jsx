@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
-import { FaShareAlt } from 'react-icons/fa';
-import { GiCancel } from 'react-icons/gi';
+import { AiOutlineLink, AiOutlineDisconnect } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   HeroSection,
@@ -141,7 +140,9 @@ const Hero = ({ slides, openModal, herohandler }) => {
                         }}
                         onClick={() => shareStateHandler(slide._id)}
                       >
-                        <GiCancel style={{ width: '100%' }} />
+                        <AiOutlineLink
+                          style={{ width: '100%', cursor: 'pointer' }}
+                        />
                       </span>
                     ) : (
                       <span
@@ -153,7 +154,9 @@ const Hero = ({ slides, openModal, herohandler }) => {
                         }}
                         onClick={() => shareStateHandler(slide._id)}
                       >
-                        <FaShareAlt style={{ width: '100%' }} />
+                        <AiOutlineDisconnect
+                          style={{ width: '100%', cursor: 'pointer' }}
+                        />
                       </span>
                     )}
                   </HeroContent>
