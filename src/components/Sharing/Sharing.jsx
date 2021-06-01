@@ -31,6 +31,13 @@ const Sharing = () => {
   const [sharedData, setSharedData] = useState([]);
   const [sharedListNumber, setSharedListNumber] = useState(0);
 
+  const sectionStyle = {
+    width: '100%',
+    height: '100vh',
+    backgroundImage: 'url(./images/shareBag.jpg)',
+    backgroundSize: 'cover',
+  };
+
   useEffect(async () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
@@ -55,7 +62,7 @@ const Sharing = () => {
   // };
 
   return (
-    <Container>
+    <Container style={sectionStyle}>
       <TitleWrapper>
         <H1Title>세상에 하나밖에 없는 당신만의 LP</H1Title>
         <SubTitle>

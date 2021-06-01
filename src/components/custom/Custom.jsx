@@ -51,6 +51,7 @@ const Custom = () => {
             if (el) return el;
           }),
   );
+
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
@@ -167,9 +168,16 @@ const Custom = () => {
     }
   };
 
+  const sectionStyle = {
+    width: '100%',
+    height: '100vh',
+    backgroundImage: 'url(./images/customBag.jpg)',
+    backgroundSize: 'cover',
+  };
+
   return (
     <>
-      <Container>
+      <Container style={sectionStyle}>
         <MainContentWrapper>
           <SectionWrapper>
             <CdCaseContent>

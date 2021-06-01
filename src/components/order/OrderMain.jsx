@@ -101,7 +101,7 @@ const OrderMain = ({ products, onAdd }) => {
   };
   return (
     <>
-      <Base className="upList">
+      <Base>
         <MainOrderList style={{ color: 'white' }}>01 주문서 작성</MainOrderList>
       </Base>
       <UnBase>

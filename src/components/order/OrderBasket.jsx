@@ -24,6 +24,16 @@ const BasketTitle = styled.div`
 const BasketOrderList = styled.div`
   height: 40%;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
 `;
 
 const BasketOrder = styled.div`
@@ -31,6 +41,7 @@ const BasketOrder = styled.div`
   margin-top: 10px;
   justify-content: space-around;
   font-size: 20px;
+  margin-right: 10px;
 
   .small {
     font-size: 17px;
