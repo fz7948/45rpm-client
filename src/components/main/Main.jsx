@@ -18,7 +18,6 @@ function Main() {
     isSocial: auth.isSocial,
   }));
 
-
   const shutModal = () => {
     dispatch(closeModal());
   };
@@ -149,6 +148,13 @@ function Main() {
           openHandle={alertCheck}
           closeHandle={shutModal}
           comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+        ></AlertModal>
+      )}
+      {isSocial === 'google' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'기본 비밀번호는 구글 계정의 이메일 주소입니다'}
         ></AlertModal>
       )}
       {isType === 'alertRegister' && (
