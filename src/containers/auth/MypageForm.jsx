@@ -17,6 +17,12 @@ import {
   MyPageButton,
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
+import styled from 'styled-components';
+
+const MypageItems = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const MyPageForm = () => {
   const dispatch = useDispatch();
@@ -82,7 +88,7 @@ const MyPageForm = () => {
       <MyPageWrapper>
         <MyPageContent>
           <MyPageInfoWrapper>
-            <div>
+            <MypageItems>
               <MyPageImage>
                 <img src="/images/add.png"></img>
                 <p>사진 올리기</p>
@@ -93,7 +99,7 @@ const MyPageForm = () => {
                   <RiUser3Fill className="space" />
                 </MyPageButton>
               </ButtonWrapper>
-            </div>
+            </MypageItems>
             <MyPageInfo>
               <p>{infoDefaultUsername.username}님, 안녕하세요!</p>
               <p className="small">{infoDefaultEmail.email}</p>
