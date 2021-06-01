@@ -155,6 +155,7 @@ export const Button = styled.button`
   font-size: 15px;
   font-family: 'Jua', sans-serif;
   background-color: #fff;
+  border: none;
 
   border-radius: 6px;
   outline: 0;

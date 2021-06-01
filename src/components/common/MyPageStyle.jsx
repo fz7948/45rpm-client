@@ -18,9 +18,28 @@ export const MyPageContent = styled.div`
   height: 100%;
   margin: 0 auto;
   margin-top: 2rem;
-
+  @media screen and (max-width: 1449px) {
+    width: 60%;
+    height: 100%;
+  }
+  @media screen and (max-width: 1378px) {
+    width: 70%;
+    height: 100%;
+  }
+  @media screen and (max-width: 1345px) {
+    width: 80%;
+    height: 100%;
+  }
   @media screen and (max-width: 768px) {
     width: 90%;
+    height: 100%;
+  }
+  @media screen and (max-width: 639px) {
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (max-width: 575px) {
+    width: 100%;
     height: 100%;
   }
 `;
@@ -41,7 +60,6 @@ export const MyPageInfoWrapper = styled.div`
 
 export const MyPageImage = styled.div`
   flex: 0.5;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +70,6 @@ export const MyPageImage = styled.div`
   height: 230px;
   width: 14rem;
   margin-right: 1rem;
-  padding: 85px 0px;
   color: #fff;
   img {
     height: 1rem;

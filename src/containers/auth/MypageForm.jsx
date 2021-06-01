@@ -41,6 +41,7 @@ const MyPageForm = () => {
   const [infoDefaultUsername, setInfoDefaultUsername] = useState('');
   const [heroListNumber, setHeroListNumber] = useState(0);
   const [customData, setCustomData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(async () => {
     if (token) {
@@ -65,6 +66,9 @@ const MyPageForm = () => {
       setInfoDefaultEmail({ email });
       setInfoDefaultUsername({ username });
       setInfoDefaultId({ id });
+      if (userData.length === 0) {
+        setUserData([info.data]);
+      }
     }
   }, [info]);
 
@@ -91,6 +95,14 @@ const MyPageForm = () => {
     backgroundImage: 'url(./images/ccc2.png)',
   };
 
+  const profileStyle = {
+    padding: `5px`,
+    height: '100%',
+    width: '100%',
+  };
+
+  console.log(userData);
+
   return (
     <>
       <MyPageWrapper style={style}>
@@ -98,8 +110,21 @@ const MyPageForm = () => {
           <MyPageInfoWrapper>
             <MypageItems>
               <MyPageImage>
-                <img src="/images/add.png"></img>
-                <p>사진 올리기</p>
+                {userData.length !== 0 ? (
+                  userData[0].profileUrl !== undefined ? (
+                    <img
+                      src={`${userData[0].profileUrl}`}
+                      style={profileStyle}
+                    />
+                  ) : (
+                    <img
+                      src="/images/noSocialUserProfile.png"
+                      style={profileStyle}
+                    />
+                  )
+                ) : (
+                  <div>Loading...</div>
+                )}
               </MyPageImage>
               <ButtonWrapper>
                 <MyPageButton onClick={aboutInfoModal}>
