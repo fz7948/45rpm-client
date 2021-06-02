@@ -7,6 +7,7 @@ export const Container = styled.div `
   height: 100vh;
   background: lightgray;
   overflow: auto;
+
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -24,10 +25,22 @@ export const TitleWrapper = styled.div `
   flex-direction: column;
   padding: 4rem;
   text-align: center;
+  animation: fadeIn 3s;
 
   @media screen and (max-width: 1000px) {
     text-align: center;
     padding: 4rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
   }
 `;
 
@@ -116,11 +129,8 @@ export const Disk = styled.div `
   height: 270px;
   position: absolute;
   top: 1rem;
-  border-radius: 50%;
-  border: 1px solid #fff;
   left: 35%;
   z-index: 1;
-  box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
   @media screen and (max-width: 1000px) {
     width: 230px;
     height: 230px;
@@ -138,7 +148,7 @@ export const Disk = styled.div `
 
   &:hover {
     animation: rotation 2s linear infinite;
-    left: 60%;
+    left: 50%;
   }
 
   @keyframes rotation {
@@ -156,8 +166,8 @@ export const InnerDisk = styled.div `
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
 
   &::after {
@@ -182,8 +192,8 @@ export const InnerDisk = styled.div `
 `;
 
 export const Img1 = styled.img `
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
 
   @media screen and (max-width: 1000px) {
