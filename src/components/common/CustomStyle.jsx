@@ -52,12 +52,13 @@ export const InputFile = styled.input `
 `;
 
 export const CoverImg = styled.div `
-  flex-basis: 33.3%;
   width: 400px;
   height: 400px;
   margin: auto 0;
+  margin-left: 70px;
   display: flex;
   justify-content: flex-end;
+  box-shadow: 1px 3px 3px 5px rgba(0, 0, 0, 0.7);
 
   @media screen and (max-width: 1400px) {
     z-index: 2;
@@ -78,7 +79,6 @@ export const Img = styled.img `
 `;
 
 export const LpWrapper = styled.div `
-  flex-basis: 33.3%;
   width: 500px;
   height: 500px;
   margin: auto;
@@ -89,8 +89,8 @@ export const LpWrapper = styled.div `
     width: 300px;
     height: 300px;
     position: absolute;
-    top: 10%;
-    left: -15%;
+    top: 11.3%;
+    left: -5%;
   }
 `;
 
@@ -99,7 +99,7 @@ export const Disk = styled.div `
   width: 405px;
   height: 405px;
   left: 16%;
-  top: 7%;
+  top: 10%;
   border-radius: 50%;
   animation: rotation 10s linear infinite;
 
@@ -182,8 +182,8 @@ export const SongListWrapper = styled.div `
   }
   @media screen and (max-width: 1400px) {
     position: fixed;
-    top: 11%;
-    right: -30%;
+    top: 11.6%;
+    right: -50%;
     margin: auto 0;
     width: 350px;
     height: 350px;

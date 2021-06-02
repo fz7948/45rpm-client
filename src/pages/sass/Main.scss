@@ -21,8 +21,8 @@ body {
                         top: 30%;
                         left: 8%;
                         transform: translate(-50%, -50%);
-                        width: 30vw;
-                        height: 45vh;
+                        width: 415px;
+                        height: 415px;
                         visibility: hidden;
                         opacity: 0;
                         transition: all 1s ease;
@@ -31,14 +31,14 @@ body {
                             top: 40%;
                             position: absolute;
                             width: 200px;
-                            height: 150px;
+                            height: 200px;
                             transform: translate(-70%, -50%);
                             transform: rotate(130deg);
                         }
                         @media #{$medium} {
                             position: absolute;
-                            width: 350px;
-                            height: 300px;
+                            width: 410px;
+                            height: 410px;
                             top: 20%;
                             left: 15%;
                             transform: translate(-70%, -50%);
@@ -49,11 +49,11 @@ body {
                             transform: rotate(-30deg);
                             opacity: 1;
                             .disk {
-                                left: 40%;
+                                left: 50%;
                                 transition-delay: 1s;
                                 animation: rotation 5s linear infinite;
                             }
-                            @media screen and (max-width: 1500px) {
+                            @media #{$small} {
                                 .disk {
                                     left: 35%;
                                     transition-delay: 0.5s;
@@ -64,8 +64,8 @@ body {
                             flex: 1;
                             position: absolute;
                             top: -12%;
-                            width: 400px;
-                            height: 400px;
+                            width: 420px;
+                            height: 420px;
                             box-shadow: 1px 3px 2px 3px rgba(0, 1, 1, 1);
                             img {
                                 width: inherit;
@@ -91,39 +91,33 @@ body {
                         .disk {
                             position: absolute;
                             top: -10%;
-                            width: 370px;
-                            height: 370px;
+                            width: 100%;
+                            height: 100%;
                             border-radius: 50%;
-                            background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff);
-                            box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             @media #{$small} {
-                                top: -10%;
-                                width: 240px;
-                                height: 240px;
+                                top: -11%;
+                                width: 60%;
+                                height: 60%;
                             }
                             @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                top: 15%;
+                                top: 13%;
                                 left: -20%;
-                                width: 320px;
-                                height: 320px;
+                                width: 80%;
+                                height: 80%;
                             }
-                            .innerDisk {
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(-50%, -50%);
-                                width: 100px;
-                                height: 100px;
-                                background-color: #0473a4;
-                                border-radius: 50%;
+                            img {
+                                width: 412px;
+                                height: 412px;
+                                -webkit-filter: opacity(0.5) drop-shadow(0 0 0 blue);
+                                filter: opacity(0.5) drop-shadow(0 0 0 blue);
                                 @media #{$small} {
-                                    width: 50px;
-                                    height: 50px;
+                                    width: 241px;
+                                    height: 241px;
                                 }
                                 @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                    width: 90px;
-                                    height: 90px;
+                                    width: 325px;
+                                    height: 325px;
                                 }
                             }
                         }

@@ -198,10 +198,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/4.jpg" alt="" />
+                  <img src="./images/j.jpeg" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -215,10 +216,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/1.webp" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -230,10 +232,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/1.jpg" alt="" />
+                  <img src="./images/jjj.jpg" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -245,10 +248,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/2.jpg" alt="" />
+                  <img src="./images/kk.png" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -260,10 +264,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/3.jpg" alt="" />
+                  <img src="./images/lll.jpg" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -275,10 +280,11 @@ function Main() {
             <section className="sectionWrapper">
               <div className="cdCase">
                 <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/4.jpg" alt="" />
+                  <img src="./images/llll.jpg" alt="" />
                 </div>
               </div>
               <div className="movingImg">
