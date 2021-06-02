@@ -78,7 +78,8 @@ export const ModalBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  width: 450px;
+  height: 550px;
   background: white;
   padding: 0rem;
   border-radius: 5px;
@@ -96,19 +97,7 @@ export const ModalBox = styled.div`
   animation-name: ${slideUp};
   animation-fill-mode: forwards;
 
-  ${(props) =>
-    props.disappear &&
-    css`
-      animation-name: ${slideDown};
-    `}
-  ${(props) =>
-    props.register &&
-    css`
-      width: 450px;
-      height: 500px;
-    `}
-
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 768px) {
     width: 350px;
   }
 `;

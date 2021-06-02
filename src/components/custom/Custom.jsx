@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import 'semantic-ui-css/semantic.min.css';
@@ -6,7 +6,13 @@ import { Tab } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import RegisterModal from '../../components/auth/RegisterModal';
-import { registerModal, closeModal } from '../../modules/modal';
+import AlertModal from '../common/AlertModal';
+import {
+  registerModal,
+  closeModal,
+  alertSonglistModal,
+  alertNoFullData,
+} from '../../modules/modal';
 import styled from 'styled-components';
 import {
   Container,
@@ -32,34 +38,41 @@ import {
   TabWrapper,
   ButtonWrapper,
   SubmitBtn,
+  SongListTextInput,
+  SongListBtn,
 } from '../common/CustomStyle';
 
 const Custom = () => {
   const history = useHistory();
-  const [songList, setSongList] = useState(
-    sessionStorage.getItem('songList') === null
-      ? []
-      : sessionStorage
-          .getItem('songList')
-          .split(',')
-          .filter((el) => {
-            if (el) return el;
-          }),
-  );
   const [color, setColor] = useState('#fff');
   const [title, setTitle] = useState(sessionStorage.getItem('title'));
   const [imgBase64, setImgBase64] = useState('./images/1.jpg');
   const [imgFile, setImgFile] = useState(null);
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
+  const [songList, setSongList] = useState([]);
+  const [nowSong, setNowSong] = useState('');
+
+  useEffect(() => {
+    for (let i = 0; i <= sessionStorage.length; i++) {
+      sessionStorage.removeItem(`songList${i}`);
+    }
+    sessionStorage.removeItem('title');
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(`songList${songList.length}`, nowSong);
+  }, [nowSong]);
+
   const dispatch = useDispatch();
 
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
-  const { checkModal, isType } = useSelector(({ modal }) => ({
+  const { checkModal, isType, alertCheck } = useSelector(({ modal }) => ({
     checkModal: modal.checkModal,
     isType: modal.isType,
+    alertCheck: modal.alertCheck,
   }));
 
   const openRegisterModal = () => {
@@ -68,6 +81,41 @@ const Custom = () => {
 
   const shutModal = () => {
     dispatch(closeModal());
+  };
+
+  const openSongListModal = () => {
+    dispatch(alertSonglistModal());
+  };
+
+  const openNoFullDataModal = () => {
+    dispatch(alertNoFullData());
+  };
+
+  const currentSong = (e) => {
+    setNowSong(e.target.value);
+  };
+
+  const handleClick = () => {
+    if (nowSong.length === 0) {
+      openSongListModal();
+      return;
+    }
+    setSongList([...songList, nowSong]);
+  };
+
+  const minusClick = (index) => {
+    const newSongList = songList.filter(
+      (elem) => songList.indexOf(elem) !== index,
+    );
+    setSongList(newSongList);
+    if (newSongList) {
+      for (let i = 0; i <= sessionStorage.length; i++) {
+        sessionStorage.removeItem(`songList${i}`);
+      }
+      for (let i = 0; i < newSongList.length; i++) {
+        sessionStorage.setItem(`songList${i}`, newSongList[i]);
+      }
+    }
   };
 
   const handleChangeColor = (color) => {
@@ -94,27 +142,6 @@ const Custom = () => {
     setTitle(e.target.value);
   };
 
-  const handleChangeSongList = (e) => {
-    if (
-      e.target.value.includes(',') &&
-      songList.length >= 0 &&
-      e.target.value !== ''
-    ) {
-      setSongList(
-        e.target.value.split(',').filter((el) => {
-          if (el) return el;
-        }),
-      );
-      sessionStorage.setItem('songList', e.target.value);
-    } else {
-      sessionStorage.setItem('songList', e.target.value);
-      if (sessionStorage.getItem('songList') === '') {
-        setSongList([]);
-      } else setSongList([sessionStorage.getItem('songList')]);
-    }
-    console.log('>>>>songList', songList);
-  };
-
   const handleChangeFile1 = (e) => {
     let reader = new FileReader();
     reader.onloadend = () => {
@@ -129,37 +156,6 @@ const Custom = () => {
     }
   };
 
-  const handleChangeColor = (color) => {
-    setColor(color.hex);
-    console.log(color.hex);
-  };
-
-  const handleChangeTitle = (e) => {
-    sessionStorage.setItem('title', e.target.value);
-    setTitle(e.target.value);
-  };
-
-  const handleChangeSongList = (e) => {
-    if (
-      e.target.value.includes(',') &&
-      songList.length >= 0 &&
-      e.target.value !== ''
-    ) {
-      setSongList(
-        e.target.value.split(',').filter((el) => {
-          if (el) return el;
-        }),
-      );
-      sessionStorage.setItem('songList', e.target.value);
-    } else {
-      sessionStorage.setItem('songList', e.target.value);
-      if (sessionStorage.getItem('songList') === '') {
-        setSongList([]);
-      } else setSongList([sessionStorage.getItem('songList')]);
-    }
-    console.log('>>>>songList', songList);
-  };
-
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
       console.log('색깔', color);
@@ -167,7 +163,7 @@ const Custom = () => {
       console.log('이미지 2', imgFile1);
       console.log('제목', title);
       console.log('노래', songList);
-      alert('모두 입력되어야 등록이 가능합니다.');
+      openNoFullDataModal();
       return;
     } else if (!token) {
       openRegisterModal();
@@ -197,10 +193,12 @@ const Custom = () => {
           withCredentials: true,
         },
       );
+      for (let i = 0; i <= songList.length; i++) {
+        sessionStorage.removeItem(`songList${i}`);
+      }
       history.push('/mypage');
     }
   };
-
 
   const panes = [
     {
@@ -295,22 +293,45 @@ const Custom = () => {
             background: 'transparent',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
           }}
         >
-          <TextInput
-            placeholder="추가하고 싶은 음악을 입력하세요"
-            value={sessionStorage.getItem('songList')}
-            onChange={handleChangeSongList}
-          />
+          {songList.length === 0 ? (
+            <div>
+              <SongListTextInput
+                placeholder={'추가하고 싶은 음악을 입력하세요'}
+                onChange={currentSong}
+              />
+              <SongListBtn onClick={handleClick}>+</SongListBtn>
+            </div>
+          ) : (
+            <div>
+              {songList.map((elem, index) => {
+                return (
+                  <div>
+                    <SongListTextInput
+                      value={sessionStorage.getItem(`songList${index}`)}
+                      onChange={currentSong}
+                    />
+                    <SongListBtn onClick={() => minusClick(index)}>
+                      -
+                    </SongListBtn>
+                  </div>
+                );
+              })}
+              <SongListTextInput
+                placeholder={'이곳에 입력하세요'}
+                onChange={currentSong}
+              />
+              <SongListBtn onClick={handleClick}>+</SongListBtn>
+            </div>
+          )}
         </Tab.Pane>
       ),
     },
   ];
   const Img1 = styled.img`
-    position: absolute;
-    left: -25%;
-    width: 710px;
+    position: relative;
+    width: 100%;
     height: 100%;
     -webkit-filter: opacity(0.5) drop-shadow(0 0 0 ${color});
     filter: opacity(0.5) drop-shadow(0 0 0 ${color});
@@ -331,7 +352,11 @@ const Custom = () => {
         </CoverImg>
         <LpWrapper>
           <Disk>
-            <Img1 style={{ color: color }} src="./images/12.png" alt=""></Img1>
+            <Img1
+              style={{ color: color }}
+              src="./images/12fix.png"
+              alt=""
+            ></Img1>
             <InnerDisk>
               <Img2 src={imgBase} alt="" />
             </InnerDisk>
@@ -339,7 +364,7 @@ const Custom = () => {
         </LpWrapper>
         <SongListWrapper>
           <UpperWrapper>
-            <CustomTitle>{title}</CustomTitle>
+            <CustomTitle>{sessionStorage.getItem(`title`)}</CustomTitle>
             <SongList>
               {songList.map((el) => {
                 return <Song>{el}</Song>;
@@ -375,6 +400,20 @@ const Custom = () => {
       </ButtonWrapper>
       {isType === 'register' && (
         <RegisterModal open={checkModal} close={shutModal}></RegisterModal>
+      )}
+      {isType === 'songList' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'내용을 입력해 주세요'}
+        />
+      )}
+      {isType === 'noFullData' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'모두 입력되어야 등록이 가능합니다'}
+        />
       )}
     </Container>
   );

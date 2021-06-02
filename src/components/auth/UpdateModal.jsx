@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { updateReq, resetUpdate } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 import { alertUpdateModal, alertWithdrawalModal } from '../../modules/modal';
+import { GrFormClose } from 'react-icons/gr';
 
 const UpdateWrapper = styled.div`
   display: flex;
@@ -14,9 +15,9 @@ const UpdateWrapper = styled.div`
   h2 {
     color: #191919;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 3rem;
   }
   ul {
     padding: 0;
@@ -27,7 +28,7 @@ const UpdateWrapper = styled.div`
     margin-bottom: 1rem;
   }
   p {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
     color: #707174;
     margin: 0;
@@ -38,11 +39,11 @@ const UpdateWrapper = styled.div`
     margin-top: 0.5rem;
   }
   .deny-message {
-    width: 220px;
+    width: 280px;
     height: 12px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
     margin-top: 0.5rem;
     color: #f73d5c;
     word-break: keep-all;
@@ -50,22 +51,22 @@ const UpdateWrapper = styled.div`
 `;
 
 const UpdateLabel = styled.label`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #707174;
   div {
-    margin-bottom: 3px;
+    margin-bottom: 8px;
   }
 `;
 
 const UpdateInput = styled.input`
-  height: 1rem;
-  width: 16rem;
-  padding: 1rem;
+  height: 1.6rem;
+  width: 21rem;
+  padding: 1.4rem;
 
   border: 1px solid #9b9b9c;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15.5px;
   color: #5f6063;
   &:focus {
     outline: none;
@@ -78,12 +79,12 @@ const UpdateCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
   top: 1rem;
-  left: 14.3rem;
+  left: 20rem;
   background: white;
   border: 0;
   outline: 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 2.4rem;
   &:hover {
     color: #f73d5c;
     transition: all ease 0.2s;
@@ -92,15 +93,15 @@ const UpdateCloseBtn = styled.button`
 
 const UpdateSubmitBtn = styled.button`
   cursor: pointer;
-  height: 2.2rem;
-  width: 16rem;
+  height: 3rem;
+  width: 21rem;
   border-radius: 3px;
   border: 0;
   outline: 0;
   margin-bottom: 0.7rem;
   background-color: #311788;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 400;
   &:hover {
     background-color: #03154e;
@@ -113,11 +114,12 @@ const WithdrawBtn = styled.div`
   background: white;
   display: flex;
   flex-direction: row-reverse;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 5px;
   button {
     border: 0;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
     background: white;
     padding: 0;
     &:hover {
@@ -380,7 +382,9 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open} update>
-          <UpdateCloseBtn onClick={close}>X</UpdateCloseBtn>
+          <UpdateCloseBtn onClick={close}>
+            <GrFormClose />
+          </UpdateCloseBtn>
           <UpdateWrapper>
             <h2>계정 정보 수정</h2>
             <div className="update_info">
@@ -443,7 +447,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
                 <UpdateInput
                   type="password"
                   value={inputNewPassword}
-                  placeholder="입력하지 않으면 기존 비밀번호가 유지됩니다."
+                  placeholder="입력하지 않을 시, 기존 비밀번호 유지"
                   onChange={handleChangeNewPassword}
                   onKeyPress={handleMoveToNewpasswordCheck}
                   ref={refNewPassword}
@@ -456,7 +460,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
                 <UpdateInput
                   type="password"
                   value={inputNewPasswordCheck}
-                  placeholder="입력하지 않으면 기존 비밀번호가 유지됩니다."
+                  placeholder="입력하지 않을 시, 기존 비밀번호 유지"
                   onChange={handleChangeNewPasswordCheck}
                   onKeyPress={handleMoveToSignUp}
                   ref={refNewPasswordCheck}

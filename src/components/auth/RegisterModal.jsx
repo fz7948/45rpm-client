@@ -9,8 +9,10 @@ import {
   resetRegisterMsg,
 } from '../../modules/auth';
 import { alertRegisterModal } from '../../modules/modal';
+import { GrFormClose } from 'react-icons/gr';
 
 const RegisterWrapper = styled.div`
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,9 +20,9 @@ const RegisterWrapper = styled.div`
   h2 {
     color: #191919;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.6rem;
   }
   ul {
     padding: 0;
@@ -31,33 +33,33 @@ const RegisterWrapper = styled.div`
     margin-bottom: 1rem;
   }
   .deny-message {
-    width: 220px;
+    width: 275px;
     height: 12px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 0.2rem;
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     color: #f73d5c;
     word-break: keep-all;
   }
 `;
 
 const RegisterLabel = styled.label`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #707174;
   div {
-    margin-bottom: 3px;
+    margin-bottom: 8px;
   }
 `;
 
 const RegisterInput = styled.input`
-  height: 1rem;
-  width: 16rem;
-  padding: 1rem;
+  height: 1.6rem;
+  width: 21rem;
+  padding: 1.4rem;
   border: 1px solid #9b9b9c;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15.5px;
   color: #5f6063;
   &:focus {
     outline: none;
@@ -69,13 +71,13 @@ const RegisterInput = styled.input`
 const RegisterCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
-  top: -0.4rem;
-  left: 12.7rem;
+  top: -1.6rem;
+  left: 17rem;
   background: white;
   border: 0;
   outline: 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 2.4rem;
   &:hover {
     color: #f73d5c;
     transition: all ease 0.2s;
@@ -84,16 +86,16 @@ const RegisterCloseBtn = styled.button`
 
 const RegisterSubmitBtn = styled.button`
   cursor: pointer;
-  height: 2.2rem;
-  width: 16rem;
+  height: 3rem;
+  width: 21rem;
   border-radius: 3px;
   margin-top: 2rem;
   border: 0;
   outline: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2.2rem;
   background-color: #311788;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 400;
   &:hover {
     background-color: #03154e;
@@ -340,7 +342,7 @@ const RegisterModal = ({ open, close, history }) => {
         <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open} register>
           <RegisterCloseBtn onClick={(close, handleCloseBtn)}>
-            X
+            <GrFormClose />
           </RegisterCloseBtn>
           <RegisterWrapper>
             <h2> 회원가입 </h2>
