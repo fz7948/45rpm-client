@@ -91,7 +91,7 @@ export const MyPageImage = styled.div `
     margin: 0;
   }
 `;
-dfs;
+
 export const MyPageInfo = styled.div `
   flex: 1;
   height: 20rem;
