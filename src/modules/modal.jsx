@@ -24,7 +24,6 @@ const ALERT_MODAL_ANSWER_TRUE = 'ALERT_MODAL_ANSWER_TRUE';
 const ALERT_MODAL_ANSWER_UPDATE = 'ALERT_MODAL_ANSWER_UPDATE';
 const ALERT_MODAL_ANSWER_REPLY = 'ALERT_MODAL_ANSWER_REPLY';
 
-
 export const showModal = () => ({ type: SHOW_MODAL });
 export const loginModal = () => ({ type: LOGIN_MODAL });
 export const registerModal = () => ({ type: REGISTER_MODAL });
@@ -54,7 +53,6 @@ export const alertAnswerUpdateModal = () => ({
 export const alertAnswerReplyModal = () => ({
   type: ALERT_MODAL_ANSWER_REPLY,
 });
-
 
 const initialState = {
   checkModal: false,
@@ -142,7 +140,6 @@ export default function modal(state = initialState, action) {
         alertCheck: true,
         isType: 'alertOrder',
       };
-
     case ALERT_MODAL_SONGLIST:
       return {
         checkModal: false,
@@ -154,7 +151,7 @@ export default function modal(state = initialState, action) {
         cheeckModal: false,
         alertCheck: true,
         isType: 'noFullData',
-
+      };
     case ALERT_MODAL_ANSWER:
       return {
         checkModal: false,
@@ -184,7 +181,6 @@ export default function modal(state = initialState, action) {
         checkModal: false,
         alertCheck: true,
         isType: 'alertAnswerReply',
-
       };
     case ALERT_MODAL_FAILURE:
       return {
