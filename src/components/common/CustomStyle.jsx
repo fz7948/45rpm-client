@@ -23,6 +23,10 @@ export const MainWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   max-height: 500px;
+
+  @media screen and (max-width: 768px) {
+    height: 900px;
+  }
 `;
 
 export const InputFile = styled.input`
@@ -42,12 +46,25 @@ export const CoverImg = styled.div`
   width: 400px;
   height: 400px;
   margin: auto 0;
-  padding-left: 6rem;
+  display: flex;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 768px) {
+    z-index: 2;
+    width: 350px;
+    height: 350px;
+    transform: translateX(-50%);
+  }
 `;
 
 export const Img = styled.img`
   width: 400px;
   height: 400px;
+
+  @media screen and (max-width: 768px) {
+    width: 350px;
+    height: 350px;
+  }
 `;
 
 export const LpWrapper = styled.div`
@@ -56,13 +73,23 @@ export const LpWrapper = styled.div`
   height: 500px;
   margin: auto;
   padding-top: 1rem;
+
+  @media screen and (max-width: 768px) {
+    z-index: 1;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 12%;
+    left: 2%;
+  }
 `;
 
 export const Disk = styled.div`
   position: relative;
-  width: 470px;
-  height: 470px;
-  left: 2%;
+  width: 405px;
+  height: 405px;
+  left: 16%;
+  top: 7%;
   border-radius: 50%;
   animation: rotation 10s linear infinite;
 
@@ -73,6 +100,12 @@ export const Disk = styled.div`
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    width: 300px;
+    height: 300px;
   }
 `;
 
@@ -96,6 +129,11 @@ export const InnerDisk = styled.div`
     background-color: black;
     border-radius: 50%;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const Img2 = styled.img`
@@ -103,18 +141,24 @@ export const Img2 = styled.img`
   width: inherit;
   height: inherit;
   border-radius: 50%;
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
+
 export const SongListWrapper = styled.div`
-  border-radius: 6px;
+
   flex-basis: 33.3%;
+  border-radius: 6px;
   width: 400px;
   height: 400px;
   margin: auto 0;
-  margin-right: 4rem;
+  margin-right: 5rem;
   display: flex;
   flex-direction: column;
-  flex-basis: 33.3%;
   color: #fff;
   background: #000;
   overflow: auto;
@@ -128,6 +172,14 @@ export const SongListWrapper = styled.div`
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
+  }
+  @media screen and (max-width: 768px) {
+    margin: auto 0;
+    &:hover {
+      transform: translateX(-100px) scaleX(2);
+      transition: all linear 0.5s;
+      z-index: 3;
+    }
   }
 `;
 
@@ -245,7 +297,11 @@ export const DomainContent = styled.div`
   flex: 1;
 `;
 
-export const TabWrapper = styled.div``;
+
+export const TabWrapper = styled.div `
+  height: 700px;
+`;
+
 
 export const ButtonWrapper = styled.div`
   display: flex;

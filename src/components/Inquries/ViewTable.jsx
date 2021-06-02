@@ -2,7 +2,17 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { questionUpdateReq, questionListReq } from '../../modules/question';
+import {
+  questionUpdateReq,
+  questionReplyReq,
+  questionReplyUpdateReq,
+} from '../../modules/question';
+import {
+  closeModal,
+  alertAnswerUpdateModal,
+  alertAnswerReplyModal,
+} from '../../modules/modal';
+import AlertModal from '../../components/common/AlertModal';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -13,7 +23,8 @@ const InquiryWrapper = styled.div`
   margin: 0 auto;
   margin-bottom: 2.5rem;
   padding-top: 3rem;
-  border: 1px solid gray;
+  border: 1px solid #b5b9b9;
+  background-color: #fafafa;
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -31,6 +42,7 @@ const InquiryCollection = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 2rem;
+  align-items: center;
 
   @media screen and (max-width: 768px) {
     padding-bottom: 1rem;
@@ -40,19 +52,37 @@ const InquiryCollection = styled.div`
 `;
 const InquiryRow = styled.div`
   display: flex;
-  margin: 10px 0;
-  display: flex;
-  border-bottom: 0.7px solid lightgray;
+  justify-content: flex-start;
+  width: 65%;
   padding-bottom: 0.5rem;
-  margin-right: 10rem;
+  background-color: white;
+  border: 1px solid #b5b9b9;
+
   label {
     &:nth-child(1) {
-      width: 10rem;
-      height: 2.5rem;
-      text-align: center;
-      border: 1px solid black;
+      width: 15rem;
+      height: 100%;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 700;
+      color: #4c4c4c;
       padding-top: 0.4rem;
       margin-right: 2rem;
+      background: #495263;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 4px;
+      ${(props) =>
+        props.replyReady &&
+        css`
+          background-color: #d3d3d3;
+        `}
+      ${(props) =>
+        props.replyConfirm &&
+        css`
+          background-color: #f83d5c;
+        `}
     }
   }
 
@@ -83,23 +113,27 @@ const ButtonWrapper = styled.div`
 `;
 
 const common = css`
-  font-family: 'Jua', sans-serif;
-  font-size: 1.3rem;
-  margin: 1rem;
-  outline: none;
-  background-color: #eee;
   cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 0;
+  outline: 0;
+  margin: 5rem 2rem 1rem 2rem;
+  background-color: #03154e;
+  color: #e1eaf8;
+  font-size: 1rem;
   &:hover {
-    background-color: #ddd;
-    transition: all ease 0.4s;
-    border: none;
+    background-color: #03154e;
+    transition: all ease 0.3s;
+    color: gray;
   }
 `;
 
 const ButtonWrap = styled.button`
   ${common}
-  width:13rem;
-  height: 4rem;
+  width:10rem;
+  height: 3rem;
 
   @media screen and (max-width: 768px) {
     width: 9rem;
@@ -109,45 +143,53 @@ const ButtonWrap = styled.button`
 `;
 
 const InputDetailStyle = styled.input`
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  margin-top: 7px;
   outline: none;
-  padding-left: 10px;
+  padding-left: 8px;
   border: 0px;
   box-sizing: border-box;
-  width: 250px;
-  height: 2.2rem;
-  font-size: 20px;
+  width: 60%;
+  height: 2.1rem;
+  font-size: 1.1rem;
   &:focus {
     outline: 0;
-    border: 1px solid #f73d5c;
+    background-color: #efefef;
     transition: all ease 0.3s;
+    border-radius: 3px;
   }
-
   ${(props) =>
-    props.update &&
+    props.date &&
     css`
-      color: gray;
-      &:focus {
-        color: black;
-      }
+      font-size: 1.02rem;
     `}
 `;
 
 const InputDetailText = styled.textarea`
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  margin-top: 7px;
   outline: none;
   padding-left: 10px;
   border: 0px;
   box-sizing: border-box;
-  width: 500px;
-  height: 5rem;
-  font-size: 20px;
-  color: gray;
+  font-size: 1.1rem;
+  padding-top: 10px;
   resize: none;
+  width: 60%;
+  height: 10rem;
   &:focus {
     outline: 0;
-    color: black;
-    border: 1px solid #f73d5c;
+    background-color: #efefef;
     transition: all ease 0.3s;
+    border-radius: 3px;
   }
+  ${(props) =>
+    props.ready &&
+    css`
+      height: 2.5rem;
+    `}
 
   @media screen and (max-width: 768px) {
     width: 200px;
@@ -157,21 +199,34 @@ const InputDetailText = styled.textarea`
 const View = ({ view }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { token } = useSelector(({ user }) => ({
-    token: user.token,
-  }));
+  const { admin, token, isType, alertCheck } = useSelector(
+    ({ user, modal }) => ({
+      token: user.token,
+      admin: user.admin,
+      isType: modal.isType,
+      alertCheck: modal.alertCheck,
+    }),
+  );
 
-  console.log('view???', view);
+  console.log('view??', view);
+
+  useEffect(() => {
+    if (view.reply) {
+      setDetailReply(view[0].reply.replyText);
+    }
+  }, []);
 
   const [detailID, setDetailID] = useState(view[0].userId);
   const [detailCategory, setDetailCategory] = useState(view[0].category);
   const [detailTitle, setDetailTitle] = useState(view[0].title);
   const [detailCreatedAt, setDetailCreatedAt] = useState(view[0].createdAt);
   const [detailContent, setDetailCotent] = useState(view[0].contents);
+  const [detailReply, setDetailReply] = useState(view[0].reply);
+  const [detailReplyCheck, setDetailReplyCheck] = useState(view[0].replyCheck);
 
   const handleChangeID = useCallback(
     (e) => {
-      setDetailID(view[0].userId);
+      setDetailID(e.view[0].userId);
     },
     [detailID],
   );
@@ -192,7 +247,7 @@ const View = ({ view }) => {
 
   const handleChangeCreatedAt = useCallback(
     (e) => {
-      setDetailCreatedAt(view[0].createdAt);
+      setDetailCreatedAt(e.view[0].createdAt);
     },
     [detailCreatedAt],
   );
@@ -204,18 +259,117 @@ const View = ({ view }) => {
     [detailContent],
   );
 
-  const detailUpdateHandler = () => {
-    dispatch(questionUpdateReq(view[0]._id, detailTitle, detailContent, token));
-    setTimeout(onDispatchHandler, 100);
+  const handleChangeReply = useCallback(
+    (e) => {
+      setDetailReply(e.target.value);
+    },
+    [detailReply],
+  );
+
+  const shutModal = () => {
+    dispatch(closeModal());
   };
 
-  const onDispatchHandler = () => {
-    dispatch(questionListReq(token));
+  const detailUpdateHandler = () => {
+    dispatch(questionUpdateReq(view[0]._id, detailTitle, detailContent, token));
+    dispatch(alertAnswerUpdateModal());
+  };
+
+  const detailReplyHandler = () => {
+    if (detailReplyCheck === false) {
+      setDetailReplyCheck(true);
+      dispatch(questionReplyReq(token, view[0]._id, detailReply, true));
+    }
+    if (detailReplyCheck === true) {
+      setDetailReplyCheck(true);
+      dispatch(questionReplyUpdateReq(token, view[0]._id, detailReply, true));
+    }
+    dispatch(alertAnswerReplyModal());
   };
 
   return (
     <>
-      {view.length > 0 && (
+      {isType === 'alertAnswerUpdate' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'수정 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertAnswerReply' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'답변 완료되었습니다.'}
+        />
+      )}
+      {admin ? (
+        <InquiryWrapper>
+          <InquiryCollection>
+            <InquiryRow>
+              <label> 작성자 </label>
+              <InputDetailStyle
+                type="text"
+                value={detailID}
+                onChange={handleChangeID}
+                readOnly
+              />
+            </InquiryRow>
+            <InquiryRow>
+              <label> 카테고리 </label>
+              <InputDetailStyle
+                type="text"
+                value={detailCategory}
+                onChange={handleChangeCategory}
+                readOnly
+              />
+            </InquiryRow>
+
+            <InquiryRow>
+              <label> 등록일 </label>
+              <InputDetailStyle
+                date
+                type="text"
+                value={detailCreatedAt}
+                onChange={handleChangeCreatedAt}
+                readOnly
+              />
+            </InquiryRow>
+            <InquiryRow>
+              <label> 제목 </label>
+              <InputDetailStyle
+                type="text"
+                value={detailTitle}
+                onChange={handleChangeTitle}
+                readOnly
+              />
+            </InquiryRow>
+            <InquiryRow>
+              <label>내용</label>
+              <InputDetailText
+                type="text"
+                value={detailContent}
+                onChange={handleChangeContent}
+                readOnly
+              />
+            </InquiryRow>
+            <InquiryRow>
+              <label>답변</label>
+              <InputDetailText
+                type="text"
+                value={detailReply}
+                onChange={handleChangeReply}
+              />
+            </InquiryRow>
+          </InquiryCollection>
+          <ButtonWrapper>
+            <ButtonWrap onClick={() => history.push('/2')}>
+              목록으로 돌아가기
+            </ButtonWrap>
+            <ButtonWrap onClick={detailReplyHandler}> 답변하기 </ButtonWrap>
+          </ButtonWrapper>
+        </InquiryWrapper>
+      ) : (
         <InquiryWrapper>
           <InquiryCollection>
             <InquiryRow>
@@ -237,21 +391,21 @@ const View = ({ view }) => {
               />
             </InquiryRow>
             <InquiryRow>
-              <label> 제목 </label>
-              <InputDetailStyle
-                update
-                type="text"
-                value={detailTitle}
-                onChange={handleChangeTitle}
-              />
-            </InquiryRow>
-            <InquiryRow>
               <label> 등록일 </label>
               <InputDetailStyle
                 type="text"
                 value={detailCreatedAt}
                 onChange={handleChangeCreatedAt}
                 readOnly
+              />
+            </InquiryRow>
+            <InquiryRow>
+              <label> 제목 </label>
+              <InputDetailStyle
+                update
+                type="text"
+                value={detailTitle}
+                onChange={handleChangeTitle}
               />
             </InquiryRow>
             <InquiryRow>
@@ -262,6 +416,29 @@ const View = ({ view }) => {
                 onChange={handleChangeContent}
               />
             </InquiryRow>
+            {detailReply.length === 0 && (
+              <InquiryRow replyReady>
+                <label>답변 준비중</label>
+                <InputDetailText
+                  ready
+                  type="text"
+                  value="답변이 도착하기 전입니다. 조금만 기다려주세요 !"
+                  onChange={handleChangeReply}
+                  readOnly
+                />
+              </InquiryRow>
+            )}
+            {detailReply.length !== 0 && (
+              <InquiryRow replyConfirm>
+                <label>답변 도착</label>
+                <InputDetailText
+                  type="text"
+                  value={detailReply}
+                  onChange={handleChangeReply}
+                  readOnly
+                />
+              </InquiryRow>
+            )}
           </InquiryCollection>
           <ButtonWrapper>
             <ButtonWrap onClick={() => history.push('/2')}>
@@ -276,7 +453,6 @@ const View = ({ view }) => {
 };
 
 const ViewTable = ({ data }) => {
-  console.log('DATA>>>>>>', data);
   return (
     <>
       <View view={data} key={data._id} />

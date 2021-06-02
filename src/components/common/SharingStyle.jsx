@@ -24,22 +24,10 @@ export const TitleWrapper = styled.div`
   flex-direction: column;
   padding: 4rem;
   text-align: center;
-  animation: fadeIn 3s;
 
   @media screen and (max-width: 1000px) {
     text-align: center;
     padding: 4rem;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateX(300px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0px);
-    }
   }
 `;
 
@@ -125,24 +113,25 @@ export const Img = styled.img`
 
 export const Disk = styled.div`
   flex: 1;
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
   position: absolute;
-  top: 1rem;
+  top: 6%;
   left: 35%;
   z-index: 1;
+
   @media screen and (max-width: 1000px) {
     width: 230px;
     height: 230px;
-    position: absolute;
     top: 1rem;
+    position: absolute;
     left: 45%;
   }
   @media screen and (min-width: 1000px) and (max-width: 1300px) {
     width: 300px;
     height: 300px;
     position: absolute;
-    top: 1rem;
+    top: 8%;
     left: 45%;
   }
 

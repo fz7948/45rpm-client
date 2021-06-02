@@ -78,7 +78,8 @@ export const ModalBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 340px;
+  width: 520px;
+  height: 650px;
   background: white;
   padding: 1.5rem;
   border-radius: 5px;
@@ -104,19 +105,19 @@ export const ModalBox = styled.div`
   ${(props) =>
     props.register &&
     css`
-      width: 450px;
-      height: 550px;
+      width: 550px;
+      height: 750px;
     `}
   ${(props) =>
     props.update &&
     css`
-      width: 500px;
-      height: 680px;
+      width: 620px;
+      height: 840px;
     `}
   ${(props) =>
     props.alert &&
     css`
-      width: 380px;
-      height: 210px;
+      width: 450px;
+      height: 260px;
     `}
 `;

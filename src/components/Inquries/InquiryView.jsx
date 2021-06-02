@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 94.9vh;
-  padding-top: 2rem;
+  padding-top: 3rem;
   color: #000;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -26,17 +26,27 @@ const Container = styled.div`
   }
 `;
 
-const H2Title = styled.h2`
+const H2Title = styled.div`
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
-  background: lightgray;
-  border: 1px solid gray;
+  border: 1px solid #b5b9b9;
   width: 70%;
   height: 100%;
   margin: 0 auto;
+  font-size: 2rem;
+  background: #e8e8e8;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  color: #4c4c4c;
+  padding-top: 5rem;
+
+  .small.text {
+    font-size: 1rem;
+    padding: 10px 0px 15px 0px;
+  }
 
   @media screen and (max-width: 768px) {
     display: flex;
@@ -57,26 +67,19 @@ const InquiryView = ({ match }) => {
   const [data, setData] = useState({ data: [{}] });
   const { id } = match.params;
 
-  useEffect(() => {
-    // setTimeout(questionHandler, 1000);
-    if (questionList) {
-      setData(questionList.data);
+  // useEffect(() => {
+  // setTimeout(questionHandler, 1000);
+  //   if (questionList) {
+  //     console.log('dd', questionList);
+  //     setData(questionList.data);
 
-      console.log('<D<F>D<D>F</D></F>', questionList);
-      console.log('상세페이지??', questionList.data);
-
-    }
-  }, [token]);
-
-  const questionHandler = () => {
-    dispatch(questionListReq(token));
-  };
+  //     console.log('<D<F>D<D>F</D></F>', questionList);
+  //     console.log('상세페이지??', questionList.data);
+  //   }
+  // }, [token, admin]);
 
   const filterData = (id) => {
-
-    console.log('id', id);
     if (!questionList || !questionList.data) return null;
-
 
     const array = questionList.data.filter((el) => el._id === `${id}`);
     return array;
@@ -86,14 +89,14 @@ const InquiryView = ({ match }) => {
     setData(filterData(id));
   }, [token]);
 
-  console.log('데이터는???', data);
-
   return (
     <Container>
+      <H2Title>
+        <div>문의 내역을 확인하세요</div>
+        <div className="small text">제목과 내용은 수정이 가능합니다</div>
+      </H2Title>
 
-      <H2Title>문의 상세정보</H2Title>
       {data.length > 0 && <ViewTable data={data} key={data._id} />}
-
     </Container>
   );
 };
