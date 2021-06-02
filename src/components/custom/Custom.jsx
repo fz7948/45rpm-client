@@ -308,9 +308,8 @@ const Custom = () => {
     },
   ];
   const Img1 = styled.img`
-    position: absolute;
-    left: -25%;
-    width: 710px;
+    position: relative;
+    width: 100%;
     height: 100%;
     -webkit-filter: opacity(0.5) drop-shadow(0 0 0 ${color});
     filter: opacity(0.5) drop-shadow(0 0 0 ${color});
@@ -331,7 +330,11 @@ const Custom = () => {
         </CoverImg>
         <LpWrapper>
           <Disk>
-            <Img1 style={{ color: color }} src="./images/12.png" alt=""></Img1>
+            <Img1
+              style={{ color: color }}
+              src="./images/12fix.png"
+              alt=""
+            ></Img1>
             <InnerDisk>
               <Img2 src={imgBase} alt="" />
             </InnerDisk>

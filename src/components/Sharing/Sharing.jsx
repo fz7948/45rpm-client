@@ -41,21 +41,18 @@ const Sharing = () => {
 
   const Img2 = styled.img`
     position: absolute;
-    width: 392px;
-    height: 270px;
-    left: -23%;
+    width: 100%;
+    height: 100%;
     -webkit-filter: opacity(0.5) drop-shadow(0 0 0 ${sharedData.color});
     filter: opacity(0.5) drop-shadow(0 0 0 ${sharedData.color});
 
     @media screen and (max-width: 1000px) {
-      width: 350px;
+      width: 100%;
       height: 100%;
-      left: -25%;
     }
     @media screen and (min-width: 1000px) and (max-width: 1300px) {
-      width: 446px;
-      height: 294px;
-      left: -23%;
+      width: 100%;
+      height: 100%;
     }
   `;
   return (
@@ -77,7 +74,7 @@ const Sharing = () => {
               </CoverImg>
               <Disk>
                 <Img2
-                  src="./images/12.png"
+                  src="./images/12fix.png"
                   alt=""
                   style={{ color: el.color }}
                 />
