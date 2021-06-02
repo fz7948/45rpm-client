@@ -286,6 +286,7 @@ body {
       justify-content: space-between;
       padding-bottom: 1rem;
       .fingerBtn {
+        z-index: 1;
         display: flex;
         justify-content: center;
         align-items: center;
