@@ -6,6 +6,7 @@ import { loginUser, checkUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { alertLoginModal } from '../../modules/modal';
+import { GrFormClose } from 'react-icons/gr';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -14,9 +15,9 @@ const LoginWrapper = styled.div`
   h2 {
     color: #191919;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.6rem;
   }
   ul {
     padding: 0;
@@ -26,34 +27,35 @@ const LoginWrapper = styled.div`
     margin-bottom: 0.5rem;
   }
   .deny-message {
-    width: 220px;
+    width: 230px;
     height: 12px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 1.2rem;
-    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+    margin-top: 1.5rem;
     color: #f73d5c;
     word-break: keep-all;
   }
 `;
 
 const LoginLabel = styled.label`
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: #707174;
   div {
-    margin-bottom: 3px;
+    margin-bottom: 8px;
     padding-top: 10px;
   }
 `;
 
 const LoginInput = styled.input`
-  height: 1.2rem;
-  width: 14rem;
-  padding: 1rem;
+  height: 1.6rem;
+  width: 21rem;
+  padding: 1.4rem;
   border: 1px solid #9b9b9c;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15.5px;
+  font-weight: 500;
   color: #5f6063;
   &:focus {
     outline: none;
@@ -65,13 +67,13 @@ const LoginInput = styled.input`
 const LoginCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
-  top: -0.8rem;
-  left: 9.5rem;
+  top: -1.4rem;
+  left: 16rem;
   background: white;
   border: 0;
   outline: 0;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 2.4rem;
   &:hover {
     color: #f73d5c;
     transition: all ease 0.2s;
@@ -80,15 +82,15 @@ const LoginCloseBtn = styled.button`
 
 const LoginSubmitBtn = styled.button`
   cursor: pointer;
-  height: 2.2rem;
-  width: 14rem;
+  height: 3rem;
+  width: 21rem;
   border-radius: 3px;
   border: 0;
   outline: 0;
-  margin: 1rem 0rem;
+  margin: 1.5rem 0rem;
   background-color: #311788;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 500;
   &:hover {
     background-color: #03154e;
@@ -98,21 +100,24 @@ const LoginSubmitBtn = styled.button`
 
 const LoginSocialBtn = styled.button`
   cursor: pointer;
-  height: 2.2rem;
-  width: 14rem;
+  height: 3rem;
+  width: 21rem;
   border: 0;
   outline: 0;
   border-radius: 3px;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 600;
   background-color: #e8e8e8;
+  margin-top: 0.5rem;
+
   &:hover {
     background-color: #b6b3b3;
     transition: all ease 0.3s;
   }
+
   & + & {
     margin-top: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 `;
 
@@ -251,7 +256,9 @@ const LoginModal = ({
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open}>
-          <LoginCloseBtn onClick={(close, handleCloseBtn)}> X </LoginCloseBtn>
+          <LoginCloseBtn onClick={(close, handleCloseBtn)}>
+            <GrFormClose />
+          </LoginCloseBtn>
           <LoginWrapper>
             <h2> 로그인 </h2>
             <ul>

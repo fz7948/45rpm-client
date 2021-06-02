@@ -129,37 +129,6 @@ const Custom = () => {
     }
   };
 
-  const handleChangeColor = (color) => {
-    setColor(color.hex);
-    console.log(color.hex);
-  };
-
-  const handleChangeTitle = (e) => {
-    sessionStorage.setItem('title', e.target.value);
-    setTitle(e.target.value);
-  };
-
-  const handleChangeSongList = (e) => {
-    if (
-      e.target.value.includes(',') &&
-      songList.length >= 0 &&
-      e.target.value !== ''
-    ) {
-      setSongList(
-        e.target.value.split(',').filter((el) => {
-          if (el) return el;
-        }),
-      );
-      sessionStorage.setItem('songList', e.target.value);
-    } else {
-      sessionStorage.setItem('songList', e.target.value);
-      if (sessionStorage.getItem('songList') === '') {
-        setSongList([]);
-      } else setSongList([sessionStorage.getItem('songList')]);
-    }
-    console.log('>>>>songList', songList);
-  };
-
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
       console.log('색깔', color);
@@ -200,7 +169,6 @@ const Custom = () => {
       history.push('/mypage');
     }
   };
-
 
   const panes = [
     {

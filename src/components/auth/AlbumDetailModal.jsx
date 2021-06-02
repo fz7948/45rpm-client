@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ModalBack, ModalBox } from '../common/AlbumModalStyle';
 import styled from 'styled-components';
 import DragDrop from '../DragAndDrop/DragAndDrop';
+import { GrFormClose } from 'react-icons/gr';
 
 const InfoWrapper = styled.div`
   width: inherit;
@@ -11,9 +12,9 @@ const InfoWrapper = styled.div`
   h2 {
     color: #191919;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 5rem;
   }
   ul {
     padding: 0;
@@ -25,7 +26,7 @@ const InfoLabel = styled.label`
   font-weight: 600;
   color: #707174;
   margin: 0;
-  margin-bottom: 4px;
+  margin-bottom: 50px;
 
   @media screen and (max-width: 768px) {
     font-size: 1.5rem;
@@ -35,13 +36,13 @@ const InfoLabel = styled.label`
 const InfoCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
-  top: 1rem;
-  left: 9.5rem;
+  top: -1rem;
+  left: 14rem;
   background: white;
   border: 0;
   outline: 0;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2.1rem;
   &:hover {
     color: #f73d5c;
     transition: all ease 0.2s;
@@ -56,22 +57,40 @@ const InfoCloseBtn = styled.button`
 const ProducerLi = styled.li`
   padding-left: 3rem;
   font-weight: 500;
+  margin-bottom: 30px;
+  margin-left: 80px;
+  .fontSize {
+    font-size: 20px;
+    margin: 20px 5px;
+  }
 `;
 
 const TitleLi = styled.li`
   padding-left: 3rem;
   font-weight: 500;
+  margin-bottom: 30px;
+  margin-left: 80px;
+  .fontSize {
+    font-size: 20px;
+    margin: 20px 5px;
+  }
 `;
 
 const SongListLi = styled.li`
   padding-left: 3rem;
-  @media screen and (max-width: 768px) {
+  margin-bottom: 30px;
+  margin-left: 80px;
+  .fontSize {
+    font-size: 20px;
+    margin: 20px 5px;
   }
 `;
 
 const SongContainer = styled.div`
   width: 100%;
   margin-bottom: 1rem;
+  font-size: 20px;
+  margin: 20px 5px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -84,7 +103,7 @@ const SongTitle = styled.div`
   font-weight: 500;
   font-family: 'Noto Sans KR', sans-serif;
   word-break: keep-all;
-  paddingbottom: '1rem';
+  padding-bottom: 5rem;
 `;
 
 const UlComp = styled.ul`
@@ -142,8 +161,11 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
     <>
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
-        <ModalBox disappear={!open}>
-          <InfoCloseBtn onClick={close}> X </InfoCloseBtn>
+        <ModalBox disappear={!open} album>
+          <InfoCloseBtn onClick={close}>
+            {' '}
+            <GrFormClose />{' '}
+          </InfoCloseBtn>
           <InfoWrapper key={heroListNumber}>
             <>
               <h2> 앨범 정보 </h2>
@@ -152,13 +174,13 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
                   <InfoLabel>
                     <div> Producer </div>
                   </InfoLabel>
-                  <div> {slide.userId} </div>
+                  <div className="fontSize"> {slide.userId} </div>
                 </ProducerLi>
                 <TitleLi>
                   <InfoLabel>
                     <div> Title </div>
                   </InfoLabel>
-                  <div> {slide.title} </div>
+                  <div className="fontSize"> {slide.title} </div>
                 </TitleLi>
                 <SongListLi>
                   <InfoLabel>
