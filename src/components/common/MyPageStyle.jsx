@@ -167,10 +167,12 @@ export const MyPageButton = styled.button`
   border: none;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 600;
+  background-color: #d4d4d4;
   color: #4c4c4c;
   font-size: 1.1rem;
   &:hover {
-    background-color: #ddd;
+    background-color: #4c4c4c;
+    color: #ddd;
     transition: all ease 0.4s;
   }
   .space {
