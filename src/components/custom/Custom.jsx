@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import 'semantic-ui-css/semantic.min.css';
 import { Tab } from 'semantic-ui-react';
+import '../common/Custom.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import RegisterModal from '../../components/auth/RegisterModal';
@@ -12,6 +13,7 @@ import {
   closeModal,
   alertSonglistModal,
   alertNoFullData,
+  alertLimitData,
 } from '../../modules/modal';
 import styled from 'styled-components';
 import {
@@ -91,6 +93,10 @@ const Custom = () => {
     dispatch(alertNoFullData());
   };
 
+  const openLimitDataModal = () => {
+    dispatch(alertLimitData());
+  };
+
   const currentSong = (e) => {
     setNowSong(e.target.value);
   };
@@ -98,6 +104,9 @@ const Custom = () => {
   const handleClick = () => {
     if (nowSong.length === 0) {
       openSongListModal();
+      return;
+    } else if (songList.length === 5) {
+      openLimitDataModal();
       return;
     }
     setSongList([...songList, nowSong]);
@@ -109,7 +118,7 @@ const Custom = () => {
     );
     setSongList(newSongList);
     if (newSongList) {
-      for (let i = 0; i <= sessionStorage.length; i++) {
+      for (let i = 0; i <= sessionStorage.length + 1; i++) {
         sessionStorage.removeItem(`songList${i}`);
       }
       for (let i = 0; i < newSongList.length; i++) {
@@ -366,8 +375,12 @@ const Custom = () => {
           <UpperWrapper>
             <CustomTitle>{sessionStorage.getItem(`title`)}</CustomTitle>
             <SongList>
-              {songList.map((el) => {
-                return <Song>{el}</Song>;
+              {songList.map((el, index) => {
+                return (
+                  <Song>
+                    {index + 1}. {el}
+                  </Song>
+                );
               })}
             </SongList>
           </UpperWrapper>
@@ -388,9 +401,11 @@ const Custom = () => {
       <TabWrapper>
         <Tab
           menu={{
-            color: 'yellow',
+            inverted: true,
+            color: 'black',
             fluid: true,
             tabular: true,
+            className: 'wrapped',
           }}
           panes={panes}
         />
@@ -413,6 +428,13 @@ const Custom = () => {
           openHandle={alertCheck}
           closeHandle={shutModal}
           comment={'모두 입력되어야 등록이 가능합니다'}
+        />
+      )}
+      {isType === 'limitData' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'곡은 5개까지만 등록 가능합니다'}
         />
       )}
     </Container>
