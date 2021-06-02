@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, inquiryModal } from '../../modules/modal';
+import {
+  closeModal,
+  inquiryModal,
+  alertAnswerTrueModal,
+} from '../../modules/modal';
 import {
   questionAddReq,
   questionListReq,
@@ -11,6 +15,7 @@ import InquiryModal from '../auth/InquiryModal';
 import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
+import AlertModal from '../../components/common/AlertModal';
 
 const Container = styled.div`
   display: flex;
@@ -38,7 +43,7 @@ const HeaderWrapper = styled.div`
   background: #e8e8e8;
   border: 1px solid #b5b9b9;
   width: 70%;
-  padding: 3rem 0;
+  padding: 3rem 0rem 1rem 0rem;
   margin-top: 3rem;
   .small {
     font-size: 1rem;
@@ -67,13 +72,13 @@ const ButtonWrapper = styled.div`
     border-radius: 3px;
     border: 0;
     outline: 0;
-    background-color: #3918a7;
-    opacity: 0.6;
+    background-color: #03154e;
     color: #e1eaf8;
     font-size: 1rem;
     &:hover {
       background-color: #03154e;
       transition: all ease 0.3s;
+      color: gray;
     }
   }
   @media screen and (max-width: 768px) {
@@ -116,14 +121,21 @@ const InquiryIntro = styled.div`
 
 const Inquires = () => {
   const dispatch = useDispatch();
-  const { checkModal, token, questionList, isType } = useSelector(
-    ({ modal, user, question }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      token: user.token,
-      questionList: question.questionList,
-    }),
-  );
+  const {
+    checkModal,
+    token,
+    questionList,
+    isType,
+    alertCheck,
+    admin,
+  } = useSelector(({ modal, user, question }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    alertCheck: modal.alertCheck,
+    token: user.token,
+    questionList: question.questionList,
+    admin: user.admin,
+  }));
 
   useEffect(() => {
     dispatch(questionListReq(token));
@@ -142,7 +154,12 @@ const Inquires = () => {
   };
 
   const openInquiryModal = () => {
-    dispatch(inquiryModal());
+    if (admin) {
+      dispatch(alertAnswerTrueModal());
+    }
+    if (!admin) {
+      dispatch(inquiryModal());
+    }
   };
 
   const onSubmitHand = (data, category) => {
@@ -167,6 +184,9 @@ const Inquires = () => {
         <InquiryIntro className="small">
           45rpm은 여러분이 문의를 남겨주시면 24시간안에 답변드립니다
         </InquiryIntro>
+        <InquiryIntro className="small">
+          제목을 누르면 상세정보를 확인할 수 있습니다
+        </InquiryIntro>
         <ButtonWrapper>
           <Button onClick={openInquiryModal}>문의하기</Button>
         </ButtonWrapper>
@@ -183,7 +203,27 @@ const Inquires = () => {
       >
         <InquiryTable lnquireList={lnquireList} handleRemove={handleRemove} />
       </CommonTable>
-
+      {isType === 'alertAnswer' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'관리자 권한이 필요합니다.'}
+        />
+      )}
+      {isType === 'alertAnswerFalse' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'관리자님, 문의 답변을 달아주세요.'}
+        />
+      )}
+      {isType === 'alertAnswerTrue' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'관리자는 문의를 작성할 수 없습니다.'}
+        />
+      )}
       {isType === 'inquiry' && (
         <InquiryModal
           open={checkModal}
