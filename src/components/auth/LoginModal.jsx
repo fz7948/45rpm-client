@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
-import { loginReq, resetLogin, resetLoginMsg } from '../../modules/auth';
-import { loginUser } from '../../modules/user';
+import { loginReq, resetLoginMsg } from '../../modules/auth';
+import { loginUser, checkUser } from '../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { alertLoginModal } from '../../modules/modal';
@@ -116,7 +116,13 @@ const LoginSocialBtn = styled.button`
   }
 `;
 
-const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
+const LoginModal = ({
+  open,
+  close,
+  history,
+  kakaoLoginHandler,
+  googleLoginHandler,
+}) => {
   const dispatch = useDispatch();
   const { login, loginError } = useSelector(({ auth }) => ({
     login: auth.login,
@@ -160,8 +166,8 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
         console.log('sessionStorage is not working');
       }
       dispatch(loginUser(payload));
+      dispatch(checkUser(payload.id, payload.token));
       history.push('/');
-      dispatch(resetLogin());
       dispatch(alertLoginModal());
       handleCloseModal();
     }
@@ -278,7 +284,7 @@ const LoginModal = ({ open, close, history, kakaoLoginHandler }) => {
             </ul>
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
-            <LoginSocialBtn> 구글 </LoginSocialBtn>
+            <LoginSocialBtn onClick={googleLoginHandler}> 구글 </LoginSocialBtn>
             <LoginSocialBtn onClick={kakaoLoginHandler}>카카오</LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>

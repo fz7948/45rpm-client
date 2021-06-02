@@ -13,6 +13,12 @@ const ALERT_MODAL_REGISTER = 'ALERT_MODAL_REGISTER';
 const ALERT_MODAL_LOGOUT = 'ALERT_MODAL_LOGOUT';
 const ALERT_MODAL_UPDATE = 'ALERT_MODAL_UPDATE';
 const ALERT_MODAL_WITHDRAWAL = 'ALERT_MODAL_WITHDRAWAL';
+const ALERT_MODAL_ORDER = 'ALERT_MODAL_ORDER';
+const ALERT_MODAL_ANSWER = 'ALERT_MODAL_ANSWER';
+const ALERT_MODAL_ANSWER_FALSE = 'ALERT_MODAL_ANSWER_FALSE';
+const ALERT_MODAL_ANSWER_TRUE = 'ALERT_MODAL_ANSWER_TRUE';
+const ALERT_MODAL_ANSWER_UPDATE = 'ALERT_MODAL_ANSWER_UPDATE';
+const ALERT_MODAL_ANSWER_REPLY = 'ALERT_MODAL_ANSWER_REPLY';
 
 export const showModal = () => ({ type: SHOW_MODAL });
 export const loginModal = () => ({ type: LOGIN_MODAL });
@@ -29,6 +35,16 @@ export const alertRegisterModal = () => ({ type: ALERT_MODAL_REGISTER });
 export const alertLogoutModal = () => ({ type: ALERT_MODAL_LOGOUT });
 export const alertUpdateModal = () => ({ type: ALERT_MODAL_UPDATE });
 export const alertWithdrawalModal = () => ({ type: ALERT_MODAL_WITHDRAWAL });
+export const alertOrderModal = () => ({ type: ALERT_MODAL_ORDER });
+export const alertAnswerModal = () => ({ type: ALERT_MODAL_ANSWER });
+export const alertAnswerFalseModal = () => ({ type: ALERT_MODAL_ANSWER_FALSE });
+export const alertAnswerTrueModal = () => ({ type: ALERT_MODAL_ANSWER_TRUE });
+export const alertAnswerUpdateModal = () => ({
+  type: ALERT_MODAL_ANSWER_UPDATE,
+});
+export const alertAnswerReplyModal = () => ({
+  type: ALERT_MODAL_ANSWER_REPLY,
+});
 
 const initialState = {
   checkModal: false,
@@ -109,6 +125,42 @@ export default function modal(state = initialState, action) {
         checkModal: false,
         alertCheck: true,
         isType: 'alertWithdrawal',
+      };
+    case ALERT_MODAL_ORDER:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertOrder',
+      };
+    case ALERT_MODAL_ANSWER:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswer',
+      };
+    case ALERT_MODAL_ANSWER_FALSE:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswerFalse',
+      };
+    case ALERT_MODAL_ANSWER_TRUE:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswerTrue',
+      };
+    case ALERT_MODAL_ANSWER_UPDATE:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswerUpdate',
+      };
+    case ALERT_MODAL_ANSWER_REPLY:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswerReply',
       };
     case ALERT_MODAL_FAILURE:
       return {

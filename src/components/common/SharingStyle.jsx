@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: lightgray;
   overflow: auto;
 
   &::-webkit-scrollbar {
@@ -20,7 +19,7 @@ export const Container = styled.div `
   }
 `;
 
-export const TitleWrapper = styled.div `
+export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4rem;
@@ -32,8 +31,8 @@ export const TitleWrapper = styled.div `
   }
 `;
 
-export const H1Title = styled.h1 `
-  color: #000;
+export const H1Title = styled.h1`
+  color: #ffffff;
   font-size: 4.7rem;
   font-family: 'Lato', sans-serif;
   padding-bottom: 1rem;
@@ -43,8 +42,8 @@ export const H1Title = styled.h1 `
   }
 `;
 
-export const SubTitle = styled.h5 `
-  color: #000;
+export const SubTitle = styled.h5`
+  color: #ffffff;
   font-size: 2rem;
 
   @media screen and (max-width: 1000px) {
@@ -52,14 +51,15 @@ export const SubTitle = styled.h5 `
   }
 `;
 
-export const ContentWrapper = styled.div `
+export const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 6rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 9rem;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+  padding-left: 12rem;
   margin-bottom: 4rem;
+  width: 96%;
 
   @media screen and (max-width: 1000px) {
     display: grid;
@@ -80,17 +80,17 @@ export const ContentWrapper = styled.div `
   }
 `;
 
-export const CdCaseContent = styled.div `
+export const CdCaseContent = styled.div`
   display: flex;
   width: 70%;
   height: 100%;
   position: relative;
 `;
 
-export const CoverImg = styled.div `
+export const CoverImg = styled.div`
   flex: 1;
-  width: 300px;
-  height: 300px;
+  width: 270px;
+  height: 270px;
   position: relative;
   @media screen and (max-width: 1000px) {
     width: 250px;
@@ -102,7 +102,7 @@ export const CoverImg = styled.div `
   }
 `;
 
-export const Img = styled.img `
+export const Img = styled.img`
   width: inherit;
   height: inherit;
   position: absolute;
@@ -111,7 +111,7 @@ export const Img = styled.img `
   border-radius: 3px;
 `;
 
-export const Disk = styled.div `
+export const Disk = styled.div`
   flex: 1;
   width: 280px;
   height: 280px;
@@ -150,7 +150,7 @@ export const Disk = styled.div `
   }
 `;
 
-export const InnerDisk = styled.div `
+export const InnerDisk = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -195,14 +195,14 @@ export const Img1 = styled.img `
   }
 `;
 
-export const ContinueBtn = styled.div `
+export const ContinueBtn = styled.div`
   width: 100%;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2rem;
   padding-right: 1rem;
+  padding-bottom: 2rem;
 
   @media screen and (max-width: 1000px) {
     display: flex;
@@ -216,7 +216,7 @@ export const ContinueBtn = styled.div `
   }
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   cursor: pointer;
   width: 10rem;
   height: 3rem;

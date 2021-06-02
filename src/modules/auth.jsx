@@ -15,6 +15,10 @@ const KAKAO_LOGIN = 'KAKAO_LOGIN';
 const KAKAO_LOGIN_SUCCESS = 'KAKAO_LOGIN_SUCCESS';
 const KAKAO_LOGIN_FAILURE = 'KAKAO_LOGIN_FAILURE';
 
+const GOOGLE_LOGIN = 'GOOGLE_LOGIN';
+const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
+const GOOGLE_LOGIN_FAILURE = 'GOOGLE_LOGIN_FAILURE';
+
 const UPDATE = 'UPDATE';
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 const UPDATE_FAILURE = 'UPDATE_FAILURE';
@@ -23,32 +27,34 @@ const INFORMATION = 'INFORMATION';
 const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
 const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
 
-export const registerReq =
-  (id, email, username, password) => async (dispatch) => {
-    dispatch({ type: REGISTER });
-    try {
-      const registerRes = await authAPI.signup({
-        id,
-        email,
-        username,
-        password,
-      });
-      dispatch({
-        type: REGISTER_SUCCESS,
-        register: registerRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: REGISTER_FAILURE,
-        registerError: error.response.data.message,
-      });
-    }
-  };
+export const registerReq = (id, email, username, password) => async (
+  dispatch,
+) => {
+  dispatch({ type: REGISTER });
+  try {
+    const registerRes = await authAPI.signup({
+      id,
+      email,
+      username,
+      password,
+    });
+    dispatch({
+      type: REGISTER_SUCCESS,
+      register: registerRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: REGISTER_FAILURE,
+      registerError: error.response.data.message,
+    });
+  }
+};
 
 export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
   try {
     const loginRes = await authAPI.login({ id, password });
+    console.log('로그인', loginRes);
     dispatch({
       type: LOGIN_SUCCESS,
       login: loginRes,
@@ -95,29 +101,59 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
   }
 };
 
-export const updateReq =
-  (email, username, oldpassword, newpassword, token) => async (dispatch) => {
-    dispatch({ type: UPDATE });
+export const googleLoginReq = (data) => async (dispatch) => {
+  dispatch({ type: GOOGLE_LOGIN });
+  try {
+    const googleLoginRes = await authAPI.googleLogin(data);
+    console.log('구글 로그인 res', googleLoginRes);
+
     try {
-      console.log('토큰 확인', token);
-      const updateRes = await authAPI.update({
-        email,
-        username,
-        oldpassword,
-        newpassword,
-        token,
-      });
-      dispatch({
-        type: UPDATE_SUCCESS,
-        update: updateRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: UPDATE_FAILURE,
-        updateError: error.response.message,
-      });
+      sessionStorage.setItem('id', data.email.split('@')[0]);
+    } catch (err) {
+      console.error('sessionStorage is not working on google social login');
     }
-  };
+    dispatch({
+      type: GOOGLE_LOGIN_SUCCESS,
+      login: googleLoginRes,
+      isSocial: 'google',
+    });
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: GOOGLE_LOGIN_FAILURE,
+      loginError: err.response.data.message,
+    });
+  }
+};
+
+export const updateReq = (
+  email,
+  username,
+  oldpassword,
+  newpassword,
+  token,
+) => async (dispatch) => {
+  dispatch({ type: UPDATE });
+  try {
+    console.log('토큰 확인', token);
+    const updateRes = await authAPI.update({
+      email,
+      username,
+      oldpassword,
+      newpassword,
+      token,
+    });
+    dispatch({
+      type: UPDATE_SUCCESS,
+      update: updateRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_FAILURE,
+      updateError: error.response.message,
+    });
+  }
+};
 
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });
@@ -208,6 +244,24 @@ function auth(state = initialState, action) {
         loginError: null,
       };
     case KAKAO_LOGIN_FAILURE:
+      return {
+        ...state,
+        loginError: action.loginError,
+      };
+    case GOOGLE_LOGIN:
+      return {
+        ...state,
+        login: null,
+        loginError: null,
+      };
+    case GOOGLE_LOGIN_SUCCESS:
+      return {
+        ...state,
+        login: action.login,
+        isSocial: action.isSocial,
+        loginError: null,
+      };
+    case GOOGLE_LOGIN_FAILURE:
       return {
         ...state,
         loginError: action.loginError,

@@ -4,6 +4,7 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 const WITHDRAW = 'WITHDRAW';
 const KAKAO_USER_LOGIN = 'KAKAO_USER_LOGIN';
+const GOOGLE_USER_LOGIN = 'GOOGLE_USER_LOGIN';
 const CHECK = 'CHECK';
 const CHECK_SUCCESS = 'CHECK_SUCCESS';
 const CHECK_ERROR = 'CHECK_ERROR';
@@ -23,6 +24,15 @@ export const loginKakao = (payload) => ({
   email: payload.email,
   username: payload.username,
   social: 'kakao',
+});
+
+export const loginGoogle = (payload) => ({
+  type: GOOGLE_USER_LOGIN,
+  token: payload.token,
+  id: payload.id,
+  email: payload.email,
+  username: payload.username,
+  social: 'google',
 });
 
 export const logoutUser = (token) => async (dispatch) => {
@@ -48,14 +58,15 @@ export const checkUser = (ssID, token) => async (dispatch) => {
   dispatch({ type: CHECK });
   try {
     const res = await authAPI.check(ssID);
-    console.log(res);
+    console.log('세션정보!', res);
     const { id, username, email, admin, social } = res.data;
     dispatch({
       type: CHECK_SUCCESS,
       token,
-      id,
-      email,
-      username,
+      id: id,
+      email: email,
+      username: username,
+      admin: admin,
     });
   } catch (e) {
     dispatch({ type: CHECK_ERROR });
@@ -81,6 +92,7 @@ const initialState = {
   username: null,
   ischeck: false,
   social: null,
+  admin: false,
 };
 
 function user(state = initialState, action) {
@@ -95,6 +107,7 @@ function user(state = initialState, action) {
         email: action.email,
         username: action.username,
         ischeck: true,
+        admin: action.admin,
       };
     case KAKAO_USER_LOGIN:
     case CHECK_SUCCESS:
@@ -107,6 +120,20 @@ function user(state = initialState, action) {
         username: action.username,
         ischeck: true,
         social: action.social,
+        admin: action.admin,
+      };
+    case GOOGLE_USER_LOGIN:
+    case CHECK_SUCCESS:
+      return {
+        ...state,
+        isLogin: true,
+        token: action.token,
+        id: action.id,
+        email: action.email,
+        username: action.username,
+        ischeck: true,
+        social: action.social,
+        admin: action.admin,
       };
     case LOGOUT_USER:
     case CHECK:

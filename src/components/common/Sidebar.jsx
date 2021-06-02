@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 import { alertLogoutModal } from '../../modules/modal';
-import { resetLoginMsg } from '../../modules/auth';
+import { resetLoginMsg, resetLogin } from '../../modules/auth';
 
 const NavSidebar = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const NavSidebar = styled.div`
   left: 0;
   top: 0;
   background: black;
-  padding: 10px 10px 10px 0px;
+  padding: 12px 10px 12px 0px;
 
   .menu-bars {
     cursor: pointer;
@@ -35,18 +35,18 @@ const NavSidebar = styled.div`
 
 const SideLogoutBtn = styled.div`
   display: flex;
-  width: 225px;
+  width: 300px;
   justify-content: flex-end;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   div {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     border-radius: 4px;
     width: 300px;
-    height: 34px;
+    height: 40px;
     margin: 0px 15px;
     background-color: #fff;
     border: 1px solid #03154e;
@@ -69,7 +69,7 @@ const SidebarWrapper = styled.div`
     color: #fff;
     display: flex;
     align-items: center;
-    padding-left: 1rem;
+    padding-left: 3rem;
     font-size: 25px;
     font-family: 'Syncopate', sans-serif;
     &:hover {
@@ -83,9 +83,9 @@ const SidebarWrapper = styled.div`
   }
 
   .menu-close {
-    margin-top: -25px;
+    margin-top: -15px;
     cursor: pointer;
-    margin-left: 188px;
+    margin-left: 255px;
     font-size: 30px;
     color: black;
     &:hover {
@@ -96,7 +96,7 @@ const SidebarWrapper = styled.div`
 
   .nav-menu {
     background-color: #fff;
-    width: 230px;
+    width: 300px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -119,13 +119,13 @@ const SidebarWrapper = styled.div`
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
-    height: 60px;
+    height: 70px;
   }
 
   .nav-text a {
     text-decoration: none;
     color: #444;
-    font-size: 18px;
+    font-size: 20px;
     width: 95%;
     display: flex;
     align-items: center;
@@ -171,6 +171,7 @@ const Navbar = ({ history }) => {
     dispatch(logoutUser(token));
     dispatch(resetLoginMsg());
     dispatch(alertLogoutModal());
+    dispatch(resetLogin());
     history.push('/');
     showSidebar();
   };

@@ -16,55 +16,64 @@ const QUESTION_DELETE = 'QUESTION_DELETE';
 const QUESTION_DELETE_SUCCESS = 'QUESTION_DELETE_SUCCESS';
 const QUESTION_DELETE_FAILURE = 'QUESTION_DELETE_FAILURE';
 
+const QUESTION_REPLY = 'QUESTION_REPLY';
+const QUESTION_REPLY_SUCCESS = 'QUESTION_REPLY_SUCCESS';
+const QUESTION_REPLY_FAILURE = 'QUESTION_REPLY_FAILURE';
+
+const QUESTION_REPLY_UPDATE = 'QUESTION_REPLY_UPDATE';
+const QUESTION_REPLY_UPDATE_SUCCESS = 'QUESTION_REPLY_UPDATE_SUCCESS';
+const QUESTION_REPLY_UPDATE_FAILURE = 'QUESTION_REPLY_UPDATE_FAILURE';
+
 const DETAIL_UPDATE = 'DETAIL_UPDATE';
 const DETAIL_LIST = 'DETAIL_LIST';
 
-export const questionAddReq =
-  (title, contents, category, token) => async (dispatch) => {
-    dispatch({ type: QUESTION_ADD });
-    try {
-      const questionRes = await questionAPI.questionAdd({
-        title,
-        contents,
-        category,
-        token,
-      });
-      dispatch({
-        type: QUESTION_ADD_SUCCESS,
-        questionAdd: questionRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_ADD_FAILURE,
-        questionAddError: error,
-      });
-    }
-  };
+export const questionAddReq = (title, contents, category, token) => async (
+  dispatch,
+) => {
+  dispatch({ type: QUESTION_ADD });
+  try {
+    const questionRes = await questionAPI.questionAdd({
+      title,
+      contents,
+      category,
+      token,
+    });
+    dispatch({
+      type: QUESTION_ADD_SUCCESS,
+      questionAdd: questionRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_ADD_FAILURE,
+      questionAddError: error,
+    });
+  }
+};
 
-export const questionUpdateReq =
-  (questionId, title, contents, token) => async (dispatch) => {
-    dispatch({ type: QUESTION_UPDATE });
-    try {
-      const questionUpdateRes = await questionAPI.questionUpdate({
-        questionId,
-        title,
-        contents,
-        token,
-      });
-      dispatch({
-        type: QUESTION_UPDATE_SUCCESS,
-        questionUpdate: questionUpdateRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_UPDATE_FAILURE,
-        questionUpdateError: error,
-      });
-    }
-  };
+export const questionUpdateReq = (questionId, title, contents, token) => async (
+  dispatch,
+) => {
+  dispatch({ type: QUESTION_UPDATE });
+  try {
+    const questionUpdateRes = await questionAPI.questionUpdate({
+      questionId,
+      title,
+      contents,
+      token,
+    });
+    dispatch({
+      type: QUESTION_UPDATE_SUCCESS,
+      questionUpdate: questionUpdateRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_UPDATE_FAILURE,
+      questionUpdateError: error,
+    });
+  }
+};
 
 export const questionListReq = (token) => async (dispatch) => {
-  console.log('TOKKENN?????', token);
   dispatch({ type: QUESTION_LIST });
 
   try {
@@ -102,12 +111,69 @@ export const questionDeleteReq = (token, questionId) => async (dispatch) => {
   }
 };
 
+export const questionReplyReq = (
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+) => async (dispatch) => {
+  dispatch({ type: QUESTION_REPLY_UPDATE });
+  try {
+    const questionReplyRes = await questionAPI.questionReply({
+      token,
+      questionId,
+      replytext,
+      replyCheck,
+    });
+    dispatch({
+      type: QUESTION_REPLY_SUCCESS,
+      questionReply: questionReplyRes,
+    });
+  } catch (error) {
+    console.log('DELETE ERROR', error);
+    dispatch({
+      type: QUESTION_REPLY_FAILURE,
+      questionReplyError: error,
+    });
+  }
+};
+
+export const questionReplyUpdateReq = (
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+) => async (dispatch) => {
+  dispatch({ type: QUESTION_REPLY_UPDATE });
+  try {
+    const questionReplyUpdateRes = await questionAPI.questionReplyUpdate({
+      token,
+      questionId,
+      replytext,
+      replyCheck,
+    });
+    dispatch({
+      type: QUESTION_REPLY_UPDATE_SUCCESS,
+      questionReplyUpdate: questionReplyUpdateRes,
+    });
+  } catch (error) {
+    console.log('DELETE ERROR', error);
+    dispatch({
+      type: QUESTION_REPLY_UPDATE_FAILURE,
+      questionReplyUpdateError: error,
+    });
+  }
+};
+
 export const detailListReq = () => ({ type: DETAIL_LIST });
 export const detailUpdateReq = () => ({ type: DETAIL_UPDATE });
 
 export const resetAddQuestion = () => ({ type: QUESTION_ADD });
 export const resetUpdateQuestion = () => ({ type: QUESTION_UPDATE });
 export const resetListQuestion = () => ({ type: QUESTION_LIST });
+
+export const resetReplyQuestion = () => ({ type: QUESTION_REPLY });
+export const resetReplyQuestionUpdate = () => ({ type: QUESTION_REPLY_UPDATE });
 
 const initialState = {
   questionList: null,
@@ -118,7 +184,12 @@ const initialState = {
   questionAddError: null,
   questionUpdate: null,
   questionUpdateError: null,
+  questionReply: null,
+  questionReplyError: null,
+  questionReplyUpdate: null,
+  questionReplyUpdateError: null,
   isDetail: null,
+  replyCheck: false,
 };
 
 function question(state = initialState, action) {
@@ -194,6 +265,42 @@ function question(state = initialState, action) {
         ...state,
         questionListDelete: null,
         questionListDeleteError: action.questionDeleteError,
+      };
+    case QUESTION_REPLY:
+      return {
+        ...state,
+        questionReply: null,
+        questionReplyError: null,
+      };
+    case QUESTION_REPLY_SUCCESS:
+      return {
+        ...state,
+        questionReply: action.questionReply,
+        questionReplyError: null,
+      };
+    case QUESTION_REPLY_FAILURE:
+      return {
+        ...state,
+        questionReply: null,
+        questionReplyError: action.questionReplyError,
+      };
+    case QUESTION_REPLY_UPDATE:
+      return {
+        ...state,
+        questionReplyUpdate: null,
+        questionReplyUpdateError: null,
+      };
+    case QUESTION_REPLY_UPDATE_SUCCESS:
+      return {
+        ...state,
+        questionReplyUpdate: action.questionReplyUpdate,
+        questionReplyUpdateError: null,
+      };
+    case QUESTION_REPLY_UPDATE_FAILURE:
+      return {
+        ...state,
+        questionReplyUpdate: null,
+        questionReplyUpdateError: action.questionReplyUpdateError,
       };
     case DETAIL_LIST:
       return {

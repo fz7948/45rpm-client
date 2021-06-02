@@ -120,10 +120,11 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
   const [value, setValue] = useState('');
 
   const [options, setOptions] = useState([
-    { value: 'genre', label: 'Genre' },
-    { value: 'song', label: 'Song' },
-    { value: 'name', label: 'Name' },
-    { value: 'LP', label: 'lp' },
+    { value: '일반문의', label: '일반문의' },
+    { value: '커스텀제작', label: '커스텀제작' },
+    { value: '공유관련', label: '공유관련' },
+    { value: '서비스이용', label: '서비스이용' },
+    { value: '결제관련', label: '결제관련' },
   ]);
 
   const handleChange = useCallback((inputValue) => setValue(inputValue), []);
