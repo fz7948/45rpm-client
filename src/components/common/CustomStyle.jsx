@@ -148,9 +148,7 @@ export const Img2 = styled.img`
   }
 `;
 
-
 export const SongListWrapper = styled.div`
-
   flex-basis: 33.3%;
   border-radius: 6px;
   width: 400px;
@@ -297,11 +295,9 @@ export const DomainContent = styled.div`
   flex: 1;
 `;
 
-
-export const TabWrapper = styled.div `
+export const TabWrapper = styled.div`
   height: 700px;
 `;
-
 
 export const ButtonWrapper = styled.div`
   display: flex;
