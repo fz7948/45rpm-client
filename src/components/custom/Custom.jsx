@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import 'semantic-ui-css/semantic.min.css';
 import { Tab } from 'semantic-ui-react';
+import '../common/Custom.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import RegisterModal from '../../components/auth/RegisterModal';
@@ -366,8 +367,12 @@ const Custom = () => {
           <UpperWrapper>
             <CustomTitle>{sessionStorage.getItem(`title`)}</CustomTitle>
             <SongList>
-              {songList.map((el) => {
-                return <Song>{el}</Song>;
+              {songList.map((el, index) => {
+                return (
+                  <Song>
+                    {index + 1}. {el}
+                  </Song>
+                );
               })}
             </SongList>
           </UpperWrapper>
@@ -388,9 +393,11 @@ const Custom = () => {
       <TabWrapper>
         <Tab
           menu={{
-            color: 'yellow',
+            inverted: true,
+            color: 'black',
             fluid: true,
             tabular: true,
+            className: 'wrapped',
           }}
           panes={panes}
         />
