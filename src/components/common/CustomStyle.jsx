@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,13 +19,13 @@ export const Container = styled.div `
   }
 `;
 
-export const MainWrapper = styled.div `
+export const MainWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   max-height: 500px;
 `;
 
-export const InputFile = styled.input `
+export const InputFile = styled.input`
   color: #fff;
   width: 500px;
   height: 150px;
@@ -37,7 +37,7 @@ export const InputFile = styled.input `
   cursor: pointer;
 `;
 
-export const CoverImg = styled.div `
+export const CoverImg = styled.div`
   flex-basis: 33.3%;
   width: 400px;
   height: 400px;
@@ -45,12 +45,12 @@ export const CoverImg = styled.div `
   padding-left: 6rem;
 `;
 
-export const Img = styled.img `
+export const Img = styled.img`
   width: 400px;
   height: 400px;
 `;
 
-export const LpWrapper = styled.div `
+export const LpWrapper = styled.div`
   flex-basis: 33.3%;
   width: 500px;
   height: 500px;
@@ -58,7 +58,7 @@ export const LpWrapper = styled.div `
   padding-top: 1rem;
 `;
 
-export const Disk = styled.div `
+export const Disk = styled.div`
   position: relative;
   width: 470px;
   height: 470px;
@@ -76,7 +76,7 @@ export const Disk = styled.div `
   }
 `;
 
-export const InnerDisk = styled.div `
+export const InnerDisk = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -98,14 +98,14 @@ export const InnerDisk = styled.div `
   }
 `;
 
-export const Img2 = styled.img `
+export const Img2 = styled.img`
   position: absolute;
   width: inherit;
   height: inherit;
   border-radius: 50%;
 `;
 
-export const SongListWrapper = styled.div `
+export const SongListWrapper = styled.div`
   border-radius: 6px;
   flex-basis: 33.3%;
   width: 400px;
@@ -131,17 +131,18 @@ export const SongListWrapper = styled.div `
   }
 `;
 
-export const UpperWrapper = styled.div `
+export const UpperWrapper = styled.div`
   padding: 1rem;
   padding-left: 1.3rem;
   flex: 2.5;
 `;
 
-export const CustomTitle = styled.div `
+export const CustomTitle = styled.div`
   font-size: 30px;
 `;
 
-export const TextInput = styled.input `
+export const TextInput = styled.input`
+  type: text;
   font-size: 1.5rem;
   padding: 4rem;
   width: 500px;
@@ -156,23 +157,68 @@ export const TextInput = styled.input `
   }
 `;
 
-export const SongList = styled.ul `
+export const SongListTextInput = styled.input`
+  font-size: 1.3rem;
+  width: 300px;
+  height: 50px;
+  background: transparent;
+  border-radius: 6px;
+  border: 0.5px solid #fff;
+  text-align: center;
+  color: #fff;
+  ::placeholder {
+    color: #fff;
+  }
+`;
+
+export const SongListBtn = styled.button`
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  outline: 0;
+  border: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  background-color: #4c4c4c;
+  color: #ddd;
+  font-size: 2rem;
+  &:hover {
+    background-color: #d4d4d4;
+    color: #4c4c4c;
+    transition: all ease 0.4s;
+  }
+  .space {
+    margin-left: 0.5rem;
+  }
+  @media screen and (max-width: 768px) {
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 1rem;
+  }
+`;
+
+export const SongList = styled.ul`
   padding: 1rem;
   list-style: none;
 `;
 
-export const Song = styled.li `
+export const Song = styled.li`
   padding: 0.5rem;
   font-size: 15px;
 `;
 
-export const LowerWrapper = styled.div `
+export const LowerWrapper = styled.div`
   flex: 1;
   display: flex;
   padding-right: 1rem;
 `;
 
-export const LogoWrapper = styled.div `
+export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-basis: 25%;
@@ -183,31 +229,31 @@ export const LogoWrapper = styled.div `
   padding-top: 1.5rem;
 `;
 
-export const ExtraWrapper = styled.div `
+export const ExtraWrapper = styled.div`
   flex-basis: 75%;
   display: flex;
   flex-direction: column;
 `;
 
-export const TextContent = styled.div `
+export const TextContent = styled.div`
   flex-wrap: wrap;
   flex: 2;
 `;
 
-export const DomainContent = styled.div `
+export const DomainContent = styled.div`
   font-size: 1.3rem;
   flex: 1;
 `;
 
-export const TabWrapper = styled.div ``;
+export const TabWrapper = styled.div``;
 
-export const ButtonWrapper = styled.div `
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 1.5rem;
 `;
 
-export const SubmitBtn = styled.button `
+export const SubmitBtn = styled.button`
   width: 150px;
   height: 50px;
   font-size: 1.5rem;
