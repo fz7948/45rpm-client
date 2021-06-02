@@ -72,3 +72,53 @@ export const questionDelete = async ({ token, questionId }) => {
   console.log('delete 요청 확인', response.data);
   return response.data;
 };
+
+export const questionReply = async ({
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+}) => {
+  const response = await axios.post(
+    `${process.env.REACT_APP_SERVER_URI}/user/question/addreply`,
+    {
+      questionId,
+      replytext,
+      replyCheck,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
+  console.log('reply 요청 확인', response.data);
+  return response.data;
+};
+
+export const questionReplyUpdate = async ({
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+}) => {
+  const response = await axios.patch(
+    `${process.env.REACT_APP_SERVER_URI}/user/question/updatereply`,
+    {
+      questionId,
+      replytext,
+      replyCheck,
+    },
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+    { withCredentials: true },
+  );
+  console.log('replyUpdate 요청 확인', response.data);
+  return response.data;
+};

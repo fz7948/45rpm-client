@@ -130,7 +130,7 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
                 <div>{itemsPrice} 원</div>
               </div>
               <div className="price">
-                <div>부과세</div>
+                <div>부가세</div>
                 <div>{taxPrice.toFixed(0)} 원</div>
               </div>
               <div className="price">
