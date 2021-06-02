@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ModalBack, ModalBox } from '../common/InquiryModalStyle';
 import styled from 'styled-components';
 import AsyncCreatableSelect from 'react-select/creatable';
-
 import '../common/CkEditor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { questionListReq } from '../../modules/question';
 import { useDispatch, useSelector } from 'react-redux';
+import { GrFormClose } from 'react-icons/gr';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -18,35 +18,44 @@ const InquiryWrapper = styled.div`
   h2 {
     color: #191919;
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     text-align: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.6rem;
   }
   ul {
     padding: 0;
   }
   li {
     list-style: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
   }
 `;
 
 const InquiryTitle = styled.label`
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #707174;
-  margin: 0;
+  margin: 1rem 0rem;
   margin-bottom: 4px;
+  .space {
+    margin-bottom: 0.3rem;
+    z-index: 0;
+  }
+  .spaceGory {
+    z-index: 10;
+    margin-bottom: 0.3rem;
+  }
 `;
 
 const InquiryInput = styled.input`
   height: 1.2rem;
   width: 100%;
-  padding: 1rem;
+  padding: 1.4rem;
   border: 1px solid #9b9b9c;
   border-radius: 3px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #5f6063;
+  margin-top: 0.3rem;
   &:focus {
     outline: none;
     border: 1px solid #f73d5c;
@@ -57,12 +66,12 @@ const InquiryInput = styled.input`
 const InquiryCloseBtn = styled.button`
   position: fixed;
   top: 1rem;
-  left: 38rem;
+  left: 47rem;
   background: white;
   border: 0;
   outline: 0;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 2.1rem;
   cursor: pointer;
   &:hover {
     color: #f73d5c;
@@ -78,6 +87,11 @@ const InquiryContent = styled.div`
   width: 150%;
   display: flex;
   flex-direction: column;
+  margin-top: 0.3rem;
+  .goryList {
+    z-index: 10;
+    font-size: 1.2rem;
+  }
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -85,20 +99,20 @@ const InquiryContent = styled.div`
 `;
 
 const InquirySubmitBtn = styled.button`
-  height: 2.2rem;
-  width: 14rem;
+  height: 3rem;
+  width: 36.5rem;
 
   border-radius: 3px;
   border: 0;
   outline: 0;
-  margin: 1rem 0rem;
-  background-color: #f73d5c;
+  margin: 1.5rem 0rem 0rem 0rem;
+  background-color: #311788;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    background-color: #b3535b;
+    background-color: #03154e;
     transition: all ease 0.3s;
   }
 `;
@@ -176,29 +190,31 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
     <>
       <ModalBack disappear={!open}>
         <div className="modal_outsider" onClick={close}></div>
-        <ModalBox disappear={!open}>
+        <ModalBox disappear={!open} question>
           <form onSubmit={onSubmitHandler}>
-            <InquiryCloseBtn onClick={close}> X </InquiryCloseBtn>
+            <InquiryCloseBtn onClick={close}>
+              <GrFormClose />
+            </InquiryCloseBtn>
             <InquiryWrapper>
               <InquiryContent>
                 <h2> 문의 사항 </h2>
                 <ul>
                   <li>
                     <InquiryTitle>
-                      <div> TITLE </div>
+                      <div> 제목 </div>
                     </InquiryTitle>
                     <InquiryInput
                       type="text"
                       name="title"
-                      placeholder="title"
                       onChange={getValue}
                     />
                   </li>
                   <li>
                     <InquiryTitle>
-                      <div> CATEGORY </div>
+                      <div className="spaceGory"> 카테고리 </div>
                     </InquiryTitle>
                     <AsyncCreatableSelect
+                      className="goryList"
                       isClearable
                       value={value}
                       options={options}
@@ -210,11 +226,10 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                   </li>
                   <li>
                     <InquiryTitle>
-                      <div> 문의 내용 </div>
+                      <div className="space"> 문의 내용 </div>
                     </InquiryTitle>
                     <CKEditor
                       editor={ClassicEditor}
-                      // onReady={(editor) => {}}
                       onChange={(event, editor) => {
                         const data = editor.getData();
                         setInquiryContent({
@@ -222,10 +237,6 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                           content: data,
                         });
                       }}
-                      // onBlur={(event, editor) => {
-                      // }}
-                      // onFocus={(event, editor) => {
-                      // }}
                     />
                   </li>
                 </ul>
