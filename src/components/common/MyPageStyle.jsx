@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MyPageWrapper = styled.div`
+export const MyPageWrapper = styled.div `
   display: flex;
   flex-direction: column;
   padding-top: 10px;
@@ -8,7 +8,7 @@ export const MyPageWrapper = styled.div`
   height: 100vh;
 `;
 
-export const MyPageContent = styled.div`
+export const MyPageContent = styled.div `
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -44,7 +44,7 @@ export const MyPageContent = styled.div`
   }
 `;
 
-export const MyPageInfoWrapper = styled.div`
+export const MyPageInfoWrapper = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ export const MyPageInfoWrapper = styled.div`
   }
 `;
 
-export const MyPageImage = styled.div`
+export const MyPageImage = styled.div `
   flex: 0.5;
   display: flex;
   flex-direction: column;
@@ -91,8 +91,8 @@ export const MyPageImage = styled.div`
     margin: 0;
   }
 `;
-
-export const MyPageInfo = styled.div`
+dfs;
+export const MyPageInfo = styled.div `
   flex: 1;
   height: 20rem;
   background: transparent;
@@ -131,7 +131,7 @@ export const MyPageInfo = styled.div`
   }
 `;
 
-export const MyPageSlide = styled.div`
+export const MyPageSlide = styled.div `
   flex: 1.5;
   display: flex;
   align-items: center;
@@ -148,13 +148,13 @@ export const MyPageSlide = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div `
   width: 100%;
   display: flex;
   justify-content: flex-start;
 `;
 
-export const MyPageButton = styled.button`
+export const MyPageButton = styled.button `
   display: flex;
   align-items: center;
   justify-content: center;
