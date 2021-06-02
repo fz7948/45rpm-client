@@ -18,23 +18,16 @@ import RegisterModal from '../../components/auth/RegisterModal';
 const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const {
-    checkModal,
-    isType,
-    login,
-    alertCheck,
-    token,
-    isLogin,
-    isSocial,
-  } = useSelector(({ modal, auth, user }) => ({
-    checkModal: modal.checkModal,
-    isType: modal.isType,
-    login: auth.login,
-    alertCheck: modal.alertCheck,
-    token: user.token,
-    isLogin: user.isLogin,
-    isSocial: auth.isSocial,
-  }));
+  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
+    useSelector(({ modal, auth, user }) => ({
+      checkModal: modal.checkModal,
+      isType: modal.isType,
+      login: auth.login,
+      alertCheck: modal.alertCheck,
+      token: user.token,
+      isLogin: user.isLogin,
+      isSocial: auth.isSocial,
+    }));
 
   useEffect(async () => {
     if (login) {
@@ -132,7 +125,8 @@ const Header = () => {
         client_id: '889468857969-68v5gvrru6phi5i8454cv48t34k458oj',
         redirect_uri: 'http://localhost:3000',
         response_type: 'token',
-        scope: 'https://www.googleapis.com/auth/userinfo.profile',
+        scope:
+          'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
         include_granted_scopes: 'true',
         state: 'pass-through value',
       };
