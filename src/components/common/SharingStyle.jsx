@@ -1,3 +1,4 @@
+import { SmsFailed } from '@material-ui/icons';
 import styled from 'styled-components';
 
 export const Container = styled.div `
