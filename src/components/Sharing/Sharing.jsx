@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { closeModal, albumDetailModal } from '../../modules/modal';
 import axios from 'axios';
-import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
-
+import styled from 'styled-components';
 import {
   Container,
   ContentWrapper,
@@ -23,13 +20,7 @@ import {
 
 const Sharing = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const { checkModal, isType } = useSelector(({ modal }) => ({
-    checkModal: modal.checkModal,
-    isType: modal.isType,
-  }));
   const [sharedData, setSharedData] = useState([]);
-  const [sharedListNumber, setSharedListNumber] = useState(0);
 
   const sectionStyle = {
     width: '100%',
@@ -48,19 +39,25 @@ const Sharing = () => {
       });
   }, []);
 
-  const shutModal = () => {
-    dispatch(closeModal());
-  };
+  const Img2 = styled.img`
+    position: absolute;
+    width: 392px;
+    height: 270px;
+    left: -23%;
+    -webkit-filter: opacity(0.5) drop-shadow(0 0 0 ${sharedData.color});
+    filter: opacity(0.5) drop-shadow(0 0 0 ${sharedData.color});
 
-  // const openDetailModal = function () {
-  //   dispatch(albumDetailModal());
-  // };
-
-  // const modalOpen = async function (data) {
-  //   setSharedListNumber(data);
-  //   await openDetailModal();
-  // };
-
+    @media screen and (max-width: 1000px) {
+      width: 350px;
+      height: 100%;
+      left: -25%;
+    }
+    @media screen and (min-width: 1000px) and (max-width: 1300px) {
+      width: 446px;
+      height: 294px;
+      left: -23%;
+    }
+  `;
   return (
     <Container style={sectionStyle}>
       <TitleWrapper>
@@ -72,17 +69,18 @@ const Sharing = () => {
       <ContentWrapper>
         {sharedData.map((el) => {
           return (
-            <CdCaseContent
-              key={el.title}
-              slides={el}
-              // onClick={() => modalOpen(sharedData.indexOf(el))}
-            >
+            <CdCaseContent key={el.title} slides={el}>
               <CoverImg>
                 <Img
                   src={`${process.env.REACT_APP_SERVER_URI}/${el.albumPic}`}
                 />
               </CoverImg>
-              <Disk style={{ background: el.color }}>
+              <Disk>
+                <Img2
+                  src="./images/12.png"
+                  alt=""
+                  style={{ color: el.color }}
+                />
                 <InnerDisk>
                   <Img1
                     src={`${process.env.REACT_APP_SERVER_URI}/${el.recordPic}`}
@@ -92,14 +90,6 @@ const Sharing = () => {
             </CdCaseContent>
           );
         })}
-        {/* {isType === 'detail' && (
-          <AlbumDetailModal
-            slides={sharedData}
-            open={checkModal}
-            close={shutModal}
-            heroListNumber={sharedListNumber}
-          />
-        )} */}
       </ContentWrapper>
       <ContinueBtn>
         <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
