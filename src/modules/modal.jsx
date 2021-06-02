@@ -14,11 +14,16 @@ const ALERT_MODAL_LOGOUT = 'ALERT_MODAL_LOGOUT';
 const ALERT_MODAL_UPDATE = 'ALERT_MODAL_UPDATE';
 const ALERT_MODAL_WITHDRAWAL = 'ALERT_MODAL_WITHDRAWAL';
 const ALERT_MODAL_ORDER = 'ALERT_MODAL_ORDER';
+
+const ALERT_MODAL_SONGLIST = 'ALERT_MODAL_SONGLIST';
+const ALERT_MODAL_NOFULLDATA = 'ALERT_MODAL_NOFULLDATA';
+
 const ALERT_MODAL_ANSWER = 'ALERT_MODAL_ANSWER';
 const ALERT_MODAL_ANSWER_FALSE = 'ALERT_MODAL_ANSWER_FALSE';
 const ALERT_MODAL_ANSWER_TRUE = 'ALERT_MODAL_ANSWER_TRUE';
 const ALERT_MODAL_ANSWER_UPDATE = 'ALERT_MODAL_ANSWER_UPDATE';
 const ALERT_MODAL_ANSWER_REPLY = 'ALERT_MODAL_ANSWER_REPLY';
+
 
 export const showModal = () => ({ type: SHOW_MODAL });
 export const loginModal = () => ({ type: LOGIN_MODAL });
@@ -36,6 +41,10 @@ export const alertLogoutModal = () => ({ type: ALERT_MODAL_LOGOUT });
 export const alertUpdateModal = () => ({ type: ALERT_MODAL_UPDATE });
 export const alertWithdrawalModal = () => ({ type: ALERT_MODAL_WITHDRAWAL });
 export const alertOrderModal = () => ({ type: ALERT_MODAL_ORDER });
+
+export const alertSonglistModal = () => ({ type: ALERT_MODAL_SONGLIST });
+export const alertNoFullData = () => ({ type: ALERT_MODAL_NOFULLDATA });
+
 export const alertAnswerModal = () => ({ type: ALERT_MODAL_ANSWER });
 export const alertAnswerFalseModal = () => ({ type: ALERT_MODAL_ANSWER_FALSE });
 export const alertAnswerTrueModal = () => ({ type: ALERT_MODAL_ANSWER_TRUE });
@@ -45,6 +54,7 @@ export const alertAnswerUpdateModal = () => ({
 export const alertAnswerReplyModal = () => ({
   type: ALERT_MODAL_ANSWER_REPLY,
 });
+
 
 const initialState = {
   checkModal: false,
@@ -132,6 +142,19 @@ export default function modal(state = initialState, action) {
         alertCheck: true,
         isType: 'alertOrder',
       };
+
+    case ALERT_MODAL_SONGLIST:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'songList',
+      };
+    case ALERT_MODAL_NOFULLDATA:
+      return {
+        cheeckModal: false,
+        alertCheck: true,
+        isType: 'noFullData',
+
     case ALERT_MODAL_ANSWER:
       return {
         checkModal: false,
@@ -161,6 +184,7 @@ export default function modal(state = initialState, action) {
         checkModal: false,
         alertCheck: true,
         isType: 'alertAnswerReply',
+
       };
     case ALERT_MODAL_FAILURE:
       return {
