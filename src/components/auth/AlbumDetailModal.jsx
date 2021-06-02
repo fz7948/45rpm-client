@@ -35,9 +35,9 @@ const InfoLabel = styled.label`
 
 const InfoCloseBtn = styled.button`
   cursor: pointer;
-  position: relative;
-  top: -1rem;
-  left: 14rem;
+  position: absolute;
+  top: 1rem;
+  left: 29rem;
   background: white;
   border: 0;
   outline: 0;
@@ -50,7 +50,7 @@ const InfoCloseBtn = styled.button`
   @media screen and (max-width: 768px) {
     font-size: 1.2rem;
     top: 1rem;
-    left: 9.5rem;
+    left: 23rem;
   }
 `;
 
@@ -103,7 +103,7 @@ const SongTitle = styled.div`
   font-weight: 500;
   font-family: 'Noto Sans KR', sans-serif;
   word-break: keep-all;
-  padding-bottom: 5rem;
+  padding-bottom: 1rem;
 `;
 
 const UlComp = styled.ul`
