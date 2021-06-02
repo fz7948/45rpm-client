@@ -6,6 +6,7 @@ import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
 import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
+import { RiUser3Fill } from 'react-icons/ri';
 import {
   MyPageWrapper,
   MyPageContent,
@@ -16,6 +17,13 @@ import {
   MyPageButton,
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
+import styled from 'styled-components';
+import { cover } from 'polished';
+
+const MypageItems = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const MyPageForm = () => {
   const dispatch = useDispatch();
@@ -33,6 +41,7 @@ const MyPageForm = () => {
   const [infoDefaultUsername, setInfoDefaultUsername] = useState('');
   const [heroListNumber, setHeroListNumber] = useState(0);
   const [customData, setCustomData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(async () => {
     if (token) {
@@ -57,6 +66,9 @@ const MyPageForm = () => {
       setInfoDefaultEmail({ email });
       setInfoDefaultUsername({ username });
       setInfoDefaultId({ id });
+      if (userData.length === 0) {
+        setUserData([info.data]);
+      }
     }
   }, [info]);
 
@@ -75,24 +87,63 @@ const MyPageForm = () => {
   const herohandler = (data) => {
     setHeroListNumber(data);
   };
+
+  const style = {
+    width: '100%',
+    height: '100vh',
+    backgroundSize: 'cover',
+    backgroundImage: 'url(./images/ccc2.png)',
+  };
+
+  const profileStyle = {
+    padding: `5px`,
+    height: '100%',
+    width: '100%',
+  };
+
+  console.log(userData);
+
   return (
     <>
-      <MyPageWrapper>
+      <MyPageWrapper style={style}>
         <MyPageContent>
           <MyPageInfoWrapper>
-            <MyPageImage>
-              <img src="/images/add.png"></img>
-              <p>사진 올리기</p>
-            </MyPageImage>
+            <MypageItems>
+              <MyPageImage>
+                {userData.length !== 0 ? (
+                  userData[0].profileUrl !== undefined ? (
+                    <img
+                      src={`${userData[0].profileUrl}`}
+                      style={profileStyle}
+                    />
+                  ) : (
+                    <img
+                      src="/images/noSocialUserProfile.png"
+                      style={profileStyle}
+                    />
+                  )
+                ) : (
+                  <div>Loading...</div>
+                )}
+              </MyPageImage>
+              <ButtonWrapper>
+                <MyPageButton onClick={aboutInfoModal}>
+                  내 정보 수정
+                  <RiUser3Fill className="space" />
+                </MyPageButton>
+              </ButtonWrapper>
+            </MypageItems>
             <MyPageInfo>
-              <p>안녕하세요</p>
-              <p>{infoDefaultEmail.email}</p>
-              <p>{infoDefaultUsername.username}</p>
+              <p>{infoDefaultUsername.username}님, 안녕하세요!</p>
+              <p className="small">{infoDefaultEmail.email}</p>
+              <p className="small">
+                지금까지 {customData.length}개의 커스텀을 만들었습니다
+              </p>
+              <p className="very">
+                아래의 슬라이더로 커스텀을 공유하고, 상세정보를 확인해보세요
+              </p>
             </MyPageInfo>
           </MyPageInfoWrapper>
-          <ButtonWrapper>
-            <MyPageButton onClick={aboutInfoModal}>정보 수정</MyPageButton>
-          </ButtonWrapper>
         </MyPageContent>
 
         <MyPageSlide>
@@ -119,13 +170,6 @@ const MyPageForm = () => {
             username={infoDefaultUsername.username}
           />
         )}
-        {/* {isType === 'alert' && (
-          <AlertModal
-            openHandle={alertCheck}
-            closeHandle={shutModal}
-            comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
-          ></AlertModal>
-        )} */}
       </MyPageWrapper>
     </>
   );

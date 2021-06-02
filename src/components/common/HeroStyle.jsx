@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 
-export const HeroSection = styled.section `
+export const HeroSection = styled.section`
   width: 50%;
   height: 30vh;
   max-height: 1100px;
@@ -12,13 +12,14 @@ export const HeroSection = styled.section `
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #495362;
 
   @media screen and (max-width: 768px) {
     width: 90%;
   }
 `;
 
-export const HeroWrapper = styled.div `
+export const HeroWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -28,13 +29,13 @@ export const HeroWrapper = styled.div `
   position: relative;
 `;
 
-export const HeroSlide = styled.div `
+export const HeroSlide = styled.div`
   z-index: 1;
   width: 100%;
   height: 100%;
 `;
 
-export const HeroSlider = styled.div `
+export const HeroSlider = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -63,7 +64,7 @@ export const HeroSlider = styled.div `
   }
 `;
 
-export const HeroImage = styled.div `
+export const HeroImage = styled.div`
   width: 100%;
   height: 100%;
   img {
@@ -77,7 +78,7 @@ export const HeroImage = styled.div `
   }
 `;
 
-export const HeroContent = styled.div `
+export const HeroContent = styled.div`
   position: absolute;
   z-index: 10;
   display: flex;
@@ -102,7 +103,7 @@ export const HeroContent = styled.div `
   }
 `;
 
-export const SliderButtons = styled.div `
+export const SliderButtons = styled.div`
   position: absolute;
   bottom: 50px;
   right: 50px;
@@ -113,20 +114,22 @@ export const SliderButtons = styled.div `
   z-index: 10;
 `;
 
-export const arrowButtons = css `
+export const arrowButtons = css`
   width: 50px;
   height: 50px;
-  color: #fff;
+  color: #000d1a;
   cursor: pointer;
-  background: #000d1a;
+  background: #fff;
   border-radius: 50px;
   padding: 10px;
-  margin-right: 1rem;
+  margin: 0rem 0.5rem 2rem 0.3rem;
   user-select: none;
   transition: 0.3s;
 
   &:hover {
-    background: #cd853f;
+    background: #495362;
+    border: 1px solid #fff;
+    color: white;
     transform: scale(1.05);
   }
   @media screen and (max-width: 768px) {
@@ -135,34 +138,35 @@ export const arrowButtons = css `
   }
 `;
 
-export const PrevArrow = styled(IoArrowBack)
-`
+export const PrevArrow = styled(IoArrowBack)`
   ${arrowButtons}
 `;
 
-export const NextArrow = styled(IoArrowForward)
-`
+export const NextArrow = styled(IoArrowForward)`
   ${arrowButtons}
 `;
 
-export const Arrow = styled.div `
+export const Arrow = styled.div`
   display: flex;
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   margin-top: 1rem;
   font-size: 15px;
   font-family: 'Jua', sans-serif;
-  background-color: #eee;
-  border: 1px solid #fff;
+  background-color: #fff;
+  border: none;
+
   border-radius: 6px;
   outline: 0;
   cursor: pointer;
   width: 120px;
   height: 40px;
   &:hover {
-    background-color: #ddd;
+    background-color: #495362;
+    color: white;
     transition: all ease 0.4s;
+    border: 1px solid #fff;
   }
   @media screen and (max-width: 768px) {
     width: 90px;

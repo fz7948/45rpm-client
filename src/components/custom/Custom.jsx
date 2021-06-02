@@ -53,6 +53,7 @@ const Custom = () => {
   const [imgBase, setImgBase] = useState('./images/1.webp');
   const [imgFile1, setImgFile1] = useState(null);
   const dispatch = useDispatch();
+
   const { token } = useSelector(({ user }) => ({
     token: user.token,
   }));
@@ -128,8 +129,44 @@ const Custom = () => {
     }
   };
 
+  const handleChangeColor = (color) => {
+    setColor(color.hex);
+    console.log(color.hex);
+  };
+
+  const handleChangeTitle = (e) => {
+    sessionStorage.setItem('title', e.target.value);
+    setTitle(e.target.value);
+  };
+
+  const handleChangeSongList = (e) => {
+    if (
+      e.target.value.includes(',') &&
+      songList.length >= 0 &&
+      e.target.value !== ''
+    ) {
+      setSongList(
+        e.target.value.split(',').filter((el) => {
+          if (el) return el;
+        }),
+      );
+      sessionStorage.setItem('songList', e.target.value);
+    } else {
+      sessionStorage.setItem('songList', e.target.value);
+      if (sessionStorage.getItem('songList') === '') {
+        setSongList([]);
+      } else setSongList([sessionStorage.getItem('songList')]);
+    }
+    console.log('>>>>songList', songList);
+  };
+
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
+      console.log('색깔', color);
+      console.log('이미지', imgFile);
+      console.log('이미지 2', imgFile1);
+      console.log('제목', title);
+      console.log('노래', songList);
       alert('모두 입력되어야 등록이 가능합니다.');
       return;
     } else if (!token) {
@@ -163,6 +200,7 @@ const Custom = () => {
       history.push('/mypage');
     }
   };
+
 
   const panes = [
     {

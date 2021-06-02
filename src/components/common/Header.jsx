@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { loginKakao } from '../../modules/user';
+import { loginKakao, loginGoogle } from '../../modules/user';
+import { BiVideoRecording } from 'react-icons/bi';
 
 import '../../pages/sass/Header.scss';
 import {
@@ -32,6 +33,7 @@ const Header = () => {
     if (login) {
       console.log('돌아간다');
       const cookie = document.cookie.split('=')[1];
+      console.log('쿠키 확인', cookie);
 
       const payload = {
         id: login.data.id,
@@ -43,6 +45,11 @@ const Header = () => {
       if (isSocial === 'kakao') {
         console.log('카카오들어옴?');
         dispatch(loginKakao(payload));
+        dispatch(alertOpenModal());
+      }
+      if (isSocial == 'google') {
+        console.log('구글 확인');
+        dispatch(loginGoogle(payload));
         dispatch(alertOpenModal());
       }
     }
@@ -80,18 +87,6 @@ const Header = () => {
               },
               success: function (response) {
                 dispatch(kakaoLoginReq(response));
-                // console.log(response);
-                // setTimeout(() => {
-                //   const cookie = document.cookie.split('=')[1];
-                //   const payload = {
-                //     id: response.kakao_account.email.split('@')[0],
-                //     email: response.kakao_account.email,
-                //     username: response.kakao_account.email.split('@')[0],
-                //     token: cookie,
-                //   };
-                //   console.log(payload);
-                //   return dispatch(loginKakao(payload)), 1000;
-                // });
               },
               fail: function (error) {
                 console.log(error);
@@ -108,18 +103,66 @@ const Header = () => {
     }
   };
 
+  const googleLoginHandler = async () => {
+    try {
+      //방법1
+      // const clientId =
+      //   '889468857969-68v5gvrru6phi5i8454cv48t34k458oj.apps.googleusercontent.com';
+      // const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=http://localhost:3000&response_type=code&scope=email+profile&access_type=offline`;
+      // window.location.href = url;
+
+      //방법 2
+      console.log('1');
+      const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+      console.log('2');
+      // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+      const form = document.createElement('form');
+      form.setAttribute('method', 'GET'); // Send as a GET request.
+      form.setAttribute('action', oauth2Endpoint);
+      console.log('3');
+      // Parameters to pass to OAuth 2.0 endpoint.
+      const params = {
+        client_id: '889468857969-68v5gvrru6phi5i8454cv48t34k458oj',
+        redirect_uri: 'http://localhost:3000',
+        response_type: 'token',
+        scope:
+          'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+        include_granted_scopes: 'true',
+        state: 'pass-through value',
+      };
+      console.log('4');
+
+      // Add form parameters as hidden input values.
+      for (var p in params) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', p);
+        input.setAttribute('value', params[p]);
+        form.appendChild(input);
+      }
+      console.log('5');
+      // Add form to page and submit it to open the OAuth 2.0 endpoint.
+      document.body.appendChild(form);
+      form.submit();
+
+      console.log('6');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <header className="header">
         <div className="logo" onClick={() => history.push('/')}>
-          45 RPM
+          <div className="icon">45 RPM</div>
         </div>
         <div className="buttonWrapper">
           <div className="signIn" onClick={openLoginModal}>
-            로그인
+            <div className="login">로그인</div>
           </div>
           <div className="signUp" onClick={openRegisterModal}>
-            회원가입
+            <div className="register">회원가입</div>
           </div>
         </div>
         {isType === 'login' && (
@@ -127,6 +170,7 @@ const Header = () => {
             open={checkModal}
             close={shutModal}
             kakaoLoginHandler={kakaoLoginHandler}
+            googleLoginHandler={googleLoginHandler}
           ></LoginModal>
         )}
         {isType === 'register' && (

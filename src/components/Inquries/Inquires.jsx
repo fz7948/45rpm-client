@@ -23,7 +23,7 @@ const Container = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.4);
+    background: #ffffff;
   }
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
@@ -35,10 +35,18 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: lightgray;
+  background: #e8e8e8;
+  border: 1px solid #b5b9b9;
   width: 70%;
   padding: 3rem 0;
   margin-top: 3rem;
+  .small {
+    font-size: 1rem;
+    padding-top: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    color: #4c4c4c;
+  }
   @media screen and (max-width: 768px) {
     padding: 4rem 0;
     margin-top: 2rem;
@@ -52,7 +60,22 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   padding-right: 2rem;
-
+  button {
+    cursor: pointer;
+    height: 3rem;
+    width: 10rem;
+    border-radius: 3px;
+    border: 0;
+    outline: 0;
+    background-color: #3918a7;
+    opacity: 0.6;
+    color: #e1eaf8;
+    font-size: 1rem;
+    &:hover {
+      background-color: #03154e;
+      transition: all ease 0.3s;
+    }
+  }
   @media screen and (max-width: 768px) {
     padding-right: 1rem;
   }
@@ -80,11 +103,14 @@ const Button = styled.button`
 `;
 
 const InquiryIntro = styled.div`
-  font-size: 2.5rem;
-  background: lightgray;
+  font-size: 2rem;
+  background: #e8e8e8;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 700;
+  color: #4c4c4c;
 
   @media screen and (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -101,7 +127,7 @@ const Inquires = () => {
 
   useEffect(() => {
     dispatch(questionListReq(token));
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (questionList) {
@@ -137,7 +163,10 @@ const Inquires = () => {
   return (
     <Container>
       <HeaderWrapper>
-        <InquiryIntro>문의 목록</InquiryIntro>
+        <InquiryIntro>이용하는데 어려움이 있나요?</InquiryIntro>
+        <InquiryIntro className="small">
+          45rpm은 여러분이 문의를 남겨주시면 24시간안에 답변드립니다
+        </InquiryIntro>
         <ButtonWrapper>
           <Button onClick={openInquiryModal}>문의하기</Button>
         </ButtonWrapper>
