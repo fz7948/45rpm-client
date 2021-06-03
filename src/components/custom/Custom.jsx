@@ -119,7 +119,7 @@ const Custom = () => {
     );
     setSongList(newSongList);
     if (newSongList) {
-      for (let i = 0; i <= sessionStorage.length + 1; i++) {
+      for (let i = 0; i < 6; i++) {
         sessionStorage.removeItem(`songList${i}`);
       }
       for (let i = 0; i < newSongList.length; i++) {
