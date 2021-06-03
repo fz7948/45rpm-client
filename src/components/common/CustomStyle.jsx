@@ -350,6 +350,7 @@ export const TabWrapper = styled.div`
   height: 700px;
   background: black;
   opacity: 0.75;
+  z-index: 1;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -358,6 +359,7 @@ export const ButtonWrapper = styled.div`
   padding: 1.5rem;
   background: black;
   opacity: 0.75;
+  padding: 2rem;
 
   @media screen and (max-width: 1400px) {
     display: flex;
