@@ -110,6 +110,7 @@ const Custom = () => {
       return;
     }
     setSongList([...songList, nowSong]);
+    setNowSong('');
   };
 
   const minusClick = (index) => {
@@ -118,7 +119,7 @@ const Custom = () => {
     );
     setSongList(newSongList);
     if (newSongList) {
-      for (let i = 0; i <= sessionStorage.length + 1; i++) {
+      for (let i = 0; i < 6; i++) {
         sessionStorage.removeItem(`songList${i}`);
       }
       for (let i = 0; i < newSongList.length; i++) {
@@ -328,7 +329,8 @@ const Custom = () => {
                 );
               })}
               <SongListTextInput
-                placeholder={'이곳에 입력하세요'}
+                placeholder={'곡은 5개까지만 등록 가능합니다'}
+                value={nowSong}
                 onChange={currentSong}
               />
               <SongListBtn onClick={handleClick}>+</SongListBtn>
