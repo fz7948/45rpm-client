@@ -58,9 +58,9 @@ const Sharing = () => {
   return (
     <Container style={sectionStyle}>
       <TitleWrapper>
-        <H1Title>세상에 하나밖에 없는 당신만의 LP</H1Title>
+        <H1Title>Creative LP Collection</H1Title>
         <SubTitle>
-          3억 명의 회원이 45RPM의 커스텀 LP를 소유하고 있습니다
+          2003명의 회원이 45RPM의 커스텀 LP를 소유하고 있습니다
         </SubTitle>
       </TitleWrapper>
       <ContentWrapper>
