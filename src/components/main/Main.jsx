@@ -207,8 +207,8 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="textWrapper">
-                  <h1>
-                    지금 바로 <p>만들어 보세요</p>
+                  <h1 className="firstH1">
+                    45 RPM에 오신 것을 <p>환영합니다</p>
                   </h1>
                 </div>
               </div>
@@ -288,8 +288,8 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="textWrapper">
-                  <h1>
+                <div className="textWrapper1">
+                  <h1 className="secondH1">
                     지금 바로 <p>만들어 보세요</p>
                   </h1>
                   <div className="start" onClick={() => history.push('/1')}>
