@@ -94,7 +94,6 @@ const InquiryRow = styled.div`
       &:nth-child(1) {
         width: 150px;
         text-align: center;
-        border: 1px solid black;
         margin-right: 2rem;
       }
     }

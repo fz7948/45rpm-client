@@ -17,6 +17,7 @@ const NavSidebar = styled.div`
   width: 100%;
   left: 0;
   top: 0;
+  padding-top: 3rem;
   background: black;
   padding: 12px 10px 12px 0px;
 

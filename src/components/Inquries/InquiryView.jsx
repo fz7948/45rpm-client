@@ -11,9 +11,9 @@ const Container = styled.div`
   justify-content: center;
   width: 100vw;
   height: 94.9vh;
-  padding-top: 3rem;
   color: #000;
   overflow: auto;
+  padding-top: 3rem;
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
