@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,17 +20,16 @@ export const Container = styled.div `
   }
 `;
 
-export const MainWrapper = styled.div `
+export const MainWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   max-height: 500px;
-
   @media screen and (max-width: 1400px) {
     height: 900px;
   }
 `;
 
-export const InputFile = styled.input `
+export const InputFile = styled.input`
   color: #fff;
   width: 350px;
   height: 150px;
@@ -51,13 +50,14 @@ export const InputFile = styled.input `
   }
 `;
 
-export const CoverImg = styled.div `
-  flex-basis: 33.3%;
+export const CoverImg = styled.div`
   width: 400px;
   height: 400px;
   margin: auto 0;
+  margin-left: 70px;
   display: flex;
   justify-content: flex-end;
+  box-shadow: 1px 3px 3px 5px rgba(0, 0, 0, 0.7);
 
   @media screen and (max-width: 1400px) {
     z-index: 2;
@@ -67,7 +67,7 @@ export const CoverImg = styled.div `
   }
 `;
 
-export const Img = styled.img `
+export const Img = styled.img`
   width: 400px;
   height: 400px;
 
@@ -77,8 +77,7 @@ export const Img = styled.img `
   }
 `;
 
-export const LpWrapper = styled.div `
-  flex-basis: 33.3%;
+export const LpWrapper = styled.div`
   width: 500px;
   height: 500px;
   margin: auto;
@@ -90,16 +89,16 @@ export const LpWrapper = styled.div `
     height: 300px;
     position: absolute;
     top: 10%;
-    left: -15%;
+    transform: translateX(-40%);
   }
 `;
 
-export const Disk = styled.div `
+export const Disk = styled.div`
   position: relative;
   width: 405px;
   height: 405px;
   left: 16%;
-  top: 7%;
+  top: 10%;
   border-radius: 50%;
   animation: rotation 10s linear infinite;
 
@@ -119,7 +118,7 @@ export const Disk = styled.div `
   }
 `;
 
-export const InnerDisk = styled.div `
+export const InnerDisk = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -146,7 +145,7 @@ export const InnerDisk = styled.div `
   }
 `;
 
-export const Img2 = styled.img `
+export const Img2 = styled.img`
   position: absolute;
   width: inherit;
   height: inherit;
@@ -158,11 +157,12 @@ export const Img2 = styled.img `
   }
 `;
 
-export const SongListWrapper = styled.div `
+export const SongListWrapper = styled.div`
   border-radius: 6px;
   width: 400px;
   height: 400px;
   margin: auto 0;
+
   margin-right: 5rem;
   display: flex;
   flex-direction: column;
@@ -181,27 +181,26 @@ export const SongListWrapper = styled.div `
     border-radius: 6px;
   }
   @media screen and (max-width: 1400px) {
-    position: fixed;
-    top: 11%;
-    right: -30%;
-    margin: auto 0;
+    position: absolute;
+    top: 11.6%;
     width: 350px;
     height: 350px;
+    transform: translateX(85%);
     &:hover {
-      transform: translateX(-150px);
+      transform: translateX(120px);
       transition: all linear 0.5s;
       z-index: 3;
     }
   }
 `;
 
-export const UpperWrapper = styled.div `
+export const UpperWrapper = styled.div`
   padding: 1rem;
   padding-left: 1.3rem;
   flex: 2.5;
 `;
 
-export const CustomTitle = styled.div `
+export const CustomTitle = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-size: 40px;
@@ -214,7 +213,7 @@ export const CustomTitle = styled.div `
   }
 `;
 
-export const TextInput = styled.input `
+export const TextInput = styled.input`
   type: text;
   font-size: 1.5rem;
   padding: 4rem;
@@ -231,7 +230,7 @@ export const TextInput = styled.input `
   }
 `;
 
-export const SongListTextInput = styled.input `
+export const SongListTextInput = styled.input`
   font-size: 1.3rem;
   width: 300px;
   height: 50px;
@@ -246,7 +245,7 @@ export const SongListTextInput = styled.input `
   }
 `;
 
-export const SongListBtn = styled.button `
+export const SongListBtn = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -277,7 +276,7 @@ export const SongListBtn = styled.button `
   }
 `;
 
-export const SongList = styled.ul `
+export const SongList = styled.ul`
   padding: 1rem;
   list-style: none;
   line-height: 13px;
@@ -289,7 +288,7 @@ export const SongList = styled.ul `
   }
 `;
 
-export const Song = styled.li `
+export const Song = styled.li`
   padding: 0.5rem;
   font-size: 25px;
   line-height: 20px;
@@ -300,13 +299,13 @@ export const Song = styled.li `
   }
 `;
 
-export const LowerWrapper = styled.div `
+export const LowerWrapper = styled.div`
   flex: 1;
   display: flex;
   padding-right: 1rem;
 `;
 
-export const LogoWrapper = styled.div `
+export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-basis: 25%;
@@ -317,13 +316,13 @@ export const LogoWrapper = styled.div `
   padding-left: 1rem;
 `;
 
-export const ExtraWrapper = styled.div `
+export const ExtraWrapper = styled.div`
   flex-basis: 75%;
   display: flex;
   flex-direction: column;
 `;
 
-export const TextContent = styled.div `
+export const TextContent = styled.div`
   flex-wrap: nowrap;
   flex: 2;
   padding-left: 1rem;
@@ -336,7 +335,7 @@ export const TextContent = styled.div `
   }
 `;
 
-export const DomainContent = styled.div `
+export const DomainContent = styled.div`
   font-size: 0.6rem;
   flex: 1;
   padding-left: 1rem;
@@ -347,11 +346,11 @@ export const DomainContent = styled.div `
   }
 `;
 
-export const TabWrapper = styled.div `
+export const TabWrapper = styled.div`
   height: 700px;
 `;
 
-export const ButtonWrapper = styled.div `
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 1.5rem;
@@ -362,7 +361,7 @@ export const ButtonWrapper = styled.div `
   }
 `;
 
-export const SubmitBtn = styled.button `
+export const SubmitBtn = styled.button`
   width: 150px;
   height: 50px;
   cursor: pointer;
