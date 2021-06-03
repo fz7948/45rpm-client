@@ -32,17 +32,16 @@ function Main() {
   let cdCase;
   let movingImg;
   let colorArray = [
-    ['./images/1111.jpg'],
-    ['./images/a.jpg'],
-    ['./images/1111.jpg'],
-    ['./images/555.jpg'],
-    ['./images/888.jpg'],
-    ['./images/888.jpg'],
+    ['./images/1.jpg'],
+    ['./images/2.jpg'],
+    ['./images/4.jpg'],
+    ['./images/6.jpg'],
+    ['./images/7.jpg'],
+    ['./images/10.jpg'],
   ];
 
   useEffect(() => {
     console.log('이펙트 실행 시작');
-
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
@@ -110,6 +109,7 @@ function Main() {
     wrapperContent.style.background = 'opacity:0.6';
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
+    wrapperContent.style.transition = 'background linear 1.5s';
 
     cdCase[5].classList.add('active');
     movingImg[5].classList.add('active');
@@ -128,6 +128,7 @@ function Main() {
     wrapperContent.style.background = 'opacity:0.6';
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
+    wrapperContent.style.transition = 'background linear 1.5s';
 
     for (var i = 0; i < totalNum; i++) {
       if (pageNum === i) {
@@ -208,7 +209,7 @@ function Main() {
               <div className="movingImg">
                 <div className="textWrapper">
                   <h1 className="firstH1">
-                    45 RPM에 오신 것을 <p>환영합니다</p>
+                    세상에 하나밖에 없는<p>당신만의 LP</p>
                   </h1>
                 </div>
               </div>
@@ -225,7 +226,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/c.gif" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
             </section>
@@ -241,7 +242,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/e.gif" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
             </section>
@@ -257,7 +258,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/c.gif" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
             </section>
@@ -273,7 +274,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/e.gif" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
             </section>
@@ -288,15 +289,17 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="textWrapper1">
-                  <h1 className="secondH1">
-                    지금 바로 <p>만들어 보세요</p>
-                  </h1>
-                  <div className="start" onClick={() => history.push('/1')}>
-                    시작하기
-                  </div>
-                  <div className="share" onClick={() => history.push('/3')}>
-                    공유 페이지
+                <div className="secondTextWrapper">
+                  <div className="textWrapper1">
+                    <h1 className="secondH1">
+                      지금 바로 <p>만들어 보세요</p>
+                    </h1>
+                    <div className="start" onClick={() => history.push('/1')}>
+                      시작하기
+                    </div>
+                    <div className="share" onClick={() => history.push('/3')}>
+                      공유 페이지
+                    </div>
                   </div>
                 </div>
               </div>
