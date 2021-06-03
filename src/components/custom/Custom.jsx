@@ -110,6 +110,7 @@ const Custom = () => {
       return;
     }
     setSongList([...songList, nowSong]);
+    setNowSong('');
   };
 
   const minusClick = (index) => {
@@ -328,7 +329,8 @@ const Custom = () => {
                 );
               })}
               <SongListTextInput
-                placeholder={'이곳에 입력하세요'}
+                placeholder={'곡은 5개까지만 등록 가능합니다'}
+                value={nowSong}
                 onChange={currentSong}
               />
               <SongListBtn onClick={handleClick}>+</SongListBtn>
