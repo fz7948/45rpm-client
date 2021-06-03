@@ -18,315 +18,45 @@ body {
           .cdCase {
             position: absolute;
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            .mainWrapper {
-                flex: 1;
-                .sectionWrapper {
-                    display: flex;
-                    .cdCase {
-                        position: absolute;
-                        flex: 1;
-                        top: 30%;
-                        left: 8%;
-                        transform: translate(-50%, -50%);
-                        width: 415px;
-                        height: 415px;
-                        visibility: hidden;
-                        opacity: 0;
-                        transition: all 1s ease;
-                        transform: rotate(130deg);
-                        @media #{$small} {
-                            top: 40%;
-                            position: absolute;
-                            width: 200px;
-                            height: 200px;
-                            transform: translate(-70%, -50%);
-                            transform: rotate(130deg);
-                        }
-                        @media #{$medium} {
-                            position: absolute;
-                            width: 410px;
-                            height: 410px;
-                            top: 20%;
-                            left: 15%;
-                            transform: translate(-70%, -50%);
-                            transform: rotate(130deg);
-                        }
-                        &.active {
-                            visibility: visible;
-                            transform: rotate(-30deg);
-                            opacity: 1;
-                            .disk {
-                                left: 50%;
-                                transition-delay: 1s;
-                                animation: rotation 5s linear infinite;
-                            }
-                            @media #{$small} {
-                                .disk {
-                                    left: 35%;
-                                    transition-delay: 0.5s;
-                                }
-                            }
-                        }
-                        .coverImg {
-                            flex: 1;
-                            position: absolute;
-                            top: -12%;
-                            width: 420px;
-                            height: 420px;
-                            box-shadow: 1px 3px 2px 3px rgba(0, 1, 1, 1);
-                            img {
-                                width: inherit;
-                                height: inherit;
-                            }
-                            .card {
-                                width: 300px;
-                                height: 300px;
-                                background-color: black;
-                            }
-                            @media #{$small} {
-                                top: -15%;
-                                width: 270px;
-                                height: 270px;
-                            }
-                            @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                top: 10%;
-                                left: -15%;
-                                width: 350px;
-                                height: 350px;
-                            }
-                        }
-                        .disk {
-                            position: absolute;
-                            top: -10%;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 50%;
-                            transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            @media #{$small} {
-                                top: -11%;
-                                width: 60%;
-                                height: 60%;
-                            }
-                            @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                top: 13%;
-                                left: -20%;
-                                width: 80%;
-                                height: 80%;
-                            }
-                            img {
-                                width: 412px;
-                                height: 412px;
-                                -webkit-filter: opacity(0.5) drop-shadow(0 0 0 blue);
-                                filter: opacity(0.5) drop-shadow(0 0 0 blue);
-                                @media #{$small} {
-                                    width: 241px;
-                                    height: 241px;
-                                }
-                                @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                    width: 325px;
-                                    height: 325px;
-                                }
-                            }
-                        }
-                    }
-                    .movingImg {
-                        position: absolute;
-                        flex: 1;
-                        top: 15%;
-                        left: 38%;
-                        transform: translate(-50%, -50%);
-                        width: inherit;
-                        height: inherit;
-                        visibility: hidden;
-                        opacity: 0;
-                        transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                        transform: rotate(90deg);
-                        .textWrapper {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            transform: rotate(270deg);
-                            width: 1300px;
-                            height: 500px;
-                            background: transparent;
-                            @media #{$small} {
-                                width: 400px;
-                                height: 300px;
-                            }
-                            @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                width: 800px;
-                                height: 350px;
-                            }
-                            .firstH1 {
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                                font-size: 70px;
-                                color: #fff;
-                                border-radius: 20px;
-                                width: 700px;
-                                height: 400px;
-                                background: #000;
-                                box-shadow: 1px 1px 1px 1px black;
-                                opacity: 0.55;
-                                transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                                animation: fadeIn 2s ease-in-out;
-                                @media #{$small} {
-                                    width: 300px;
-                                    height: 200px;
-                                    font-size: 30px;
-                                }
-                                @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                    font-size: 60px;
-                                    width: 600px;
-                                    height: 500px;
-                                }
-                            }
-                        }
-                        .textWrapper1 {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            transform: rotate(270deg);
-                            background: #000;
-                            box-shadow: 1px 1px 1px 1px #fff;
-                            border-radius: 20px;
-                            opacity: 0.8;
-                            transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            animation: fadeIn 2s ease-in-out;
-                            padding: 1rem;
-                            width: 600px;
-                            border: 3px solid yellow;
-                            @media #{$small} {
-                                position: absolute;
-                                top: 15%;
-                                left: 30%;
-                                padding: 1rem;
-                                width: 350px;
-                            }
-                            @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                position: absolute;
-                                top: 10%;
-                                left: 25%;
-                                padding: 1rem;
-                                width: 500px;
-                            }
-                            .secondH1 {
-                                color: #fff;
-                                font-size: 60px;
-                                text-align: center;
-                                @media #{$small} {
-                                    font-size: 30px;
-                                    text-align: center;
-                                }
-                                @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                                    font-size: 50px;
-                                    text-align: center;
-                                }
-                            }
-                            .start,
-                            .share {
-                                cursor: pointer;
-                                width: calc(11vw + 6px);
-                                height: calc(3vw + 6px);
-                                color: #000;
-                                background-color: #fff;
-                                border-radius: 20px;
-                                margin: 1rem;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                text-transform: uppercase;
-                                font-family: 'Jua', sans-serif;
-                                font-size: 30px;
-                                 ::after {
-                                    content: attr(alt);
-                                    width: 20vw;
-                                    height: 8vw;
-                                    background-color: #191919;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                }
-                                @media #{$small} {
-                                    width: 120px;
-                                    height: 50px;
-                                    font-size: 15px;
-                                }
-                            }
-                        }
-                        @media #{$medium} {
-                            top: 10%;
-                            left: 50%;
-                            width: 650px;
-                            height: 450px;
-                            transform: translate(-50%, -50%);
-                            transform: rotate(90deg);
-                        }
-                        @media #{$small} {
-                            top: 25%;
-                            left: 12%;
-                            width: 450px;
-                            height: 350px;
-                            transform: translate(-50%, -50%);
-                            transform: rotate(90deg);
-                            padding: 2rem;
-                        }
-                        &.active {
-                            visibility: visible;
-                            opacity: 1;
-                            transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            animation: fadeIn 2s ease-in-out;
-                            .card {
-                                display: flex;
-                                flex-direction: column;
-                                left: 30%;
-                                width: inherit;
-                                height: inherit;
-                                transition-delay: 1.5s;
-                                transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                                animation: fadeIn 2s ease-in-out;
-                                @media #{$medium} {
-                                    width: 650px;
-                                    height: 450px;
-                                }
-                                @media #{$small} {
-                                    width: 450px;
-                                    height: 350px;
-                                }
-                                img {
-                                    border-radius: 10px;
-                                    width: 1100px;
-                                    height: 600px;
-                                    box-shadow: 1px 1px 15px rgba(0, 0, 1, 1);
-                                    animation: fadeIn 2s ease-in-out;
-                                    opacity: 1;
-                                    transform: rotate(270deg);
-                                    @media #{$medium} {
-                                        width: 800px;
-                                        height: 450px;
-                                    }
-                                    @media #{$small} {
-                                        width: 450px;
-                                        height: 350px;
-                                        top: 10%;
-                                        left: -10%;
-                                    }
-                                }
-                            }
-                            @media #{$small} {
-                                .disk {
-                                    left: 35%;
-                                    transition-delay: 0.5s;
-                                }
-                            }
-                        }
-                    }
+            top: 30%;
+            left: 8%;
+            transform: translate(-50%, -50%);
+            width: 415px;
+            height: 415px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 1s ease;
+            transform: rotate(130deg);
+            @media #{$small} {
+              top: 40%;
+              position: absolute;
+              width: 200px;
+              height: 200px;
+              transform: translate(-70%, -50%);
+              transform: rotate(130deg);
+            }
+            @media #{$medium} {
+              position: absolute;
+              width: 410px;
+              height: 410px;
+              top: 20%;
+              left: 15%;
+              transform: translate(-70%, -50%);
+              transform: rotate(130deg);
+            }
+            &.active {
+              visibility: visible;
+              transform: rotate(-30deg);
+              opacity: 1;
+              .disk {
+                left: 50%;
+                transition-delay: 1s;
+                animation: rotation 5s linear infinite;
+              }
+              @media #{$small} {
+                .disk {
+                  left: 35%;
+                  transition-delay: 0.5s;
                 }
               }
             }
@@ -334,8 +64,8 @@ body {
               flex: 1;
               position: absolute;
               top: -12%;
-              width: 400px;
-              height: 400px;
+              width: 420px;
+              height: 420px;
               box-shadow: 1px 3px 2px 3px rgba(0, 1, 1, 1);
               img {
                 width: inherit;
@@ -361,39 +91,33 @@ body {
             .disk {
               position: absolute;
               top: -10%;
-              width: 370px;
-              height: 370px;
+              width: 100%;
+              height: 100%;
               border-radius: 50%;
-              background: linear-gradient(120deg, #00498c, #5e7e9b, #0080ff);
-              box-shadow: 3px 3px 10px rgba(0, 0, 3, 0.5);
               transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
               @media #{$small} {
-                top: -10%;
-                width: 240px;
-                height: 240px;
+                top: -11%;
+                width: 60%;
+                height: 60%;
               }
               @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                top: 15%;
+                top: 13%;
                 left: -20%;
-                width: 320px;
-                height: 320px;
+                width: 80%;
+                height: 80%;
               }
-              .innerDisk {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100px;
-                height: 100px;
-                background-color: #0473a4;
-                border-radius: 50%;
+              img {
+                width: 412px;
+                height: 412px;
+                -webkit-filter: opacity(0.5) drop-shadow(0 0 0 blue);
+                filter: opacity(0.5) drop-shadow(0 0 0 blue);
                 @media #{$small} {
-                  width: 50px;
-                  height: 50px;
+                  width: 241px;
+                  height: 241px;
                 }
                 @media screen and (min-width: 1500px) and (max-width: 1800px) {
-                  width: 90px;
-                  height: 90px;
+                  width: 325px;
+                  height: 325px;
                 }
               }
             }
@@ -410,38 +134,90 @@ body {
             opacity: 0;
             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform: rotate(90deg);
-            .title {
-              transform: rotate(270deg);
-              border: 3px solid white;
-              height: 30%;
-            }
             .textWrapper {
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               transform: rotate(270deg);
-              padding-left: 2rem;
-              border: none;
+              width: 1300px;
+              height: 500px;
               background: transparent;
               @media #{$small} {
-                padding-top: 1rem;
-                padding-right: 1rem;
-                background-color: rgba(0, 0, 0, 0.5);
-                box-shadow: 1px 1px 1px 1px black;
-                border-radius: 20px;
+                width: 400px;
+                height: 300px;
               }
-              h1 {
+              @media screen and (min-width: 1500px) and (max-width: 1800px) {
+                width: 800px;
+                height: 350px;
+              }
+              .firstH1 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 70px;
                 color: #fff;
-                font-size: 80px;
-                width: 35rem;
-                padding-bottom: 2.5rem;
-                text-align: center;
-                font-family: 'Lato', sans-serif;
+                border-radius: 20px;
+                width: 700px;
+                height: 400px;
+                background: #000;
+                box-shadow: 1px 1px 1px 1px black;
+                opacity: 0.55;
+                transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                animation: fadeIn 2s ease-in-out;
                 @media #{$small} {
-                  font-size: 32px;
-                  padding-right: 1rem;
-                  padding-left: 1rem;
+                  width: 300px;
+                  height: 200px;
+                  font-size: 30px;
+                }
+                @media screen and (min-width: 1500px) and (max-width: 1800px) {
+                  font-size: 60px;
+                  width: 600px;
+                  height: 500px;
+                }
+              }
+            }
+            .textWrapper1 {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              transform: rotate(270deg);
+              background: #000;
+              box-shadow: 1px 1px 1px 1px #fff;
+              border-radius: 20px;
+              opacity: 0.8;
+              transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              animation: fadeIn 2s ease-in-out;
+              padding: 1rem;
+              width: 600px;
+              border: 3px solid yellow;
+              @media #{$small} {
+                position: absolute;
+                top: 15%;
+                left: 30%;
+                padding: 1rem;
+                width: 350px;
+              }
+              @media screen and (min-width: 1500px) and (max-width: 1800px) {
+                position: absolute;
+                top: 10%;
+                left: 25%;
+                padding: 1rem;
+                width: 500px;
+              }
+              .secondH1 {
+                color: #fff;
+                font-size: 60px;
+                text-align: center;
+                @media #{$small} {
+                  font-size: 30px;
+                  text-align: center;
+                }
+                @media screen and (min-width: 1500px) and (max-width: 1800px) {
+                  font-size: 50px;
+                  text-align: center;
                 }
               }
               .start,
@@ -556,7 +332,7 @@ body {
       justify-content: space-between;
       padding-bottom: 1rem;
       .fingerBtn {
-        z-index: 1;
+        z-index: 10;
         display: flex;
         justify-content: center;
         align-items: center;

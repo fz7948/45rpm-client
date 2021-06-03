@@ -73,6 +73,7 @@ export const ModalBack = styled.div`
 `;
 
 export const ModalBox = styled.div`
+  z-index: 20;
   position: relative;
   display: flex;
   flex-direction: column;

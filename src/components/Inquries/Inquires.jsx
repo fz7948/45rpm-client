@@ -53,7 +53,7 @@ const HeaderWrapper = styled.div`
     color: #4c4c4c;
   }
   @media screen and (max-width: 768px) {
-    padding: 4rem 0;
+    padding: 7rem 0;
     margin-top: 2rem;
     width: 90%;
     height: 10%;
@@ -83,6 +83,7 @@ const ButtonWrapper = styled.div`
   }
   @media screen and (max-width: 768px) {
     padding-right: 1rem;
+    padding-top: 1rem;
   }
 `;
 
