@@ -48,9 +48,9 @@ const Custom = () => {
   const history = useHistory();
   const [color, setColor] = useState('#fff');
   const [title, setTitle] = useState(sessionStorage.getItem('title'));
-  const [imgBase64, setImgBase64] = useState('./images/1.jpg');
+  const [imgBase64, setImgBase64] = useState('./images/mmmm.jpg');
   const [imgFile, setImgFile] = useState(null);
-  const [imgBase, setImgBase] = useState('./images/1.webp');
+  const [imgBase, setImgBase] = useState('./images/mmmmmm.jpg');
   const [imgFile1, setImgFile1] = useState(null);
   const [songList, setSongList] = useState([]);
   const [nowSong, setNowSong] = useState('');
