@@ -348,12 +348,16 @@ export const DomainContent = styled.div`
 
 export const TabWrapper = styled.div`
   height: 700px;
+  background: black;
+  opacity: 0.75;
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 1.5rem;
+  background: black;
+  opacity: 0.75;
 
   @media screen and (max-width: 1400px) {
     display: flex;
