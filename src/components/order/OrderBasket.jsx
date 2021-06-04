@@ -13,7 +13,7 @@ const BasketWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80vh;
+  height: 75vh;
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
   padding: 0px 20px 0px 20px;
   &:hover {
@@ -92,7 +92,7 @@ const BasketOrder = styled.div`
 `;
 
 const BasketPrice = styled.div`
-  margin-top: 20px;
+  margin-top: 50px;
   height: 50%;
   .price {
     display: flex;
@@ -111,7 +111,7 @@ const PriceBtn = styled.button`
   border-radius: 4px;
   width: 460px;
   height: 42px;
-  margin: 120px 0px 20px 0px;
+  margin: 100px 0px 20px 0px;
   background-color: #03154e;
   outline: 0;
   color: #fff;
