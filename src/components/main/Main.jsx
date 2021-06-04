@@ -35,7 +35,7 @@ function Main() {
     ['./images/19.png'],
     ['./images/23.jpg'],
     ['./images/21.jpg'],
-    ['./images/25.png'],
+    ['./images/28.jpg'],
     ['./images/22.png'],
     ['./images/888.jpg'],
   ];
@@ -230,7 +230,7 @@ function Main() {
                 <div className="card">
                   <img src="./images/recustom.gif" alt="" />
                 </div>
-                <div className="text">나만의 LP를 제작 해보세요</div>
+                <div className="text">나만의 LP를 제작하세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -247,7 +247,7 @@ function Main() {
                 <div className="card">
                   <img src="./images/reMypage.gif" alt="" />
                 </div>
-                <div className="text1">나만의 LP 컬렉션을 확인 해보세요</div>
+                <div className="text1">제작한 LP를 확인하세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -264,7 +264,7 @@ function Main() {
                 <div className="card">
                   <img src="./images/reSharing.gif" alt="" />
                 </div>
-                <div className="text1">내가 만든 LP를 공유하세요</div>
+                <div className="text1">당신의 LP를 공유하세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -281,7 +281,7 @@ function Main() {
                 <div className="card">
                   <img src="./images/reOrder.gif" alt="" />
                 </div>
-                <div className="text1">내가 만든 LP를 주문하세요</div>
+                <div className="text1">그리고 만나보세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -310,7 +310,7 @@ function Main() {
                       className="share"
                       onClick={() => history.push('/sharing')}
                     >
-                      공유 페이지
+                      공유 LP 둘러보기
                     </div>
                   </div>
                 </div>

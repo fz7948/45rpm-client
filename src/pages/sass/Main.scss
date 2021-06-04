@@ -135,6 +135,7 @@ body {
                         transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                         transform: rotate(90deg);
                         .text {
+                            font-family: 'Do Hyeon', sans-serif;
                             position: absolute;
                             top: 50%;
                             left: 52%;
@@ -162,6 +163,7 @@ body {
                             }
                         }
                         .text1 {
+                            font-family: 'Do Hyeon', sans-serif;
                             position: absolute;
                             top: 50%;
                             left: 50%;
@@ -281,7 +283,7 @@ body {
                                 .start,
                                 .share {
                                     cursor: pointer;
-                                    width: calc(11vw + 6px);
+                                    width: calc(13vw + 6px);
                                     height: calc(3vw + 6px);
                                     color: #000;
                                     background-color: #fff;
@@ -291,7 +293,7 @@ body {
                                     align-items: center;
                                     justify-content: center;
                                     text-transform: uppercase;
-                                    font-family: 'Jua', sans-serif;
+                                    font-family: 'Do Hyeon', sans-serif;
                                     font-size: 30px;
                                      ::after {
                                         content: attr(alt);
@@ -405,6 +407,7 @@ body {
                 margin-right: 1rem;
                 margin-bottom: 2.5rem;
                 button {
+                    font-weight: bold;
                     display: flex;
                     align-items: center;
                     &:hover {
@@ -416,7 +419,6 @@ body {
                 background: transparent;
                 color: lightgray;
                 height: 60px;
-                font-family: 'Jua', sans-serif;
                 font-size: 2.5rem;
                 padding: 0 4rem;
                 cursor: pointer;
