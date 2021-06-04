@@ -32,13 +32,13 @@ const Sidebar = [
   },
   {
     title: '주문 하기',
-    path: '/orderPage',
+    path: '/order',
     icon: <AiIcons.AiOutlineShoppingCart />,
     cName: 'nav-text',
   },
   {
     title: '문의 하기',
-    path: '/inquiryPage',
+    path: '/inquiry',
     icon: <BsIcons.BsQuestionCircle />,
     cName: 'nav-text',
   },

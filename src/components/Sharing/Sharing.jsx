@@ -32,7 +32,6 @@ const Sharing = () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
       .then((response) => {
-        console.log('d', response);
         setSharedData(response.data.data);
       });
   }, []);
@@ -56,9 +55,11 @@ const Sharing = () => {
   return (
     <Container style={sectionStyle}>
       <TitleWrapper>
-        <H1Title>Creative LP Collection</H1Title>
+        <H1Title>
+          Keep your Music <p>On your space</p>
+        </H1Title>
         <SubTitle>
-          2003명의 회원이 45RPM의 커스텀 LP를 소유하고 있습니다
+          12533명의 회원이 45RPM의 커스텀 LP를 소유하고 있습니다
         </SubTitle>
       </TitleWrapper>
       <ContentWrapper>
@@ -88,7 +89,7 @@ const Sharing = () => {
       </ContentWrapper>
 
       <ContinueBtn>
-        <Button onClick={() => history.push('/customPage')}>계속 만들기</Button>
+        <Button onClick={() => history.push('/custom')}>계속 만들기</Button>
       </ContinueBtn>
     </Container>
   );

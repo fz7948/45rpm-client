@@ -126,7 +126,7 @@ body {
                         position: absolute;
                         flex: 1;
                         top: 15%;
-                        left: 38%;
+                        left: 31%;
                         transform: translate(-50%, -50%);
                         width: inherit;
                         height: inherit;
@@ -135,45 +135,59 @@ body {
                         transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                         transform: rotate(90deg);
                         .text {
+                            font-family: 'Do Hyeon', sans-serif;
                             position: absolute;
                             top: 50%;
-                            left: -2%;
+                            left: 52%;
                             font-size: 45px;
+                            width: 600px;
+                            text-align: center;
                             color: #fff;
                             transform: rotate(270deg);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             animation: fadeIn 2s ease-out;
                             @media #{$small} {
                                 top: 55%;
-                                left: -25%;
+                                left: 60%;
+                                width: 400px;
+                                text-align: center;
                                 font-size: 30px;
                                 color: #fff;
                             }
                             @media screen and (min-width: 1500px) and (max-width: 1800px) {
                                 top: 45%;
-                                left: -13%;
+                                left: 55%;
                                 font-size: 40px;
+                                width: 600px;
+                                text-align: center;
                             }
                         }
                         .text1 {
+                            font-family: 'Do Hyeon', sans-serif;
                             position: absolute;
                             top: 50%;
-                            left: -8%;
+                            left: 50%;
                             font-size: 45px;
+                            width: 650px;
+                            text-align: center;
                             color: #fff;
                             transform: rotate(270deg);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             animation: fadeIn 2s ease-out;
                             @media #{$small} {
                                 top: 55%;
-                                left: -35%;
+                                left: 50%;
+                                width: 450px;
+                                text-align: center;
                                 font-size: 30px;
                                 color: #fff;
                             }
                             @media screen and (min-width: 1500px) and (max-width: 1800px) {
                                 top: 45%;
-                                left: -21%;
+                                left: 55%;
                                 font-size: 40px;
+                                width: 600px;
+                                text-align: center;
                             }
                         }
                         .textWrapper {
@@ -182,7 +196,7 @@ body {
                             justify-content: center;
                             align-items: center;
                             transform: rotate(270deg);
-                            width: 1300px;
+                            width: 1200px;
                             height: 500px;
                             background: transparent;
                             @media #{$small} {
@@ -203,6 +217,7 @@ body {
                                 border-radius: 20px;
                                 width: 700px;
                                 height: 400px;
+                                right: 30%;
                                 transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                                 animation: fadeIn 2s ease-out;
                                 p {
@@ -212,6 +227,7 @@ body {
                                     width: 300px;
                                     height: 200px;
                                     font-size: 33px;
+                                    margin-right: 1rem;
                                 }
                                 @media screen and (min-width: 1500px) and (max-width: 1800px) {
                                     font-size: 60px;
@@ -267,7 +283,7 @@ body {
                                 .start,
                                 .share {
                                     cursor: pointer;
-                                    width: calc(11vw + 6px);
+                                    width: calc(13vw + 6px);
                                     height: calc(3vw + 6px);
                                     color: #000;
                                     background-color: #fff;
@@ -277,7 +293,7 @@ body {
                                     align-items: center;
                                     justify-content: center;
                                     text-transform: uppercase;
-                                    font-family: 'Jua', sans-serif;
+                                    font-family: 'Do Hyeon', sans-serif;
                                     font-size: 30px;
                                      ::after {
                                         content: attr(alt);
@@ -306,7 +322,6 @@ body {
                         }
                         @media #{$small} {
                             top: 25%;
-                            left: 12%;
                             width: 450px;
                             height: 350px;
                             transform: translate(-50%, -50%);
@@ -314,6 +329,7 @@ body {
                             padding: 2rem;
                         }
                         &.active {
+                            left: 45%;
                             visibility: visible;
                             opacity: 1;
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -334,11 +350,12 @@ body {
                                 @media #{$small} {
                                     width: 450px;
                                     height: 350px;
+                                    left: 30%;
                                 }
                                 img {
                                     border-radius: 10px;
-                                    width: 1100px;
-                                    height: 600px;
+                                    width: 800px;
+                                    height: 450px;
                                     box-shadow: 1px 1px 15px rgba(0, 0, 1, 1);
                                     animation: fadeIn 2s ease-in-out;
                                     opacity: 1;
@@ -350,16 +367,12 @@ body {
                                     @media #{$small} {
                                         width: 450px;
                                         height: 350px;
-                                        top: 10%;
-                                        left: -10%;
                                     }
                                 }
                             }
                             @media #{$small} {
-                                .disk {
-                                    left: 35%;
-                                    transition-delay: 0.5s;
-                                }
+                                top: 25%;
+                                left: 12%;
                             }
                         }
                     }
@@ -394,6 +407,7 @@ body {
                 margin-right: 1rem;
                 margin-bottom: 2.5rem;
                 button {
+                    font-weight: bold;
                     display: flex;
                     align-items: center;
                     &:hover {
@@ -405,7 +419,6 @@ body {
                 background: transparent;
                 color: lightgray;
                 height: 60px;
-                font-family: 'Jua', sans-serif;
                 font-size: 2.5rem;
                 padding: 0 4rem;
                 cursor: pointer;

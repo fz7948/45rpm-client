@@ -363,7 +363,7 @@ const View = ({ view }) => {
             </InquiryRow>
           </InquiryCollection>
           <ButtonWrapper>
-            <ButtonWrap onClick={() => history.push('/2')}>
+            <ButtonWrap onClick={() => history.push('/inquiry')}>
               목록으로 돌아가기
             </ButtonWrap>
             <ButtonWrap onClick={detailReplyHandler}> 답변하기 </ButtonWrap>
@@ -441,7 +441,7 @@ const View = ({ view }) => {
             )}
           </InquiryCollection>
           <ButtonWrapper>
-            <ButtonWrap onClick={() => history.push('/2')}>
+            <ButtonWrap onClick={() => history.push('/inquiry')}>
               목록으로 돌아가기
             </ButtonWrap>
             <ButtonWrap onClick={detailUpdateHandler}> 수정하기 </ButtonWrap>
