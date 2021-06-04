@@ -33,12 +33,12 @@ function App() {
           {isLogin ? <Sidebar /> : <Header />}
           <Switch>
             <Route component={MainPage} path="/" exact />
-            <Route component={CustomPage} path="/customPage" />
+            <Route component={CustomPage} path="/custom" />
             <Route component={InquiryView} exact path="/inquiryView/:id" />
-            <Route component={InquiriesPage} path="/inquiryPage" />
+            <Route component={InquiriesPage} path="/inquiry" />
             <Route component={MyPage} path="/myPage" />
-            <Route component={SharingPage} path="/sharingPage" />
-            <Route component={OrderPage} path="/orderPage" />
+            <Route component={SharingPage} path="/sharing" />
+            <Route component={OrderPage} path="/order" />
           </Switch>
         </Router>
       )}
