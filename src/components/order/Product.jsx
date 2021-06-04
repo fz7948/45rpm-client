@@ -15,13 +15,16 @@ const ProductWrapper = styled.div`
 const ProductName = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
-  padding: 5px 0px;
+  padding: 10px 0px;
   font-size: 18px;
   height: 50%;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
   .small {
-    padding-bottom: 14px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     font-size: 14px;
   }
 `;
@@ -47,6 +50,14 @@ const ProductBtn = styled.button`
     outline: 0;
     color: #fff;
     transition: all ease 0.2s;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 20px;
+    margin-top: 5px;
   }
 `;
 

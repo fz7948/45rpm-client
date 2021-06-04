@@ -13,7 +13,7 @@ const BasketWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 80vh;
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
   padding: 0px 20px 0px 20px;
   &:hover {
