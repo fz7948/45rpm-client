@@ -109,6 +109,7 @@ const Button = styled.button`
 
 const InquiryIntro = styled.div`
   font-size: 2rem;
+  padding-bottom: 3px;
   background: #e8e8e8;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 700;
@@ -130,6 +131,8 @@ const Inquires = () => {
       questionList: question.questionList,
       admin: user.admin,
     }));
+
+
 
   useEffect(() => {
     dispatch(questionListReq(token));

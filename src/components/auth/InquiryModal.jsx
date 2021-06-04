@@ -79,7 +79,7 @@ const InquiryCloseBtn = styled.button`
   }
   @media screen and (max-width: 768px) {
     top: 1rem;
-    left: 23rem;
+    left: 33rem;
   }
 `;
 
@@ -114,6 +114,9 @@ const InquirySubmitBtn = styled.button`
   &:hover {
     background-color: #03154e;
     transition: all ease 0.3s;
+  }
+  @media screen and (max-width: 768px) {
+    width: 24.5rem;
   }
 `;
 
@@ -207,6 +210,7 @@ const InquiryModal = ({ open, close, onSubmitHand }) => {
                       type="text"
                       name="title"
                       onChange={getValue}
+                      required
                     />
                   </li>
                   <li>

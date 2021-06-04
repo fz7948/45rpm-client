@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -17,7 +17,6 @@ import {
   InnerDisk,
   Img1,
 } from '../common/SharingStyle';
-
 const Sharing = () => {
   const history = useHistory();
   const [sharedData, setSharedData] = useState([]);
@@ -33,7 +32,9 @@ const Sharing = () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
       .then((response) => {
+
         setSharedData(response.data.data);
+
       });
   }, []);
 
@@ -64,7 +65,7 @@ const Sharing = () => {
       <ContentWrapper>
         {sharedData.map((el) => {
           return (
-            <CdCaseContent key={el.title} slides={el}>
+            <CdCaseContent key={el._id} slides={el}>
               <CoverImg>
                 <Img
                   src={`${process.env.REACT_APP_SERVER_URI}/${el.albumPic}`}
@@ -86,6 +87,7 @@ const Sharing = () => {
           );
         })}
       </ContentWrapper>
+
       <ContinueBtn>
         <Button onClick={() => history.push('/customPage')}>계속 만들기</Button>
       </ContinueBtn>
