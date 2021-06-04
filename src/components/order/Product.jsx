@@ -1,16 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const ProductWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-  .item {
-    border: none;
-    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
-  }
-`;
+import palette from '../../lib/styles/palette';
 
 const ProductName = styled.div`
   display: flex;
@@ -40,12 +30,12 @@ const ProductBtn = styled.button`
   height: 34px;
   margin: 15px 15px 0px 15px;
   background-color: #fff;
-  border: 1px solid #03154e;
+  border: 1px solid ${palette.mainHover};
   outline: 0;
   color: #03154e;
   &:hover {
     cursor: pointer;
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     border: 0;
     outline: 0;
     color: #fff;
@@ -106,7 +96,6 @@ const OrderImg = styled.img`
 `;
 
 const Product = ({ product, onAdd }) => {
-  console.log('??', product);
   return (
     <>
       <div>

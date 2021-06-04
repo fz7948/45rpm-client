@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { alertOrderModal } from '../../modules/modal';
 import { useDispatch } from 'react-redux';
+import palette from '../../lib/styles/palette';
 
 const BasketWrapper = styled.div`
   position: fixed;
@@ -112,7 +113,7 @@ const PriceBtn = styled.button`
   width: 460px;
   height: 42px;
   margin: 100px 0px 20px 0px;
-  background-color: #03154e;
+  background-color: ${palette.mainHover};
   outline: 0;
   color: #fff;
 `;
@@ -153,7 +154,9 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
                 {item.qty}
                 <button onClick={() => onRemove(item)}>-</button>
               </div>
-              <div className="small">{itemsPrice} 원</div>
+              <div className="small">
+                {10000 + item.songList.length * 2000} 원
+              </div>
             </BasketOrder>
           ))}
         </BasketOrderList>

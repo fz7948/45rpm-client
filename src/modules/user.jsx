@@ -57,7 +57,6 @@ export const checkUser = (ssID, token) => async (dispatch) => {
   dispatch({ type: CHECK });
   try {
     const res = await authAPI.check(ssID);
-    console.log('세션정보!', res);
     const { id, username, email, admin } = res.data;
     dispatch({
       type: CHECK_SUCCESS,
