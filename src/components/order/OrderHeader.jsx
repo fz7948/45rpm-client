@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HiShoppingCart } from 'react-icons/hi';
 
 const HeaderTitle = styled.div`
+  margin-top: 20px;
   font-size: 30px;
   width: 90%;
   display: flex;
@@ -46,7 +47,7 @@ const OrderHeader = ({ countCartItems }) => {
       <HeaderTitle>
         <div>나만의 커스텀을 직접 만나보세요</div>
         <div className="small">
-          아직 연결된 주문제작 사이트가 없어 준비중인 서비스입니다
+          직접 만든 커스텀 LP를 저렴한 가격으로 만나보세요 !
         </div>
       </HeaderTitle>
       <HeaderCart>

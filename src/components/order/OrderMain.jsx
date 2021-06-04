@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Product from './Product';
 import { alertOrderModal } from '../../modules/modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { ContentWrapper } from '../../components/common/SharingStyle';
 
 const MainOrderList = styled.div`
   height: 10vh;
@@ -15,6 +17,10 @@ const MainOrderList = styled.div`
   color: #939393;
   cursor: pointer;
   transform: rotate(-90deg);
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+  }
+  @media screen and (max-width: 1000px) {
+  }
 `;
 
 const MainOrderUnList = styled.div`
@@ -31,17 +37,6 @@ const MainOrderUnList = styled.div`
   &:hover {
     color: #e0dede;
   }
-`;
-
-const MainReadyList = styled.div`
-  height: 90vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-row-gap: 2rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
 `;
 
 const Base = styled.div`
@@ -65,6 +60,12 @@ const Base = styled.div`
     position: absolute;
     top: -35px;
     width: 0;
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1350px) {
+    display: none;
+  }
+  @media screen and (max-width: 1000px) {
+    display: none;
   }
 `;
 
@@ -91,34 +92,61 @@ const UnBase = styled.div`
     top: -35px;
     width: 0;
   }
+  @media screen and (min-width: 1000px) and (max-width: 1350px) {
+    display: none;
+  }
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const OrderMain = ({ products, onAdd }) => {
   const dispatch = useDispatch();
+  const { token } = useSelector(({ user }) => ({
+    token: user.token,
+  }));
+
+  const [customData, setCustomData] = useState([]);
 
   const orderHandler = () => {
     dispatch(alertOrderModal());
   };
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`${process.env.REACT_APP_SERVER_URI}/customs/my-customs`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+            withCredential: true,
+          },
+        })
+        .then((response) => {
+          setCustomData(response.data.data);
+        });
+    }
+  }, [token]);
+
   return (
     <>
       <Base>
         <MainOrderList style={{ color: 'white' }}>01 주문서 작성</MainOrderList>
       </Base>
-      <UnBase>
+      <UnBase className="twoItem">
         <MainOrderUnList onClick={orderHandler}>02 결제완료</MainOrderUnList>
       </UnBase>
-      <UnBase>
+      <UnBase className="threeItem">
         <MainOrderUnList onClick={orderHandler}>03 주문완료</MainOrderUnList>
       </UnBase>
-      <UnBase>
+      <UnBase className="fourItem">
         <MainOrderUnList onClick={orderHandler}>04 배송확인</MainOrderUnList>
       </UnBase>
 
-      <MainReadyList>
-        {products.map((product) => (
-          <Product key={product.id} product={product} onAdd={onAdd} />
+      <ContentWrapper>
+        {customData.map((product) => (
+          <Product key={product.id} product={product} onAdd={onAdd}></Product>
         ))}
-      </MainReadyList>
+      </ContentWrapper>
     </>
   );
 };

@@ -84,8 +84,14 @@ export const ContentWrapper = styled.div`
 export const CdCaseContent = styled.div`
   display: flex;
   width: 70%;
-  height: 100%;
+  height: 72%;
   position: relative;
+  .item {
+    margin-left: 10px;
+    border: none;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    height: 50%;
+  }
 `;
 
 export const CoverImg = styled.div`

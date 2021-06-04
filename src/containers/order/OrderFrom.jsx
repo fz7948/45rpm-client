@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import OrderMain from '../../components/order/OrderMain';
 import OrderBasket from '../../components/order/OrderBasket';
 import OrderHeader from '../../components/order/OrderHeader';
-import orderData from '../../components/order/orderData';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../modules/modal';
@@ -44,28 +43,29 @@ const OrderHeaderWrapper = styled.div`
 const OrderMainWrapper = styled.div`
   width: 80%;
   height: 100vh;
+  z-index: 1;
 `;
 
 const OrderBasketWrapper = styled.div`
   width: 20%;
   height: 100vh;
+  z-index: 10;
 `;
 
 const OrderForm = () => {
   const dispatch = useDispatch();
-  const { isType, alertCheck } = useSelector(({ modal, auth }) => ({
+  const { isType, alertCheck } = useSelector(({ modal }) => ({
     isType: modal.isType,
     alertCheck: modal.alertCheck,
   }));
-  const { products } = orderData;
   const [cartItems, setCartItems] = useState([]);
 
   const onAdd = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
+    const exist = cartItems.find((x) => x._id === product._id);
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x,
+          x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x,
         ),
       );
     } else {
@@ -74,13 +74,13 @@ const OrderForm = () => {
   };
 
   const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
+    const exist = cartItems.find((x) => x._id === product._id);
     if (exist.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
+      setCartItems(cartItems.filter((x) => x._id !== product._id));
     } else {
       setCartItems(
         cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x,
+          x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x,
         ),
       );
     }
@@ -105,7 +105,7 @@ const OrderForm = () => {
         </OrderHeaderWrapper>
         <OrderItem>
           <OrderMainWrapper>
-            <OrderMain onAdd={onAdd} products={products} />
+            <OrderMain onAdd={onAdd} />
           </OrderMainWrapper>
           <OrderBasketWrapper>
             <OrderBasket

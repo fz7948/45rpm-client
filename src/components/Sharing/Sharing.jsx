@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -17,7 +17,6 @@ import {
   InnerDisk,
   Img1,
 } from '../common/SharingStyle';
-
 const Sharing = () => {
   const history = useHistory();
   const [sharedData, setSharedData] = useState([]);
@@ -33,9 +32,9 @@ const Sharing = () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
       .then((response) => {
-        console.log(response);
+        console.log('이게뭐', response);
         setSharedData(response.data.data);
-        console.log(sharedData);
+        console.log('들어가는', sharedData);
       });
   }, []);
 
@@ -63,10 +62,13 @@ const Sharing = () => {
           3억 명의 회원이 45RPM의 커스텀 LP를 소유하고 있습니다
         </SubTitle>
       </TitleWrapper>
+      <ContinueBtn>
+        <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
+      </ContinueBtn>
       <ContentWrapper>
         {sharedData.map((el) => {
           return (
-            <CdCaseContent key={el.title} slides={el}>
+            <CdCaseContent key={el._id} slides={el}>
               <CoverImg>
                 <Img
                   src={`${process.env.REACT_APP_SERVER_URI}/${el.albumPic}`}
@@ -88,9 +90,6 @@ const Sharing = () => {
           );
         })}
       </ContentWrapper>
-      <ContinueBtn>
-        <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
-      </ContinueBtn>
     </Container>
   );
 };
