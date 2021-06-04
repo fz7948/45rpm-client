@@ -36,7 +36,7 @@ function Main() {
     ['./images/23.jpg'],
     ['./images/4.jpg'],
     ['./images/25.jpg'],
-    ['./images/21.jpg'],
+    ['./images/22.jpg'],
     ['./images/888.jpg'],
   ];
 
@@ -110,7 +110,7 @@ function Main() {
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
     wrapperContent.style.backgroundPosition = 'center center';
-    wrapperContent.style.transition = 'all linear 1.5s';
+    wrapperContent.style.transition = 'all linear .8s';
 
     cdCase[5].classList.add('active');
     movingImg[5].classList.add('active');
@@ -130,7 +130,7 @@ function Main() {
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
     wrapperContent.style.backgroundPosition = 'center center';
-    wrapperContent.style.transition = 'all linear 1.5s';
+    wrapperContent.style.transition = 'all linear .8s';
 
     for (var i = 0; i < totalNum; i++) {
       if (pageNum === i) {
