@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import './sass/Loading.scss';
 
 const Container = styled.div`
   height: 100vh;
@@ -12,6 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #1c2629;
 `;
 
 const H1El = styled.h1`
@@ -43,15 +45,15 @@ const common = css`
 
   @keyframes drop {
     10% {
-      opacity: 0.5;
+      opacity: 0.1;
     }
     20% {
-      opacity: 1;
+      opacity: 0.2;
       top: 1.58em;
       transform: rotateX(-360deg);
     }
     80% {
-      opacity: 1;
+      opacity: 0.3;
       top: 1.58em;
       transform: rotateX(-360deg);
     }
@@ -100,10 +102,26 @@ const Span7 = styled.span`
   animation-delay: 1.8s;
   ${common}
 `;
+const Span8 = styled.span`
+  animation: drop 1.2s ease-in-out infinite;
+  animation-delay: 1.9s;
+  ${common}
+`;
+const Span9 = styled.span`
+  animation: drop 1.2s ease-in-out infinite;
+  animation-delay: 2s;
+  ${common}
+`;
 
 const LoadingPage = () => {
   return (
     <Container>
+      <div class="loader">
+        <div class="dot">
+          <br></br>45RPM
+        </div>
+        <div class="dot"></div>
+      </div>
       <H1El>
         <Span1>L</Span1>
         <Span2>O</Span2>
@@ -112,8 +130,9 @@ const LoadingPage = () => {
         <Span5>I</Span5>
         <Span6>N</Span6>
         <Span7>G</Span7>
+        <Span8>.</Span8>
+        <Span9>.</Span9>
       </H1El>
-      <Img />
     </Container>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ViewTable from './ViewTable';
 import { useDispatch, useSelector } from 'react-redux';
-import { questionListReq } from '../../modules/question';
 
 const Container = styled.div`
   display: flex;
@@ -58,7 +57,6 @@ const H2Title = styled.div`
 `;
 
 const InquiryView = ({ match }) => {
-  const dispatch = useDispatch();
   const { questionList, token } = useSelector(({ question, user }) => ({
     questionList: question.questionList,
     token: user.token,
@@ -66,17 +64,6 @@ const InquiryView = ({ match }) => {
 
   const [data, setData] = useState({ data: [{}] });
   const { id } = match.params;
-
-  // useEffect(() => {
-  // setTimeout(questionHandler, 1000);
-  //   if (questionList) {
-  //     console.log('dd', questionList);
-  //     setData(questionList.data);
-
-  //     console.log('<D<F>D<D>F</D></F>', questionList);
-  //     console.log('상세페이지??', questionList.data);
-  //   }
-  // }, [token, admin]);
 
   const filterData = (id) => {
     if (!questionList || !questionList.data) return null;

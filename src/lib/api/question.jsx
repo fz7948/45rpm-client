@@ -16,7 +16,6 @@ export const questionAdd = async ({ title, contents, category, token }) => {
     },
     { withCredentials: true },
   );
-  console.log('데이터', response.data.data);
   return response.data.data;
 };
 
@@ -37,7 +36,6 @@ export const questionUpdate = async ({
     },
     { withCredentials: true },
   );
-  console.log('뭐니', response.data);
   return response.data;
 };
 
@@ -57,7 +55,6 @@ export const questionList = async ({ token }) => {
 };
 
 export const questionDelete = async ({ token, questionId }) => {
-  console.log('토큰?', token);
   const response = await axios.delete(
     `${process.env.REACT_APP_SERVER_URI}/user/question/delete`,
     {
@@ -69,7 +66,6 @@ export const questionDelete = async ({ token, questionId }) => {
       withCredentials: true,
     },
   );
-  console.log('delete 요청 확인', response.data);
   return response.data;
 };
 
@@ -94,7 +90,6 @@ export const questionReply = async ({
     },
     { withCredentials: true },
   );
-  console.log('reply 요청 확인', response.data);
   return response.data;
 };
 
@@ -119,6 +114,5 @@ export const questionReplyUpdate = async ({
     },
     { withCredentials: true },
   );
-  console.log('replyUpdate 요청 확인', response.data);
   return response.data;
 };

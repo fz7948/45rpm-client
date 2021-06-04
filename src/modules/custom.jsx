@@ -5,7 +5,6 @@ const CUSTOM_SUCCESS = 'CUSTOM_SUCCESS';
 const CUSTOM_FAILURE = 'CUSTOM_FAILURE';
 
 export const customAddReq = (token, formData) => async (dispatch) => {
-  console.log('디스패치 토큰', token);
   dispatch({ type: CUSTOM });
   try {
     const customAddRes = await customAPI.customAdd({ token, formData });

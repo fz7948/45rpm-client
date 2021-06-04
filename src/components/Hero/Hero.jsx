@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import { AiOutlineLink, AiOutlineDisconnect } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   HeroSection,
   HeroWrapper,
@@ -131,7 +131,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
                         }}
                         onClick={() => shareStateHandler(slide._id)}
                       >
-                        <AiOutlineLink
+                        <AiOutlineDisconnect
                           style={{ width: '100%', cursor: 'pointer' }}
                         />
                       </span>
@@ -145,7 +145,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
                         }}
                         onClick={() => shareStateHandler(slide._id)}
                       >
-                        <AiOutlineDisconnect
+                        <AiOutlineLink
                           style={{ width: '100%', cursor: 'pointer' }}
                         />
                       </span>

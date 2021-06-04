@@ -20,28 +20,25 @@ function App() {
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 500);
+    setTimeout(() => setSpinner(false), 3500);
   }, []);
 
   return (
     <>
       <GlobalStyles />
-
       {spinner ? (
         <LoadingPage />
       ) : (
         <Router>
           {isLogin ? <Sidebar /> : <Header />}
-          {/* <Header />
-          <Sidebar /> */}
           <Switch>
             <Route component={MainPage} path="/" exact />
-            <Route component={CustomPage} path="/1" />
+            <Route component={CustomPage} path="/customPage" />
             <Route component={InquiryView} exact path="/inquiryView/:id" />
-            <Route component={InquiriesPage} path="/2" />
-            <Route component={MyPage} path="/mypage" />
-            <Route component={SharingPage} path="/3" />
-            <Route component={OrderPage} path="/4" />
+            <Route component={InquiriesPage} path="/inquiryPage" />
+            <Route component={MyPage} path="/myPage" />
+            <Route component={SharingPage} path="/sharingPage" />
+            <Route component={OrderPage} path="/orderPage" />
           </Switch>
         </Router>
       )}
