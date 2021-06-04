@@ -13,6 +13,7 @@ import {
   alertAnswerReplyModal,
 } from '../../modules/modal';
 import AlertModal from '../../components/common/AlertModal';
+import palette from '../../lib/styles/palette';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const InquiryWrapper = styled.div`
   margin: 0 auto;
   margin-bottom: 2.5rem;
   padding-top: 3rem;
-  border: 1px solid #b5b9b9;
+  border: 1px solid ${palette.mainBorder};
   background-color: #fafafa;
 
   @media screen and (max-width: 768px) {
@@ -56,7 +57,7 @@ const InquiryRow = styled.div`
   width: 65%;
   padding-bottom: 0.5rem;
   background-color: white;
-  border: 1px solid #b5b9b9;
+  border: 1px solid ${palette.mainBorder};
 
   label {
     &:nth-child(1) {
@@ -64,7 +65,7 @@ const InquiryRow = styled.div`
       height: 100%;
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 700;
-      color: #4c4c4c;
+      color: ${palette.sideBack};
       padding-top: 0.4rem;
       margin-right: 2rem;
       background: #495263;
@@ -81,7 +82,7 @@ const InquiryRow = styled.div`
       ${(props) =>
         props.replyConfirm &&
         css`
-          background-color: #f83d5c;
+          background-color: ${palette.mainRed};
         `}
     }
   }
@@ -119,11 +120,11 @@ const common = css`
   border: 0;
   outline: 0;
   margin: 5rem 2rem 1rem 2rem;
-  background-color: #03154e;
+  background-color: ${palette.mainHover};
   color: #e1eaf8;
   font-size: 1rem;
   &:hover {
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     transition: all ease 0.3s;
     color: gray;
   }

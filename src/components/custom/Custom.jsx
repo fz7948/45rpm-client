@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ChromePicker } from 'react-color';
 import 'semantic-ui-css/semantic.min.css';
@@ -54,6 +54,15 @@ const Custom = () => {
   const [imgFile1, setImgFile1] = useState(null);
   const [songList, setSongList] = useState([]);
   const [nowSong, setNowSong] = useState('');
+
+  const songRef = useRef(null);
+
+  const handleSongList = (e) => {
+    if (e.key === 'Enter') {
+      songRef.current.focus();
+      handleClick();
+    }
+  };
 
   useEffect(() => {
     for (let i = 0; i <= sessionStorage.length; i++) {
@@ -300,6 +309,8 @@ const Custom = () => {
               <SongListTextInput
                 placeholder={'추가하고 싶은 음악을 입력하세요'}
                 onChange={currentSong}
+                ref={songRef}
+                onKeyPress={handleSongList}
               />
               <SongListBtn onClick={handleClick}>+</SongListBtn>
             </div>
@@ -322,6 +333,8 @@ const Custom = () => {
                 placeholder={'곡은 5개까지만 등록 가능합니다'}
                 value={nowSong}
                 onChange={currentSong}
+                ref={songRef}
+                onKeyPress={handleSongList}
               />
               <SongListBtn onClick={handleClick}>+</SongListBtn>
             </div>

@@ -10,6 +10,7 @@ import {
 } from '../../modules/auth';
 import { alertRegisterModal } from '../../modules/modal';
 import { GrFormClose } from 'react-icons/gr';
+import palette from '../../lib/styles/palette';
 
 const RegisterWrapper = styled.div`
   z-index: 2;
@@ -39,7 +40,7 @@ const RegisterWrapper = styled.div`
     font-weight: 500;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    color: #f73d5c;
+    color: ${palette.mainRed};
     word-break: keep-all;
   }
 `;
@@ -79,7 +80,7 @@ const RegisterCloseBtn = styled.button`
   font-weight: 700;
   font-size: 2.4rem;
   &:hover {
-    color: #f73d5c;
+    color: ${palette.mainRed};
     transition: all ease 0.2s;
   }
 `;
@@ -93,12 +94,12 @@ const RegisterSubmitBtn = styled.button`
   border: 0;
   outline: 0;
   margin-bottom: 2.2rem;
-  background-color: #311788;
+  background-color: ${palette.main};
   color: #fff;
   font-size: 1.1rem;
   font-weight: 400;
   &:hover {
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     transition: all ease 0.3s;
   }
 `;

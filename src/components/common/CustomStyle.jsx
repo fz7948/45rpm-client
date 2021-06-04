@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../lib/styles/palette';
 
 export const Container = styled.div`
   display: flex;
@@ -214,7 +215,6 @@ export const CustomTitle = styled.div`
 `;
 
 export const TextInput = styled.input`
-  type: text;
   font-size: 1.5rem;
   padding: 4rem;
   width: 350px;
@@ -258,12 +258,12 @@ export const SongListBtn = styled.button`
   border: none;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
-  background-color: #4c4c4c;
+  background-color: ${palette.sideBack};
   color: #ddd;
   font-size: 2rem;
   &:hover {
     background-color: #d4d4d4;
-    color: #4c4c4c;
+    color: ${palette.sideBack};
     transition: all ease 0.4s;
   }
   .space {

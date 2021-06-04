@@ -9,6 +9,7 @@ import { logoutUser } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 import { alertLogoutModal } from '../../modules/modal';
 import { resetLoginMsg, resetLogin } from '../../modules/auth';
+import palette from '../../lib/styles/palette';
 
 const NavSidebar = styled.div`
   display: flex;
@@ -50,12 +51,12 @@ const SideLogoutBtn = styled.div`
     height: 40px;
     margin: 0px 15px;
     background-color: #fff;
-    border: 1px solid #03154e;
+    border: 1px solid ${palette.mainHover};
     outline: 0;
-    color: #03154e;
+    color: ${palette.mainHover};
     &:hover {
       cursor: pointer;
-      background-color: #03154e;
+      background-color: ${palette.mainHover};
       border: 0;
       outline: 0;
       color: #fff;
@@ -90,7 +91,7 @@ const SidebarWrapper = styled.div`
     font-size: 30px;
     color: black;
     &:hover {
-      color: #f74848;
+      color: ${palette.mainRed};
       transition: all 0.15s ease-in-out;
     }
   }

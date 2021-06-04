@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { questionListReq } from '../../modules/question';
 import { useDispatch, useSelector } from 'react-redux';
 import { GrFormClose } from 'react-icons/gr';
+import palette from '../../lib/styles/palette';
 
 const InquiryWrapper = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ const InquiryInput = styled.input`
   margin-top: 0.3rem;
   &:focus {
     outline: none;
-    border: 1px solid #f73d5c;
+    border: 1px solid ${palette.mainRed};
     transition: all ease 0.3s;
   }
 `;
@@ -74,7 +75,7 @@ const InquiryCloseBtn = styled.button`
   font-size: 2.1rem;
   cursor: pointer;
   &:hover {
-    color: #f73d5c;
+    color: ${palette.mainRed};
     transition: all ease 0.2s;
   }
   @media screen and (max-width: 768px) {
@@ -106,13 +107,13 @@ const InquirySubmitBtn = styled.button`
   border: 0;
   outline: 0;
   margin: 1.5rem 0rem 0rem 0rem;
-  background-color: #311788;
+  background-color: ${palette.main};
   color: #fff;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     transition: all ease 0.3s;
   }
   @media screen and (max-width: 768px) {

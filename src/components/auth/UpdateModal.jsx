@@ -7,6 +7,7 @@ import { updateReq, resetUpdate } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 import { alertUpdateModal, alertWithdrawalModal } from '../../modules/modal';
 import { GrFormClose } from 'react-icons/gr';
+import palette from '../../lib/styles/palette';
 
 const UpdateWrapper = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ const UpdateWrapper = styled.div`
     font-weight: 500;
     margin-bottom: 2rem;
     margin-top: 0.5rem;
-    color: #f73d5c;
+    color: ${palette.mainRed};
     word-break: keep-all;
   }
 `;
@@ -86,7 +87,7 @@ const UpdateCloseBtn = styled.button`
   font-weight: 700;
   font-size: 2.4rem;
   &:hover {
-    color: #f73d5c;
+    color: ${palette.mainRed};
     transition: all ease 0.2s;
   }
 `;
@@ -99,12 +100,12 @@ const UpdateSubmitBtn = styled.button`
   border: 0;
   outline: 0;
   margin-bottom: 0.7rem;
-  background-color: #311788;
+  background-color: ${palette.main};
   color: #fff;
   font-size: 1.1rem;
   font-weight: 400;
   &:hover {
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     transition: all ease 0.3s;
   }
 `;

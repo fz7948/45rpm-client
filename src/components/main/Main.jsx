@@ -150,14 +150,14 @@ function Main() {
         <AlertModal
           openHandle={alertCheck}
           closeHandle={shutModal}
-          comment={'기본 비밀번호는 카카오 계정의 이메일 주소입니다'}
+          comment={'기본 비밀번호 : 카카오 계정 이메일'}
         ></AlertModal>
       )}
       {isSocial === 'google' && (
         <AlertModal
           openHandle={alertCheck}
           closeHandle={shutModal}
-          comment={'기본 비밀번호는 구글 계정의 이메일 주소입니다'}
+          comment={'기본 비밀번호 : 구글 계정의 이메일'}
         ></AlertModal>
       )}
       {isType === 'alertRegister' && (

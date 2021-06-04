@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { HiShoppingCart } from 'react-icons/hi';
+import palette from '../../lib/styles/palette';
 
 const HeaderTitle = styled.div`
   margin-top: 20px;
@@ -12,7 +13,7 @@ const HeaderTitle = styled.div`
   padding-left: 40px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 700;
-  color: #4c4c4c;
+  color: ${palette.sideBack};
   .small {
     font-size: 15px;
     padding-top: 10px;
@@ -34,7 +35,7 @@ const HeaderCart = styled.div`
 `;
 
 const HeaderBtn = styled.button`
-  background-color: #03154e;
+  background-color: ${palette.mainHover};
   color: white;
   width: 30px;
   height: 20px;
