@@ -228,7 +228,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/customPage.gif" alt="" />
+                  <img src="./images/recustom.gif" alt="" />
                 </div>
                 <div className="text">나만의 LP를 제작 해보세요</div>
               </div>
@@ -245,7 +245,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/myPage2.gif" alt="" />
+                  <img src="./images/reMypage.gif" alt="" />
                 </div>
                 <div className="text1">나만의 LP 컬렉션을 확인 해보세요</div>
               </div>
@@ -262,7 +262,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/sharing.gif" alt="" />
+                  <img src="./images/reSharing.gif" alt="" />
                 </div>
                 <div className="text1">내가 만든 LP를 공유하세요</div>
               </div>
@@ -279,7 +279,7 @@ function Main() {
               </div>
               <div className="movingImg">
                 <div className="card">
-                  <img src="./images/order1.gif" alt="" />
+                  <img src="./images/reOrder.gif" alt="" />
                 </div>
                 <div className="text1">내가 만든 LP를 주문하세요</div>
               </div>
