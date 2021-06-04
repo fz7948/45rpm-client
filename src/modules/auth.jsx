@@ -1,5 +1,4 @@
 import * as authAPI from '../lib/api/auth';
-import { loginKakao } from '../modules/user';
 
 const REGISTER = 'REGISTER';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -27,34 +26,32 @@ const INFORMATION = 'INFORMATION';
 const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
 const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
 
-export const registerReq = (id, email, username, password) => async (
-  dispatch,
-) => {
-  dispatch({ type: REGISTER });
-  try {
-    const registerRes = await authAPI.signup({
-      id,
-      email,
-      username,
-      password,
-    });
-    dispatch({
-      type: REGISTER_SUCCESS,
-      register: registerRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: REGISTER_FAILURE,
-      registerError: error.response.data.message,
-    });
-  }
-};
+export const registerReq =
+  (id, email, username, password) => async (dispatch) => {
+    dispatch({ type: REGISTER });
+    try {
+      const registerRes = await authAPI.signup({
+        id,
+        email,
+        username,
+        password,
+      });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        register: registerRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_FAILURE,
+        registerError: error.response.data.message,
+      });
+    }
+  };
 
 export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
   try {
     const loginRes = await authAPI.login({ id, password });
-    console.log('로그인', loginRes);
     dispatch({
       type: LOGIN_SUCCESS,
       login: loginRes,
@@ -71,10 +68,7 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
   dispatch({ type: KAKAO_LOGIN });
   try {
     const kakaoLoginRes = await authAPI.kakaoLogin(data);
-    console.log('kakao 로그인 Res', kakaoLoginRes);
-
     const token = document.cookie.split('=')[1];
-    console.log('토큰 확인', token);
     const payload = {
       id: kakaoLoginRes.data.id,
       email: kakaoLoginRes.data.email,
@@ -82,7 +76,6 @@ export const kakaoLoginReq = (data) => async (dispatch) => {
       token: token,
     };
     try {
-      console.log('트라이');
       sessionStorage.setItem('id', payload.id);
     } catch (e) {
       console.log('sessionStorage is not working');
@@ -105,8 +98,6 @@ export const googleLoginReq = (data) => async (dispatch) => {
   dispatch({ type: GOOGLE_LOGIN });
   try {
     const googleLoginRes = await authAPI.googleLogin(data);
-    console.log('구글 로그인 res', googleLoginRes);
-
     try {
       sessionStorage.setItem('id', data.email.split('@')[0]);
     } catch (err) {
@@ -126,34 +117,28 @@ export const googleLoginReq = (data) => async (dispatch) => {
   }
 };
 
-export const updateReq = (
-  email,
-  username,
-  oldpassword,
-  newpassword,
-  token,
-) => async (dispatch) => {
-  dispatch({ type: UPDATE });
-  try {
-    console.log('토큰 확인', token);
-    const updateRes = await authAPI.update({
-      email,
-      username,
-      oldpassword,
-      newpassword,
-      token,
-    });
-    dispatch({
-      type: UPDATE_SUCCESS,
-      update: updateRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_FAILURE,
-      updateError: error.response.message,
-    });
-  }
-};
+export const updateReq =
+  (email, username, oldpassword, newpassword, token) => async (dispatch) => {
+    dispatch({ type: UPDATE });
+    try {
+      const updateRes = await authAPI.update({
+        email,
+        username,
+        oldpassword,
+        newpassword,
+        token,
+      });
+      dispatch({
+        type: UPDATE_SUCCESS,
+        update: updateRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_FAILURE,
+        updateError: error.response.message,
+      });
+    }
+  };
 
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });

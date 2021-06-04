@@ -36,7 +36,6 @@ export const loginGoogle = (payload) => ({
 });
 
 export const logoutUser = (token) => async (dispatch) => {
-  console.log('로그아웃되냐', token);
   try {
     const logoutRes = await authAPI.logout(token);
     dispatch({ type: LOGOUT_USER });
@@ -59,7 +58,7 @@ export const checkUser = (ssID, token) => async (dispatch) => {
   try {
     const res = await authAPI.check(ssID);
     console.log('세션정보!', res);
-    const { id, username, email, admin, social } = res.data;
+    const { id, username, email, admin } = res.data;
     dispatch({
       type: CHECK_SUCCESS,
       token,

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { loginKakao, loginGoogle } from '../../modules/user';
-import { BiVideoRecording } from 'react-icons/bi';
-
 import '../../pages/sass/Header.scss';
 import {
   loginModal,
@@ -9,7 +7,7 @@ import {
   closeModal,
   alertOpenModal,
 } from '../../modules/modal';
-import { resetLogin, resetLoginMsg, kakaoLoginReq } from '../../modules/auth';
+import { kakaoLoginReq } from '../../modules/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LoginModal from '../../components/auth/LoginModal';
@@ -18,37 +16,30 @@ import RegisterModal from '../../components/auth/RegisterModal';
 const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { checkModal, isType, login, alertCheck, token, isLogin, isSocial } =
-    useSelector(({ modal, auth, user }) => ({
+  const { checkModal, isType, login, isSocial } = useSelector(
+    ({ modal, auth }) => ({
       checkModal: modal.checkModal,
       isType: modal.isType,
       login: auth.login,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      isLogin: user.isLogin,
       isSocial: auth.isSocial,
-    }));
+    }),
+  );
 
   useEffect(async () => {
     if (login) {
-      console.log('돌아간다');
       const cookie = document.cookie.split('=')[1];
-      console.log('쿠키 확인', cookie);
-
       const payload = {
         id: login.data.id,
         email: login.data.email,
         username: login.data.username,
         token: cookie,
       };
-      console.log(isSocial);
+
       if (isSocial === 'kakao') {
-        console.log('카카오들어옴?');
         dispatch(loginKakao(payload));
         dispatch(alertOpenModal());
       }
       if (isSocial == 'google') {
-        console.log('구글 확인');
         dispatch(loginGoogle(payload));
         dispatch(alertOpenModal());
       }
@@ -112,14 +103,11 @@ const Header = () => {
       // window.location.href = url;
 
       //방법 2
-      console.log('1');
       const oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
-      console.log('2');
       // Create <form> element to submit parameters to OAuth 2.0 endpoint.
       const form = document.createElement('form');
       form.setAttribute('method', 'GET'); // Send as a GET request.
       form.setAttribute('action', oauth2Endpoint);
-      console.log('3');
       // Parameters to pass to OAuth 2.0 endpoint.
       const params = {
         client_id: '889468857969-68v5gvrru6phi5i8454cv48t34k458oj',
@@ -130,8 +118,6 @@ const Header = () => {
         include_granted_scopes: 'true',
         state: 'pass-through value',
       };
-      console.log('4');
-
       // Add form parameters as hidden input values.
       for (var p in params) {
         var input = document.createElement('input');
@@ -140,12 +126,9 @@ const Header = () => {
         input.setAttribute('value', params[p]);
         form.appendChild(input);
       }
-      console.log('5');
       // Add form to page and submit it to open the OAuth 2.0 endpoint.
       document.body.appendChild(form);
       form.submit();
-
-      console.log('6');
     } catch (err) {
       console.error(err);
     }

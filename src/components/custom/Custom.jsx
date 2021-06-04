@@ -121,7 +121,6 @@ const Custom = () => {
 
   const handleChangeColor = (color) => {
     setColor(color.hex);
-    console.log(color.hex);
   };
 
   const handleChangeFile = (e) => {
@@ -159,11 +158,6 @@ const Custom = () => {
 
   const submitHandler = async () => {
     if (!color || !imgFile || !imgFile1 || !title || !songList) {
-      console.log('색깔', color);
-      console.log('이미지', imgFile);
-      console.log('이미지 2', imgFile1);
-      console.log('제목', title);
-      console.log('노래', songList);
       openNoFullDataModal();
       return;
     } else if (!token) {
@@ -179,10 +173,6 @@ const Custom = () => {
       formData.append('title', title);
       formData.append('songList', songList);
 
-      console.log('커스텀 토큰', token);
-      for (let p of formData) {
-        console.log('<<>F>D????D>>', p);
-      }
       await axios.post(
         `${process.env.REACT_APP_SERVER_URI}/customs/add-custom`,
         formData,
@@ -197,7 +187,7 @@ const Custom = () => {
       for (let i = 0; i <= songList.length; i++) {
         sessionStorage.removeItem(`songList${i}`);
       }
-      history.push('/mypage');
+      history.push('/myPage');
     }
   };
 

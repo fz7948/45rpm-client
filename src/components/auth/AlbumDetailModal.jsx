@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ModalBack, ModalBox } from '../common/AlbumModalStyle';
 import styled from 'styled-components';
-import DragDrop from '../DragAndDrop/DragAndDrop';
 import { GrFormClose } from 'react-icons/gr';
 
 const InfoWrapper = styled.div`
@@ -163,8 +162,7 @@ const AlbumDetailModal = ({ open, close, slides, heroListNumber }) => {
         <div className="modal_outsider" onClick={close}></div>
         <ModalBox disappear={!open} album>
           <InfoCloseBtn onClick={close}>
-            {' '}
-            <GrFormClose />{' '}
+            <GrFormClose />
           </InfoCloseBtn>
           <InfoWrapper key={heroListNumber}>
             <>

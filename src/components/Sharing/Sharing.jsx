@@ -33,9 +33,7 @@ const Sharing = () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
       .then((response) => {
-        console.log(response);
         setSharedData(response.data.data);
-        console.log(sharedData);
       });
   }, []);
 
@@ -89,7 +87,7 @@ const Sharing = () => {
         })}
       </ContentWrapper>
       <ContinueBtn>
-        <Button onClick={() => history.push('/1')}>계속 만들기 </Button>
+        <Button onClick={() => history.push('/customPage')}>계속 만들기</Button>
       </ContinueBtn>
     </Container>
   );
