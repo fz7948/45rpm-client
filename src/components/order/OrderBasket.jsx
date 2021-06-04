@@ -153,7 +153,9 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
                 {item.qty}
                 <button onClick={() => onRemove(item)}>-</button>
               </div>
-              <div className="small">{itemsPrice} 원</div>
+              <div className="small">
+                {10000 + item.songList.length * 2000} 원
+              </div>
             </BasketOrder>
           ))}
         </BasketOrderList>

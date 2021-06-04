@@ -54,7 +54,7 @@ const InfoCloseBtn = styled.button`
 `;
 
 const ProducerLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   font-weight: 500;
   margin-bottom: 30px;
   margin-left: 80px;
@@ -65,7 +65,7 @@ const ProducerLi = styled.li`
 `;
 
 const TitleLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   font-weight: 500;
   margin-bottom: 30px;
   margin-left: 80px;
@@ -76,7 +76,7 @@ const TitleLi = styled.li`
 `;
 
 const SongListLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   margin-bottom: 30px;
   margin-left: 80px;
   .fontSize {

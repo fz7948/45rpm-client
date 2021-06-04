@@ -122,17 +122,21 @@ const InquiryIntro = styled.div`
 
 const Inquires = () => {
   const dispatch = useDispatch();
-  const { checkModal, token, questionList, isType, alertCheck, admin } =
-    useSelector(({ modal, user, question }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      questionList: question.questionList,
-      admin: user.admin,
-    }));
-
-
+  const {
+    checkModal,
+    token,
+    questionList,
+    isType,
+    alertCheck,
+    admin,
+  } = useSelector(({ modal, user, question }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    alertCheck: modal.alertCheck,
+    token: user.token,
+    questionList: question.questionList,
+    admin: user.admin,
+  }));
 
   useEffect(() => {
     dispatch(questionListReq(token));

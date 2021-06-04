@@ -32,9 +32,8 @@ const Sharing = () => {
     return await axios
       .get(`${process.env.REACT_APP_SERVER_URI}/customs/shared`)
       .then((response) => {
-
+        console.log('d', response);
         setSharedData(response.data.data);
-
       });
   }, []);
 
