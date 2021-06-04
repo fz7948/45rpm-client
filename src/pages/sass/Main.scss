@@ -137,43 +137,55 @@ body {
                         .text {
                             position: absolute;
                             top: 50%;
-                            left: -2%;
+                            left: 52%;
                             font-size: 45px;
+                            width: 600px;
+                            text-align: center;
                             color: #fff;
                             transform: rotate(270deg);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             animation: fadeIn 2s ease-out;
                             @media #{$small} {
                                 top: 55%;
-                                left: -25%;
+                                left: 60%;
+                                width: 400px;
+                                text-align: center;
                                 font-size: 30px;
                                 color: #fff;
                             }
                             @media screen and (min-width: 1500px) and (max-width: 1800px) {
                                 top: 45%;
-                                left: -13%;
+                                left: 55%;
                                 font-size: 40px;
+                                width: 600px;
+                                text-align: center;
                             }
                         }
                         .text1 {
                             position: absolute;
                             top: 50%;
-                            left: -8%;
+                            left: 50%;
                             font-size: 45px;
+                            width: 650px;
+                            text-align: center;
                             color: #fff;
                             transform: rotate(270deg);
                             transition: left 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                             animation: fadeIn 2s ease-out;
                             @media #{$small} {
                                 top: 55%;
-                                left: -35%;
+                                left: 50%;
+                                width: 450px;
+                                text-align: center;
                                 font-size: 30px;
                                 color: #fff;
                             }
                             @media screen and (min-width: 1500px) and (max-width: 1800px) {
                                 top: 45%;
-                                left: -21%;
+                                left: 55%;
                                 font-size: 40px;
+                                width: 600px;
+                                text-align: center;
                             }
                         }
                         .textWrapper {

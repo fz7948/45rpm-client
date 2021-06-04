@@ -13,7 +13,7 @@ const Sidebar = [
   },
   {
     title: '커스텀 만들기',
-    path: '/customPage',
+    path: '/custom',
     icon: <BsIcons.BsHammer />,
     cName: 'nav-text',
   },
@@ -25,19 +25,19 @@ const Sidebar = [
   },
   {
     title: '공유 하기',
-    path: '/sharingPage',
+    path: '/sharing',
     icon: <GiIcons.GiShare />,
     cName: 'nav-text',
   },
   {
     title: '주문 하기',
-    path: '/orderPage',
+    path: '/order',
     icon: <AiIcons.AiOutlineShoppingCart />,
     cName: 'nav-text',
   },
   {
     title: '문의 하기',
-    path: '/inquiryPage',
+    path: '/inquiry',
     icon: <BsIcons.BsQuestionCircle />,
     cName: 'nav-text',
   },

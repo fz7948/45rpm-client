@@ -34,7 +34,7 @@ function Main() {
   let colorArray = [
     ['./images/19.jpg'],
     ['./images/23.jpg'],
-    ['./images/4.jpg'],
+    ['./images/21.jpg'],
     ['./images/25.jpg'],
     ['./images/22.jpg'],
     ['./images/888.jpg'],
@@ -227,10 +227,10 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="text">자신의 LP를 공유하세요 </div>
                 <div className="card">
-                  <img src="./images/jj.png" alt="" />
+                  <img src="./images/customPage.gif" alt="" />
                 </div>
+                <div className="text">나만의 LP를 제작 해보세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -244,10 +244,10 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="text">자신만의 LP를 제작하세요</div>
                 <div className="card">
-                  <img src="./images/jj.png" alt="" />
+                  <img src="./images/myPage2.gif" alt="" />
                 </div>
+                <div className="text1">나만의 LP 컬렉션을 확인 해보세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -261,10 +261,10 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="text1">자신이 만든 LP 상세정보를 보세요</div>
                 <div className="card">
-                  <img src="./images/jj.png" alt="" />
+                  <img src="./images/sharing.gif" alt="" />
                 </div>
+                <div className="text1">내가 만든 LP를 공유하세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -278,10 +278,10 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="text1">자신이 제작한 LP를 주문하세요</div>
                 <div className="card">
-                  <img src="./images/jj.png" alt="" />
+                  <img src="./images/order1.gif" alt="" />
                 </div>
+                <div className="text1">내가 만든 LP를 주문하세요</div>
               </div>
             </section>
             <section className="sectionWrapper">
@@ -302,13 +302,13 @@ function Main() {
                     </h1>
                     <div
                       className="start"
-                      onClick={() => history.push('/customPage')}
+                      onClick={() => history.push('/custom')}
                     >
                       시작하기
                     </div>
                     <div
                       className="share"
-                      onClick={() => history.push('/sharingPage')}
+                      onClick={() => history.push('/sharing')}
                     >
                       공유 페이지
                     </div>
