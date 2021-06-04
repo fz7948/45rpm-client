@@ -32,11 +32,11 @@ function Main() {
   let cdCase;
   let movingImg;
   let colorArray = [
-    ['./images/19.jpg'],
+    ['./images/19.png'],
     ['./images/23.jpg'],
     ['./images/21.jpg'],
-    ['./images/25.jpg'],
-    ['./images/22.jpg'],
+    ['./images/25.png'],
+    ['./images/22.png'],
     ['./images/888.jpg'],
   ];
 
