@@ -18,7 +18,6 @@ import {
   ButtonWrapper,
 } from '../../components/common/MyPageStyle';
 import styled from 'styled-components';
-import { cover } from 'polished';
 
 const MypageItems = styled.div`
   display: flex;

@@ -300,10 +300,16 @@ function Main() {
                     <h1 className="secondH1">
                       지금 바로 <p>만들어 보세요</p>
                     </h1>
-                    <div className="start" onClick={() => history.push('/1')}>
+                    <div
+                      className="start"
+                      onClick={() => history.push('/customPage')}
+                    >
                       시작하기
                     </div>
-                    <div className="share" onClick={() => history.push('/3')}>
+                    <div
+                      className="share"
+                      onClick={() => history.push('/sharingPage')}
+                    >
                       공유 페이지
                     </div>
                   </div>
