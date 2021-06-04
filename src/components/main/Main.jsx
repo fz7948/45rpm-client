@@ -32,12 +32,12 @@ function Main() {
   let cdCase;
   let movingImg;
   let colorArray = [
-    ['./images/1.jpg'],
-    ['./images/2.jpg'],
+    ['./images/19.jpg'],
+    ['./images/23.jpg'],
     ['./images/4.jpg'],
-    ['./images/6.jpg'],
-    ['./images/7.jpg'],
-    ['./images/10.jpg'],
+    ['./images/25.jpg'],
+    ['./images/22.jpg'],
+    ['./images/888.jpg'],
   ];
 
   useEffect(() => {
@@ -109,7 +109,8 @@ function Main() {
     wrapperContent.style.background = 'opacity:0.6';
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
-    wrapperContent.style.transition = 'background linear 1.5s';
+    wrapperContent.style.backgroundPosition = 'center center';
+    wrapperContent.style.transition = 'all linear .8s';
 
     cdCase[5].classList.add('active');
     movingImg[5].classList.add('active');
@@ -128,7 +129,8 @@ function Main() {
     wrapperContent.style.background = 'opacity:0.6';
     wrapperContent.style.backgroundSize = 'cover';
     wrapperContent.style.backgroundRepeat = 'no-repeat';
-    wrapperContent.style.transition = 'background linear 1.5s';
+    wrapperContent.style.backgroundPosition = 'center center';
+    wrapperContent.style.transition = 'all linear .8s';
 
     for (var i = 0; i < totalNum; i++) {
       if (pageNum === i) {
@@ -203,7 +205,7 @@ function Main() {
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/j.jpeg" alt="" />
+                  <img src="./images/jj.png" alt="" />
                 </div>
               </div>
               <div className="movingImg">
@@ -221,10 +223,11 @@ function Main() {
                   <div className="innerDisk"> </div>
                 </div>
                 <div className="coverImg">
-                  <img src="./images/jj.png" alt="" />
+                  <img src="./images/j.jpeg" alt="" />
                 </div>
               </div>
               <div className="movingImg">
+                <div className="text">자신의 LP를 공유하세요 </div>
                 <div className="card">
                   <img src="./images/jj.png" alt="" />
                 </div>
@@ -241,22 +244,7 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
-                <div className="card">
-                  <img src="./images/jj.png" alt="" />
-                </div>
-              </div>
-            </section>
-            <section className="sectionWrapper">
-              <div className="cdCase">
-                <div className="disk">
-                  <img src="./images/12fix.png" alt="" />
-                  <div className="innerDisk"> </div>
-                </div>
-                <div className="coverImg">
-                  <img src="./images/kk.png" alt="" />
-                </div>
-              </div>
-              <div className="movingImg">
+                <div className="text">자신만의 LP를 제작하세요</div>
                 <div className="card">
                   <img src="./images/jj.png" alt="" />
                 </div>
@@ -273,6 +261,24 @@ function Main() {
                 </div>
               </div>
               <div className="movingImg">
+                <div className="text1">자신이 만든 LP 상세정보를 보세요</div>
+                <div className="card">
+                  <img src="./images/jj.png" alt="" />
+                </div>
+              </div>
+            </section>
+            <section className="sectionWrapper">
+              <div className="cdCase">
+                <div className="disk">
+                  <img src="./images/12fix.png" alt="" />
+                  <div className="innerDisk"> </div>
+                </div>
+                <div className="coverImg">
+                  <img src="./images/kk.png" alt="" />
+                </div>
+              </div>
+              <div className="movingImg">
+                <div className="text1">자신이 제작한 LP를 주문하세요</div>
                 <div className="card">
                   <img src="./images/jj.png" alt="" />
                 </div>
