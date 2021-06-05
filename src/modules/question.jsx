@@ -27,49 +27,51 @@ const QUESTION_REPLY_UPDATE_FAILURE = 'QUESTION_REPLY_UPDATE_FAILURE';
 const DETAIL_UPDATE = 'DETAIL_UPDATE';
 const DETAIL_LIST = 'DETAIL_LIST';
 
-export const questionAddReq =
-  (title, contents, category, token) => async (dispatch) => {
-    dispatch({ type: QUESTION_ADD });
-    try {
-      const questionRes = await questionAPI.questionAdd({
-        title,
-        contents,
-        category,
-        token,
-      });
-      dispatch({
-        type: QUESTION_ADD_SUCCESS,
-        questionAdd: questionRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_ADD_FAILURE,
-        questionAddError: error,
-      });
-    }
-  };
+export const questionAddReq = (title, contents, category, token) => async (
+  dispatch,
+) => {
+  dispatch({ type: QUESTION_ADD });
+  try {
+    const questionRes = await questionAPI.questionAdd({
+      title,
+      contents,
+      category,
+      token,
+    });
+    dispatch({
+      type: QUESTION_ADD_SUCCESS,
+      questionAdd: questionRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_ADD_FAILURE,
+      questionAddError: error,
+    });
+  }
+};
 
-export const questionUpdateReq =
-  (questionId, title, contents, token) => async (dispatch) => {
-    dispatch({ type: QUESTION_UPDATE });
-    try {
-      const questionUpdateRes = await questionAPI.questionUpdate({
-        questionId,
-        title,
-        contents,
-        token,
-      });
-      dispatch({
-        type: QUESTION_UPDATE_SUCCESS,
-        questionUpdate: questionUpdateRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_UPDATE_FAILURE,
-        questionUpdateError: error,
-      });
-    }
-  };
+export const questionUpdateReq = (questionId, title, contents, token) => async (
+  dispatch,
+) => {
+  dispatch({ type: QUESTION_UPDATE });
+  try {
+    const questionUpdateRes = await questionAPI.questionUpdate({
+      questionId,
+      title,
+      contents,
+      token,
+    });
+    dispatch({
+      type: QUESTION_UPDATE_SUCCESS,
+      questionUpdate: questionUpdateRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_UPDATE_FAILURE,
+      questionUpdateError: error,
+    });
+  }
+};
 
 export const questionListReq = (token) => async (dispatch) => {
   dispatch({ type: QUESTION_LIST });
@@ -107,49 +109,57 @@ export const questionDeleteReq = (token, questionId) => async (dispatch) => {
   }
 };
 
-export const questionReplyReq =
-  (token, questionId, replytext, replyCheck) => async (dispatch) => {
-    dispatch({ type: QUESTION_REPLY_UPDATE });
-    try {
-      const questionReplyRes = await questionAPI.questionReply({
-        token,
-        questionId,
-        replytext,
-        replyCheck,
-      });
-      dispatch({
-        type: QUESTION_REPLY_SUCCESS,
-        questionReply: questionReplyRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_REPLY_FAILURE,
-        questionReplyError: error,
-      });
-    }
-  };
+export const questionReplyReq = (
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+) => async (dispatch) => {
+  dispatch({ type: QUESTION_REPLY_UPDATE });
+  try {
+    const questionReplyRes = await questionAPI.questionReply({
+      token,
+      questionId,
+      replytext,
+      replyCheck,
+    });
+    dispatch({
+      type: QUESTION_REPLY_SUCCESS,
+      questionReply: questionReplyRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_REPLY_FAILURE,
+      questionReplyError: error,
+    });
+  }
+};
 
-export const questionReplyUpdateReq =
-  (token, questionId, replytext, replyCheck) => async (dispatch) => {
-    dispatch({ type: QUESTION_REPLY_UPDATE });
-    try {
-      const questionReplyUpdateRes = await questionAPI.questionReplyUpdate({
-        token,
-        questionId,
-        replytext,
-        replyCheck,
-      });
-      dispatch({
-        type: QUESTION_REPLY_UPDATE_SUCCESS,
-        questionReplyUpdate: questionReplyUpdateRes,
-      });
-    } catch (error) {
-      dispatch({
-        type: QUESTION_REPLY_UPDATE_FAILURE,
-        questionReplyUpdateError: error,
-      });
-    }
-  };
+export const questionReplyUpdateReq = (
+  token,
+  questionId,
+  replytext,
+  replyCheck,
+) => async (dispatch) => {
+  dispatch({ type: QUESTION_REPLY_UPDATE });
+  try {
+    const questionReplyUpdateRes = await questionAPI.questionReplyUpdate({
+      token,
+      questionId,
+      replytext,
+      replyCheck,
+    });
+    dispatch({
+      type: QUESTION_REPLY_UPDATE_SUCCESS,
+      questionReplyUpdate: questionReplyUpdateRes,
+    });
+  } catch (error) {
+    dispatch({
+      type: QUESTION_REPLY_UPDATE_FAILURE,
+      questionReplyUpdateError: error,
+    });
+  }
+};
 
 export const detailListReq = () => ({ type: DETAIL_LIST });
 export const detailUpdateReq = () => ({ type: DETAIL_UPDATE });

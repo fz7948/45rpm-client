@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import {
   closeModal,
   alertAnswerUpdateModal,
   alertAnswerReplyModal,
+  answerUpdateModalStart,
 } from '../../modules/modal';
 import AlertModal from '../../components/common/AlertModal';
 import palette from '../../lib/styles/palette';
@@ -150,7 +151,7 @@ const InputDetailStyle = styled.input`
   padding-left: 8px;
   border: 0px;
   box-sizing: border-box;
-  width: 60%;
+  width: 67%;
   height: 2.1rem;
   font-size: 1.1rem;
   &:focus {
@@ -177,8 +178,8 @@ const InputDetailText = styled.textarea`
   font-size: 1.1rem;
   padding-top: 10px;
   resize: none;
-  width: 60%;
-  height: 10rem;
+  width: 67%;
+  height: 12rem;
   &:focus {
     outline: 0;
     background-color: #efefef;
@@ -196,6 +197,27 @@ const InputDetailText = styled.textarea`
   }
 `;
 
+const DivDetailText = styled.div`
+  overflow: auto;
+  height: 12rem;
+  word-break: break-all;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  margin-top: 7px;
+  outline: none;
+  padding-left: 8px;
+  border: 0px;
+  box-sizing: border-box;
+  width: 67%;
+  font-size: 1.1rem;
+  &:focus {
+    outline: 0;
+    background-color: #efefef;
+    transition: all ease 0.3s;
+    border-radius: 3px;
+  }
+`;
+
 const View = ({ view }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -207,8 +229,6 @@ const View = ({ view }) => {
       alertCheck: modal.alertCheck,
     }),
   );
-
-  console.log('view??', view);
 
   useEffect(() => {
     if (view.reply) {
@@ -223,6 +243,7 @@ const View = ({ view }) => {
   const [detailContent, setDetailCotent] = useState(view[0].contents);
   const [detailReply, setDetailReply] = useState(view[0].reply);
   const [detailReplyCheck, setDetailReplyCheck] = useState(view[0].replyCheck);
+  const [inputType, setinputType] = useState(false);
 
   const handleChangeID = useCallback(
     (e) => {
@@ -270,9 +291,15 @@ const View = ({ view }) => {
     dispatch(closeModal());
   };
 
-  const detailUpdateHandler = () => {
+  const detailUpdateStart = () => {
+    dispatch(answerUpdateModalStart());
+    setinputType(true);
+  };
+
+  const detailUpdateEnd = () => {
     dispatch(questionUpdateReq(view[0]._id, detailTitle, detailContent, token));
     dispatch(alertAnswerUpdateModal());
+    setinputType(false);
   };
 
   const detailReplyHandler = () => {
@@ -294,6 +321,13 @@ const View = ({ view }) => {
           openHandle={alertCheck}
           closeHandle={shutModal}
           comment={'수정 완료되었습니다.'}
+        />
+      )}
+      {isType === 'alertAnswerStart' && (
+        <AlertModal
+          openHandle={alertCheck}
+          closeHandle={shutModal}
+          comment={'문의 내역을 수정 해주세요.'}
         />
       )}
       {isType === 'alertAnswerReply' && (
@@ -401,20 +435,36 @@ const View = ({ view }) => {
             </InquiryRow>
             <InquiryRow>
               <label> 제목 </label>
-              <InputDetailStyle
-                update
-                type="text"
-                value={detailTitle}
-                onChange={handleChangeTitle}
-              />
+              {inputType ? (
+                <InputDetailStyle
+                  update
+                  type="text"
+                  value={detailTitle}
+                  onChange={handleChangeTitle}
+                />
+              ) : (
+                <InputDetailStyle
+                  update
+                  type="text"
+                  value={detailTitle}
+                  onChange={handleChangeTitle}
+                  readOnly
+                />
+              )}
             </InquiryRow>
             <InquiryRow>
               <label>내용</label>
-              <InputDetailText
-                type="text"
-                value={detailContent}
-                onChange={handleChangeContent}
-              />
+              {inputType ? (
+                <InputDetailText
+                  type="text"
+                  value={detailContent}
+                  onChange={handleChangeContent}
+                />
+              ) : (
+                <DivDetailText
+                  dangerouslySetInnerHTML={{ __html: detailContent }}
+                ></DivDetailText>
+              )}
             </InquiryRow>
             {detailReply.length === 0 && (
               <InquiryRow replyReady>
@@ -444,7 +494,11 @@ const View = ({ view }) => {
             <ButtonWrap onClick={() => history.push('/inquiry')}>
               목록으로 돌아가기
             </ButtonWrap>
-            <ButtonWrap onClick={detailUpdateHandler}> 수정하기 </ButtonWrap>
+            {inputType ? (
+              <ButtonWrap onClick={detailUpdateEnd}> 수정완료 </ButtonWrap>
+            ) : (
+              <ButtonWrap onClick={detailUpdateStart}> 수정하기 </ButtonWrap>
+            )}
           </ButtonWrapper>
         </InquiryWrapper>
       )}

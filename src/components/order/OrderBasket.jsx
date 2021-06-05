@@ -149,10 +149,10 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
           </BasketOrder>
           {cartItems.map((item) => (
             <BasketOrder key={item._id}>
-              <textarea> {item.title} </textarea>
+              <textarea>{item.title}</textarea>
               <div>
-                <button onClick={() => onAdd(item)}> + </button> {item.qty}
-                <button onClick={() => onRemove(item)}> - </button>
+                <button onClick={() => onAdd(item)}>+</button> {item.qty}
+                <button onClick={() => onRemove(item)}>-</button>
               </div>
               <div className="small">
                 {10000 + item.songList.length * 2000} 원

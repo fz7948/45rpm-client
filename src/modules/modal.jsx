@@ -20,6 +20,7 @@ const ALERT_MODAL_NOFULLDATA = 'ALERT_MODAL_NOFULLDATA';
 const ALERT_MODAL_LIMITDATA = 'ALERT_MODAL_LIMITDATA';
 
 const ALERT_MODAL_ANSWER = 'ALERT_MODAL_ANSWER';
+const MODAL_ANSWER_UPDATE_START = 'MODAL_ANSWER_UPDATE_START';
 const ALERT_MODAL_ANSWER_FALSE = 'ALERT_MODAL_ANSWER_FALSE';
 const ALERT_MODAL_ANSWER_TRUE = 'ALERT_MODAL_ANSWER_TRUE';
 const ALERT_MODAL_ANSWER_UPDATE = 'ALERT_MODAL_ANSWER_UPDATE';
@@ -50,6 +51,9 @@ export const alertAnswerFalseModal = () => ({ type: ALERT_MODAL_ANSWER_FALSE });
 export const alertAnswerTrueModal = () => ({ type: ALERT_MODAL_ANSWER_TRUE });
 export const alertAnswerUpdateModal = () => ({
   type: ALERT_MODAL_ANSWER_UPDATE,
+});
+export const answerUpdateModalStart = () => ({
+  type: MODAL_ANSWER_UPDATE_START,
 });
 export const alertAnswerReplyModal = () => ({
   type: ALERT_MODAL_ANSWER_REPLY,
@@ -188,6 +192,12 @@ export default function modal(state = initialState, action) {
         checkModal: false,
         alertCheck: true,
         isType: 'alertAnswerReply',
+      };
+    case MODAL_ANSWER_UPDATE_START:
+      return {
+        checkModal: false,
+        alertCheck: true,
+        isType: 'alertAnswerStart',
       };
     case ALERT_MODAL_FAILURE:
       return {
