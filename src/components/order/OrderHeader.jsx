@@ -5,7 +5,7 @@ import palette from '../../lib/styles/palette';
 
 const HeaderTitle = styled.div`
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 40px;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -15,8 +15,20 @@ const HeaderTitle = styled.div`
   font-weight: 700;
   color: ${palette.sideBack};
   .small {
-    font-size: 15px;
-    padding-top: 10px;
+    font-size: 20px;
+    padding-top: 30px;
+    @media screen and (min-width: 1000px) and (max-width: 1300px) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: 1000px) {
+      font-size: 15px;
+    }
+  }
+  @media screen and (min-width: 1000px) and (max-width: 1300px) {
+    font-size: 35px;
+  }
+  @media screen and (max-width: 1000px) {
+    font-size: 27px;
   }
 `;
 
