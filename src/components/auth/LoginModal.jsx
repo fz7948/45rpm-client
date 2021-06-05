@@ -69,8 +69,8 @@ const LoginInput = styled.input`
 const LoginCloseBtn = styled.button`
   cursor: pointer;
   position: relative;
-  top: -1.4rem;
-  left: 16rem;
+  top: -3.3rem;
+  left: 16.3rem;
   background: white;
   border: 0;
   outline: 0;
@@ -241,7 +241,7 @@ const LoginModal = ({
     dispatch(resetLoginMsg());
     if (inputID === '') {
       refID.current?.focus();
-      setDenyMessage('이메일을 입력하세요');
+      setDenyMessage('ID를 입력하세요');
       return;
     }
     if (inputPassword === '') {

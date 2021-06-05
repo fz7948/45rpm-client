@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Sharing from '../components/Sharing/Sharing';
 
 const SharingPage = () => {

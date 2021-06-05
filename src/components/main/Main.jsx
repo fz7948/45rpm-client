@@ -41,7 +41,6 @@ function Main() {
   ];
 
   useEffect(() => {
-    console.log('이펙트 실행 시작');
     prevBtn = document.querySelectorAll('button')[0];
     nextBtn = document.querySelectorAll('button')[1];
     skipBtn = document.querySelectorAll('button')[2];
