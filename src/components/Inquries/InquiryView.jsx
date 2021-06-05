@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ViewTable from './ViewTable';
 import { useDispatch, useSelector } from 'react-redux';
+import palette from '../../lib/styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -31,15 +32,15 @@ const H2Title = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #b5b9b9;
+  border: 1px solid ${palette.mainBorder};
   width: 70%;
   height: 100%;
   margin: 0 auto;
   font-size: 2rem;
-  background: #e8e8e8;
+  background: ${palette.side};
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 700;
-  color: #4c4c4c;
+  color: ${palette.sideBack};
   padding-top: 5rem;
 
   .small.text {

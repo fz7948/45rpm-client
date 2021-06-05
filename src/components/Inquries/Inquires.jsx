@@ -15,6 +15,7 @@ import CommonTable from '../table/CommonTable';
 import InquiryTable from './InquiryTable';
 import styled from 'styled-components';
 import AlertModal from '../../components/common/AlertModal';
+import palette from '../../lib/styles/palette';
 
 const Container = styled.div`
   display: flex;
@@ -39,8 +40,8 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #e8e8e8;
-  border: 1px solid #b5b9b9;
+  background: ${palette.side};
+  border: 1px solid ${palette.mainBorder};
   width: 70%;
   padding: 3rem 0rem 1rem 0rem;
   margin-top: 3rem;
@@ -49,7 +50,7 @@ const HeaderWrapper = styled.div`
     padding-top: 1rem;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 700;
-    color: #4c4c4c;
+    color: ${palette.sideBack};
   }
   @media screen and (max-width: 768px) {
     padding: 7rem 0;
@@ -71,11 +72,11 @@ const ButtonWrapper = styled.div`
     border-radius: 3px;
     border: 0;
     outline: 0;
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     color: #e1eaf8;
     font-size: 1rem;
     &:hover {
-      background-color: #03154e;
+      background-color: ${palette.mainHover};
       transition: all ease 0.3s;
       color: gray;
     }
@@ -110,10 +111,10 @@ const Button = styled.button`
 const InquiryIntro = styled.div`
   font-size: 2rem;
   padding-bottom: 3px;
-  background: #e8e8e8;
+  background: ${palette.side};
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 700;
-  color: #4c4c4c;
+  color: ${palette.sideBack};
 
   @media screen and (max-width: 768px) {
     font-size: 1.3rem;
@@ -122,17 +123,21 @@ const InquiryIntro = styled.div`
 
 const Inquires = () => {
   const dispatch = useDispatch();
-  const { checkModal, token, questionList, isType, alertCheck, admin } =
-    useSelector(({ modal, user, question }) => ({
-      checkModal: modal.checkModal,
-      isType: modal.isType,
-      alertCheck: modal.alertCheck,
-      token: user.token,
-      questionList: question.questionList,
-      admin: user.admin,
-    }));
-
-
+  const {
+    checkModal,
+    token,
+    questionList,
+    isType,
+    alertCheck,
+    admin,
+  } = useSelector(({ modal, user, question }) => ({
+    checkModal: modal.checkModal,
+    isType: modal.isType,
+    alertCheck: modal.alertCheck,
+    token: user.token,
+    questionList: question.questionList,
+    admin: user.admin,
+  }));
 
   useEffect(() => {
     dispatch(questionListReq(token));

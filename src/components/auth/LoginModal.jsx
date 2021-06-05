@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { alertLoginModal } from '../../modules/modal';
 import { GrFormClose } from 'react-icons/gr';
+import palette from '../../lib/styles/palette';
 
 const LoginWrapper = styled.div`
   z-index: 2;
@@ -34,7 +35,7 @@ const LoginWrapper = styled.div`
     font-weight: 500;
     margin-bottom: 1.6rem;
     margin-top: 1.5rem;
-    color: #f73d5c;
+    color: ${palette.mainRed};
     word-break: keep-all;
   }
 `;
@@ -76,7 +77,7 @@ const LoginCloseBtn = styled.button`
   font-weight: 700;
   font-size: 2.4rem;
   &:hover {
-    color: #f73d5c;
+    color: ${palette.mainRed};
     transition: all ease 0.2s;
   }
 `;
@@ -89,12 +90,12 @@ const LoginSubmitBtn = styled.button`
   border: 0;
   outline: 0;
   margin: 1.5rem 0rem;
-  background-color: #311788;
+  background-color: ${palette.main};
   color: #fff;
   font-size: 1.1rem;
   font-weight: 500;
   &:hover {
-    background-color: #03154e;
+    background-color: ${palette.mainHover};
     transition: all ease 0.3s;
   }
 `;
@@ -108,12 +109,11 @@ const LoginSocialBtn = styled.button`
   border-radius: 3px;
   font-size: 1.1rem;
   font-weight: 600;
-  background-color: #e8e8e8;
+  background-color: white;
   margin-top: 0.5rem;
-
-  &:hover {
-    background-color: #b6b3b3;
-    transition: all ease 0.3s;
+  img.kakao {
+    width: 295px;
+    height: 42px;
   }
 
   & + & {
@@ -292,8 +292,20 @@ const LoginModal = ({
             </ul>
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
-            <LoginSocialBtn onClick={googleLoginHandler}>구글</LoginSocialBtn>
-            <LoginSocialBtn onClick={kakaoLoginHandler}>카카오</LoginSocialBtn>
+            <div id="gSignInWrapper" onClick={googleLoginHandler}>
+              <div id="customBtn" class="customGPlusSignIn">
+                <span class="icon">
+                  <img src="./images/google-logo.png" alt="" />
+                </span>
+                <span class="buttonText">Login with Google</span>
+              </div>
+            </div>
+            <LoginSocialBtn onClick={kakaoLoginHandler}>
+              <img
+                className="kakao"
+                src="/images/kakao_login_large_wide.png"
+              ></img>
+            </LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>
       </ModalBack>

@@ -12,19 +12,20 @@ const Sidebar = [
     cName: 'nav-text',
   },
   {
-    title: '커스텀 만들기',
-    path: '/custom',
-    icon: <BsIcons.BsHammer />,
-    cName: 'nav-text',
-  },
-  {
     title: '내 정보',
     path: '/myPage',
     icon: <GrIcons.GrContactInfo />,
     cName: 'nav-text',
   },
   {
-    title: '공유 하기',
+    title: '커스텀 만들기',
+    path: '/custom',
+    icon: <BsIcons.BsHammer />,
+    cName: 'nav-text',
+  },
+
+  {
+    title: '공유 LP 둘러보기',
     path: '/sharing',
     icon: <GiIcons.GiShare />,
     cName: 'nav-text',

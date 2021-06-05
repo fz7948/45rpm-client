@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ModalBack, ModalBox } from '../common/AlbumModalStyle';
 import styled from 'styled-components';
 import { GrFormClose } from 'react-icons/gr';
+import palette from '../../lib/styles/palette';
 
 const InfoWrapper = styled.div`
   width: inherit;
@@ -43,7 +44,7 @@ const InfoCloseBtn = styled.button`
   font-weight: 700;
   font-size: 2.1rem;
   &:hover {
-    color: #f73d5c;
+    color: ${palette.mainRed};
     transition: all ease 0.2s;
   }
   @media screen and (max-width: 768px) {
@@ -54,7 +55,7 @@ const InfoCloseBtn = styled.button`
 `;
 
 const ProducerLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   font-weight: 500;
   margin-bottom: 30px;
   margin-left: 80px;
@@ -65,7 +66,7 @@ const ProducerLi = styled.li`
 `;
 
 const TitleLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   font-weight: 500;
   margin-bottom: 30px;
   margin-left: 80px;
@@ -76,7 +77,7 @@ const TitleLi = styled.li`
 `;
 
 const SongListLi = styled.li`
-  padding-left: 3rem;
+  padding-left: 1rem;
   margin-bottom: 30px;
   margin-left: 80px;
   .fontSize {
