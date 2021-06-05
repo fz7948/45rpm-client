@@ -37,7 +37,7 @@ export const loginGoogle = (payload) => ({
 
 export const logoutUser = (token) => async (dispatch) => {
   try {
-    const logoutRes = await authAPI.logout(token);
+    await authAPI.logout(token);
     dispatch({ type: LOGOUT_USER });
     removeSessionStorage();
   } catch (error) {
@@ -74,7 +74,7 @@ export const checkUser = (ssID, token) => async (dispatch) => {
 
 export const withdrawal = (token) => async (dispatch) => {
   try {
-    const withdraw = await authAPI.withdraw(token);
+    await authAPI.withdraw(token);
     dispatch({ type: WITHDRAW });
     removeSessionStorage();
   } catch (error) {
