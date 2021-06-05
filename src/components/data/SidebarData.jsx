@@ -19,14 +19,14 @@ const Sidebar = [
   },
   {
     title: '커스텀 만들기',
-    path: '/customPage',
+    path: '/custom',
     icon: <BsIcons.BsHammer />,
     cName: 'nav-text',
   },
 
   {
     title: '공유 LP 둘러보기',
-    path: '/sharingPage',
+    path: '/sharing',
     icon: <GiIcons.GiShare />,
     cName: 'nav-text',
   },
