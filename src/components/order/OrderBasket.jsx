@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 const BasketWrapper = styled.div`
   position: fixed;
   width: 500px;
-  right: -12%;
+  right: -20%;
+  top: 20%;
   z-index: 10;
   background-color: white;
   border-radius: 10px;
@@ -20,14 +21,15 @@ const BasketWrapper = styled.div`
     right: 0%;
     transition: all ease 1s;
   }
-  @media screen and (min-width: 1000px) and (max-width: 1300px) {
-    right: -22%;
+  @media screen and (min-width: 600px) and (max-width: 1300px) {
+    right: -20%;
     &:hover {
       right: 0%;
     }
   }
-  @media screen and (max-width: 1000px) {
-    right: -40%;
+  @media screen and (max-width: 600px) {
+    right: -75%;
+
     &:hover {
       right: 0%;
     }
@@ -135,25 +137,23 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
   return (
     <>
       <BasketWrapper>
-        <BasketTitle>결제 목록</BasketTitle>
+        <BasketTitle> 결제 목록 </BasketTitle>
         <BasketOrderList>
           <BasketOrder>
             <div>
               {cartItems.length === 0 && (
-                <div className="small">결제 대기중인 내역이 없습니다.</div>
+                <div className="small"> 결제 대기중인 내역이 없습니다. </div>
               )}
             </div>
           </BasketOrder>
-
           {cartItems.map((item) => (
             <BasketOrder key={item._id}>
-              <textarea>{item.title}</textarea>
+              <textarea> {item.title} </textarea>
               <div>
-                <button onClick={() => onAdd(item)}>+</button>
-                {item.qty}
-                <button onClick={() => onRemove(item)}>-</button>
+                <button onClick={() => onAdd(item)}> + </button> {item.qty}
+                <button onClick={() => onRemove(item)}> - </button>
               </div>
-              <div className="small">{itemsPrice} 원</div>
+              <div className="small"> {itemsPrice}원 </div>
             </BasketOrder>
           ))}
         </BasketOrderList>
@@ -161,24 +161,22 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
           {cartItems.length !== 0 && (
             <>
               <div className="price">
-                <div>상품 가격</div>
-                <div>{itemsPrice} 원</div>
+                <div> 상품 가격 </div> <div> {itemsPrice}원 </div>
               </div>
               <div className="price">
-                <div>부가세</div>
-                <div>{taxPrice.toFixed(0)} 원</div>
+                <div> 부가세 </div> <div> {taxPrice.toFixed(0)}원 </div>
               </div>
               <div className="price">
-                <div>총 합계</div>
+                <div> 총 합계 </div>
                 <div>
-                  <strong>{totalPrice.toFixed(0)} 원</strong>
+                  <strong> {totalPrice.toFixed(0)}원 </strong>
                 </div>
               </div>
             </>
-          )}
-          <PriceBtn onClick={payHandler}>결제하기</PriceBtn>
-        </BasketPrice>
-      </BasketWrapper>
+          )}{' '}
+          <PriceBtn onClick={payHandler}> 결제하기 </PriceBtn>{' '}
+        </BasketPrice>{' '}
+      </BasketWrapper>{' '}
     </>
   );
 };

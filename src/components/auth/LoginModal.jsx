@@ -292,7 +292,7 @@ const LoginModal = ({
             </ul>
             <p className="deny-message"> {denyMessage} </p>
             <LoginSubmitBtn onClick={handleSignIn}> 로그인 </LoginSubmitBtn>
-            <LoginSocialBtn onClick={googleLoginHandler}> 구글 </LoginSocialBtn>
+            <LoginSocialBtn onClick={googleLoginHandler}>구글</LoginSocialBtn>
             <LoginSocialBtn onClick={kakaoLoginHandler}>카카오</LoginSocialBtn>
           </LoginWrapper>
         </ModalBox>
