@@ -27,14 +27,6 @@ const H1El = styled.h1`
   color: #a3e1f0;
 `;
 
-const Img = styled.div`
-  background: url('./images/2.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 300px;
-  height: 30%;
-`;
-
 const common = css`
   position: relative;
   display: inline-block;

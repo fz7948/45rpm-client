@@ -27,15 +27,6 @@ export const slideUp = keyframes`
   }
 `;
 
-const slideDown = keyframes`
-  from{
-    transform: translateY(0px);
-  }
-  to{
-    transform: translateY(20px);
-  }
-`;
-
 export const ModalBack = styled.div`
   position: fixed;
   z-index: 101;

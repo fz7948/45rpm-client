@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ViewTable from './ViewTable';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import palette from '../../lib/styles/palette';
 
 const Container = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { loginKakao, loginGoogle } from '../../modules/user';
 import '../../pages/sass/Header.scss';
 import {
@@ -39,7 +39,7 @@ const Header = () => {
         dispatch(loginKakao(payload));
         dispatch(alertOpenModal());
       }
-      if (isSocial == 'google') {
+      if (isSocial === 'google') {
         dispatch(loginGoogle(payload));
         dispatch(alertOpenModal());
       }

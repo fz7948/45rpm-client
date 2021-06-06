@@ -37,7 +37,6 @@ const AlertFont = styled.div`
 `;
 
 const AlertModal = ({ openHandle, closeHandle, comment }) => {
-  console.log(comment);
   const [animate, setAnimate] = useState(false);
   const [localVisible, setLocalVisible] = useState(openHandle);
 

@@ -5,7 +5,7 @@ import UpdateModal from '../../components/auth/UpdateModal';
 import AlbumDetailModal from '../../components/auth/AlbumDetailModal';
 import Hero from '../../components/Hero/Hero';
 import { closeModal, albumDetailModal, infoModal } from '../../modules/modal';
-import { kakaoLoginReq, userInfoReq } from '../../modules/auth';
+import { userInfoReq } from '../../modules/auth';
 import { RiUser3Fill } from 'react-icons/ri';
 import {
   MyPageWrapper,
@@ -100,8 +100,6 @@ const MyPageForm = () => {
     width: '100%',
   };
 
-  console.log(userData);
-
   return (
     <>
       <MyPageWrapper style={style}>
@@ -113,11 +111,13 @@ const MyPageForm = () => {
                   userData[0].profileUrl !== undefined ? (
                     <img
                       src={`${userData[0].profileUrl}`}
+                      alt=""
                       style={profileStyle}
                     />
                   ) : (
                     <img
                       src="/images/noSocialUserProfile.png"
+                      alt=""
                       style={profileStyle}
                     />
                   )
