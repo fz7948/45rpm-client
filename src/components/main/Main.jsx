@@ -80,8 +80,6 @@ function Main() {
 
     if (window.location.hash !== '') {
       const googleData = window.location.hash.split('&')[1].split('=')[1];
-      // const googleData = decodeURIComponent(window.location.hash).split('&');
-      console.log('구글구글', googleData);
 
       if (googleData) {
         axios
@@ -91,8 +89,6 @@ function Main() {
             },
           })
           .then((res) => {
-            console.log('요청 결과물', res.data);
-
             dispatch(googleLoginReq(res.data));
           })
           .then(() => {

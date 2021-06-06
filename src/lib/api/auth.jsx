@@ -28,7 +28,6 @@ export const check = async (id) => {
       withCredentials: true,
     },
   );
-  console.log(response);
   return response.data;
 };
 

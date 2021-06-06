@@ -306,6 +306,7 @@ const LoginModal = ({
               <img
                 className="kakao"
                 src="/images/kakao_login_large_wide.png"
+                alt=""
               ></img>
             </LoginSocialBtn>
           </LoginWrapper>

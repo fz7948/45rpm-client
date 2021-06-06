@@ -83,7 +83,6 @@ const Hero = ({ slides, openModal, herohandler }) => {
   };
 
   const shareStateHandler = async function (data) {
-    console.log('shareStateHandler');
     await axios
       .patch(
         `${process.env.REACT_APP_SERVER_URI}/customs/share-custom`,
@@ -118,6 +117,7 @@ const Hero = ({ slides, openModal, herohandler }) => {
                   <HeroImage style={{ zIndex: 5 }}>
                     <img
                       src={`${process.env.REACT_APP_SERVER_URI}/${slide.albumPic}`}
+                      alt=""
                     />
                   </HeroImage>
                   <HeroContent>

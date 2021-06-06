@@ -12,6 +12,7 @@ const Footer = () => {
             </div>
             <div className="memberTitle">
               <a
+                rel="noreferrer"
                 className="class1"
                 href="https://github.com/tyufjvbn2"
                 target="_blank"
@@ -19,6 +20,7 @@ const Footer = () => {
                 <div className="class_font">박종혁</div>
               </a>
               <a
+                rel="noreferrer"
                 className="class4"
                 href="https://github.com/DLSKAGHD"
                 target="_blank"
@@ -27,6 +29,7 @@ const Footer = () => {
               </a>
 
               <a
+                rel="noreferrer"
                 className="class3"
                 href="https://github.com/dodo9128"
                 target="_blank"
@@ -34,6 +37,7 @@ const Footer = () => {
                 <div className="class_font">이재윤</div>
               </a>
               <a
+                rel="noreferrer"
                 className="class2"
                 href="https://github.com/fz7948"
                 target="_blank"

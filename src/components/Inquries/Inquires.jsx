@@ -135,7 +135,7 @@ const Inquires = () => {
 
   useEffect(() => {
     dispatch(questionListReq(token));
-  }, [token]);
+  }, [token, dispatch]);
 
   useEffect(() => {
     if (questionList) {
@@ -167,7 +167,6 @@ const Inquires = () => {
   };
 
   const handleRemove = (data) => {
-    console.log(data);
     dispatch(questionDeleteReq(token, data));
     const newList = lnquireList.data.filter((el) => el._id !== data);
     setLnquireList({ data: newList });

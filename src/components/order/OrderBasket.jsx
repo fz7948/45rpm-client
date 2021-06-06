@@ -130,8 +130,6 @@ const OrderBasket = ({ cartItems, onAdd, onRemove }) => {
   const taxPrice = itemsPrice * 0.14;
   const totalPrice = itemsPrice + taxPrice;
 
-  console.log('?', cartItems);
-
   const payHandler = () => {
     dispatch(alertOrderModal());
   };
