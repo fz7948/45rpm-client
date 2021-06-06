@@ -204,6 +204,7 @@ const LoginModal = ({
     setInputID('');
     setInputPassword('');
     setDenyMessage('');
+    dispatch(resetLoginMsg());
     close();
   };
 
@@ -211,6 +212,7 @@ const LoginModal = ({
     setInputID('');
     setInputPassword('');
     setDenyMessage('');
+    dispatch(resetLoginMsg());
   };
 
   const handleInputID = useCallback(

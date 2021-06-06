@@ -3,7 +3,7 @@ import { ModalBack, ModalBox } from '../common/ModalStyle';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateReq, resetUpdate } from '../../modules/auth';
+import { updateReq, resetUpdate, resetUpdateMsg } from '../../modules/auth';
 import { withdrawal } from '../../modules/user';
 import { alertUpdateModal, alertWithdrawalModal } from '../../modules/modal';
 import { GrFormClose } from 'react-icons/gr';
@@ -41,7 +41,7 @@ const UpdateWrapper = styled.div`
   }
   .deny-message {
     width: 280px;
-    height: 12px;
+    height: 20px;
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 2rem;
@@ -229,6 +229,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
     setInputNewPassword('');
     setInputNewPasswordCheck('');
     setDenyMessage('');
+    dispatch(resetUpdateMsg());
     close();
   };
 
@@ -239,6 +240,7 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
     setInputOldPassword('');
     setInputNewPassword('');
     setInputNewPasswordCheck('');
+    dispatch(resetUpdateMsg());
     setDenyMessage('');
   };
 
@@ -381,9 +383,9 @@ const UpdateModal = ({ open, close, history, userId, userEmail, username }) => {
   return (
     <>
       <ModalBack disappear={!open}>
-        <div className="modal_outsider" onClick={close}></div>
+        <div className="modal_outsider" onClick={(close, handleCloseBtn)}></div>
         <ModalBox disappear={!open} update>
-          <UpdateCloseBtn onClick={close}>
+          <UpdateCloseBtn onClick={(close, handleCloseBtn)}>
             <GrFormClose />
           </UpdateCloseBtn>
           <UpdateWrapper>
