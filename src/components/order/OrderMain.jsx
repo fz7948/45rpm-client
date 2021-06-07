@@ -7,7 +7,7 @@ import axios from 'axios';
 import { ContentWrapper } from '../../components/common/SharingStyle';
 
 const MainOrderList = styled.div`
-  height: 10vh;
+  height: 100px;
   font-size: 23px;
   position: relative;
   right: 68px;
@@ -24,7 +24,7 @@ const MainOrderList = styled.div`
 `;
 
 const MainOrderUnList = styled.div`
-  height: 10vh;
+  height: 100px;
   font-size: 23px;
   position: relative;
   right: 68px;
