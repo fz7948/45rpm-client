@@ -28,7 +28,7 @@ const MainOrderUnList = styled.div`
   font-size: 23px;
   position: relative;
   right: 68px;
-  top: 8px;
+  top: 30px;
   width: 300px;
   padding: 10px 0px 0px 30px;
   color: #939393;
