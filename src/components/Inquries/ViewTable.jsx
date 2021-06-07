@@ -380,12 +380,9 @@ const View = ({ view }) => {
             </InquiryRow>
             <InquiryRow>
               <label>내용</label>
-              <InputDetailText
-                type="text"
-                value={detailContent}
-                onChange={handleChangeContent}
-                readOnly
-              />
+              <DivDetailText
+                dangerouslySetInnerHTML={{ __html: detailContent }}
+              ></DivDetailText>
             </InquiryRow>
             <InquiryRow>
               <label>답변</label>

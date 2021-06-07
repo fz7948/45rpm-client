@@ -77,7 +77,14 @@ const Header = () => {
                 ],
               },
               success: function (response) {
-                dispatch(kakaoLoginReq(response));
+                const newData = {
+                  ...response,
+                  kakao_account: {
+                    ...response.kakao_account,
+                    email: `${response.kakao_account.profile.nickname}@kakao.com`,
+                  },
+                };
+                dispatch(kakaoLoginReq(newData));
               },
               fail: function (error) {
                 console.log(error);

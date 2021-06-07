@@ -27,28 +27,27 @@ const INFORMATION = 'INFORMATION';
 const INFORMATION_SUCCESS = 'INFORMATION_SUCCESS';
 const INFORMATION_FAILURE = 'INFORMATION_FAILURE';
 
-export const registerReq = (id, email, username, password) => async (
-  dispatch,
-) => {
-  dispatch({ type: REGISTER });
-  try {
-    const registerRes = await authAPI.signup({
-      id,
-      email,
-      username,
-      password,
-    });
-    dispatch({
-      type: REGISTER_SUCCESS,
-      register: registerRes,
-    });
-  } catch (error) {
-    dispatch({
-      type: REGISTER_FAILURE,
-      registerError: error.response.data.message,
-    });
-  }
-};
+export const registerReq =
+  (id, email, username, password) => async (dispatch) => {
+    dispatch({ type: REGISTER });
+    try {
+      const registerRes = await authAPI.signup({
+        id,
+        email,
+        username,
+        password,
+      });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        register: registerRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_FAILURE,
+        registerError: error.response.data.message,
+      });
+    }
+  };
 
 export const loginReq = (id, password) => async (dispatch) => {
   dispatch({ type: LOGIN });
@@ -119,34 +118,28 @@ export const googleLoginReq = (data) => async (dispatch) => {
   }
 };
 
-export const updateReq = (
-  email,
-  username,
-  oldpassword,
-  newpassword,
-  token,
-) => async (dispatch) => {
-  dispatch({ type: UPDATE });
-  try {
-    const updateRes = await authAPI.update({
-      email,
-      username,
-      oldpassword,
-      newpassword,
-      token,
-    });
-    dispatch({
-      type: UPDATE_SUCCESS,
-      update: updateRes,
-    });
-  } catch (error) {
-    console.log('??', error.response);
-    dispatch({
-      type: UPDATE_FAILURE,
-      updateError: error.response.data.message,
-    });
-  }
-};
+export const updateReq =
+  (email, username, oldpassword, newpassword, token) => async (dispatch) => {
+    dispatch({ type: UPDATE });
+    try {
+      const updateRes = await authAPI.update({
+        email,
+        username,
+        oldpassword,
+        newpassword,
+        token,
+      });
+      dispatch({
+        type: UPDATE_SUCCESS,
+        update: updateRes,
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_FAILURE,
+        updateError: error.response.data.message,
+      });
+    }
+  };
 
 export const userInfoReq = (token) => async (dispatch) => {
   dispatch({ type: INFORMATION });

@@ -175,7 +175,7 @@ const Custom = () => {
   };
 
   const submitHandler = async () => {
-    if (!color || !imgFile || !imgFile1 || !title || !songList) {
+    if (!color || !imgFile || !imgFile1 || !title || songList.length === 0) {
       openNoFullDataModal();
       return;
     } else if (!token) {
