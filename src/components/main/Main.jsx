@@ -145,7 +145,7 @@ function Main() {
         <AlertModal
           openHandle={alertCheck}
           closeHandle={shutModal}
-          comment={'기본 비밀번호 : 카카오 계정 이메일'}
+          comment={`기본 비밀번호 : 카카오 닉네임@kakao.com`}
         ></AlertModal>
       )}
       {isSocial === 'google' && (
