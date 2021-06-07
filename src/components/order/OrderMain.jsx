@@ -10,8 +10,8 @@ const MainOrderList = styled.div`
   height: 10vh;
   font-size: 23px;
   position: relative;
-  right: 80px;
-  top: 45px;
+  right: 68px;
+  top: 35px;
   width: 300px;
   padding: 10px 0px 0px 30px;
   color: #939393;
@@ -27,8 +27,8 @@ const MainOrderUnList = styled.div`
   height: 10vh;
   font-size: 23px;
   position: relative;
-  right: 80px;
-  top: 20px;
+  right: 68px;
+  top: 8px;
   width: 300px;
   padding: 10px 0px 0px 30px;
   color: #939393;
@@ -51,8 +51,8 @@ const Base = styled.div`
   z-index: 10;
   transform: rotate(90deg);
   &:before {
-    border-bottom: 35px solid #495263;
-    border-left: 50px solid transparent;
+    border-bottom: 36px solid #495263;
+    border-left: 51px solid transparent;
     border-right: 50px solid transparent;
     content: '';
     height: 0;
