@@ -1,0 +1,75 @@
+$small: 'screen and (max-width:768px)';
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000;
+  .logo {
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+    padding-top: 1px;
+    font-size: 25px;
+    font-family: 'Syncopate', sans-serif;
+    &:hover {
+      color: gray;
+      transition: all 0.2s ease-in-out;
+    }
+    @media #{$small} {
+      font-size: 16px;
+      padding-left: 1rem;
+    }
+  }
+  .buttonWrapper {
+    display: flex;
+    align-items: center;
+    .signIn {
+      z-index: 999;
+      outline: none;
+      border-radius: 8px;
+      height: 70%;
+      padding: 11px 10px 21px 0px;
+      margin-right: 1.4rem;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      color: lightgray;
+
+      &:hover {
+        color: black;
+        background-color: white;
+        transition: all 0.2s ease-in-out;
+      }
+      @media #{$small} {
+        font-size: 16px;
+      }
+    }
+    .signUp {
+      background-color: white;
+      z-index: 999;
+      outline: none;
+      border-radius: 6px;
+      height: 70%;
+      padding: 10px 10px 22px 0px;
+      margin-right: 5rem;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      color: black;
+      @media #{$small} {
+        font-size: 16px;
+      }
+    }
+    .login {
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+    .register {
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+  }
+}
