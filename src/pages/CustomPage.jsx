@@ -1,5 +1,5 @@
 import React from 'react';
-import Custom from '../components/custom/Custom';
+import Custom from '../components/custom';
 
 const CustomPage = () => {
   return <Custom />;
