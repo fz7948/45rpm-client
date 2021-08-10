@@ -1,4 +1,3 @@
-
 # 45 RPM 서비스 소개
 ![45rpmLogo](https://user-images.githubusercontent.com/76784946/121057025-cd4b9980-c7f9-11eb-943a-a4c6fb07ac24.png)
 >**내가 듣고있는 노래들이 LP로 나온다면?!**
@@ -25,12 +24,12 @@
 <br></br>
 
 ### ⛓️ Front End
-![스크린샷, 2021-06-07 00-47-28](https://user-images.githubusercontent.com/76784946/120930893-2ea43780-c72a-11eb-9437-0df986e231de.png)
+<img width="1290" alt="front flow" src="https://user-images.githubusercontent.com/76784946/121796749-73622e00-cc56-11eb-97d5-3938f53acef8.png">
 
 <br></br>
 
 ### ⛓️ Back End
-![스크린샷, 2021-06-07 00-47-01](https://user-images.githubusercontent.com/76784946/120930896-319f2800-c72a-11eb-9ca8-9d49112c64f5.png)
+<img width="1233" alt="back flow" src="https://user-images.githubusercontent.com/76784946/121796751-75c48800-cc56-11eb-98f6-2d768a179186.png">
 
 # Overview
 
