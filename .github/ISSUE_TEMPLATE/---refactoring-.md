@@ -7,12 +7,12 @@ assignees: ''
 
 ---
 
-> ### ISSUE
-> * Group: `client`
-> * Type: `feature`
-> * Detail: 
-> 
-> ### TODO
-> 1. [ ]  
-> 2. [ ]  
-> 3. [ ]
+### ISSUE
+ * Group: `client`
+ * Type: `feature`
+ * Detail: 
+ 
+ ### TODO
+ 1. [ ]  
+ 2. [ ]  
+ 3. [ ]
