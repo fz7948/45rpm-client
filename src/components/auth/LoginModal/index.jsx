@@ -23,9 +23,10 @@ const LoginModal = ({
   googleLoginHandler,
 }) => {
   const dispatch = useDispatch();
-  const { login, loginError } = useSelector(({ auth }) => ({
+  const { login, loginError, isSocial } = useSelector(({ auth }) => ({
     login: auth.login,
     loginError: auth.loginError,
+    isSocial: auth.isSocial,
   }));
 
   const [animate, setAnimate] = useState(false);
@@ -68,7 +69,9 @@ const LoginModal = ({
       dispatch(checkUser(payload.id, payload.token));
       history.push('/');
       dispatch(alertLoginModal());
-      handleCloseModal();
+      if (isSocial !== 'kakao' && isSocial !== 'google') {
+        handleCloseModal();
+      }
     }
   }, [login, loginError, dispatch]);
 
@@ -97,7 +100,9 @@ const LoginModal = ({
     setInputID('');
     setInputPassword('');
     setDenyMessage('');
-    dispatch(resetLoginMsg());
+    if (isSocial !== 'kakao' && isSocial !== 'google') {
+      dispatch(resetLoginMsg());
+    }
     close();
   };
 
@@ -105,7 +110,9 @@ const LoginModal = ({
     setInputID('');
     setInputPassword('');
     setDenyMessage('');
-    dispatch(resetLoginMsg());
+    if (isSocial !== 'kakao' && isSocial !== 'google') {
+      dispatch(resetLoginMsg());
+    }
   };
 
   const handleInputID = useCallback(

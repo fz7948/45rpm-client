@@ -77,7 +77,14 @@ const Header = () => {
                 ],
               },
               success: function (response) {
-                dispatch(kakaoLoginReq(response));
+                const newData = {
+                  ...response,
+                  kakao_account: {
+                    ...response.kakao_account,
+                    email: `${response.kakao_account.profile.nickname}@kakao.com`,
+                  },
+                };
+                dispatch(kakaoLoginReq(newData));
               },
               fail: function (error) {
                 console.log(error);
@@ -110,8 +117,8 @@ const Header = () => {
       form.setAttribute('action', oauth2Endpoint);
       // Parameters to pass to OAuth 2.0 endpoint.
       const params = {
-        client_id: '889468857969-68v5gvrru6phi5i8454cv48t34k458oj',
-        redirect_uri: 'http://localhost:3000',
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        redirect_uri: process.env.REACT_APP_CLIENT_URI,
         response_type: 'token',
         scope:
           'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
