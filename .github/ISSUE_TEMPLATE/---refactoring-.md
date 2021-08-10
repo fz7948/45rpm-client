@@ -1,7 +1,7 @@
 ---
 name: "\U0001F527[Refactoring]"
 about: 리팩토링으로 기능 보완 및 추가
-title: ''
+title: "[client][Refactoring] "
 labels: ''
 assignees: ''
 
