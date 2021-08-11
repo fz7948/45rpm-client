@@ -10,7 +10,7 @@ import {
 import { kakaoLoginReq } from '../../modules/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import LoginModal from '../../components/auth/LoginModal';
+import LoginModal from '../../components/auth/LoginModal/LoginModal';
 import RegisterModal from '../../components/auth/RegisterModal';
 
 const Header = () => {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ModalBack, ModalBox } from '../common/ModalStyle';
+import { ModalBack, ModalBox } from '../../common/ModalStyle';
 import styled from 'styled-components';
-import { loginReq, resetLoginMsg } from '../../modules/auth';
-import { loginUser, checkUser } from '../../modules/user';
+import { loginReq, resetLoginMsg } from '../../../modules/auth';
+import { loginUser, checkUser } from '../../../modules/user';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { alertLoginModal } from '../../modules/modal';
+import { alertLoginModal } from '../../../modules/modal';
 import { GrFormClose } from 'react-icons/gr';
-import palette from '../../lib/styles/palette';
+import palette from '../../../lib/styles/palette';
 
 const LoginWrapper = styled.div`
   z-index: 2;
