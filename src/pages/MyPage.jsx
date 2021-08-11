@@ -1,6 +1,6 @@
 import React from 'react';
-import AuthTemplate from '../containers/auth/AutoTemplate';
-import MypageForm from '../containers/auth/MypageForm';
+import AuthTemplate from '../components/common/AutoTemplate';
+import MypageForm from '../components/auth/MypageForm';
 
 const MyPage = () => {
   return (

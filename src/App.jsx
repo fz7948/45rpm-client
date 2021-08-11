@@ -6,12 +6,12 @@ import MyPage from './pages/MyPage';
 import SharingPage from './pages/SharingPage';
 import CustomPage from './pages/CustomPage';
 import OrderPage from './pages/OrderPage';
-import InquiryView from './components/Inquries/InquiryView';
+import InquiryView from './components/Inquries/InquiryView/index';
 import GlobalStyles from './components/common/GlobalStyles';
-import Header from './components/common/Header';
-import Sidebar from './components/common/Sidebar';
+import Header from './components/common/Header/Header';
+import Sidebar from './components/common/Sidebar/index';
 import { useSelector } from 'react-redux';
-import LoadingPage from './pages/LoadingPage';
+import LoadingPage from './pages/LoadingPage/LoadingPage';
 
 function App() {
   const { isLogin } = useSelector(({ user }) => ({

@@ -1,6 +1,6 @@
 import React from 'react';
-import OrderFrom from '../containers/order/OrderFrom';
-import AuthTemplate from '../containers/auth/AutoTemplate';
+import OrderFrom from '../components/order';
+import AuthTemplate from '../components/common/AutoTemplate';
 
 const OrderPage = () => {
   return (

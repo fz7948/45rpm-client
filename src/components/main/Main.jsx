@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../../pages/sass/Main.scss';
-import Footer from '../common/Footer';
+import './Main.scss';
+import Footer from '../common/Footer/Footer';
 import { BsFillSkipEndFill } from 'react-icons/bs';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import AlertModal from '../../components/common/AlertModal';
+import AlertModal from '../common/Modal/AlertModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../modules/modal';
 import axios from 'axios';

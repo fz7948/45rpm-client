@@ -1,5 +1,5 @@
 import React from 'react';
-import Sharing from '../components/Sharing/Sharing';
+import Sharing from '../components/Sharing';
 
 const SharingPage = () => {
   return <Sharing />;
